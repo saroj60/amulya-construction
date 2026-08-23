@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calculator, Check, ArrowRight, HelpCircle, HardHat, Info, ShieldAlert, Sparkles, Loader } from 'lucide-react';
-import { COMPANY } from '@/data';
+import { COMPANY, CALCULATOR_CONFIG } from '@/data';
 import { api } from '@/services/api';
 import SectionHeader from '../components/ui/SectionHeader';
 import { staggerContainer, fadeUp, viewportOnce } from '@/utils/animations';
@@ -41,7 +41,16 @@ export default function CostCalculatorPage() {
         setSelectedTerrain(data.terrains[0].id);
         setSelectedStyle(data.styles[0].id);
       })
-      .catch((err) => console.error(err))
+      .catch((err) => {
+        console.error('Failed to fetch calculator config, using fallback data:', err);
+        const data = CALCULATOR_CONFIG;
+        setConfig(data);
+        setSelectedPackage(data.packages[1].id);
+        setSelectedFloor(data.floors[2].id);
+        setSelectedLocation(data.locations[0].id);
+        setSelectedTerrain(data.terrains[0].id);
+        setSelectedStyle(data.styles[0].id);
+      })
       .finally(() => setLoading(false));
   }, []);
 

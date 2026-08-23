@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeader from '../components/ui/SectionHeader';
 import ProjectCard from '../components/ui/ProjectCard';
-import { COMPANY } from '@/data';
+import { COMPANY, PROJECTS } from '@/data';
 import { api } from '@/services/api';
 import { staggerContainer, fadeUp, viewportOnce } from '@/utils/animations';
 
@@ -11,12 +11,18 @@ const CATEGORIES = ['All', 'Residential', 'Commercial', 'Renovation', 'Ongoing',
 
 export default function ProjectsPage() {
   const [active, setActive] = useState('All');
-  const [projectsList, setProjectsList] = useState([]);
+  const [projectsList, setProjectsList] = useState(PROJECTS);
 
   useEffect(() => {
     api.getProjects()
-      .then((data) => setProjectsList(data))
-      .catch((err) => console.error(err));
+      .then((data) => {
+        if (data && data.length > 0) {
+          setProjectsList(data);
+        }
+      })
+      .catch((err) => {
+        console.error('Failed to load projects from API, using fallback data:', err);
+      });
   }, []);
 
   const filtered = projectsList.filter((p) => {

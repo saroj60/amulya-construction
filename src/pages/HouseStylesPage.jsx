@@ -6,7 +6,7 @@ import {
   ArrowRight, Heart, Sparkles, Building2, Paintbrush, 
   Hammer, ChevronRight, Bed, Clock, ShieldCheck 
 } from 'lucide-react';
-import { COMPANY } from '@/data';
+import { COMPANY, HOUSE_STYLES } from '@/data';
 import { api } from '@/services/api';
 import SectionHeader from '../components/ui/SectionHeader';
 import { staggerContainer } from '@/utils/animations';
@@ -15,13 +15,19 @@ const CATEGORIES = ['All', 'Modern', 'Traditional', 'Classical', 'Sloped Roof', 
 
 export default function HouseStylesPage() {
   const [activeCategory, setActiveCategory] = useState('All');
-  const [stylesList, setStylesList] = useState([]);
+  const [stylesList, setStylesList] = useState(HOUSE_STYLES);
   const [favorites, setFavorites] = useState({});
 
   useEffect(() => {
     api.getHouseStyles()
-      .then((data) => setStylesList(data))
-      .catch((err) => console.error(err));
+      .then((data) => {
+        if (data && data.length > 0) {
+          setStylesList(data);
+        }
+      })
+      .catch((err) => {
+        console.error('Failed to load styles from API, using fallback data:', err);
+      });
   }, []);
 
   const filteredStyles = activeCategory === 'All'
