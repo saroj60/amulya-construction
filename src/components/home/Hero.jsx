@@ -23,17 +23,17 @@ export default function Hero() {
     if (slides.length <= 1) return;
     const timer = setInterval(() => {
       setCurrentIdx(prev => (prev + 1) % slides.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(timer);
   }, [slides]);
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      aria-label="Hero section"
+      className="relative h-screen min-h-[600px] max-h-[1050px] flex items-center justify-center overflow-hidden"
+      aria-label="Amulya Builders Hero Section"
     >
-      {/* Background Image Slider */}
-      <div className="absolute inset-0 z-0 bg-black">
+      {/* Background Image Slider / Authentic Construction Imagery */}
+      <div className="absolute inset-0 z-0 select-none overflow-hidden">
         {slides.length > 0 ? (
           slides.map((slide, idx) => (
             <div
@@ -44,83 +44,88 @@ export default function Hero() {
             >
               <img
                 src={slide.image}
-                alt={`Hero Slide ${idx + 1}`}
-                className="w-full h-full object-cover object-center"
+                alt={`Construction project slide ${idx + 1}`}
+                className="w-full h-full object-cover object-[75%_center]"
                 fetchPriority={idx === currentIdx ? "high" : "low"}
               />
             </div>
           ))
         ) : (
           <img
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=85"
-            alt="Construction site with workers and crane in Kathmandu Nepal"
-            className="w-full h-full object-cover object-center"
+            src="https://images.unsplash.com/photo-1541888946425-d0fbb18615f3?w=2000&q=85"
+            alt="Structural steel and modern high-rise building construction in Kathmandu Nepal"
+            className="w-full h-full object-cover object-[70%_center] lg:object-[75%_center]"
             fetchPriority="high"
           />
         )}
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/75 z-10" />
+
+        {/* Subtle, Bright Contrast Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent z-10" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 container-custom w-full text-white py-28 md:py-36 lg:py-44">
-        <div className="max-w-3xl">
-          {/* Label */}
+      {/* Hero Content Container - Vertically Balanced for 1-Frame Viewport */}
+      <div className="relative z-20 container-custom w-full pt-20 pb-4 sm:pt-24 sm:pb-6 flex flex-col justify-center">
+        <div className="max-w-[700px]">
+          
+          {/* Eyebrow */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex items-center gap-2 mb-6"
+            transition={{ duration: 0.4, ease: 'easeOut', delay: 0.1 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-white/20 backdrop-blur-md mb-3 sm:mb-4"
           >
-            <span className="w-8 h-0.5 bg-orange-400 rounded-full" />
-            <span className="text-orange-400 text-xs font-bold uppercase tracking-[0.2em]">
+            <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+            <span className="text-orange-400 text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em]">
               Construction Company in Kathmandu, Nepal
             </span>
           </motion.div>
 
-          {/* Headline */}
+          {/* Main Headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight mb-6"
+            transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
+            className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] tracking-tight leading-[1.04] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] mb-3 sm:mb-4"
           >
-            Building Dreams.
+            <span>Building With Purpose.</span>
             <br />
-            <span className="text-orange-400">Creating Landmarks.</span>
+            <span className="text-orange-500 drop-shadow-[0_2px_15px_rgba(249,115,22,0.4)]">
+              Creating For Generations.
+            </span>
           </motion.h1>
 
-          {/* Subtitle */}
+          {/* Description */}
           <motion.p
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-base md:text-xl text-gray-200 leading-relaxed mb-10 max-w-2xl"
+            transition={{ duration: 0.5, ease: 'easeOut', delay: 0.3 }}
+            className="text-sm sm:text-base md:text-lg text-white/90 drop-shadow-[0_1px_6px_rgba(0,0,0,0.7)] font-normal leading-relaxed mb-5 sm:mb-6 max-w-[620px]"
           >
-            {COMPANY.name} delivers premium residential and commercial construction
+            Amulya Builders delivers premium residential and commercial construction
             services across Kathmandu and Bagmati Province, Nepal — with integrity,
             craftsmanship, and a commitment to quality that stands the test of time.
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.55 }}
-            className="flex flex-wrap gap-4 mb-14"
+            transition={{ duration: 0.4, ease: 'easeOut', delay: 0.45 }}
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-5 sm:mb-6 lg:mb-8"
           >
             <Link
               to="/contact"
-              className="btn-primary text-base px-7 py-4"
-              aria-label="Request a free construction quote"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-semibold text-sm sm:text-base rounded-lg shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group cursor-pointer"
+              aria-label="Request a quote for your construction project"
             >
-              Request a Quote
-              <ArrowRight className="w-5 h-5" aria-hidden="true" />
+              <span>Request a Quote</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
+
             <Link
               to="/projects"
-              className="btn-secondary text-base px-7 py-4"
-              aria-label="View our construction projects"
+              className="inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 bg-black/25 hover:bg-orange-500/15 active:bg-orange-500/25 text-white hover:text-orange-400 font-semibold text-sm sm:text-base rounded-lg border-2 border-white/80 hover:border-orange-500 backdrop-blur-sm hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
+              aria-label="View our completed and ongoing construction projects"
             >
               View Our Projects
             </Link>
@@ -128,40 +133,50 @@ export default function Hero() {
 
           {/* Trust Indicators */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex flex-wrap items-center gap-6"
+            transition={{ duration: 0.4, ease: 'easeOut', delay: 0.55 }}
+            className="pt-4 sm:pt-5 border-t border-white/15"
           >
-            {[
-              { icon: ShieldCheck, text: 'NBC Compliant Construction' },
-              { icon: Award, text: '15+ Years of Excellence' },
-              { icon: Users, text: '200+ Happy Clients' },
-            ].map(({ icon: Icon, text }) => (
-              <div key={text} className="flex items-center gap-2">
-                <Icon className="w-5 h-5 text-orange-400" aria-hidden="true" />
-                <span className="text-sm text-gray-200 font-medium">{text}</span>
-              </div>
-            ))}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3.5">
+              {[
+                { icon: ShieldCheck, text: '✓ NBC Compliant Construction' },
+                { icon: Award, text: '15+ Years of Excellence' },
+                { icon: Users, text: '200+ Happy Clients' },
+              ].map(({ icon: Icon, text }) => (
+                <div
+                  key={text}
+                  className="flex items-center gap-2.5 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-lg bg-black/30 border border-white/15 backdrop-blur-md shadow-sm"
+                >
+                  <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-orange-500 shrink-0" aria-hidden="true" />
+                  <span className="text-xs sm:text-xs md:text-sm font-semibold text-white tracking-wide">
+                    {text}
+                  </span>
+                </div>
+              ))}
+            </div>
           </motion.div>
+
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Down Indicator */}
       <motion.a
         href="#stats"
         aria-label="Scroll to statistics section"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white/60 hover:text-white transition-colors"
+        transition={{ delay: 0.9, duration: 0.5 }}
+        className="hidden 2xl:flex absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-1 text-slate-400 hover:text-orange-400 transition-colors group cursor-pointer"
       >
-        <span className="text-xs uppercase tracking-widest">Scroll</span>
+        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400 group-hover:text-white transition-colors">
+          Scroll
+        </span>
         <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+          animate={{ y: [0, 4, 0] }}
+          transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
         >
-          <ChevronDown className="w-5 h-5" aria-hidden="true" />
+          <ChevronDown className="w-3.5 h-3.5 text-orange-400" aria-hidden="true" />
         </motion.div>
       </motion.a>
     </section>

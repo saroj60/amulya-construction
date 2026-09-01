@@ -30,14 +30,14 @@ export default function HomePage() {
         <meta property="og:url" content="https://amulyabuilders.com.np/" />
         <meta property="og:title" content={`Best Construction Company in Kathmandu, Nepal | ${COMPANY.name}`} />
         <meta property="og:description" content="Amulya Builders is the best construction company in Kathmandu & Lalitpur, Nepal. We provide turnkey house construction, civil engineering, commercial building construction, and modern architectural design services." />
-        <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo.png" />
-
+        <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
+        
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://amulyabuilders.com.np/" />
         <meta name="twitter:title" content={`Best Construction Company in Kathmandu, Nepal | ${COMPANY.name}`} />
         <meta name="twitter:description" content="Amulya Builders is the best construction company in Kathmandu & Lalitpur, Nepal. We provide turnkey house construction, civil engineering, commercial building construction, and modern architectural design services." />
-        <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo.png" />
+        <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
       </Helmet>
 
       <Hero />

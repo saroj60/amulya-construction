@@ -97,6 +97,126 @@ const seedProjects = [
       'Floors': '2.5 Storeys per unit',
       'Est. Handover': 'December 2026'
     })
+  },
+  {
+    title: 'Summit Horizon Commercial Plaza',
+    category: 'Commercial',
+    status: 'Completed',
+    location: 'New Baneshwor, Kathmandu',
+    duration: '22 Months',
+    description: 'A landmark 7-storey commercial and corporate office complex in New Baneshwor. Features seismic shear wall engineering, energy-efficient double-glazed curtain walls, multi-level underground basement parking, and advanced fire detection and suppression systems.',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+    gallery: JSON.stringify([
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80',
+      'https://images.unsplash.com/photo-1577495508048-b635879837f1?w=1200&q=80',
+      'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80',
+      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1200&q=80'
+    ]),
+    highlights: JSON.stringify([
+      'Grade A corporate commercial office spaces',
+      'Double basement parking capacity for 60+ vehicles',
+      'NBC 105:2020 seismic shear wall engineering standard',
+      'High-speed energy-efficient Otis passenger elevators',
+      'Integrated VRF HVAC and rooftop solar hybrid power'
+    ]),
+    specifications: JSON.stringify({
+      'Built Area': '28,500 sq. ft.',
+      'Plot Size': '1-8-0-0 Ropani',
+      'Structure': 'RCC Dual Frame & Shear Wall System',
+      'Floors': '7 Storeys + 2 Basements',
+      'Completion Year': '2024',
+      'Client': 'Summit Corporate Group'
+    })
+  },
+  {
+    title: 'Boutique Eco Resort & Spa',
+    category: 'Commercial',
+    status: 'Completed',
+    location: 'Budhanilkantha Foothills, Kathmandu',
+    duration: '16 Months',
+    description: 'An exclusive 18-villa eco-friendly wellness resort integrated harmoniously into the natural hillside topography of Budhanilkantha. Constructed using sustainable local stone, seasoned timber, and earthquake-resilient reinforced masonry with rainwater harvesting and greywater filtration.',
+    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80',
+    gallery: JSON.stringify([
+      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80',
+      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80',
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80',
+      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80'
+    ]),
+    highlights: JSON.stringify([
+      '18 private guest chalets with plunge pools and verandas',
+      'Zero-runoff rainwater retention and natural reed-bed filtration',
+      'Locally quarried dressed stone and seasoned timber accents',
+      'Timber-frame clubhouse with panoramic Kathmandu valley views',
+      '100% solar thermal hot water heating system'
+    ]),
+    specifications: JSON.stringify({
+      'Site Area': '12-0-0-0 Ropani',
+      'Total Built Area': '16,200 sq. ft.',
+      'Structural System': 'Hybrid RCC & Dressed Stone Masonry',
+      'Floors': '1 & 2 Storey Villas',
+      'Handover Year': '2024',
+      'Landscape': 'Native Himalayan Flora Integration'
+    })
+  },
+  {
+    title: 'Tranquil Pine Luxury Villa',
+    category: 'Residential',
+    status: 'Ongoing',
+    location: 'Sanepa, Lalitpur',
+    duration: '14 Months',
+    description: 'A contemporary 3.5-storey private luxury residence featuring seamless indoor-outdoor living, double-height atrium lounge, cantilevered balconies, smart automation, and private landscaped courtyard in the prime residential enclave of Sanepa.',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
+    gallery: JSON.stringify([
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80'
+    ]),
+    highlights: JSON.stringify([
+      'Double-height living atrium with natural daylight skylight',
+      'NBC Zone V compliant ductile moment-resisting frame (SMRF)',
+      'Smart home automated climate control, security, and lighting',
+      'Heated splash pool and panoramic rooftop barbecue terrace',
+      'Sound-insulated acoustic thermal double glazing'
+    ]),
+    specifications: JSON.stringify({
+      'Plot Area': '0-9-2-0 Ropani',
+      'Built-Up Area': '4,800 sq. ft.',
+      'Structure': 'Special Moment Resisting Frame (SMRF)',
+      'Floors': '3.5 Storeys',
+      'Est. Handover': 'August 2026',
+      'Client': 'Private Executive'
+    })
+  },
+  {
+    title: 'Himalayan Ridge Alpine Villa',
+    category: 'Residential',
+    status: 'Completed',
+    location: 'Dhulikhel, Kavre',
+    duration: '12 Months',
+    description: 'Perched on a scenic mountain ridge with unobstructed views of the Langtang Himalayan range. Features alpine chalet aesthetics, reinforced steep-slope foundations, radiant floor heating, and deep cantilevered viewing decks.',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
+    gallery: JSON.stringify([
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80',
+      'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=1200&q=80'
+    ]),
+    highlights: JSON.stringify([
+      'Deep cantilevered panoramic mountain observation decks',
+      'Steep-slope engineered retaining wall & micropile foundation',
+      'Underfloor radiant heating system for winter comfort',
+      'Exposed timber rafters and triple-pane insulated windows',
+      'Fully self-sustaining solar inverter battery backup'
+    ]),
+    specifications: JSON.stringify({
+      'Plot Area': '0-14-0-0 Ropani',
+      'Built Area': '3,600 sq. ft.',
+      'Structure': 'Stepped RCC Foundation & Ductile Frame',
+      'Floors': '2.5 Storeys',
+      'Completed Year': '2025',
+      'Elevation': '1,550m ASL'
+    })
   }
 ];
 
@@ -187,6 +307,146 @@ const seedHouseStyles = [
       'Seismic Rating': 'Designed to exceed NBC Zone V'
     }),
     price: 'Rs 32,750.00'
+  },
+  {
+    id: 'scandinavian-minimalist-home',
+    title: 'Scandinavian Minimalist Home',
+    category: 'Minimalist',
+    description: 'Clean lines, functional beauty, and light-filled spaces inspired by Nordic architecture, optimized for compact urban plots in Kathmandu.',
+    longDescription: 'The Scandinavian Minimalist Home blends simplicity, functional ergonomics, and an intimate connection to natural light. Designed to maximize spaciousness on compact Kathmandu urban lots, this residence features vertical timber battens, clean off-white surfaces, and floor-to-ceiling double-glazed windows. The interior includes an open-plan kitchen and living space, custom built-in architectural joinery, and a lush rooftop terrace for organic gardening.',
+    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&q=80',
+    gallery: JSON.stringify([
+      'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80'
+    ]),
+    features: JSON.stringify([
+      'Maximizes natural daylight on tight urban plots',
+      'Concealed storage and built-in architectural joinery',
+      'Nordic acoustic wood-slat feature walls',
+      'Rooftop organic kitchen garden and entertaining deck'
+    ]),
+    materials: JSON.stringify([
+      'Sustainably Treated Timber',
+      'Double-Glazed Low-E Glass',
+      'Polished Microcement Screed',
+      'Earthquake Ductile RCC Frame'
+    ]),
+    specifications: JSON.stringify({
+      'Est. Build Time': '10 - 12 Months',
+      'Min. Plot Area': '0-3-2-0 Ropani (3.5 Aana)',
+      'Floor Options': '2.5 to 3 Storeys',
+      'Structural System': 'Engineered Ductile RCC Frame',
+      'Thermal Rating': 'High Efficiency Thermal Envelope'
+    }),
+    price: 'Rs 22,500.00',
+    floor_plan_image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80'
+  },
+  {
+    id: 'industrial-loft-residence',
+    title: 'Industrial Loft Residence',
+    category: 'Modern',
+    description: 'Bold urban aesthetic featuring exposed structural steel, polished concrete, soaring ceilings, and factory-style black metal grid glass facades.',
+    longDescription: 'Inspired by metropolitan warehouse loft living, this design features voluminous open spaces with soaring 12-foot ceilings, exposed structural I-beams, distressed brick feature walls, and black matte metal framed glazing. Ideal for creative professionals and modern families desiring a unique, edgy, and spacious sanctuary in Kathmandu with flexible work-live zones.',
+    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80',
+    gallery: JSON.stringify([
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=1200&q=80'
+    ]),
+    features: JSON.stringify([
+      'Soaring 12-foot ceilings with exposed steel beams',
+      'Black powder-coated industrial metal window mullions',
+      'Custom floating open-tread steel staircase',
+      'Integrated mezzanine creative studio and library'
+    ]),
+    materials: JSON.stringify([
+      'Structural Steel (ISMB/ISMC Sections)',
+      'Polished Concrete Screed Flooring',
+      'Exposed Wirecut Red Brick',
+      'Thermal-Break Aluminum Glazing'
+    ]),
+    specifications: JSON.stringify({
+      'Est. Build Time': '12 - 14 Months',
+      'Min. Plot Area': '0-4-0-0 Ropani (4 Aana)',
+      'Floor Options': '2.5 Storeys with Mezzanine',
+      'Structural System': 'Composite Steel-RCC Hybrid Structure',
+      'Seismic Compliance': 'NBC 105:2020 Ductility Certified'
+    }),
+    price: 'Rs 26,000.00',
+    floor_plan_image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80'
+  },
+  {
+    id: 'himalayan-rustic-stone-villa',
+    title: 'Himalayan Rustic Stone Villa',
+    category: 'Traditional',
+    description: 'Crafted from hand-chiseled local stone, heavy timber beams, and slate roofs, echoing the timeless mountain sanctuaries of the Himalayas.',
+    longDescription: 'The Himalayan Rustic Stone Villa celebrates the elemental permanence and thermal mass of hand-dressed local mountain stone. Designed especially for ridge lines, suburban retreats, or sloping lots in Nagarkot, Dhulikhel, or Budhanilkantha, this home combines thick stone masonry exterior walls with a seismically certified internal reinforced concrete core. Deep covered verandas and wood-burning stone fireplaces bring warmth and timeless mountain hospitality.',
+    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80',
+    gallery: JSON.stringify([
+      'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=80',
+      'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80'
+    ]),
+    features: JSON.stringify([
+      'Natural mountain stone fireplace centerpiece',
+      'Hand-dressed ashlar stone masonry veneer',
+      'Deep wraparound covered viewing verandas',
+      'Exposed rough-sawn timber ceiling trusses'
+    ]),
+    materials: JSON.stringify([
+      'Locally Hand-Chiseled Mountain Stone',
+      'Naturally Treated Sal Wood Timber',
+      'Handmade Slate Roof Tiles',
+      'Earthquake Reinforced RCC Core'
+    ]),
+    specifications: JSON.stringify({
+      'Est. Build Time': '15 - 18 Months',
+      'Min. Plot Area': '0-8-0-0 Ropani',
+      'Floor Options': '2 Storeys',
+      'Structural System': 'Reinforced RCC Core + Stone Masonry',
+      'Thermal Efficiency': 'High Thermal Mass Stone Walls'
+    }),
+    price: 'Rs 31,000.00',
+    floor_plan_image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80'
+  },
+  {
+    id: 'eco-smart-sustainable-residence',
+    title: 'Eco-Smart Sustainable Residence',
+    category: 'Modern',
+    description: 'Net-zero oriented architectural design with integrated solar pergolas, rainwater harvesting, passive solar orientation, and smart energy monitoring.',
+    longDescription: 'Designed for the environmentally conscious homeowner, the Eco-Smart Residence combines contemporary architecture with cutting-edge green building principles. The home is oriented to maximize winter solar heat gain while providing summer shading. It includes a 5kW rooftop solar PV pergola, 10,000-liter underground rainwater storage, greywater recycling for gardens, and aerated autoclave concrete (AAC) blocks for superior thermal insulation.',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
+    gallery: JSON.stringify([
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80'
+    ]),
+    features: JSON.stringify([
+      'Integrated 5kW solar pergola canopy',
+      '10,000L underground rainwater harvesting reservoir',
+      'Smart IoT energy and water consumption dashboard',
+      'High-performance AAC lightweight insulating blocks'
+    ]),
+    materials: JSON.stringify([
+      'Autoclaved Aerated Concrete (AAC)',
+      'Recycled Composite Decking',
+      'Low-VOC Organic Paints',
+      'Seismic RCC Framework'
+    ]),
+    specifications: JSON.stringify({
+      'Est. Build Time': '11 - 13 Months',
+      'Min. Plot Area': '0-5-0-0 Ropani',
+      'Floor Options': '2.5 Storeys',
+      'Structural System': 'Ductile RCC + AAC Block Infill',
+      'Sustainability Rating': 'Green Building NBC Compliant'
+    }),
+    price: 'Rs 29,500.00',
+    floor_plan_image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80'
   }
 ];
 

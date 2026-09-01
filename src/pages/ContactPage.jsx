@@ -113,25 +113,26 @@ export default function ContactPage() {
         <meta property="og:url" content="https://amulyabuilders.com.np/contact" />
         <meta property="og:title" content={`Contact Us | ${COMPANY.name} — Construction Company in Kathmandu, Nepal`} />
         <meta property="og:description" content="Get in touch with Amulya Builders in Kathmandu, Nepal for all your home building and commercial engineering needs. Contact us via phone, email, or WhatsApp." />
-        <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo.png" />
+        <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://amulyabuilders.com.np/contact" />
         <meta name="twitter:title" content={`Contact Us | ${COMPANY.name} — Construction Company in Kathmandu, Nepal`} />
         <meta name="twitter:description" content="Get in touch with Amulya Builders in Kathmandu, Nepal for all your home building and commercial engineering needs. Contact us via phone, email, or WhatsApp." />
-        <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo.png" />
+        <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
       </Helmet>
 
       {/* Page Hero */}
       <section
-        className="relative pt-28 pb-16 md:pt-36 md:pb-20 bg-gray-900 text-white"
+        className="relative pt-28 pb-16 md:pt-36 md:pb-20 bg-gradient-to-br from-[#012352] via-[#02336e] to-[#011738] text-white overflow-hidden border-b border-white/10"
         aria-label="Contact page header"
       >
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#cd0102] to-transparent z-10 opacity-80" />
         <img
           src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1600&q=80"
           alt="Construction consultation meeting"
-          className="absolute inset-0 w-full h-full object-cover opacity-25"
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
           loading="eager"
         />
         <div className="relative z-10 container-custom text-center">

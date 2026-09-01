@@ -59,21 +59,22 @@ export default function HouseStylesPage() {
         <meta property="og:url" content="https://amulyabuilders.com.np/designs" />
         <meta property="og:title" content={`Architectural Designs | ${COMPANY.name} — Kathmandu, Nepal`} />
         <meta property="og:description" content="Explore various house architectural styles constructed by Amulya Builders in Kathmandu, Nepal. Custom modern contemporary villas, traditional Newari brickwork, classic colonial mansions, and eco-friendly designs." />
-        <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo.png" />
+        <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://amulyabuilders.com.np/designs" />
         <meta name="twitter:title" content={`Architectural Designs | ${COMPANY.name} — Kathmandu, Nepal`} />
         <meta name="twitter:description" content="Explore various house architectural styles constructed by Amulya Builders in Kathmandu, Nepal. Custom modern contemporary villas, traditional Newari brickwork, classic colonial mansions, and eco-friendly designs." />
-        <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo.png" />
+        <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
       </Helmet>
 
       {/* Page Hero */}
       <section
-        className="relative pt-28 pb-16 md:pt-36 md:pb-20 bg-slate-900 text-white overflow-hidden"
+        className="relative pt-28 pb-16 md:pt-36 md:pb-20 bg-gradient-to-br from-[#012352] via-[#02336e] to-[#011738] text-white overflow-hidden border-b border-white/10"
         aria-label="Architectural designs hero banner"
       >
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#cd0102] to-transparent z-10 opacity-80" />
         <img
           src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80"
           alt="Architectural house plans and drafting tools"
@@ -168,19 +169,26 @@ export default function HouseStylesPage() {
                   >
                     
                     <div className="h-52 w-full overflow-hidden relative">
-                      <img
-                        src={style.image}
-                        alt={style.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <span className="bg-white/95 text-slate-900 text-[10px] font-black uppercase tracking-wider px-4 py-2 rounded-xl shadow-md transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                          View Design
-                        </span>
-                      </div>
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                      <div className="absolute top-3 left-3 flex gap-1.5 items-center">
+                      <Link
+                        to={`/designs/${style.id}`}
+                        className="block w-full h-full cursor-pointer relative"
+                        aria-label={`View design details for ${style.title}`}
+                      >
+                        <img
+                          src={style.image}
+                          alt={style.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                          <span className="inline-flex items-center gap-1.5 bg-white/95 group-hover:bg-white text-slate-900 text-[10px] font-black uppercase tracking-wider px-4 py-2 rounded-xl shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 hover:bg-orange-500 hover:text-white">
+                            View Design
+                          </span>
+                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                      </Link>
+
+                      <div className="absolute top-3 left-3 flex gap-1.5 items-center pointer-events-none z-10">
                         <span className="bg-orange-500 text-white text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-lg shadow-sm">
                           {style.category}
                         </span>
@@ -190,9 +198,10 @@ export default function HouseStylesPage() {
                           </span>
                         )}
                       </div>
+
                       <button
                         onClick={(e) => toggleFavorite(style.id, e)}
-                        className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md text-white hover:text-rose-500 hover:bg-white flex items-center justify-center transition-all shadow-sm z-10 cursor-pointer"
+                        className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md text-white hover:text-rose-500 hover:bg-white flex items-center justify-center transition-all shadow-sm z-20 cursor-pointer"
                         aria-label="Add to favorites"
                       >
                         <Heart className={`w-4 h-4 ${favorites[style.id] ? 'fill-rose-500 text-rose-500' : ''}`} />
@@ -201,9 +210,11 @@ export default function HouseStylesPage() {
 
                     <div className="p-6 flex-grow flex flex-col justify-between">
                       <div className="space-y-3">
-                        <h3 className="text-base font-extrabold text-slate-900 group-hover:text-orange-500 transition-colors leading-tight">
-                          {style.title}
-                        </h3>
+                        <Link to={`/designs/${style.id}`} className="block group/title">
+                          <h3 className="text-base font-extrabold text-slate-900 group-hover/title:text-orange-500 group-hover:text-orange-500 transition-colors leading-tight cursor-pointer">
+                            {style.title}
+                          </h3>
+                        </Link>
                         <p className="text-gray-500 text-xs leading-relaxed line-clamp-2">
                           {style.description}
                         </p>
@@ -227,7 +238,7 @@ export default function HouseStylesPage() {
                       <div className="pt-5 mt-5 border-t border-gray-100/80">
                         <Link
                           to={`/designs/${style.id}`}
-                          className="inline-flex items-center gap-1 text-[11px] font-black text-orange-500 hover:text-orange-600 uppercase tracking-wider group/link"
+                          className="inline-flex items-center gap-1.5 text-xs font-black text-orange-500 hover:text-orange-600 uppercase tracking-wider group/link cursor-pointer"
                           aria-label={`Explore details of ${style.title}`}
                         >
                           Explore Design

@@ -76,25 +76,26 @@ export default function AboutPage() {
         <meta property="og:url" content="https://amulyabuilders.com.np/about" />
         <meta property="og:title" content={`About Us | ${COMPANY.name} — Construction Company in Kathmandu, Nepal`} />
         <meta property="og:description" content="Learn more about Amulya Builders — a premier engineering and construction firm in Kathmandu, Nepal since 2009. Our professional team designs and builds sustainable, high-quality structures throughout Bagmati Province." />
-        <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo.png" />
+        <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://amulyabuilders.com.np/about" />
         <meta name="twitter:title" content={`About Us | ${COMPANY.name} — Construction Company in Kathmandu, Nepal`} />
         <meta name="twitter:description" content="Learn more about Amulya Builders — a premier engineering and construction firm in Kathmandu, Nepal since 2009. Our professional team designs and builds sustainable, high-quality structures throughout Bagmati Province." />
-        <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo.png" />
+        <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
       </Helmet>
 
       {/* Page Hero */}
       <section
-        className="relative pt-28 pb-16 md:pt-36 md:pb-20 bg-gray-900 text-white overflow-hidden"
+        className="relative pt-28 pb-16 md:pt-36 md:pb-20 bg-gradient-to-br from-[#012352] via-[#02336e] to-[#011738] text-white overflow-hidden border-b border-white/10"
         aria-label="About page header"
       >
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#cd0102] to-transparent z-10 opacity-80" />
         <img
           src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=80"
           alt="Construction team at work on a building project in Nepal"
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
           loading="eager"
         />
         <div className="relative z-10 container-custom text-center">

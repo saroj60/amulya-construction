@@ -47,25 +47,26 @@ export default function BlogPage() {
         <meta property="og:url" content="https://amulyabuilders.com.np/blog" />
         <meta property="og:title" content={`Engineering & Building Blog | ${COMPANY.name} — Kathmandu, Nepal`} />
         <meta property="og:description" content="Read construction tips, structural engineering guidelines, house cost estimates, and architecture trends in Nepal from the experts at Amulya Builders." />
-        <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo.png" />
+        <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://amulyabuilders.com.np/blog" />
         <meta name="twitter:title" content={`Engineering & Building Blog | ${COMPANY.name} — Kathmandu, Nepal`} />
         <meta name="twitter:description" content="Read construction tips, structural engineering guidelines, house cost estimates, and architecture trends in Nepal from the experts at Amulya Builders." />
-        <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo.png" />
+        <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
       </Helmet>
 
       {/* Page Hero */}
       <section
-        className="relative pt-28 pb-16 md:pt-36 md:pb-20 bg-gray-900 text-white"
+        className="relative pt-28 pb-16 md:pt-36 md:pb-20 bg-gradient-to-br from-[#012352] via-[#02336e] to-[#011738] text-white overflow-hidden border-b border-white/10"
         aria-label="Blog page header"
       >
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#cd0102] to-transparent z-10 opacity-80" />
         <img
           src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80"
           alt="Engineering blueprints and workspace"
-          className="absolute inset-0 w-full h-full object-cover opacity-25"
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
           loading="eager"
         />
         <div className="relative z-10 container-custom text-center">

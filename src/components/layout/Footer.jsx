@@ -80,7 +80,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-gray-950 text-gray-300 border-t border-gray-800/60" role="contentinfo">
+    <footer className="bg-[#051124] text-slate-300 border-t-2 border-[#cd0102]" role="contentinfo">
 
       {/* Main Footer */}
       <div className="container-custom py-16 md:py-20">
@@ -88,11 +88,11 @@ export default function Footer() {
 
           {/* Brand Column */}
           <div className="lg:col-span-1 space-y-6">
-            <Link to="/" className="flex items-center group" aria-label={`${COMPANY.name} - Home`}>
+            <Link to="/" className="inline-flex items-center group" aria-label={`${COMPANY.name} - Home`}>
               <img
-                src="/amulyalogo.png"
+                src="/amulyalogo1.png"
                 alt={`${COMPANY.name} logo`}
-                className="h-14 w-auto object-contain"
+                className="h-12 md:h-14 w-auto object-contain"
                 loading="lazy"
               />
             </Link>

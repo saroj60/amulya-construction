@@ -158,21 +158,22 @@ Please contact me to arrange a site visit and detailed structural survey!`;
         <meta property="og:url" content="https://amulyabuilders.com.np/cost-calculator" />
         <meta property="og:title" content={`Nepal House Construction Cost Estimator | ${COMPANY.name}`} />
         <meta property="og:description" content="Estimate your residential building budgets in Nepal with our interactive cost estimator. Configured for Kathmandu, Pokhara, Terai, and Hill regions." />
-        <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo.png" />
+        <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://amulyabuilders.com.np/cost-calculator" />
         <meta name="twitter:title" content={`Nepal House Construction Cost Estimator | ${COMPANY.name}`} />
         <meta name="twitter:description" content="Estimate your residential building budgets in Nepal with our interactive cost estimator. Configured for Kathmandu, Pokhara, Terai, and Hill regions." />
-        <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo.png" />
+        <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
       </Helmet>
 
       {/* Page Hero Banner */}
       <section
-        className="relative pt-28 pb-16 md:pt-36 md:pb-20 bg-gray-900 text-white overflow-hidden"
+        className="relative pt-28 pb-16 md:pt-36 md:pb-20 bg-gradient-to-br from-[#012352] via-[#02336e] to-[#011738] text-white overflow-hidden border-b border-white/10"
         aria-label="Cost Estimator Hero"
       >
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#cd0102] to-transparent z-10 opacity-80" />
         <div className="absolute inset-0 z-0 opacity-10 bg-[radial-gradient(#f97316_1px,transparent_1px)] [background-size:16px_16px]" />
         <div className="relative z-10 container-custom text-center">
           <motion.span

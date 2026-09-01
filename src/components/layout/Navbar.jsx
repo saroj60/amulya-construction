@@ -18,10 +18,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === '/';
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -31,51 +30,44 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [location.pathname]);
 
-  const navBg = scrolled || !isHome
-    ? 'bg-white shadow-md border-b border-gray-100'
-    : 'bg-transparent';
-
-  const textColor = scrolled || !isHome
-    ? 'text-gray-800'
-    : 'text-white';
-
-  const logoColor = scrolled || !isHome ? 'text-blue-800' : 'text-white';
-  const accentColor = 'text-orange-500';
+  const navHeaderClasses = scrolled
+    ? 'bg-white/98 backdrop-blur-md border-b border-gray-200 shadow-md py-2.5 md:py-3'
+    : 'bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm py-3 md:py-3.5';
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navHeaderClasses}`}
       role="banner"
     >
       <div className="container-custom">
         <nav
-          className="flex items-center justify-between h-16 md:h-20"
+          className="flex items-center justify-between"
           aria-label="Main navigation"
         >
-          {/* Logo */}
+          {/* Logo - Increased ~30% on Clean White Background */}
           <Link
             to="/"
-            className="flex items-center group"
+            className="flex items-center group shrink-0"
             aria-label={`${COMPANY.name} - Home`}
           >
             <img 
-              src="/amulyalogo.png" 
+              src="/amulyalogo1.png" 
               alt={`${COMPANY.name} Logo`} 
-              className="h-10 md:h-12 w-auto object-contain transition-all"
+              className="h-12 sm:h-14 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-102"
             />
           </Link>
 
           {/* Desktop Nav Links */}
-          <ul className="hidden lg:flex items-center gap-1" role="list">
+          <ul className="hidden lg:flex items-center gap-1.5 xl:gap-2" role="list">
             {NAV_LINKS.map((link) => (
               <li key={link.to}>
                 <NavLink
                   to={link.to}
                   className={({ isActive }) =>
-                    `relative px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200 
+                    `relative px-3.5 py-2 text-sm font-semibold tracking-wide rounded-md transition-colors duration-200 
                     ${isActive
                       ? 'text-orange-500'
-                      : `${textColor} hover:text-orange-400`
+                      : 'text-gray-700 hover:text-orange-500'
                     }`
                   }
                 >
@@ -85,7 +77,8 @@ export default function Navbar() {
                       {isActive && (
                         <motion.span
                           layoutId="nav-underline"
-                          className="absolute bottom-0 left-4 right-4 h-0.5 bg-orange-500 rounded-full"
+                          className="absolute bottom-0 left-3 right-3 h-0.5 bg-orange-500 rounded-full"
+                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
                       )}
                     </>
@@ -95,19 +88,24 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+          {/* Desktop CTA & Phone */}
+          <div className="hidden lg:flex items-center gap-5 xl:gap-6">
             <a
               href={`tel:${COMPANY.mobile || COMPANY.phone}`}
-              className={`flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 ${textColor} hover:text-orange-400`}
+              className="flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-orange-500 transition-colors duration-200 group"
               aria-label={`Call us at ${COMPANY.mobile || COMPANY.phone}`}
             >
-              <Phone className="w-4 h-4" aria-hidden="true" />
-              <span className="hidden xl:inline">{COMPANY.mobile || COMPANY.phone}</span>
+              <div className="w-8 h-8 rounded-full bg-orange-50 group-hover:bg-orange-100 flex items-center justify-center transition-colors">
+                <Phone className="w-4 h-4 text-orange-500" aria-hidden="true" />
+              </div>
+              <span className="hidden xl:inline text-xs tracking-wider font-bold text-gray-700 group-hover:text-orange-500">
+                {COMPANY.mobile || COMPANY.phone}
+              </span>
             </a>
+            
             <Link
               to="/contact"
-              className="btn-primary text-sm px-5 py-2.5"
+              className="inline-flex items-center justify-center px-5 xl:px-6 py-2.5 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white text-sm font-semibold rounded-lg shadow-md hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
               aria-label="Get a free quote"
             >
               Get a Quote
@@ -116,7 +114,7 @@ export default function Navbar() {
 
           {/* Mobile Hamburger */}
           <button
-            className={`lg:hidden p-2 rounded-md transition-colors ${scrolled || !isHome ? 'text-gray-800 hover:bg-gray-100' : 'text-white hover:bg-white/10'}`}
+            className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500/50"
             onClick={() => setMenuOpen((prev) => !prev)}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
@@ -149,7 +147,7 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -158,23 +156,23 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="lg:hidden bg-white border-t border-gray-100 shadow-lg overflow-hidden"
+            className="lg:hidden bg-white border-t border-gray-100 shadow-xl overflow-hidden"
           >
-            <div className="container-custom py-4">
+            <div className="container-custom py-5">
               <ul className="flex flex-col gap-1" role="list">
                 {NAV_LINKS.map((link, i) => (
                   <motion.li
                     key={link.to}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -16 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.06 }}
+                    transition={{ delay: i * 0.04, duration: 0.2 }}
                   >
                     <NavLink
                       to={link.to}
                       className={({ isActive }) =>
-                        `flex items-center px-4 py-3 rounded-md text-sm font-semibold transition-colors
+                        `flex items-center justify-between px-4 py-3 rounded-lg text-sm font-semibold transition-colors
                         ${isActive
-                          ? 'bg-orange-50 text-orange-500'
+                          ? 'bg-orange-50 text-orange-500 border-l-2 border-orange-500'
                           : 'text-gray-700 hover:bg-gray-50 hover:text-orange-500'
                         }`
                       }
@@ -184,17 +182,23 @@ export default function Navbar() {
                   </motion.li>
                 ))}
               </ul>
-              <div className="mt-4 pt-4 border-t border-gray-100 flex flex-col gap-3">
+              
+              <div className="mt-5 pt-4 border-t border-gray-100 flex flex-col gap-3">
                 <a
                   href={`tel:${COMPANY.mobile || COMPANY.phone}`}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700"
+                  className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
                 >
-                  <Phone className="w-4 h-4 text-orange-500" aria-hidden="true" />
-                  {COMPANY.mobile || COMPANY.phone}
+                  <div className="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center">
+                    <Phone className="w-4 h-4 text-orange-500" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-400">Direct Inquiries</div>
+                    <div className="font-semibold text-gray-900">{COMPANY.mobile || COMPANY.phone}</div>
+                  </div>
                 </a>
                 <Link
                   to="/contact"
-                  className="btn-primary text-sm text-center justify-center"
+                  className="w-full py-3 px-4 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-semibold rounded-lg text-center text-sm shadow-md shadow-orange-500/20 transition-all"
                 >
                   Get a Free Quote
                 </Link>

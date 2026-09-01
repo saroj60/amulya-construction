@@ -13,7 +13,7 @@ const trustStats = [
 export default function CTABanner() {
   return (
     <section
-      className="relative overflow-hidden bg-slate-950"
+      className="relative overflow-hidden bg-[#011b3e]"
       aria-label="Call to action"
     >
       {/* Background image with overlay */}
@@ -24,11 +24,11 @@ export default function CTABanner() {
           className="w-full h-full object-cover opacity-20"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950/90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#011b3e] via-[#012352] to-[#001229] opacity-95" />
       </div>
 
-      {/* Decorative top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent z-10 opacity-60" />
+      {/* Decorative top accent line in Logo Crimson Red */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#cd0102] to-transparent z-10 opacity-90" />
       <div className="absolute top-0 left-1/4 w-px h-full bg-orange-500/5 z-0" />
       <div className="absolute top-0 right-1/4 w-px h-full bg-orange-500/5 z-0" />
 

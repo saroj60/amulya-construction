@@ -31,7 +31,7 @@ export default function StatsSection() {
   return (
     <section
       id="stats"
-      className="bg-blue-900 py-16 md:py-20"
+      className="relative bg-gradient-to-r from-[#012352] via-[#023e7d] to-[#012352] py-16 md:py-20 border-t-2 border-[#cd0102] overflow-hidden shadow-inner"
       aria-label="Company statistics"
     >
       <div className="container-custom">
