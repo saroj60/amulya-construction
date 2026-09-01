@@ -58,9 +58,9 @@ export default function Hero() {
           />
         )}
 
-        {/* High-Contrast Gradient Overlays for Guaranteed Text Readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950/45 z-10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/50 z-10 pointer-events-none" />
+        {/* Gradient Overlays calibrated to showcase the background imagery while maintaining sharp text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/75 via-slate-950/40 to-slate-950/15 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/20 z-10 pointer-events-none" />
       </div>
 
       {/* Hero Content Container */}
@@ -72,7 +72,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: 'easeOut', delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/85 border border-slate-700/80 backdrop-blur-md mb-4 sm:mb-5 shadow-sm"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-slate-700/70 backdrop-blur-md mb-4 sm:mb-5 shadow-md"
           >
             <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
             <span className="text-orange-400 text-xs sm:text-xs font-bold uppercase tracking-wider">
@@ -85,11 +85,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
-            className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-white mb-4 sm:mb-5"
+            className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-white drop-shadow-md mb-4 sm:mb-5"
           >
             <span>Building With Purpose.</span>
             <br />
-            <span className="text-orange-500">
+            <span className="text-orange-500 drop-shadow-sm">
               Creating For Generations.
             </span>
           </motion.h1>
@@ -99,7 +99,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.3 }}
-            className="text-sm sm:text-base md:text-lg text-slate-200 font-normal leading-relaxed mb-6 sm:mb-8 max-w-xl md:max-w-2xl"
+            className="text-sm sm:text-base md:text-lg text-white font-medium leading-relaxed drop-shadow-sm mb-6 sm:mb-8 max-w-xl md:max-w-2xl"
           >
             Amulya Builders delivers premium residential and commercial construction
             services across Kathmandu and Bagmati Province, Nepal — with integrity,
