@@ -41,22 +41,42 @@ export function sqFtToNepaliUnits(sqFt) {
   const s = Math.max(0, Number(sqFt) || 0);
 
   // Ropani System (Hills / Kathmandu Valley)
-  const ropani = Math.floor(s / SQFT_PER_ROPANI);
+  let ropani = Math.floor(s / SQFT_PER_ROPANI);
   let remR = s % SQFT_PER_ROPANI;
-  const aana = Math.floor(remR / SQFT_PER_AANA);
+  let aana = Math.floor(remR / SQFT_PER_AANA);
   remR = remR % SQFT_PER_AANA;
-  const paisa = Math.floor(remR / SQFT_PER_PAISA);
+  let paisa = Math.floor(remR / SQFT_PER_PAISA);
   remR = remR % SQFT_PER_PAISA;
-  const daam = Number((remR / SQFT_PER_DAAM).toFixed(1));
+  let daam = Number((remR / SQFT_PER_DAAM).toFixed(1));
+  if (daam >= 4) {
+    daam = 0;
+    paisa += 1;
+    if (paisa >= 4) {
+      paisa = 0;
+      aana += 1;
+      if (aana >= 16) {
+        aana = 0;
+        ropani += 1;
+      }
+    }
+  }
   const totalAana = Number((s / SQFT_PER_AANA).toFixed(2));
   const totalRopani = Number((s / SQFT_PER_ROPANI).toFixed(3));
 
   // Bigha System (Terai / Madhesh)
-  const bigha = Math.floor(s / SQFT_PER_BIGHA);
+  let bigha = Math.floor(s / SQFT_PER_BIGHA);
   let remB = s % SQFT_PER_BIGHA;
-  const kattha = Math.floor(remB / SQFT_PER_KATTHA);
+  let kattha = Math.floor(remB / SQFT_PER_KATTHA);
   remB = remB % SQFT_PER_KATTHA;
-  const dhur = Number((remB / SQFT_PER_DHUR).toFixed(1));
+  let dhur = Number((remB / SQFT_PER_DHUR).toFixed(1));
+  if (dhur >= 20) {
+    dhur = 0;
+    kattha += 1;
+    if (kattha >= 20) {
+      kattha = 0;
+      bigha += 1;
+    }
+  }
   const totalKattha = Number((s / SQFT_PER_KATTHA).toFixed(2));
   const totalDhur = Number((s / SQFT_PER_DHUR).toFixed(1));
 
