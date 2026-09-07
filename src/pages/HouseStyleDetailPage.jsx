@@ -235,9 +235,13 @@ export default function HouseStyleDetailPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           {/* Overlay info */}
           <div className="absolute bottom-6 left-0 right-0 container-custom text-white">
-            <div className="flex flex-wrap items-center gap-2 mb-2">
+            <div className="flex flex-wrap items-center gap-2.5 mb-2">
               <span className="text-xs bg-orange-500 text-white font-bold px-3 py-1 rounded-full shadow">
                 {style.category} Style
+              </span>
+              <span className="text-xs bg-slate-950/80 backdrop-blur-md text-white font-black px-3 py-1 rounded-full border border-white/20 shadow flex items-center gap-1.5">
+                <span className="text-orange-400 font-bold uppercase text-[10px]">Price:</span>
+                <span>{priceInfo}</span>
               </span>
             </div>
             <h1 className="text-2xl md:text-4xl font-extrabold">{style.title}</h1>
@@ -256,6 +260,27 @@ export default function HouseStyleDetailPage() {
             {/* Left Column: Description & Additional Details */}
             <div className="lg:col-span-2 space-y-10">
               
+              {/* Design Package & Price Banner */}
+              <motion.div initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeUp} className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-white rounded-3xl p-6 md:p-8 border border-slate-700/80 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-6 relative overflow-hidden">
+                <div className="space-y-2 relative z-10">
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-orange-400">Architectural Plan Package</span>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl md:text-4xl font-black text-white">{priceInfo}</span>
+                    <span className="text-xs text-slate-400 font-semibold">(Complete Drawing Set)</span>
+                  </div>
+                  <p className="text-xs text-slate-300 max-w-lg leading-relaxed">
+                    Includes full architectural 2D floor plans, 3D photorealistic exterior renderings, NBC 105:2020 seismic structural engineering drawings, electrical & plumbing schematics, and municipal approval submission documents.
+                  </p>
+                </div>
+                <a
+                  href="#request-form"
+                  className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white text-xs md:text-sm font-extrabold px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 flex-shrink-0 cursor-pointer"
+                >
+                  Request Blueprint
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </motion.div>
+
               {/* Description */}
               <motion.div initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeUp}>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Design Philosophy</h2>
@@ -391,8 +416,17 @@ export default function HouseStyleDetailPage() {
                 initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeUp}
                 className="bg-gray-50 rounded-2xl p-6 border border-gray-100"
               >
-                <h2 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wider">Style Index Criteria</h2>
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Style Index Criteria</h2>
+                  <span className="text-xs font-black text-orange-600 bg-orange-50 px-2.5 py-1 rounded-md border border-orange-200/60">
+                    {priceInfo}
+                  </span>
+                </div>
                 <dl className="space-y-4">
+                  <div className="flex justify-between gap-4 pb-2 border-b border-gray-200">
+                    <dt className="text-xs text-gray-500 font-bold uppercase">Plan Price</dt>
+                    <dd className="text-sm text-orange-600 font-black text-right">{priceInfo}</dd>
+                  </div>
                   {Object.entries(style.specifications || {}).map(([key, val]) => (
                     <div key={key} className="flex justify-between gap-4 pt-2 border-t border-gray-200 first:border-0 first:pt-0">
                       <dt className="text-xs text-gray-500 font-bold uppercase">{key}</dt>
@@ -410,10 +444,22 @@ export default function HouseStyleDetailPage() {
 
               {/* Request Design Card */}
               <motion.div
+                id="request-form"
                 initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeUp}
                 className="bg-white rounded-2xl p-6 md:p-8 border border-gray-150 shadow-md space-y-5"
               >
-                <h3 className="text-xl font-bold text-gray-900 border-b border-gray-100 pb-3">Request Design</h3>
+                <div className="border-b border-gray-100 pb-3">
+                  <h3 className="text-xl font-bold text-gray-900">Request Design</h3>
+                  <div className="mt-3 bg-orange-50/80 border border-orange-100 rounded-xl p-3.5 flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] font-bold text-orange-800 uppercase tracking-wider block">Set Price</span>
+                      <span className="text-xl font-black text-slate-900">{priceInfo}</span>
+                    </div>
+                    <span className="text-[10px] font-extrabold text-orange-600 bg-orange-100/80 px-2.5 py-1 rounded-lg">
+                      Ready to Build
+                    </span>
+                  </div>
+                </div>
                 
                 {buySubmitted ? (
                   <div className="bg-green-50 border border-green-250 text-green-800 p-4 rounded-xl text-center space-y-2">

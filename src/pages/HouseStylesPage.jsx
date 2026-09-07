@@ -155,6 +155,18 @@ export default function HouseStylesPage() {
                 const isFeatured = idx === 0 && activeCategory === 'All';
                 const bedrooms = style.specifications?.['Bedrooms'] || style.specifications?.['Bedroom'] || '4 BHK';
                 const buildTime = style.specifications?.['Est. Build Time'] || '12-15 Months';
+                const stylePrice = style.price || (
+                  style.id === 'modern-contemporary-villa' ? 'Rs 24,950.00' :
+                  style.id === 'traditional-neo-vernacular' ? 'Rs 28,500.00' :
+                  style.id === 'classical-colonial-mansion' ? 'Rs 32,750.00' :
+                  style.id === 'scandinavian-minimalist-home' ? 'Rs 22,500.00' :
+                  style.id === 'industrial-loft-residence' ? 'Rs 26,000.00' :
+                  style.id === 'himalayan-rustic-stone-villa' ? 'Rs 31,000.00' :
+                  style.id === 'eco-smart-sustainable-residence' ? 'Rs 29,500.00' :
+                  style.id === 'modern-sloped-roof-house' ? 'Rs 26,500.00' :
+                  style.id === 'eco-friendly-minimalist' ? 'Rs 27,950.00' :
+                  'Rs 25,000.00'
+                );
 
                 return (
                   <motion.article
@@ -199,6 +211,12 @@ export default function HouseStylesPage() {
                         )}
                       </div>
 
+                      {/* Price badge on image */}
+                      <div className="absolute bottom-3 right-3 bg-slate-950/85 backdrop-blur-md text-white px-2.5 py-1 rounded-lg border border-white/15 shadow-md flex items-center gap-1.5 z-10 pointer-events-none">
+                        <span className="text-[10px] uppercase font-bold text-orange-400 tracking-wider">Plan:</span>
+                        <span className="text-xs font-black text-white">{stylePrice}</span>
+                      </div>
+
                       <button
                         onClick={(e) => toggleFavorite(style.id, e)}
                         className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md text-white hover:text-rose-500 hover:bg-white flex items-center justify-center transition-all shadow-sm z-20 cursor-pointer"
@@ -235,13 +253,17 @@ export default function HouseStylesPage() {
                         </div>
                       </div>
 
-                      <div className="pt-5 mt-5 border-t border-gray-100/80">
+                      <div className="pt-4 mt-5 border-t border-gray-100/80 flex items-center justify-between gap-3">
+                        <div>
+                          <span className="text-[10px] uppercase font-bold text-gray-400 tracking-wider block">Plan Price</span>
+                          <span className="text-base font-extrabold text-slate-900">{stylePrice}</span>
+                        </div>
                         <Link
                           to={`/designs/${style.id}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-black text-orange-500 hover:text-orange-600 uppercase tracking-wider group/link cursor-pointer"
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-orange-500 hover:bg-orange-600 px-4 py-2.5 rounded-xl transition-all shadow-sm hover:shadow group/link cursor-pointer"
                           aria-label={`Explore details of ${style.title}`}
                         >
-                          Explore Design
+                          Explore
                           <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
                         </Link>
                       </div>

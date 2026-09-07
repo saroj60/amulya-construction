@@ -701,7 +701,8 @@ export const HOUSE_STYLES = [
       'Floor Options': '2.5 Storeys (Customizable)',
       'Structural System': 'Reinforced RCC Frame',
       'Seismic Rating': 'Designed to exceed NBC Zone V'
-    }
+    },
+    price: 'Rs 24,950.00'
   },
   {
     id: 'traditional-neo-vernacular',
@@ -729,7 +730,8 @@ export const HOUSE_STYLES = [
       'Floor Options': '2 to 3 Storeys',
       'Structural System': 'RCC Frame + Load-Bearing Brick Veneer',
       'Seismic Rating': 'Seismic Resistant Core Structure'
-    }
+    },
+    price: 'Rs 28,500.00'
   },
   {
     id: 'classical-colonial-mansion',
@@ -757,7 +759,8 @@ export const HOUSE_STYLES = [
       'Floor Options': '2 to 3 Storeys',
       'Structural System': 'Massive Concrete Framing',
       'Seismic Rating': 'Designed to exceed NBC Zone V'
-    }
+    },
+    price: 'Rs 32,750.00'
   },
   {
     id: 'modern-sloped-roof-house',
@@ -785,7 +788,8 @@ export const HOUSE_STYLES = [
       'Floor Options': '2.5 Storeys',
       'Structural System': 'RCC Structural Framework',
       'Seismic Rating': 'Designed to exceed NBC Zone V'
-    }
+    },
+    price: 'Rs 26,500.00'
   },
   {
     id: 'eco-friendly-minimalist',
@@ -813,7 +817,8 @@ export const HOUSE_STYLES = [
       'Floor Options': '2 Storeys',
       'Structural System': 'Lightweight RCC Frame + Eco panels',
       'Seismic Rating': 'Designed to exceed NBC Zone V'
-    }
+    },
+    price: 'Rs 27,950.00'
   }
 ];
 
