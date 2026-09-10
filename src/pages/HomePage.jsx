@@ -4,7 +4,6 @@ import StatsSection from '../components/home/StatsSection';
 import AboutPreview from '../components/home/AboutPreview';
 import ServicesPreview from '../components/home/ServicesPreview';
 import FeaturedProjects from '../components/home/FeaturedProjects';
-import WhyChooseUs from '../components/home/WhyChooseUs';
 import ProcessSection from '../components/home/ProcessSection';
 import Testimonials from '../components/home/Testimonials';
 import CTABanner from '../components/home/CTABanner';
@@ -45,7 +44,6 @@ export default function HomePage() {
       <AboutPreview />
       <ServicesPreview />
       <FeaturedProjects />
-      <WhyChooseUs />
       <ProcessSection />
       <Testimonials />
       <CTABanner />
