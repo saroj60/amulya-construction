@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, ShieldCheck, Award, Users } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Award, Compass } from 'lucide-react';
 import { api } from '@/services/api';
 
 export default function Hero() {
@@ -29,7 +29,7 @@ export default function Hero() {
   return (
     <section
       className="relative min-h-[calc(100vh-1rem)] md:min-h-screen flex flex-col justify-center overflow-hidden bg-slate-950 pt-28 sm:pt-32 md:pt-36 pb-12 sm:pb-16 md:pb-20"
-      aria-label="Amulya Builders Hero Section"
+      aria-label="Amulya Builders Design and Construction Hero Section"
     >
       {/* Background Image Slider / Authentic Construction Imagery */}
       <div className="absolute inset-0 z-0 select-none overflow-hidden">
@@ -43,7 +43,7 @@ export default function Hero() {
             >
               <img
                 src={slide.image}
-                alt={`Construction project slide ${idx + 1}`}
+                alt={`Construction and design project slide ${idx + 1}`}
                 className="w-full h-full object-cover object-[70%_center] lg:object-center"
                 fetchPriority={idx === currentIdx ? "high" : "low"}
               />
@@ -52,7 +52,7 @@ export default function Hero() {
         ) : (
           <img
             src="https://images.unsplash.com/photo-1541888946425-d0fbb18615f3?w=2000&q=85"
-            alt="Structural steel and modern high-rise building construction in Kathmandu Nepal"
+            alt="Structural steel and modern high-rise building design and construction in Kathmandu Nepal"
             className="w-full h-full object-cover object-[70%_center] lg:object-center"
             fetchPriority="high"
           />
@@ -76,7 +76,7 @@ export default function Hero() {
           >
             <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
             <span className="text-orange-400 text-xs sm:text-xs font-bold uppercase tracking-wider">
-              Construction Company in Kathmandu, Nepal
+              Architectural Design & Construction in Kathmandu, Nepal
             </span>
           </motion.div>
 
@@ -87,10 +87,10 @@ export default function Hero() {
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
             className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-white drop-shadow-md mb-4 sm:mb-5"
           >
-            <span>Building With Purpose.</span>
+            <span>Innovative Design.</span>
             <br />
             <span className="text-orange-500 drop-shadow-sm">
-              Creating For Generations.
+              Enduring Construction.
             </span>
           </motion.h1>
 
@@ -101,9 +101,7 @@ export default function Hero() {
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.3 }}
             className="text-sm sm:text-base md:text-lg text-white font-medium leading-relaxed drop-shadow-sm mb-6 sm:mb-8 max-w-xl md:max-w-2xl"
           >
-            Amulya Builders delivers premium residential and commercial construction
-            services across Kathmandu and Bagmati Province, Nepal — with integrity,
-            craftsmanship, and a commitment to quality that stands the test of time.
+            Amulya Builders delivers complete architectural design, 3D modeling, and turnkey residential & commercial construction services across Kathmandu and Nepal — combining contemporary aesthetics with earthquake-resistant engineering.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -116,18 +114,18 @@ export default function Hero() {
             <Link
               to="/contact"
               className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-semibold text-sm sm:text-base rounded-lg shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group cursor-pointer"
-              aria-label="Request a quote for your construction project"
+              aria-label="Request a quote for your design and construction project"
             >
               <span>Request a Quote</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
 
             <Link
-              to="/projects"
+              to="/designs"
               className="inline-flex items-center justify-center px-6 sm:px-7 py-3.5 bg-slate-900/60 hover:bg-slate-800/80 text-white hover:text-orange-400 font-semibold text-sm sm:text-base rounded-lg border border-slate-700 hover:border-orange-500/60 backdrop-blur-sm hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
-              aria-label="View our completed and ongoing construction projects"
+              aria-label="Explore modern architectural house designs"
             >
-              View Our Projects
+              Explore House Designs
             </Link>
           </motion.div>
 
@@ -140,9 +138,9 @@ export default function Hero() {
           >
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               {[
+                { icon: Compass, text: 'Architectural & 3D Design' },
                 { icon: ShieldCheck, text: 'NBC Compliant Construction' },
                 { icon: Award, text: '15+ Years of Excellence' },
-                { icon: Users, text: '200+ Happy Clients' },
               ].map(({ icon: Icon, text }) => (
                 <div
                   key={text}
