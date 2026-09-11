@@ -76,7 +76,7 @@ export default function Hero() {
           >
             <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
             <span className="text-orange-400 text-xs sm:text-xs font-bold uppercase tracking-wider">
-              Architectural Design & Construction in Kathmandu, Nepal
+              Nepal's Most Trusted Design & Construction Company
             </span>
           </motion.div>
 
@@ -101,7 +101,7 @@ export default function Hero() {
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.3 }}
             className="text-sm sm:text-base md:text-lg text-white font-medium leading-relaxed drop-shadow-sm mb-6 sm:mb-8 max-w-xl md:max-w-2xl"
           >
-            Amulya Builders delivers complete architectural design, 3D modeling, and turnkey residential & commercial construction services across Kathmandu and Nepal — combining contemporary aesthetics with earthquake-resistant engineering.
+            As Nepal's most trusted construction and design company, Amulya Builders delivers complete architectural design, 3D modeling, and turnkey residential & commercial construction services across Kathmandu and Nepal — combining contemporary aesthetics with earthquake-resistant engineering.
           </motion.p>
 
           {/* CTA Buttons */}

@@ -13,10 +13,10 @@ export default function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Architectural Design & Construction Company in Kathmandu, Nepal | {COMPANY.name}</title>
+        <title>Nepal's Most Trusted Construction & Design Company | {COMPANY.name}</title>
         <meta
           name="description"
-          content="Amulya Builders is the best construction company in Kathmandu & Lalitpur, Nepal. We provide turnkey house construction, civil engineering, commercial building construction, and modern architectural design services."
+          content="Amulya Builders is Nepal's most trusted design and construction company in Kathmandu & Lalitpur. We provide turnkey house construction, civil engineering, commercial building construction, and modern architectural design services."
         />
         <meta
           name="keywords"
