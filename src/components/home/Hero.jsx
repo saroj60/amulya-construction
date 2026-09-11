@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, ShieldCheck, Award, Compass } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Award, Compass, MapPin } from 'lucide-react';
 import { api } from '@/services/api';
 
 export default function Hero() {
@@ -52,7 +52,7 @@ export default function Hero() {
         ) : (
           <img
             src="https://images.unsplash.com/photo-1541888946425-d0fbb18615f3?w=2000&q=85"
-            alt="Structural steel and modern high-rise building design and construction in Kathmandu Nepal"
+            alt="Structural steel and modern high-rise building design and construction in Nepal"
             className="w-full h-full object-cover object-[70%_center] lg:object-center"
             fetchPriority="high"
           />
@@ -65,7 +65,7 @@ export default function Hero() {
 
       {/* Hero Content Container */}
       <div className="relative z-20 container-custom w-full">
-        <div className="max-w-2xl lg:max-w-3xl">
+        <div className="max-w-2xl lg:max-w-4xl">
           
           {/* Eyebrow Badge */}
           <motion.div
@@ -76,7 +76,7 @@ export default function Hero() {
           >
             <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
             <span className="text-orange-400 text-xs sm:text-xs font-bold uppercase tracking-wider">
-              Nepal's Most Trusted Design & Construction Company
+              Nepal's Most Trusted Design & Construction Company • Inside & Outside Valley
             </span>
           </motion.div>
 
@@ -99,9 +99,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.3 }}
-            className="text-sm sm:text-base md:text-lg text-white font-medium leading-relaxed drop-shadow-sm mb-6 sm:mb-8 max-w-xl md:max-w-2xl"
+            className="text-sm sm:text-base md:text-lg text-white font-medium leading-relaxed drop-shadow-sm mb-6 sm:mb-8 max-w-xl md:max-w-3xl"
           >
-            As Nepal's most trusted construction and design company, Amulya Builders delivers complete architectural design, 3D modeling, and turnkey residential & commercial construction services across Kathmandu and Nepal — combining contemporary aesthetics with earthquake-resistant engineering.
+            As Nepal's most trusted construction and design company, Amulya Builders delivers complete architectural design, 3D modeling, and turnkey residential & commercial construction services — proudly serving clients <strong className="text-orange-400 font-bold">inside and outside Kathmandu Valley across Nepal</strong> with earthquake-resistant engineering and superior craftsmanship.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -136,18 +136,19 @@ export default function Hero() {
             transition={{ duration: 0.4, ease: 'easeOut', delay: 0.55 }}
             className="pt-6 border-t border-slate-800/80"
           >
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
               {[
                 { icon: Compass, text: 'Architectural & 3D Design' },
-                { icon: ShieldCheck, text: 'NBC Compliant Construction' },
-                { icon: Award, text: '15+ Years of Excellence' },
+                { icon: ShieldCheck, text: 'NBC Code Compliant' },
+                { icon: MapPin, text: 'Inside & Outside Valley' },
+                { icon: Award, text: '15+ Years Excellence' },
               ].map(({ icon: Icon, text }) => (
                 <div
                   key={text}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/70 border border-slate-800/80 backdrop-blur-md shadow-sm hover:border-slate-700/80 transition-colors"
+                  className="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-slate-900/70 border border-slate-800/80 backdrop-blur-md shadow-sm hover:border-slate-700/80 transition-colors"
                 >
-                  <Icon className="w-5 h-5 text-orange-500 shrink-0" aria-hidden="true" />
-                  <span className="text-xs sm:text-sm font-semibold text-slate-100 tracking-wide">
+                  <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500 shrink-0" aria-hidden="true" />
+                  <span className="text-[11px] sm:text-xs md:text-sm font-semibold text-slate-100 tracking-wide">
                     {text}
                   </span>
                 </div>

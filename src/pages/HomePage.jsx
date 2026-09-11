@@ -16,7 +16,7 @@ export default function HomePage() {
         <title>Nepal's Most Trusted Construction & Design Company | {COMPANY.name}</title>
         <meta
           name="description"
-          content="Amulya Builders is Nepal's most trusted design and construction company in Kathmandu & Lalitpur. We provide turnkey house construction, civil engineering, commercial building construction, and modern architectural design services."
+          content="Amulya Builders is Nepal's most trusted design and construction company providing turnkey house construction, 3D architectural design, and commercial building services inside and outside Kathmandu Valley across Nepal."
         />
         <meta
           name="keywords"
@@ -27,15 +27,15 @@ export default function HomePage() {
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://amulyabuilders.com.np/" />
-        <meta property="og:title" content={`Best Construction Company in Kathmandu, Nepal | ${COMPANY.name}`} />
-        <meta property="og:description" content="Amulya Builders is the best construction company in Kathmandu & Lalitpur, Nepal. We provide turnkey house construction, civil engineering, commercial building construction, and modern architectural design services." />
+        <meta property="og:title" content={`Nepal's Most Trusted Construction & Design Company | ${COMPANY.name}`} />
+        <meta property="og:description" content="Amulya Builders is Nepal's most trusted design and construction company providing turnkey house construction, 3D architectural design, and commercial building services inside and outside Kathmandu Valley across Nepal." />
         <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://amulyabuilders.com.np/" />
-        <meta name="twitter:title" content={`Best Construction Company in Kathmandu, Nepal | ${COMPANY.name}`} />
-        <meta name="twitter:description" content="Amulya Builders is the best construction company in Kathmandu & Lalitpur, Nepal. We provide turnkey house construction, civil engineering, commercial building construction, and modern architectural design services." />
+        <meta name="twitter:title" content={`Nepal's Most Trusted Construction & Design Company | ${COMPANY.name}`} />
+        <meta name="twitter:description" content="Amulya Builders is Nepal's most trusted design and construction company providing turnkey house construction, 3D architectural design, and commercial building services inside and outside Kathmandu Valley across Nepal." />
         <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
       </Helmet>
 
