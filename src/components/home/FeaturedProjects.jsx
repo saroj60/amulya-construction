@@ -13,10 +13,16 @@ export default function FeaturedProjects() {
   useEffect(() => {
     api.getProjects()
       .then((data) => {
-        setFeatured(data.slice(0, 3));
+        if (data && Array.isArray(data)) {
+          setFeatured(data.slice(0, 3));
+        }
       })
       .catch((err) => console.error(err));
   }, []);
+
+  if (!featured || featured.length === 0) {
+    return null;
+  }
 
   return (
     <section

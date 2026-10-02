@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeader from '../components/ui/SectionHeader';
@@ -16,7 +17,7 @@ export default function ProjectsPage() {
   useEffect(() => {
     api.getProjects()
       .then((data) => {
-        if (data && data.length > 0) {
+        if (data && Array.isArray(data)) {
           setProjectsList(data);
         }
       })
@@ -152,9 +153,33 @@ export default function ProjectsPage() {
               ) : (
                 <motion.div
                   variants={fadeUp}
-                  className="col-span-full text-center py-16 text-gray-400"
+                  className="col-span-full text-center py-16 px-6 bg-slate-50/80 rounded-3xl border border-dashed border-slate-200 my-4"
                 >
-                  <p className="text-lg font-medium">No projects found in this category.</p>
+                  <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4 font-black">
+                    AB
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">
+                    {projectsList.length === 0 ? 'Project Portfolio Updating' : 'No projects found in this category.'}
+                  </h3>
+                  <p className="text-sm text-slate-500 max-w-md mx-auto mb-6">
+                    {projectsList.length === 0
+                      ? 'We are currently uploading our verified landmark construction photos and case studies. In the meantime, browse our architectural house designs or connect with our team.'
+                      : 'Try selecting another category or tab above to see more works.'}
+                  </p>
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    <Link
+                      to="/designs"
+                      className="px-5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-orange-500/20"
+                    >
+                      Explore House Designs
+                    </Link>
+                    <Link
+                      to="/contact"
+                      className="px-5 py-2.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 text-xs font-bold rounded-xl transition-all"
+                    >
+                      Contact Us
+                    </Link>
+                  </div>
                 </motion.div>
               )}
             </motion.div>
