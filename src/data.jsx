@@ -298,6 +298,36 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 7,
+    title: 'Project 7',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-7.jpg',
+    gallery: [
+      '/projects/project-7.jpg',
+      '/projects/project-7-aerial.jpg',
+    ],
+    description:
+      'Project 7 — Neo-classical 3.5-storey luxury residence featuring a grand central arched brick glass atrium, dual covered parking garages, classical balustrade balconies, and rooftop pergola gym terrace by Amulya Builders.',
+    highlights: [
+      'Monumental exposed brick central arched glass atrium',
+      'Dual independent covered parking bays with iron gates',
+      'Upper rooftop fitness pergola with spiral observation stairs',
+      'Neo-classical ornamental balustrades and mouldings',
+    ],
+    specifications: {
+      'Project': 'Project 7',
+      'Type': 'Neo-Classical Luxury Residence',
+      'Floors': '3.5 Storeys',
+      'Parking': 'Dual Covered Bays (2 Cars + Bikes)',
+      'Rooftop': 'Open-Air Pergola Fitness Terrace',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
