@@ -132,7 +132,35 @@ export const SERVICES = [
 // ============================================================
 // PROJECTS DATA
 // ============================================================
-export const PROJECTS = [];
+export const PROJECTS = [
+  {
+    id: 1,
+    title: 'Project 1',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-1.jpg',
+    gallery: [
+      '/projects/project-1.jpg',
+    ],
+    description:
+      'Project 1 — Modern multi-storey residential architecture and construction by Amulya Builders.',
+    highlights: [
+      'Earthquake-resistant RCC structure',
+      'Modern brick-and-render facade',
+      'Integrated parking and open balconies',
+      'NBC 105:2020 code compliance',
+    ],
+    specifications: {
+      'Project': 'Project 1',
+      'Type': 'Residential Building',
+      'Floors': '3.5 Storeys',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
+];
 
 // ============================================================
 // TESTIMONIALS DATA
