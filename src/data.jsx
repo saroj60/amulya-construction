@@ -623,6 +623,35 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 18,
+    title: 'Project 18',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-18.jpg',
+    gallery: [
+      '/projects/project-18.jpg',
+    ],
+    description:
+      'Project 18 — Grand Neo-Classical luxury residence featuring ornate European baroque stone bas-relief crests, classical turned balustrade balconies, covered vehicle porch, wrought-iron filigree boundary gates, and rooftop observation deck by Amulya Builders.',
+    highlights: [
+      'Intricate baroque floral bas-relief motifs sculpted on balcony fascias',
+      'Classical turned stone balustrades on first-floor and penthouse terraces',
+      'Integrated ground-floor car porch with classical wall sconce lighting',
+      'Wrought-iron carriage entrance gates & rooftop lookout platform',
+    ],
+    specifications: {
+      'Project': 'Project 18',
+      'Type': 'Neo-Classical Baroque Luxury Villa',
+      'Floors': '3.5 Storeys + Rooftop Perch',
+      'Architectural Style': 'European Neo-Classical with Stone Balustrades',
+      'Parking': 'Covered Ground-Floor Car Porch',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
