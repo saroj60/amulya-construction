@@ -160,6 +160,34 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 2,
+    title: 'Project 2',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-2.jpg',
+    gallery: [
+      '/projects/project-2.jpg',
+      '/projects/project-2-garden.jpg',
+    ],
+    description:
+      'Project 2 — Modern luxury residential villa with curved panoramic terraces, landscaping, and turnkey construction by Amulya Builders.',
+    highlights: [
+      'Curved panoramic terrace & glass balustrades',
+      'Artisan exposed brick circular bay window',
+      'Integrated spiral rooftop access and landscaped lawn',
+      'NBC earthquake-resistant RCC construction',
+    ],
+    specifications: {
+      'Project': 'Project 2',
+      'Type': 'Luxury Residential Villa',
+      'Floors': '2.5 Storeys + Rooftop Lounge',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
