@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   CheckCircle, Target, Eye, Heart, ArrowRight, Award, Users, Building2, Clock,
+  Quote, User,
 } from 'lucide-react';
 import SectionHeader from '../components/ui/SectionHeader';
 import StatCounter from '../components/ui/StatCounter';
@@ -266,6 +267,128 @@ export default function AboutPage() {
                   Discover Our Projects
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
+              </div>
+
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Message from Managing Director (MD Sujitsa) */}
+      <section className="section-padding bg-gradient-to-b from-slate-50/70 via-white to-slate-50/40 border-t border-b border-gray-150 relative overflow-hidden" aria-label="Message from Managing Director">
+        {/* Ambient decorative glow */}
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-orange-500/5 rounded-full filter blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 left-0 w-80 h-80 bg-blue-600/5 rounded-full filter blur-3xl pointer-events-none" />
+
+        <div className="container-custom relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            {/* Left: MD Photo / Placeholder Card */}
+            <motion.div 
+              className="lg:col-span-5 flex flex-col items-center"
+              initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeLeft}
+            >
+              <div className="relative w-full max-w-sm">
+                {/* Subtle colored glow behind card */}
+                <div className="absolute -inset-2.5 bg-gradient-to-tr from-orange-500/25 via-blue-600/15 to-transparent rounded-[32px] -rotate-2 transform pointer-events-none" />
+                
+                {/* Main Card */}
+                <div className="relative bg-white rounded-[28px] overflow-hidden shadow-2xl border border-gray-150 p-4 sm:p-5">
+                  {/* Image Placeholder Frame */}
+                  <div className="relative aspect-[4/5] rounded-[22px] overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-blue-950 flex flex-col items-center justify-center text-center p-6 group">
+                    {/* Pattern texture overlay */}
+                    <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
+                    
+                    {/* Placeholder Avatar / Icon */}
+                    <div className="relative z-10 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 p-1 shadow-2xl mb-4 flex items-center justify-center">
+                      <div className="w-full h-full rounded-full bg-slate-900 flex flex-col items-center justify-center text-white">
+                        <User className="w-12 h-12 text-orange-400" />
+                        <span className="text-[10px] uppercase font-black tracking-widest text-slate-400 mt-1">MD Photo</span>
+                      </div>
+                    </div>
+
+                    <div className="relative z-10">
+                      <h3 className="text-2xl font-black text-white tracking-tight">Sujitsa</h3>
+                      <p className="text-orange-400 text-xs font-bold uppercase tracking-wider mt-1">Managing Director</p>
+                      <p className="text-slate-300 text-xs mt-1 font-medium">{COMPANY.name}</p>
+                    </div>
+
+                    {/* Executive badge */}
+                    <div className="mt-5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-slate-200 text-xs font-semibold flex items-center gap-2">
+                      <Award className="w-4 h-4 text-orange-400" />
+                      <span>Executive Leadership</span>
+                    </div>
+                  </div>
+
+                  {/* Bottom info strip */}
+                  <div className="pt-4 pb-2 px-2 text-center">
+                    <div className="flex items-center justify-center gap-2 text-xs font-bold text-slate-700">
+                      <span>Kathmandu, Nepal</span>
+                      <span className="text-gray-300">•</span>
+                      <span className="text-orange-600 font-extrabold">{COMPANY.stats.yearsExperience} Industry Leadership</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right: Message Content */}
+            <motion.div 
+              className="lg:col-span-7 space-y-6"
+              initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeRight}
+            >
+              <div>
+                <span className="text-[11px] font-black text-orange-500 uppercase tracking-widest block mb-1">
+                  LEADERSHIP PERSPECTIVE
+                </span>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+                  Message from the <span className="text-orange-500">Managing Director</span>
+                </h2>
+                <div className="w-14 h-1 bg-orange-500 rounded-full mt-3.5" />
+              </div>
+
+              {/* Decorative Quote & Content */}
+              <div className="relative pl-6 sm:pl-8 border-l-4 border-orange-500 space-y-4 text-slate-700 text-xs sm:text-sm md:text-base leading-relaxed">
+                <Quote className="w-8 h-8 text-orange-400/40 absolute -top-3 -left-3 bg-white" />
+                
+                <p className="font-semibold text-slate-900 italic text-sm sm:text-base md:text-lg">
+                  "A building is never just bricks, rebar, and concrete. It is the sanctuary of a family’s dreams, the home of tomorrow’s memories, and a lifelong investment built on pure trust."
+                </p>
+
+                <p>
+                  Welcome to <strong>{COMPANY.name}</strong>. When we laid the first stone of our journey in {COMPANY.foundedYear}, our founding conviction was clear: to bring uncompromising integrity, engineered safety, and complete peace of mind to home builders and commercial developers across Nepal.
+                </p>
+
+                <p>
+                  Operating in a seismically sensitive region like Kathmandu Valley demands absolute engineering responsibility. We never compromise on structural standards or certified materials. Every foundation we excavate, every RCC column we pour, and every roof we cast strictly adheres to the Nepal National Building Code (NBC) guidelines.
+                </p>
+
+                <p>
+                  Beyond engineering, what truly sets Amulya Builders apart is our human commitment. We treat every client's project with the same passion, financial transparency, and punctuality as if we were constructing our own family home. With over {COMPANY.stats.projectsCompleted} successfully delivered projects, our greatest satisfaction remains the smiles of homeowners receiving their keys on time and within budget.
+                </p>
+
+                <p>
+                  Whether you are planning a modern urban residence, a turnkey luxury villa, or a commercial complex, our entire team of engineers, architects, and artisans is here to turn your vision into enduring reality.
+                </p>
+              </div>
+
+              {/* Sign-off & Contact CTA */}
+              <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-gray-150">
+                <div>
+                  <span className="text-xs text-gray-400 font-bold uppercase tracking-wider block">Warm Regards,</span>
+                  <span className="text-lg font-black text-slate-950 block mt-0.5">Sujitsa</span>
+                  <span className="text-xs text-orange-600 font-bold">Managing Director, {COMPANY.name}</span>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 px-5 py-3 bg-blue-900 hover:bg-blue-800 text-white font-extrabold text-xs rounded-xl transition-all shadow hover:shadow-blue-900/20 cursor-pointer"
+                  >
+                    Get in Touch
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
 
             </motion.div>
