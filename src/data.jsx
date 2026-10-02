@@ -243,6 +243,33 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 5,
+    title: 'Project 5',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-5.jpg',
+    gallery: [
+      '/projects/project-5.jpg',
+    ],
+    description:
+      'Project 5 — Multi-angle perspective of luxury residential villa showing panoramic terrace, side elevations, and rooftop viewing deck by Amulya Builders.',
+    highlights: [
+      'Full perimeter glass terrace balustrades',
+      'Structural cantilevered slab and timber rafter cornice',
+      'Rooftop spiral access staircase and terrace layout',
+      'NBC earthquake-resistant RCC frame',
+    ],
+    specifications: {
+      'Project': 'Project 5',
+      'Type': 'Residential Villa Elevation',
+      'Floors': '2.5 Storeys + Open Terrace',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
