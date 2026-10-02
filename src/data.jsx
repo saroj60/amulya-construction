@@ -270,6 +270,34 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 6,
+    title: 'Project 6',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-6.jpg',
+    gallery: [
+      '/projects/project-6.jpg',
+    ],
+    description:
+      'Project 6 — Complete estate master layout and aerial architectural design showing 2.5-storey luxury villa, landscaped garden, parking court, and perimeter security wall by Amulya Builders.',
+    highlights: [
+      'Aerial master plan & complete boundary layout',
+      'Integrated dual-vehicle driveway & paved courtyard',
+      'Comprehensive outdoor landscape, patio & water feature integration',
+      'Earthquake-resistant RCC construction with NBC compliance',
+    ],
+    specifications: {
+      'Project': 'Project 6',
+      'Type': 'Estate Master Plan & Architecture',
+      'Floors': '2.5 Storeys + Rooftop Deck',
+      'Outdoor Features': 'Pergola, Lawn, BBQ Station, Water Feature',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
