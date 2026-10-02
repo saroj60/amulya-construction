@@ -594,6 +594,35 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 17,
+    title: 'Project 17',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-17.jpg',
+    gallery: [
+      '/projects/project-17.jpg',
+    ],
+    description:
+      'Project 17 — Contemporary 4-storey residential building featuring Nepali traditional roof eave cornices, brick-and-render dual-tone facade, gated compound wall with covered entrance, multiple vehicle parking, and landscaped garden perimeter by Amulya Builders.',
+    highlights: [
+      '4-Storey earthquake-resilient RCC frame engineered to NBC codes',
+      'Neo-vernacular red-tiled overhang canopies and clay brick accent bands',
+      'Private gated compound with dedicated multi-car paved parking',
+      'Landscaped boundary perimeter with decorative pillar fencing',
+    ],
+    specifications: {
+      'Project': 'Project 17',
+      'Type': 'Multi-Storey Residential Residence',
+      'Floors': '4 Storeys',
+      'Roof Style': 'Flat RCC Rooftop with Traditional Eave Canopies',
+      'Outdoor': 'Gated Boundary, Multi-Vehicle Parking & Perimeter Greenery',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
