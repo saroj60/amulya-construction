@@ -504,6 +504,38 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 14,
+    title: 'Project 14',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Commercial',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-14.jpg',
+    gallery: [
+      '/projects/project-14.jpg',
+      '/projects/project-14-corner.jpg',
+      '/projects/project-14-front.jpg',
+    ],
+    description:
+      'Project 14 — Contemporary 3.5-storey mixed-use commercial & residential building featuring ground-floor retail shopfronts with rolling shutters, premium residential apartments above, stone-clad accent facade, and cascading planter rooftop terrace by Amulya Builders.',
+    highlights: [
+      'Ground-floor commercial retail shutters with independent stairwell',
+      'Upper-floor spacious residential apartments with glass balustrades',
+      'Textured stone cladding and contemporary dark composite paneling',
+      'Rooftop green planter cornice and steel canopy pergola',
+    ],
+    specifications: {
+      'Project': 'Project 14',
+      'Type': 'Mixed-Use Commercial & Residential Building',
+      'Floors': '3.5 Storeys',
+      'Ground Level': '3 Retail Commercial Units',
+      'Upper Floors': 'Residential Apartments',
+      'Angles Included': 'Front-Left View, Corner Isometric & Direct Front Elevation',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
