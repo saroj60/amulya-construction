@@ -620,9 +620,17 @@ function initDatabase() {
       if (row && row.count === 0) {
         const stmt = db.prepare(`INSERT INTO hero_slides (image) VALUES (?)`);
         const defaultSlides = [
-          'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=85',
-          'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=85',
-          'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=85'
+          '/projects/project-1.jpg',
+          '/projects/project-2.jpg',
+          '/projects/project-4.jpg',
+          '/projects/project-7.jpg',
+          '/projects/project-8.jpg',
+          '/projects/project-10.jpg',
+          '/projects/project-12.jpg',
+          '/projects/project-14.jpg',
+          '/projects/project-16.jpg',
+          '/projects/project-17.jpg',
+          '/projects/project-18.jpg'
         ];
         defaultSlides.forEach(slide => {
           stmt.run(slide);
