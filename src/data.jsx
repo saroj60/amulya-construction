@@ -474,6 +474,36 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 13,
+    title: 'Project 13',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-13.jpg',
+    gallery: [
+      '/projects/project-13.jpg',
+      '/projects/project-13-aerial.jpg',
+    ],
+    description:
+      'Project 13 — Elegant 2-storey cottage villa blending modern RCC engineering with classic Nepalese red sloping tile roofs, gabled portico entrance, spacious parking yard, and secured compound perimeter by Amulya Builders.',
+    highlights: [
+      'Multi-tiered sloping red clay tile roofs with dormer gables',
+      'Colonnaded portico entrance and open balcony',
+      'Spacious paved parking court for multiple vehicles',
+      'Earthquake-resistant RCC ductile frame engineering',
+    ],
+    specifications: {
+      'Project': 'Project 13',
+      'Type': 'Sloping-Roof Residential Villa',
+      'Floors': '2 Storeys',
+      'Roof Style': 'Pitched Red Clay Tiled Gables',
+      'Angles Included': 'Front Elevation & Isometric Aerial View',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
