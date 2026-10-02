@@ -415,6 +415,34 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 11,
+    title: 'Project 11',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-11.jpg',
+    gallery: [
+      '/projects/project-11.jpg',
+    ],
+    description:
+      'Project 11 — Modern 2.5-storey residential villa featuring C-curve architectural balcony frames, exposed brick vertical accent pillar, rooftop timber pergola, and secured boundary courtyard by Amulya Builders.',
+    highlights: [
+      'Contemporary C-frame cantilevered balcony',
+      'Warm exposed brick masonry vertical facade pillar',
+      'Open rooftop recreational terrace with wooden pergola',
+      'Earthquake-resistant RCC ductile frame structure',
+    ],
+    specifications: {
+      'Project': 'Project 11',
+      'Type': 'Contemporary Residential Villa',
+      'Floors': '2.5 Storeys',
+      'Features': 'Balcony C-Frame, Brick Accent, Rooftop Pergola',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
