@@ -328,6 +328,37 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 8,
+    title: 'Project 8',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-8.jpg',
+    gallery: [
+      '/projects/project-8.jpg',
+      '/projects/project-8-side.jpg',
+      '/projects/project-8-rear.jpg',
+    ],
+    description:
+      'Project 8 — Majestic neo-classical 3.5-storey luxury residence featuring dressed sandstone central atrium, multi-tiered balconies with intricate balustrades, dual car bays, and complete perimeter boundary design by Amulya Builders.',
+    highlights: [
+      'Dressed sandstone central arched glass atrium',
+      'Multi-tiered balconies with classical ornamental railings',
+      'Rear garden & side driveway parking circulation',
+      'Rooftop fitness deck with spiral observation stairs',
+    ],
+    specifications: {
+      'Project': 'Project 8',
+      'Type': 'Neo-Classical Luxury Residence',
+      'Floors': '3.5 Storeys',
+      'Parking': 'Dual Covered Bays (2 Cars + Bikes)',
+      'Angles Included': 'Front Elevation, Side View & Rear Perspective',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
