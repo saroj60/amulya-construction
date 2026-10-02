@@ -443,6 +443,37 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 12,
+    title: 'Project 12',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-12.jpg',
+    gallery: [
+      '/projects/project-12.jpg',
+      '/projects/project-12-front.jpg',
+      '/projects/project-12-rear.jpg',
+    ],
+    description:
+      'Project 12 — Grand 3.5-storey neo-classical palatial residence featuring monumental Corinthian fluted columns, ornate pediment over central arched atrium, cascading green planters, and multi-sided balustrade balconies by Amulya Builders.',
+    highlights: [
+      'Monumental Corinthian colonnade with ornate pediment cartouche',
+      'Central full-height arched bay atrium and double car parking',
+      'Cascading planter balconies and rooftop pergola lounge',
+      'Complete rear and side multi-angle architectural elevations',
+    ],
+    specifications: {
+      'Project': 'Project 12',
+      'Type': 'Neo-Classical Corinthian Mansion',
+      'Floors': '3.5 Storeys',
+      'Parking': 'Dual Covered Bays',
+      'Angles Included': 'Front-Left Perspective, Street Elevation & Rear View',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
