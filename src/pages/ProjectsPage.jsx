@@ -36,29 +36,29 @@ export default function ProjectsPage() {
   return (
     <>
       <Helmet>
-        <title>Construction Projects | {COMPANY.name} — Kathmandu, Nepal</title>
+        <title>Construction Projects in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | {COMPANY.name}</title>
         <meta
           name="description"
-          content="Browse through the portfolio of Amulya Builders in Kathmandu, Nepal — showcasing our completed and active projects including custom villas, commercial complexes, boutique resorts, and apartments across Bagmati Province."
+          content="Explore landmark construction projects in Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha by Amulya Builders — turnkey residential luxury homes, commercial complexes, and public architecture built across Nepal."
         />
         <meta
           name="keywords"
-          content="turnkey house construction in Nepal, residential building contractor Nepal, commercial building contractor Kathmandu, reliable construction contractor in Kathmandu, civil construction company Nepal, construction project portfolio Nepal"
+          content="construction company in kathmandu, construction company in bhaktapur, construction company in lalitpur, construction company in janakpur, construction company in dhanusha, turnkey house construction nepal, residential construction kathmandu, commercial building contractor janakpur, building contractor dhanusha"
         />
         <link rel="canonical" href="https://amulyabuilders.com.np/projects" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://amulyabuilders.com.np/projects" />
-        <meta property="og:title" content={`Construction Projects | ${COMPANY.name} — Kathmandu, Nepal`} />
-        <meta property="og:description" content="Browse through the portfolio of Amulya Builders in Kathmandu, Nepal — showcasing our completed and active projects including custom villas, commercial complexes, boutique resorts, and apartments across Bagmati Province." />
+        <meta property="og:title" content={`Construction Projects in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | ${COMPANY.name}`} />
+        <meta property="og:description" content="Explore landmark construction projects in Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha by Amulya Builders — turnkey residential luxury homes, commercial complexes, and public architecture built across Nepal." />
         <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://amulyabuilders.com.np/projects" />
-        <meta name="twitter:title" content={`Construction Projects | ${COMPANY.name} — Kathmandu, Nepal`} />
-        <meta name="twitter:description" content="Browse through the portfolio of Amulya Builders in Kathmandu, Nepal — showcasing our completed and active projects including custom villas, commercial complexes, boutique resorts, and apartments across Bagmati Province." />
+        <meta name="twitter:title" content={`Construction Projects in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | ${COMPANY.name}`} />
+        <meta name="twitter:description" content="Explore landmark construction projects in Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha by Amulya Builders — turnkey residential luxury homes, commercial complexes, and public architecture built across Nepal." />
         <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
       </Helmet>
 

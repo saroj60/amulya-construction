@@ -65,25 +65,29 @@ export default function AboutPage() {
   return (
     <>
       <Helmet>
-        <title>About Us | {COMPANY.name} — Construction Company in Kathmandu, Nepal</title>
+        <title>About Us | Construction Company in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | {COMPANY.name}</title>
         <meta
           name="description"
-          content="Learn more about Amulya Builders — a premier engineering and construction firm in Kathmandu, Nepal since 2009. Our professional team designs and builds sustainable, high-quality structures throughout Bagmati Province."
+          content="Learn more about Amulya Builders — Nepal's premier construction company in Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha since 2009. Turnkey home building, commercial projects, and NBC seismic design."
+        />
+        <meta
+          name="keywords"
+          content="construction company in kathmandu, construction company in bhaktapur, construction company in lalitpur, construction company in janakpur, construction company in dhanusha, about amulya builders, civil contractor kathmandu, building construction dhanusha, residential builder lalitpur"
         />
         <link rel="canonical" href="https://amulyabuilders.com.np/about" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://amulyabuilders.com.np/about" />
-        <meta property="og:title" content={`About Us | ${COMPANY.name} — Construction Company in Kathmandu, Nepal`} />
-        <meta property="og:description" content="Learn more about Amulya Builders — a premier engineering and construction firm in Kathmandu, Nepal since 2009. Our professional team designs and builds sustainable, high-quality structures throughout Bagmati Province." />
+        <meta property="og:title" content={`About Us | Construction Company in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | ${COMPANY.name}`} />
+        <meta property="og:description" content="Learn more about Amulya Builders — Nepal's premier construction company in Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha since 2009. Turnkey home building, commercial projects, and NBC seismic design." />
         <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://amulyabuilders.com.np/about" />
-        <meta name="twitter:title" content={`About Us | ${COMPANY.name} — Construction Company in Kathmandu, Nepal`} />
-        <meta name="twitter:description" content="Learn more about Amulya Builders — a premier engineering and construction firm in Kathmandu, Nepal since 2009. Our professional team designs and builds sustainable, high-quality structures throughout Bagmati Province." />
+        <meta name="twitter:title" content={`About Us | Construction Company in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | ${COMPANY.name}`} />
+        <meta name="twitter:description" content="Learn more about Amulya Builders — Nepal's premier construction company in Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha since 2009. Turnkey home building, commercial projects, and NBC seismic design." />
         <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
       </Helmet>
 

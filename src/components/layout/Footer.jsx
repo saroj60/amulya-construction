@@ -232,6 +232,38 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Target Regional Service Areas (SEO Anchor Strip) */}
+      <div className="border-t border-slate-800/80 bg-slate-950/60 py-6">
+        <div className="container-custom">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+              <span className="text-xs font-black uppercase tracking-wider text-slate-300">
+                Our Primary Service Locations:
+              </span>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 text-xs">
+              {[
+                { name: 'Construction Company in Kathmandu', to: '/contact?location=Kathmandu' },
+                { name: 'Construction Company in Lalitpur', to: '/contact?location=Lalitpur' },
+                { name: 'Construction Company in Bhaktapur', to: '/contact?location=Bhaktapur' },
+                { name: 'Construction Company in Janakpur', to: '/contact?location=Janakpur' },
+                { name: 'Construction Company in Dhanusha', to: '/contact?location=Dhanusha' },
+              ].map((loc) => (
+                <Link
+                  key={loc.name}
+                  to={loc.to}
+                  className="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-orange-500/80 hover:bg-slate-800 transition-all font-semibold"
+                >
+                  {loc.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Bottom Bar */}
       <div className="border-t border-gray-900 bg-gray-950/70 py-6">
         <div className="container-custom flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">

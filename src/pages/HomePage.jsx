@@ -13,29 +13,29 @@ export default function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Nepal's Most Trusted Construction & Design Company | {COMPANY.name}</title>
+        <title>Construction Company in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | {COMPANY.name}</title>
         <meta
           name="description"
-          content="Amulya Builders is Nepal's most trusted design and construction company providing turnkey house construction, 3D architectural design, and commercial building services inside and outside Kathmandu Valley across Nepal."
+          content="Amulya Builders is Nepal's most trusted construction company in Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha. Specializing in turnkey house construction, modern commercial buildings, 3D architectural design, and NBC seismic-resistant engineering."
         />
         <meta
           name="keywords"
-          content="construction company Nepal, construction company Kathmandu, best construction company Nepal, building construction Nepal, house construction Nepal, construction contractor Nepal, civil construction company Nepal, civil engineering Nepal, building contractor Kathmandu, residential construction Nepal, commercial construction Nepal, house construction Kathmandu, construction services Nepal, turnkey construction Nepal, building design Nepal, construction project management Nepal, home construction company Nepal, renovation company Kathmandu, general contractor Nepal, Construction Company in Nepal, Construction Company in Kathmandu, Best Construction Company in Nepal, Best Construction Company in Kathmandu, Building Construction Company Nepal, Building Contractor in Nepal, Construction Contractor in Kathmandu, Civil Construction Company Nepal, Civil Engineering Company Nepal, Construction Services Nepal, Home Construction Company Nepal, Building Design and Construction Nepal, Turnkey Construction Nepal, General Contractor Nepal, Construction Project Management Nepal, Structural Design Nepal, Civil Engineering Services Nepal, Renovation Services Nepal, Building Renovation Kathmandu, Construction Company Lalitpur, Construction Company Bhaktapur, Construction Company Pokhara, Construction Company Biratnagar, Construction Company Chitwan, Construction Company Butwal, Construction Company Dharan, Best house construction company in Kathmandu, Affordable construction company in Nepal, Reliable construction contractor in Kathmandu, Residential building contractor Nepal, Commercial building contractor Kathmandu, House construction cost in Nepal, House construction company near me, Building construction services in Kathmandu, Turnkey house construction in Nepal, Modern house construction company Nepal"
+          content="construction company in kathmandu, construction company in bhaktapur, construction company in lalitpur, construction company in janakpur, construction company in dhanusha, best construction company in kathmandu, top construction company in lalitpur, building contractor in bhaktapur, house construction in janakpur, construction contractor in dhanusha, turnkey house construction in nepal, residential construction kathmandu, commercial construction nepal, civil engineering contractor kathmandu valley, civil construction company dhanusha, building design and construction janakpur, affordable construction company kathmandu, modern house builder lalitpur, construction company near me"
         />
         <link rel="canonical" href="https://amulyabuilders.com.np/" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://amulyabuilders.com.np/" />
-        <meta property="og:title" content={`Nepal's Most Trusted Construction & Design Company | ${COMPANY.name}`} />
-        <meta property="og:description" content="Amulya Builders is Nepal's most trusted design and construction company providing turnkey house construction, 3D architectural design, and commercial building services inside and outside Kathmandu Valley across Nepal." />
+        <meta property="og:title" content={`Construction Company in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | ${COMPANY.name}`} />
+        <meta property="og:description" content="Amulya Builders is Nepal's most trusted construction company in Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha. Turnkey house building, commercial construction, and 3D architectural design." />
         <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://amulyabuilders.com.np/" />
-        <meta name="twitter:title" content={`Nepal's Most Trusted Construction & Design Company | ${COMPANY.name}`} />
-        <meta name="twitter:description" content="Amulya Builders is Nepal's most trusted design and construction company providing turnkey house construction, 3D architectural design, and commercial building services inside and outside Kathmandu Valley across Nepal." />
+        <meta name="twitter:title" content={`Construction Company in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | ${COMPANY.name}`} />
+        <meta name="twitter:description" content="Amulya Builders is Nepal's most trusted construction company in Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha. Turnkey house building, commercial construction, and 3D architectural design." />
         <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
       </Helmet>
 

@@ -101,25 +101,29 @@ export default function ContactPage() {
   return (
     <>
       <Helmet>
-        <title>Contact Us | {COMPANY.name} — Construction Company in Kathmandu, Nepal</title>
+        <title>Contact Us | Construction Company in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | {COMPANY.name}</title>
         <meta
           name="description"
-          content="Get in touch with Amulya Builders in Kathmandu, Nepal for all your home building and commercial engineering needs. Contact us via phone, email, or WhatsApp."
+          content="Contact Amulya Builders — Nepal's trusted construction company serving Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha. Reach our offices in Sabaila (Dhanusha) and Tikathali (Lalitpur) for free consultations, site visits, and BOQ estimates."
+        />
+        <meta
+          name="keywords"
+          content="construction company in kathmandu, construction company in bhaktapur, construction company in lalitpur, construction company in janakpur, construction company in dhanusha, contact amulya builders, building contractor office lalitpur, house construction office dhanusha, construction consultation nepal"
         />
         <link rel="canonical" href="https://amulyabuilders.com.np/contact" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://amulyabuilders.com.np/contact" />
-        <meta property="og:title" content={`Contact Us | ${COMPANY.name} — Construction Company in Kathmandu, Nepal`} />
-        <meta property="og:description" content="Get in touch with Amulya Builders in Kathmandu, Nepal for all your home building and commercial engineering needs. Contact us via phone, email, or WhatsApp." />
+        <meta property="og:title" content={`Contact Us | Construction Company in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | ${COMPANY.name}`} />
+        <meta property="og:description" content="Contact Amulya Builders — Nepal's trusted construction company serving Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha. Head office in Dhanusha & Branch in Lalitpur." />
         <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://amulyabuilders.com.np/contact" />
-        <meta name="twitter:title" content={`Contact Us | ${COMPANY.name} — Construction Company in Kathmandu, Nepal`} />
-        <meta name="twitter:description" content="Get in touch with Amulya Builders in Kathmandu, Nepal for all your home building and commercial engineering needs. Contact us via phone, email, or WhatsApp." />
+        <meta name="twitter:title" content={`Contact Us | Construction Company in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | ${COMPANY.name}`} />
+        <meta name="twitter:description" content="Contact Amulya Builders — Nepal's trusted construction company serving Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha. Head office in Dhanusha & Branch in Lalitpur." />
         <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
       </Helmet>
 

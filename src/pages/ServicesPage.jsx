@@ -27,29 +27,29 @@ export default function ServicesPage() {
   return (
     <>
       <Helmet>
-        <title>Construction Services | {COMPANY.name} — Kathmandu, Nepal</title>
+        <title>Construction Services in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | {COMPANY.name}</title>
         <meta
           name="description"
-          content="Explore the engineering and building services offered by Amulya Builders in Kathmandu — home building, commercial developments, retrofitting, structural concrete works, interior detailing, and project management."
+          content="Professional construction services by Amulya Builders in Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha — turnkey residential house construction, commercial buildings, 3D architectural design, and NBC seismic-compliant engineering."
         />
         <meta
           name="keywords"
-          content="Construction Services Nepal, Residential Construction Nepal, Commercial Construction Nepal, House Construction Nepal, Building Design and Construction Nepal, Turnkey Construction Nepal, General Contractor Nepal, Construction Project Management Nepal, Renovation Services Nepal, Building Renovation Kathmandu, Civil Engineering Services Nepal"
+          content="construction company in kathmandu, construction company in bhaktapur, construction company in lalitpur, construction company in janakpur, construction company in dhanusha, turnkey house construction nepal, residential construction kathmandu, commercial building contractor janakpur, building contractor dhanusha, construction services nepal"
         />
         <link rel="canonical" href="https://amulyabuilders.com.np/services" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://amulyabuilders.com.np/services" />
-        <meta property="og:title" content={`Construction Services | ${COMPANY.name} — Kathmandu, Nepal`} />
-        <meta property="og:description" content="Explore the engineering and building services offered by Amulya Builders in Kathmandu — home building, commercial developments, retrofitting, structural concrete works, interior detailing, and project management." />
+        <meta property="og:title" content={`Construction Services in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | ${COMPANY.name}`} />
+        <meta property="og:description" content="Professional construction services by Amulya Builders in Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha — turnkey residential house construction, commercial buildings, and 3D architectural design." />
         <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://amulyabuilders.com.np/services" />
-        <meta name="twitter:title" content={`Construction Services | ${COMPANY.name} — Kathmandu, Nepal`} />
-        <meta name="twitter:description" content="Explore the engineering and building services offered by Amulya Builders in Kathmandu — home building, commercial developments, retrofitting, structural concrete works, interior detailing, and project management." />
+        <meta name="twitter:title" content={`Construction Services in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | ${COMPANY.name}`} />
+        <meta name="twitter:description" content="Professional construction services by Amulya Builders in Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha — turnkey residential house construction, commercial buildings, and 3D architectural design." />
         <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
       </Helmet>
 

@@ -138,22 +138,17 @@ export default function AboutPreview() {
             <div>
               <span className="text-[10px] font-black text-orange-500 uppercase tracking-widest block mb-1">About Amulya Builders</span>
               <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight leading-tight">
-                Kathmandu’s Most Trusted<br />Construction <span className="text-orange-500">Partner</span>
+                Nepal’s Most Trusted<br />Construction <span className="text-orange-500">Company</span>
               </h2>
               <div className="w-12 h-1 bg-orange-500 rounded-full mt-3.5" />
             </div>
 
             <div className="space-y-4 text-xs text-gray-600 leading-relaxed font-medium">
               <p>
-                Founded in 2009, Amulya Builders has grown from a small local contractor
-                into one of Kathmandu's most respected construction companies. We specialize in delivering
-                residential homes, commercial buildings, and renovation projects across Kathmandu District
-                and Bagmati Province.
+                Founded in 2009, Amulya Builders is a premier <strong>construction company in Kathmandu, Lalitpur, Bhaktapur, Janakpur, and Dhanusha</strong>. With our registered head office in Sabaila-8, Dhanusha and our regional hub in Tikathali, Lalitpur, we provide comprehensive turnkey home construction, commercial contracting, and architectural design services across both Bagmati and Madhesh provinces.
               </p>
               <p>
-                Our multidisciplinary team of licensed civil engineers, architects, and project managers
-                ensures every project meets Nepal's National Building Code standards, is built with
-                certified materials, and is delivered with transparency from first consultation to final handover.
+                Whether building an earthquake-resistant custom residence in Kathmandu Valley or executing landmark commercial structures in Janakpur and Dhanusha, our licensed engineers and architects strictly adhere to the Nepal National Building Code (NBC), delivering lasting quality, on-time schedules, and zero-hidden-cost transparency.
               </p>
             </div>
 
