@@ -26,14 +26,14 @@ export default function ProjectCard({ project }) {
     >
       <Link to={`/projects/${project.id}`} className="block" aria-label={`View ${project.title} project details`}>
         {/* Image */}
-        <div className="relative overflow-hidden h-52 sm:h-60">
+        <div className="relative overflow-hidden h-60 sm:h-72 bg-slate-900">
           <img
             src={project.image}
             alt={`${project.title} - ${project.category} project in ${project.location}`}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
           {/* Status Badge */}
           <span

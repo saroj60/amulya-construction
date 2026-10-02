@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft, MapPin, Tag, CheckCircle, Clock, X, ChevronLeft, ChevronRight,
-  MessageCircle, Phone, ArrowRight, Loader
+  MessageCircle, Phone, ArrowRight, Loader, Maximize2
 } from 'lucide-react';
 import { COMPANY } from '@/data';
 import { api } from '@/services/api';
@@ -24,9 +24,11 @@ export default function ProjectDetailPage() {
   const [loading, setLoading] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
     setLoading(true);
+    setActiveImageIndex(0);
     api.getProject(id)
       .then((projData) => {
         setProject(projData);
@@ -109,49 +111,137 @@ export default function ProjectDetailPage() {
         <meta name="twitter:image" content={project.image} />
       </Helmet>
 
-      {/* Back button */}
-      <div className="bg-gray-50 border-b border-gray-100 pt-20">
-        <div className="container-custom py-4">
+      {/* Breadcrumb & Navigation Bar */}
+      <div className="bg-slate-900 border-b border-slate-800 text-white pt-24 pb-4">
+        <div className="container-custom flex flex-wrap items-center justify-between gap-4">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-sm text-gray-500 hover:text-orange-500 transition-colors font-medium"
+            className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-orange-400 transition-colors font-medium cursor-pointer"
             aria-label="Go back to projects"
           >
             <ArrowLeft className="w-4 h-4" aria-hidden="true" />
             Back to Projects
           </button>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <span className={`text-xs font-bold px-3 py-1 rounded-full ${statusColors[project.status] || statusColors.Completed}`}>
+              {project.status === 'Completed'
+                ? <CheckCircle className="inline w-3 h-3 mr-1" />
+                : <Clock className="inline w-3 h-3 mr-1" />}
+              {project.status}
+            </span>
+            <span className="text-xs bg-blue-600 text-white font-bold px-3 py-1 rounded-full">
+              {project.category}
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Hero Image */}
-      <section aria-label="Project hero image">
-        <div className="relative h-64 sm:h-80 md:h-[28rem] overflow-hidden">
-          <img
-            src={allImages[0]}
-            alt={`${project.title} — ${project.category} project in ${project.location}`}
-            className="w-full h-full object-cover"
-            loading="eager"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          {/* Overlay info */}
-          <div className="absolute bottom-6 left-0 right-0 container-custom text-white">
-            <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className={`text-xs font-bold px-3 py-1 rounded-full ${statusColors[project.status] || statusColors.Completed}`}>
-                {project.status === 'Completed'
-                  ? <CheckCircle className="inline w-3 h-3 mr-1" />
-                  : <Clock className="inline w-3 h-3 mr-1" />}
-                {project.status}
-              </span>
-              <span className="text-xs bg-blue-700 text-white font-bold px-3 py-1 rounded-full">
-                {project.category}
-              </span>
+      {/* Project Visual Showcase */}
+      <section className="bg-slate-950 text-white py-6 sm:py-8 border-b border-slate-800" aria-label="Project visual showcase">
+        <div className="container-custom">
+          {/* Header Info */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+            <div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+                {project.title}
+              </h1>
+              <p className="flex items-center gap-2 mt-2 text-slate-300 text-sm md:text-base font-medium">
+                <MapPin className="w-4 h-4 text-orange-400 flex-shrink-0" aria-hidden="true" />
+                {project.location}
+              </p>
             </div>
-            <h1 className="text-2xl md:text-4xl font-extrabold">{project.title}</h1>
-            <p className="flex items-center gap-1.5 mt-1.5 text-gray-200 text-sm">
-              <MapPin className="w-4 h-4 text-orange-400" aria-hidden="true" />
-              {project.location}
-            </p>
+
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => openLightbox(activeImageIndex)}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-orange-500 text-white text-xs sm:text-sm font-semibold transition-all border border-slate-700 shadow-md group cursor-pointer"
+              >
+                <Maximize2 className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                Full Screen View
+              </button>
+            </div>
           </div>
+
+          {/* Architectural Image Stage - 100% Full Image Visible with ZERO Cropping */}
+          <div className="relative rounded-2xl md:rounded-3xl overflow-hidden bg-slate-900 border border-slate-800/90 shadow-2xl flex items-center justify-center min-h-[360px] sm:min-h-[500px] md:min-h-[640px] max-h-[82vh] group">
+            {/* Ambient Blurred Background for depth */}
+            <div
+              className="absolute inset-0 bg-cover bg-center filter blur-3xl opacity-25 scale-125 pointer-events-none transition-all duration-700"
+              style={{ backgroundImage: `url(${allImages[activeImageIndex] || project.image})` }}
+            />
+
+            {/* Main Stage Image - Contained to show full height & width */}
+            <img
+              src={allImages[activeImageIndex] || project.image}
+              alt={`${project.title} — ${project.category} architecture in ${project.location}`}
+              className="relative z-10 w-full max-h-[78vh] object-contain mx-auto cursor-zoom-in transition-all duration-300 select-none py-3 px-3 drop-shadow-2xl"
+              onClick={() => openLightbox(activeImageIndex)}
+              loading="eager"
+            />
+
+            {/* Navigation arrows for multi-angle projects */}
+            {allImages.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveImageIndex((prev) => (prev === 0 ? allImages.length - 1 : prev - 1));
+                  }}
+                  className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-black/60 hover:bg-orange-500 text-white flex items-center justify-center backdrop-blur-md transition-all shadow-xl cursor-pointer"
+                  aria-label="Previous view angle"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveImageIndex((prev) => (prev === allImages.length - 1 ? 0 : prev + 1));
+                  }}
+                  className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-black/60 hover:bg-orange-500 text-white flex items-center justify-center backdrop-blur-md transition-all shadow-xl cursor-pointer"
+                  aria-label="Next view angle"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </>
+            )}
+
+            {/* Click to zoom badge */}
+            <button
+              onClick={() => openLightbox(activeImageIndex)}
+              className="absolute bottom-4 right-4 z-20 hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/70 hover:bg-orange-500 text-white text-xs font-semibold backdrop-blur-md transition-all shadow cursor-pointer"
+            >
+              <Maximize2 className="w-3.5 h-3.5" />
+              Click to Zoom
+            </button>
+          </div>
+
+          {/* Multi-angle Gallery Thumbnails Strip (if more than 1 image) */}
+          {allImages.length > 1 && (
+            <div className="mt-4 flex items-center justify-center gap-3 overflow-x-auto py-2">
+              {allImages.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveImageIndex(idx)}
+                  className={`relative flex-shrink-0 w-20 sm:w-28 h-14 sm:h-20 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
+                    activeImageIndex === idx
+                      ? 'border-orange-500 scale-105 shadow-lg shadow-orange-500/20'
+                      : 'border-slate-800 opacity-60 hover:opacity-100 hover:border-slate-600'
+                  }`}
+                  aria-label={`View photo angle ${idx + 1}`}
+                >
+                  <img
+                    src={img}
+                    alt={`Angle ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/70 text-[10px] text-white font-bold">
+                    #{idx + 1}
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -190,8 +280,11 @@ export default function ProjectDetailPage() {
                     {allImages.map((img, i) => (
                       <button
                         key={i}
-                        onClick={() => openLightbox(i)}
-                        className="relative group overflow-hidden rounded-xl h-36 sm:h-44 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        onClick={() => {
+                          setActiveImageIndex(i);
+                          openLightbox(i);
+                        }}
+                        className="relative group overflow-hidden rounded-xl h-36 sm:h-44 focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer"
                         aria-label={`View image ${i + 1} of ${allImages.length}`}
                       >
                         <img
