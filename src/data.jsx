@@ -565,6 +565,35 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 16,
+    title: 'Project 16',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-16.jpg',
+    gallery: [
+      '/projects/project-16.jpg',
+    ],
+    description:
+      'Project 16 — Contemporary 3-storey luxury villa featuring curved red-brick corner bay with panoramic windows, open first-floor terrace lounge, executive second-floor balcony with spiral rooftop staircase, and landscaped courtyard parking by Amulya Builders.',
+    highlights: [
+      'Architectural curved red-brick cylinder wing with panoramic glass windows',
+      'Spacious first-floor terrace lounge with transparent glass railings',
+      'Executive second-floor balcony with exterior spiral staircase to roof deck',
+      'Ground floor outdoor patio seating and covered pergola BBQ area',
+    ],
+    specifications: {
+      'Project': 'Project 16',
+      'Type': 'Contemporary Luxury Villa',
+      'Floors': '3 Storeys + Rooftop Deck',
+      'Exterior': 'Exposed Red Brick & Smooth White Stucco',
+      'Features': 'Spiral Deck Staircase, Terrace Lounge & BBQ Pergola',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
