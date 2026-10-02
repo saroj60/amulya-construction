@@ -188,6 +188,33 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 3,
+    title: 'Project 3',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-3.jpg',
+    gallery: [
+      '/projects/project-3.jpg',
+    ],
+    description:
+      'Project 3 — Modern outdoor living, pergola patio, barbecue station, and landscaped garden design & construction by Amulya Builders.',
+    highlights: [
+      'Timber pergola & outdoor barbecue kitchen',
+      'Landscaped lawn with garden swing and water feature',
+      'Custom stone paved outdoor dining patio',
+      'Modern security fencing and integrated exterior lighting',
+    ],
+    specifications: {
+      'Project': 'Project 3',
+      'Type': 'Outdoor Living & Landscaping',
+      'Features': 'Pergola, BBQ Patio, Lawn, Mini Pond',
+      'Scope': 'Turnkey Design & Execution',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
