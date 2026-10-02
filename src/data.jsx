@@ -536,6 +536,35 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 15,
+    title: 'Project 15',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-15.jpg',
+    gallery: [
+      '/projects/project-15.jpg',
+    ],
+    description:
+      'Project 15 — Distinctive 3-storey European Mediterranean luxury villa featuring arched arcade verandas, hip slate roof, rooftop terrace pergola lounge, palm landscaping, and gated compound parking by Amulya Builders.',
+    highlights: [
+      'Grand double-storey arched arcade portico & balcony',
+      'Charcoal slate pitched hip roof with architectural eaves',
+      'Spacious top rooftop observation terrace with garden pergola',
+      'Earthquake-resistant RCC ductile frame engineering',
+    ],
+    specifications: {
+      'Project': 'Project 15',
+      'Type': 'European Mediterranean Villa',
+      'Floors': '3 Storeys',
+      'Roof Style': 'Pitched Slate Hip Roof',
+      'Outdoor': 'Rooftop Terrace Pergola & Gated Courtyard',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
