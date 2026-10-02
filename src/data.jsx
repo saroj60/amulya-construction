@@ -359,6 +359,35 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 9,
+    title: 'Project 9',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-9.jpg',
+    gallery: [
+      '/projects/project-9.jpg',
+      '/projects/project-9-aerial.jpg',
+    ],
+    description:
+      'Project 9 — Angular front-left perspective and isometric aerial visualization of neo-classical luxury mansion showing side verandahs, multi-tiered classical balconies, and rooftop gym pergola by Amulya Builders.',
+    highlights: [
+      'Front-left corner architectural profile & entry gates',
+      'Multi-level colonnaded verandahs and classical balustrades',
+      'Open rooftop fitness terrace with pergola and spiral stair',
+      'Earthquake-resistant high-ductility RCC engineering',
+    ],
+    specifications: {
+      'Project': 'Project 9',
+      'Type': 'Neo-Classical Luxury Residence',
+      'Floors': '3.5 Storeys',
+      'Parking': 'Covered Parking Bay',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
