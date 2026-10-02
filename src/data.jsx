@@ -711,8 +711,8 @@ export const TESTIMONIALS = [
 export const TEAM = [
   {
     id: 1,
-    name: 'Er. Rajesh Bhattarai',
-    designation: 'Chief Executive Officer & Managing Director',
+    name: 'Sujit Shah',
+    designation: 'Managing Director',
     qualification: 'B.E. Civil Engineering',
     experience: '20+ years',
     avatar: 'CE',

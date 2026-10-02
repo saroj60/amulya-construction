@@ -274,7 +274,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Message from Managing Director (MD Sujitsa) */}
+      {/* Message from Managing Director (MD Sujit Shah) */}
       <section className="section-padding bg-gradient-to-b from-slate-50/70 via-white to-slate-50/40 border-t border-b border-gray-150 relative overflow-hidden" aria-label="Message from Managing Director">
         {/* Ambient decorative glow */}
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-orange-500/5 rounded-full filter blur-3xl pointer-events-none" />
@@ -308,7 +308,7 @@ export default function AboutPage() {
                     </div>
 
                     <div className="relative z-10">
-                      <h3 className="text-2xl font-black text-white tracking-tight">Sujitsa</h3>
+                      <h3 className="text-2xl font-black text-white tracking-tight">Sujit Shah</h3>
                       <p className="text-orange-400 text-xs font-bold uppercase tracking-wider mt-1">Managing Director</p>
                       <p className="text-slate-300 text-xs mt-1 font-medium">{COMPANY.name}</p>
                     </div>
@@ -376,7 +376,7 @@ export default function AboutPage() {
               <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-gray-150">
                 <div>
                   <span className="text-xs text-gray-400 font-bold uppercase tracking-wider block">Warm Regards,</span>
-                  <span className="text-lg font-black text-slate-950 block mt-0.5">Sujitsa</span>
+                  <span className="text-lg font-black text-slate-950 block mt-0.5">Sujit Shah</span>
                   <span className="text-xs text-orange-600 font-bold">Managing Director, {COMPANY.name}</span>
                 </div>
 
