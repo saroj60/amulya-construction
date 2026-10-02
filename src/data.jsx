@@ -215,6 +215,34 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 4,
+    title: 'Project 4',
+    location: 'Kathmandu Valley, Nepal',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-4.jpg',
+    gallery: [
+      '/projects/project-4.jpg',
+    ],
+    description:
+      'Project 4 — Contemporary 4-storey residential home blending modern RCC structure with traditional tiled balcony cornices, brick column accents, and rooftop pergolas by Amulya Builders.',
+    highlights: [
+      '4-Storey RCC earthquake-resistant frame',
+      'Covered vehicle porch and dedicated 2-wheeler parking',
+      'Exposed brick feature pillar with exterior warm illumination',
+      'Upper floor rooftop pergola and spiral deck staircase',
+    ],
+    specifications: {
+      'Project': 'Project 4',
+      'Type': 'Residential Multi-Storey House',
+      'Floors': '4 Storeys',
+      'Parking': 'Car Porch & Motorcycle Space',
+      'Scope': 'Turnkey Design & Construction',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
