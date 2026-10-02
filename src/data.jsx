@@ -388,6 +388,33 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 10,
+    title: 'Project 10',
+    location: 'Nepal',
+    category: 'Commercial',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/projects/project-10.jpg',
+    gallery: [
+      '/projects/project-10.jpg',
+    ],
+    description:
+      'Project 10 — Hilltop spiritual pilgrimage complex featuring monumental golden Lord Shiva statue, Shivalinga pedestals, stupa, dressed stone fortress retaining walls, and landscaped rhododendron gardens by Amulya Builders.',
+    highlights: [
+      'Monumental hilltop golden Shiva deity installation',
+      'Surrounding traditional Shivalinga shrines and stupa integration',
+      'Engineered stone fortress retaining walls and stepped grand access',
+      'Laligurans flower gardens and scenic panoramic landscaping',
+    ],
+    specifications: {
+      'Project': 'Project 10',
+      'Type': 'Spiritual Monument & Pilgrimage Park',
+      'Features': 'Colossal Shiva Statue, Shivalingas, Chaitya, Stone Ramparts',
+      'Scope': 'Civil Engineering, Retaining Walls & Landmark Execution',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
