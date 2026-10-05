@@ -127,40 +127,27 @@ export default function ContactPage() {
         <meta name="twitter:image" content="https://amulyabuilders.com.np/contact-hero.png" />
       </Helmet>
 
-      {/* Page Hero Banner */}
+      {/* Page Hero Banner - Full Width Edge-to-Edge */}
       <section
-        className="relative pt-24 pb-8 md:pt-32 md:pb-12 bg-gradient-to-b from-[#011c40] via-[#02285a] to-[#011738] text-white overflow-hidden border-b border-white/10"
+        className="relative pt-[73px] sm:pt-[81px] md:pt-[93px] w-full bg-slate-950 overflow-hidden"
         aria-label="Contact page header"
       >
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#cd0102] to-transparent z-10 opacity-80" />
-        
-        {/* Subtle ambient lighting */}
-        <div className="absolute -top-24 -right-24 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Accessible Heading for SEO & Screen Readers */}
+        <h1 className="sr-only">Start Your Project Today — Amulya Builders &amp; Trading Nepal</h1>
 
-        <div className="relative z-10 container-custom">
-          {/* Accessible Heading for SEO & Screen Readers */}
-          <h1 className="sr-only">Start Your Project Today — Amulya Builders &amp; Trading Nepal</h1>
-
-          {/* Hero Banner Showcase */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="-mx-4 sm:mx-0 rounded-none sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-y sm:border border-white/15 bg-slate-950 group"
-          >
-            <img
-              src="/contact-hero.png"
-              alt="Start Your Project Today - Amulya Builders & Trading: Building a Stronger Nepal"
-              className="w-full h-auto object-cover block transition-transform duration-700 group-hover:scale-[1.01]"
-              loading="eager"
-            />
-          </motion.div>
+        {/* Full-width banner image */}
+        <div className="w-full">
+          <img
+            src="/contact-hero.png"
+            alt="Start Your Project Today - Amulya Builders & Trading: Building a Stronger Nepal"
+            className="w-full h-auto object-cover block"
+            loading="eager"
+          />
         </div>
       </section>
 
       {/* Contact Content */}
-      <section className="section-padding bg-gray-50/50" aria-label="Contact information and form">
+      <section className="pt-10 md:pt-14 pb-16 md:pb-20 bg-gray-50/50" aria-label="Contact information and form">
         <div className="container-custom">
           
           {/* Main Redesigned 2-Column Contact Block */}
