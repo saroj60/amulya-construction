@@ -100,8 +100,8 @@ export default function AboutPreview() {
                 {/* 4. Delivering Peace of Mind */}
                 <div className="relative rounded-2xl overflow-hidden h-52 shadow-md group">
                   <img
-                    src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80"
-                    alt="Handover custom residential building completed"
+                    src="/projects/project-16.jpg"
+                    alt="Completed luxury residential building delivered by Amulya Builders"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
