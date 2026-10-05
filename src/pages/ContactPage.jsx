@@ -117,47 +117,45 @@ export default function ContactPage() {
         <meta property="og:url" content="https://amulyabuilders.com.np/contact" />
         <meta property="og:title" content={`Contact Us | Construction Company in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | ${COMPANY.name}`} />
         <meta property="og:description" content="Contact Amulya Builders — Nepal's trusted construction company serving Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha. Head office in Dhanusha & Branch in Lalitpur." />
-        <meta property="og:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
+        <meta property="og:image" content="https://amulyabuilders.com.np/contact-hero.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://amulyabuilders.com.np/contact" />
         <meta name="twitter:title" content={`Contact Us | Construction Company in Kathmandu, Bhaktapur, Lalitpur, Janakpur & Dhanusha | ${COMPANY.name}`} />
         <meta name="twitter:description" content="Contact Amulya Builders — Nepal's trusted construction company serving Kathmandu, Bhaktapur, Lalitpur, Janakpur, and Dhanusha. Head office in Dhanusha & Branch in Lalitpur." />
-        <meta name="twitter:image" content="https://amulyabuilders.com.np/amulyalogo1.png" />
+        <meta name="twitter:image" content="https://amulyabuilders.com.np/contact-hero.png" />
       </Helmet>
 
-      {/* Page Hero */}
+      {/* Page Hero Banner */}
       <section
-        className="relative pt-28 pb-16 md:pt-36 md:pb-20 bg-gradient-to-br from-[#012352] via-[#02336e] to-[#011738] text-white overflow-hidden border-b border-white/10"
+        className="relative pt-24 pb-8 md:pt-32 md:pb-12 bg-gradient-to-b from-[#011c40] via-[#02285a] to-[#011738] text-white overflow-hidden border-b border-white/10"
         aria-label="Contact page header"
       >
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#cd0102] to-transparent z-10 opacity-80" />
-        <img
-          src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1600&q=80"
-          alt="Construction consultation meeting"
-          className="absolute inset-0 w-full h-full object-cover opacity-20"
-          loading="eager"
-        />
-        <div className="relative z-10 container-custom text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-            className="section-label justify-center"
+        
+        {/* Subtle ambient lighting */}
+        <div className="absolute -top-24 -right-24 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 container-custom">
+          {/* Accessible Heading for SEO & Screen Readers */}
+          <h1 className="sr-only">Start Your Project Today — Amulya Builders &amp; Trading Nepal</h1>
+
+          {/* Hero Banner Showcase */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="-mx-4 sm:mx-0 rounded-none sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-y sm:border border-white/15 bg-slate-950 group"
           >
-            <span className="w-5 h-0.5 bg-orange-400" /> Get in Touch
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-3xl md:text-5xl font-extrabold mt-2 mb-4"
-          >
-            Start Your Project Today
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-gray-300 max-w-lg mx-auto text-base md:text-lg"
-          >
-            Reach out for a free consultation. We're available across Kathmandu and Bagmati Province.
-          </motion.p>
+            <img
+              src="/contact-hero.png"
+              alt="Start Your Project Today - Amulya Builders & Trading: Building a Stronger Nepal"
+              className="w-full h-auto object-cover block transition-transform duration-700 group-hover:scale-[1.01]"
+              loading="eager"
+            />
+          </motion.div>
         </div>
       </section>
 
