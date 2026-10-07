@@ -39,8 +39,8 @@ const seedProjects = Array.from({ length: 18 }, (_, idx) => {
       'Plinth Area': '',
       'Face Length': ''
     }),
-    image: `/projects/project-${num}.jpg`,
-    gallery: JSON.stringify([`/projects/project-${num}.jpg`])
+    image: `/project-gallery/project-${num}.jpg`,
+    gallery: JSON.stringify([`/project-gallery/project-${num}.jpg`])
   };
 });
 
@@ -646,17 +646,17 @@ function initDatabase() {
       if (row && row.count === 0) {
         const stmt = db.prepare(`INSERT INTO hero_slides (image) VALUES (?)`);
         const defaultSlides = [
-          '/projects/project-1.jpg',
-          '/projects/project-2.jpg',
-          '/projects/project-4.jpg',
-          '/projects/project-7.jpg',
-          '/projects/project-8.jpg',
-          '/projects/project-10.jpg',
-          '/projects/project-12.jpg',
-          '/projects/project-14.jpg',
-          '/projects/project-16.jpg',
-          '/projects/project-17.jpg',
-          '/projects/project-18.jpg'
+          '/project-gallery/project-1.jpg',
+          '/project-gallery/project-2.jpg',
+          '/project-gallery/project-4.jpg',
+          '/project-gallery/project-7.jpg',
+          '/project-gallery/project-8.jpg',
+          '/project-gallery/project-10.jpg',
+          '/project-gallery/project-12.jpg',
+          '/project-gallery/project-14.jpg',
+          '/project-gallery/project-16.jpg',
+          '/project-gallery/project-17.jpg',
+          '/project-gallery/project-18.jpg'
         ];
         defaultSlides.forEach(slide => {
           stmt.run(slide);

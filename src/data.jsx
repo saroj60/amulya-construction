@@ -140,9 +140,9 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-1.jpg',
+    image: '/project-gallery/project-1.jpg',
     gallery: [
-      '/projects/project-1.jpg',
+      '/project-gallery/project-1.jpg',
     ],
     description:
       'Project 1 — Modern multi-storey residential architecture and construction by Amulya Builders.',
@@ -169,10 +169,10 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-2.jpg',
+    image: '/project-gallery/project-2.jpg',
     gallery: [
-      '/projects/project-2.jpg',
-      '/projects/project-2-garden.jpg',
+      '/project-gallery/project-2.jpg',
+      '/project-gallery/project-2-garden.jpg',
     ],
     description:
       'Project 2 — Modern luxury residential villa with curved panoramic terraces, landscaping, and turnkey construction by Amulya Builders.',
@@ -199,9 +199,9 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-3.jpg',
+    image: '/project-gallery/project-3.jpg',
     gallery: [
-      '/projects/project-3.jpg',
+      '/project-gallery/project-3.jpg',
     ],
     description:
       'Project 3 — Modern outdoor living, pergola patio, barbecue station, and landscaped garden design & construction by Amulya Builders.',
@@ -228,9 +228,9 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-4.jpg',
+    image: '/project-gallery/project-4.jpg',
     gallery: [
-      '/projects/project-4.jpg',
+      '/project-gallery/project-4.jpg',
     ],
     description:
       'Project 4 — Contemporary 4-storey residential home blending modern RCC structure with traditional tiled balcony cornices, brick column accents, and rooftop pergolas by Amulya Builders.',
@@ -257,9 +257,9 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-5.jpg',
+    image: '/project-gallery/project-5.jpg',
     gallery: [
-      '/projects/project-5.jpg',
+      '/project-gallery/project-5.jpg',
     ],
     description:
       'Project 5 — Multi-angle perspective of luxury residential villa showing panoramic terrace, side elevations, and rooftop viewing deck by Amulya Builders.',
@@ -286,9 +286,9 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-6.jpg',
+    image: '/project-gallery/project-6.jpg',
     gallery: [
-      '/projects/project-6.jpg',
+      '/project-gallery/project-6.jpg',
     ],
     description:
       'Project 6 — Complete estate master layout and aerial architectural design showing 2.5-storey luxury villa, landscaped garden, parking court, and perimeter security wall by Amulya Builders.',
@@ -315,10 +315,10 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-7.jpg',
+    image: '/project-gallery/project-7.jpg',
     gallery: [
-      '/projects/project-7.jpg',
-      '/projects/project-7-aerial.jpg',
+      '/project-gallery/project-7.jpg',
+      '/project-gallery/project-7-aerial.jpg',
     ],
     description:
       'Project 7 — Neo-classical 3.5-storey luxury residence featuring a grand central arched brick glass atrium, dual covered parking garages, classical balustrade balconies, and rooftop pergola gym terrace by Amulya Builders.',
@@ -345,11 +345,11 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-8.jpg',
+    image: '/project-gallery/project-8.jpg',
     gallery: [
-      '/projects/project-8.jpg',
-      '/projects/project-8-side.jpg',
-      '/projects/project-8-rear.jpg',
+      '/project-gallery/project-8.jpg',
+      '/project-gallery/project-8-side.jpg',
+      '/project-gallery/project-8-rear.jpg',
     ],
     description:
       'Project 8 — Majestic neo-classical 3.5-storey luxury residence featuring dressed sandstone central atrium, multi-tiered balconies with intricate balustrades, dual car bays, and complete perimeter boundary design by Amulya Builders.',
@@ -376,10 +376,10 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-9.jpg',
+    image: '/project-gallery/project-9.jpg',
     gallery: [
-      '/projects/project-9.jpg',
-      '/projects/project-9-aerial.jpg',
+      '/project-gallery/project-9.jpg',
+      '/project-gallery/project-9-aerial.jpg',
     ],
     description:
       'Project 9 — Angular front-left perspective and isometric aerial visualization of neo-classical luxury mansion showing side verandahs, multi-tiered classical balconies, and rooftop gym pergola by Amulya Builders.',
@@ -406,9 +406,9 @@ export const PROJECTS = [
     category: 'Commercial',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-10.jpg',
+    image: '/project-gallery/project-10.jpg',
     gallery: [
-      '/projects/project-10.jpg',
+      '/project-gallery/project-10.jpg',
     ],
     description:
       'Project 10 — Hilltop spiritual pilgrimage complex featuring monumental golden Lord Shiva statue, Shivalinga pedestals, stupa, dressed stone fortress retaining walls, and landscaped rhododendron gardens by Amulya Builders.',
@@ -435,9 +435,9 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-11.jpg',
+    image: '/project-gallery/project-11.jpg',
     gallery: [
-      '/projects/project-11.jpg',
+      '/project-gallery/project-11.jpg',
     ],
     description:
       'Project 11 — Modern 2.5-storey residential villa featuring C-curve architectural balcony frames, exposed brick vertical accent pillar, rooftop timber pergola, and secured boundary courtyard by Amulya Builders.',
@@ -464,11 +464,11 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-12.jpg',
+    image: '/project-gallery/project-12.jpg',
     gallery: [
-      '/projects/project-12.jpg',
-      '/projects/project-12-front.jpg',
-      '/projects/project-12-rear.jpg',
+      '/project-gallery/project-12.jpg',
+      '/project-gallery/project-12-front.jpg',
+      '/project-gallery/project-12-rear.jpg',
     ],
     description:
       'Project 12 — Grand 3.5-storey neo-classical palatial residence featuring monumental Corinthian fluted columns, ornate pediment over central arched atrium, cascading green planters, and multi-sided balustrade balconies by Amulya Builders.',
@@ -495,10 +495,10 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-13.jpg',
+    image: '/project-gallery/project-13.jpg',
     gallery: [
-      '/projects/project-13.jpg',
-      '/projects/project-13-aerial.jpg',
+      '/project-gallery/project-13.jpg',
+      '/project-gallery/project-13-aerial.jpg',
     ],
     description:
       'Project 13 — Elegant 2-storey cottage villa blending modern RCC engineering with classic Nepalese red sloping tile roofs, gabled portico entrance, spacious parking yard, and secured compound perimeter by Amulya Builders.',
@@ -525,11 +525,11 @@ export const PROJECTS = [
     category: 'Commercial',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-14.jpg',
+    image: '/project-gallery/project-14.jpg',
     gallery: [
-      '/projects/project-14.jpg',
-      '/projects/project-14-corner.jpg',
-      '/projects/project-14-front.jpg',
+      '/project-gallery/project-14.jpg',
+      '/project-gallery/project-14-corner.jpg',
+      '/project-gallery/project-14-front.jpg',
     ],
     description:
       'Project 14 — Contemporary 3.5-storey mixed-use commercial & residential building featuring ground-floor retail shopfronts with rolling shutters, premium residential apartments above, stone-clad accent facade, and cascading planter rooftop terrace by Amulya Builders.',
@@ -556,9 +556,9 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-15.jpg',
+    image: '/project-gallery/project-15.jpg',
     gallery: [
-      '/projects/project-15.jpg',
+      '/project-gallery/project-15.jpg',
     ],
     description:
       'Project 15 — Distinctive 3-storey European Mediterranean luxury villa featuring arched arcade verandas, hip slate roof, rooftop terrace pergola lounge, palm landscaping, and gated compound parking by Amulya Builders.',
@@ -585,9 +585,9 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-16.jpg',
+    image: '/project-gallery/project-16.jpg',
     gallery: [
-      '/projects/project-16.jpg',
+      '/project-gallery/project-16.jpg',
     ],
     description:
       'Project 16 — Contemporary 3-storey luxury villa featuring curved red-brick corner bay with panoramic windows, open first-floor terrace lounge, executive second-floor balcony with spiral rooftop staircase, and landscaped courtyard parking by Amulya Builders.',
@@ -614,9 +614,9 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-17.jpg',
+    image: '/project-gallery/project-17.jpg',
     gallery: [
-      '/projects/project-17.jpg',
+      '/project-gallery/project-17.jpg',
     ],
     description:
       'Project 17 — Contemporary 4-storey residential building featuring Nepali traditional roof eave cornices, brick-and-render dual-tone facade, gated compound wall with covered entrance, multiple vehicle parking, and landscaped garden perimeter by Amulya Builders.',
@@ -643,9 +643,9 @@ export const PROJECTS = [
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
-    image: '/projects/project-18.jpg',
+    image: '/project-gallery/project-18.jpg',
     gallery: [
-      '/projects/project-18.jpg',
+      '/project-gallery/project-18.jpg',
     ],
     description:
       'Project 18 — Grand Neo-Classical luxury residence featuring ornate European baroque stone bas-relief crests, classical turned balustrade balconies, covered vehicle porch, wrought-iron filigree boundary gates, and rooftop observation deck by Amulya Builders.',

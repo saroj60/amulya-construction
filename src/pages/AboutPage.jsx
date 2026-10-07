@@ -594,7 +594,7 @@ export default function AboutPage() {
             </motion.div>
             <motion.div initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeRight}>
               <img
-                src="/projects/project-12.jpg"
+                src="/project-gallery/project-12.jpg"
                 alt="Completed luxury residence delivered by Amulya Builders in Nepal"
                 className="w-full rounded-2xl object-cover h-80 md:h-96 shadow-md"
                 loading="lazy"
