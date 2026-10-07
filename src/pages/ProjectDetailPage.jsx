@@ -89,18 +89,18 @@ export default function ProjectDetailPage() {
   return (
     <>
       <Helmet>
-        <title>{project.title} | {COMPANY.name} — {project.location}</title>
+        <title>{project.title} | {COMPANY.name}{project.location ? ` — ${project.location}` : ''}</title>
         <meta
           name="description"
-          content={`${project.title} — A ${project.category.toLowerCase()} construction project by ${COMPANY.name} in ${project.location}. ${project.description.slice(0, 120)}...`}
+          content={`${project.title} — Construction project by ${COMPANY.name}.${project.location ? ` Located in ${project.location}.` : ''} ${project.description.slice(0, 120)}...`}
         />
         <link rel="canonical" href={`https://amulyabuilders.com.np/projects/${project.id}`} />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://amulyabuilders.com.np/projects/${project.id}`} />
-        <meta property="og:title" content={`${project.title} | ${COMPANY.name} — ${project.location}`} />
-        <meta property="og:description" content={`${project.title} — A ${project.category.toLowerCase()} construction project by ${COMPANY.name} in ${project.location}. ${project.description.slice(0, 120)}...`} />
+        <meta property="og:title" content={`${project.title} | ${COMPANY.name}${project.location ? ` — ${project.location}` : ''}`} />
+        <meta property="og:description" content={`${project.title} — Construction project by ${COMPANY.name}.${project.location ? ` Located in ${project.location}.` : ''} ${project.description.slice(0, 120)}...`} />
         <meta property="og:image" content={project.image} />
 
         {/* Twitter */}
@@ -146,10 +146,12 @@ export default function ProjectDetailPage() {
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
                 {project.title}
               </h1>
-              <p className="flex items-center gap-2 mt-2 text-slate-300 text-sm md:text-base font-medium">
-                <MapPin className="w-4 h-4 text-orange-400 flex-shrink-0" aria-hidden="true" />
-                {project.location}
-              </p>
+              {project.location ? (
+                <p className="flex items-center gap-2 mt-2 text-slate-300 text-sm md:text-base font-medium">
+                  <MapPin className="w-4 h-4 text-orange-400 flex-shrink-0" aria-hidden="true" />
+                  {project.location}
+                </p>
+              ) : null}
             </div>
 
             <div className="flex items-center gap-3">
@@ -308,34 +310,49 @@ export default function ProjectDetailPage() {
               {/* Specifications */}
               <motion.div
                 initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeUp}
-                className="bg-gray-50 rounded-2xl p-6 border border-gray-100"
+                className="bg-gray-50 rounded-2xl p-6 border border-gray-100 shadow-sm"
               >
-                <h2 className="text-base font-bold text-gray-900 mb-4 uppercase tracking-wider">Project Specifications</h2>
+                <h2 className="text-base font-bold text-gray-900 mb-4 uppercase tracking-wider flex items-center justify-between">
+                  <span>Project Details</span>
+                  <span className="text-[10px] text-orange-500 font-bold uppercase bg-orange-100/70 px-2 py-0.5 rounded">Specs</span>
+                </h2>
                 <dl className="space-y-3">
-                  {project.client && (
-                    <div className="flex justify-between gap-4">
-                      <dt className="text-xs text-gray-500 font-semibold uppercase">Client</dt>
-                      <dd className="text-xs text-gray-800 font-medium text-right">{project.client}</dd>
-                    </div>
-                  )}
-                  {project.year && (
-                    <div className="flex justify-between gap-4">
-                      <dt className="text-xs text-gray-500 font-semibold uppercase">Year</dt>
-                      <dd className="text-xs text-gray-800 font-medium">{project.year}</dd>
-                    </div>
-                  )}
-                  {project.duration && (
-                    <div className="flex justify-between gap-4">
-                      <dt className="text-xs text-gray-500 font-semibold uppercase">Duration</dt>
-                      <dd className="text-xs text-gray-800 font-medium">{project.duration}</dd>
-                    </div>
-                  )}
-                  {Object.entries(project.specifications || {}).map(([key, val]) => (
-                    <div key={key} className="flex justify-between gap-4 pt-2 border-t border-gray-200 first:border-0 first:pt-0">
-                      <dt className="text-xs text-gray-500 font-semibold uppercase">{key}</dt>
-                      <dd className="text-xs text-gray-800 font-medium text-right">{val}</dd>
-                    </div>
-                  ))}
+                  <div className="flex justify-between items-center gap-4">
+                    <dt className="text-xs text-gray-500 font-semibold uppercase">Project Code</dt>
+                    <dd className="text-xs text-gray-900 font-bold text-right">
+                      {project.specifications?.['Project Code'] || (project.title?.startsWith('Project Code:') ? project.title.replace('Project Code:', '').trim() : project.title) || '—'}
+                    </dd>
+                  </div>
+                  <div className="flex justify-between items-center gap-4 pt-2.5 border-t border-gray-200">
+                    <dt className="text-xs text-gray-500 font-semibold uppercase">Location</dt>
+                    <dd className="text-xs text-gray-800 font-medium text-right">{project.location || project.specifications?.['Location'] || '—'}</dd>
+                  </div>
+                  <div className="flex justify-between items-center gap-4 pt-2.5 border-t border-gray-200">
+                    <dt className="text-xs text-gray-500 font-semibold uppercase">Project Cost</dt>
+                    <dd className="text-xs text-gray-800 font-medium text-right">{project.specifications?.['Project Cost'] || project.cost || '—'}</dd>
+                  </div>
+                  <div className="flex justify-between items-center gap-4 pt-2.5 border-t border-gray-200">
+                    <dt className="text-xs text-gray-500 font-semibold uppercase">Type of Building</dt>
+                    <dd className="text-xs text-gray-800 font-medium text-right">{project.specifications?.['Type of Building'] || project.specifications?.['Type'] || project.category || '—'}</dd>
+                  </div>
+                  <div className="flex justify-between items-center gap-4 pt-2.5 border-t border-gray-200">
+                    <dt className="text-xs text-gray-500 font-semibold uppercase">Plinth Area</dt>
+                    <dd className="text-xs text-gray-800 font-medium text-right">{project.specifications?.['Plinth Area'] || project.area || '—'}</dd>
+                  </div>
+                  <div className="flex justify-between items-center gap-4 pt-2.5 border-t border-gray-200">
+                    <dt className="text-xs text-gray-500 font-semibold uppercase">Face Length</dt>
+                    <dd className="text-xs text-gray-800 font-medium text-right">{project.specifications?.['Face Length'] || '—'}</dd>
+                  </div>
+
+                  {/* Render any additional custom specifications if present */}
+                  {Object.entries(project.specifications || {})
+                    .filter(([key]) => !['Project Code', 'Location', 'Project Cost', 'Type of Building', 'Plinth Area', 'Face Length', 'Project', 'Type'].includes(key))
+                    .map(([key, val]) => (
+                      <div key={key} className="flex justify-between items-center gap-4 pt-2.5 border-t border-gray-200">
+                        <dt className="text-xs text-gray-500 font-semibold uppercase">{key}</dt>
+                        <dd className="text-xs text-gray-800 font-medium text-right">{val || '—'}</dd>
+                      </div>
+                    ))}
                 </dl>
               </motion.div>
 

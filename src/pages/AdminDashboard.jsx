@@ -161,7 +161,18 @@ export default function AdminDashboard() {
   function startCreateProject() {
     setEditingItem(null);
     setIsCreating(true);
-    setProjForm({ title: '', category: 'Residential', status: 'Completed', location: '', duration: '', description: '', image: '', gallery: '', highlights: '', specifications: '' });
+    setProjForm({
+      title: '',
+      category: 'Residential',
+      status: 'Completed',
+      location: '',
+      duration: '',
+      description: '',
+      image: '',
+      gallery: '',
+      highlights: '',
+      specifications: 'Project Code:\nLocation:\nProject Cost:\nType of Building:\nPlinth Area:\nFace Length:'
+    });
   }
 
   async function handleProjectSubmit(e) {
@@ -173,15 +184,15 @@ export default function AdminDashboard() {
       title: projForm.title,
       category: projForm.category,
       status: projForm.status,
-      location: projForm.location,
-      duration: projForm.duration,
+      location: projForm.location || '',
+      duration: projForm.duration || '',
       description: projForm.description,
       image: projForm.image,
       gallery: projForm.gallery.split('\n').map(l => l.trim()).filter(Boolean),
       highlights: projForm.highlights.split('\n').map(l => l.trim()).filter(Boolean),
       specifications: projForm.specifications.split('\n').reduce((acc, curr) => {
         const [k, ...v] = curr.split(':');
-        if (k && v.length) acc[k.trim()] = v.join(':').trim();
+        if (k && k.trim()) acc[k.trim()] = v.join(':').trim();
         return acc;
       }, {})
     };
@@ -892,7 +903,7 @@ export default function AdminDashboard() {
                                   <tr key={p.id} className="hover:bg-gray-50/50 transition-colors">
                                     <td className="py-3.5 px-4 font-bold text-gray-950">{p.title}</td>
                                     <td className="py-3.5 px-4">{p.category}</td>
-                                    <td className="py-3.5 px-4 text-gray-500">{p.location}</td>
+                                    <td className="py-3.5 px-4 text-gray-500">{p.location || '—'}</td>
                                     <td className="py-3.5 px-4">
                                       <span className={`px-2 py-0.5 rounded text-[10px] ${
                                         p.status === 'Completed' ? 'bg-green-50 text-green-700 border border-green-150' : 'bg-blue-50 text-blue-700 border border-blue-150'
@@ -917,8 +928,8 @@ export default function AdminDashboard() {
                           
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-1.5">
-                              <label className="text-xs font-bold text-gray-700 uppercase">Project Title</label>
-                              <input type="text" required value={projForm.title} onChange={e => setProjForm({...projForm, title: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" />
+                              <label className="text-xs font-bold text-gray-700 uppercase">Project Title / Code</label>
+                              <input type="text" required value={projForm.title} onChange={e => setProjForm({...projForm, title: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. Project Code: 1" />
                             </div>
                             <div className="space-y-1.5">
                               <label className="text-xs font-bold text-gray-700 uppercase">Category</label>
@@ -936,8 +947,8 @@ export default function AdminDashboard() {
                               </select>
                             </div>
                             <div className="space-y-1.5">
-                              <label className="text-xs font-bold text-gray-700 uppercase">Location</label>
-                              <input type="text" required value={projForm.location} onChange={e => setProjForm({...projForm, location: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" />
+                              <label className="text-xs font-bold text-gray-700 uppercase">Location (Optional)</label>
+                              <input type="text" value={projForm.location} onChange={e => setProjForm({...projForm, location: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. Kathmandu (or leave blank)" />
                             </div>
                             <div className="space-y-1.5">
                               <label className="text-xs font-bold text-gray-700 uppercase">Duration</label>
@@ -987,7 +998,7 @@ export default function AdminDashboard() {
                             </div>
                             <div className="space-y-1.5">
                               <label className="text-xs font-bold text-gray-700 uppercase">Specifications (Key:Value per line)</label>
-                              <textarea rows="3" value={projForm.specifications} onChange={e => setProjForm({...projForm, specifications: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="Built Area: 3,500 sq.ft." />
+                              <textarea rows="4" value={projForm.specifications} onChange={e => setProjForm({...projForm, specifications: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="Project Code: 1&#10;Location: &#10;Project Cost: &#10;Type of Building: &#10;Plinth Area: &#10;Face Length: " />
                             </div>
                           </div>
 

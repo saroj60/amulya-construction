@@ -55,10 +55,17 @@ export default function ProjectCard({ project }) {
           <h3 className="font-bold text-gray-900 text-base mb-2 group-hover:text-blue-700 transition-colors line-clamp-1">
             {project.title}
           </h3>
-          <div className="flex items-center gap-1.5 text-gray-500 text-sm mb-3">
-            <MapPin className="w-3.5 h-3.5 text-orange-500 flex-shrink-0" aria-hidden="true" />
-            <span className="line-clamp-1">{project.location}</span>
-          </div>
+          {project.location ? (
+            <div className="flex items-center gap-1.5 text-gray-500 text-sm mb-3">
+              <MapPin className="w-3.5 h-3.5 text-orange-500 flex-shrink-0" aria-hidden="true" />
+              <span className="line-clamp-1">{project.location}</span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-1.5 text-gray-400 text-xs mb-3">
+              <MapPin className="w-3.5 h-3.5 text-gray-300 flex-shrink-0" aria-hidden="true" />
+              <span className="italic">Location: —</span>
+            </div>
+          )}
           <div className="flex items-center justify-between pt-3 border-t border-gray-100">
             <span className="text-xs text-gray-400 font-medium">{project.year}</span>
             {project.area && (

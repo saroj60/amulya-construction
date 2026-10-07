@@ -16,7 +16,33 @@ const db = new sqlite3.Database(dbPath, (err) => {
 });
 
 // Seed data from current frontend config to make initialization seamless
-const seedProjects = [];
+const seedProjects = Array.from({ length: 18 }, (_, idx) => {
+  const num = idx + 1;
+  return {
+    title: `Project Code: ${num}`,
+    category: num === 10 || num === 14 ? 'Commercial' : 'Residential',
+    status: 'Completed',
+    location: '',
+    duration: 'Turnkey Project',
+    description: `Project Code: ${num} — Architectural design and construction portfolio by Amulya Builders.`,
+    highlights: JSON.stringify([
+      'Earthquake-resistant RCC structure',
+      'Modern architectural facade',
+      'Integrated parking and balconies',
+      'NBC code compliance'
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': String(num),
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': ''
+    }),
+    image: `/projects/project-${num}.jpg`,
+    gallery: JSON.stringify([`/projects/project-${num}.jpg`])
+  };
+});
 
 const seedHouseStyles = [
   {

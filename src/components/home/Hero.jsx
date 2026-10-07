@@ -214,10 +214,17 @@ export default function Hero() {
                       {activeProject.title}
                     </h3>
 
-                    <p className="text-xs text-slate-300 truncate flex items-center gap-1.5 mt-1 font-medium">
-                      <MapPin className="w-3.5 h-3.5 text-orange-500 shrink-0" />
-                      {activeProject.location}
-                    </p>
+                    {activeProject.location ? (
+                      <p className="text-xs text-slate-300 truncate flex items-center gap-1.5 mt-1 font-medium">
+                        <MapPin className="w-3.5 h-3.5 text-orange-500 shrink-0" />
+                        {activeProject.location}
+                      </p>
+                    ) : (
+                      <p className="text-xs text-slate-400 truncate flex items-center gap-1.5 mt-1 font-medium">
+                        <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                        <span className="italic text-slate-400">Location: —</span>
+                      </p>
+                    )}
                   </div>
 
                   {/* Action Arrow */}

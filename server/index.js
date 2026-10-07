@@ -126,7 +126,7 @@ app.get('/api/projects/:id', (req, res) => {
 app.post('/api/projects', authenticateToken, (req, res) => {
   const { title, category, status, location, duration, description, highlights, specifications, image, gallery } = req.body;
 
-  if (!title || !category || !status || !location || !description || !image) {
+  if (!title || !category || !status || !description || !image) {
     return res.status(400).json({ error: 'Required fields are missing' });
   }
 
@@ -137,7 +137,7 @@ app.post('/api/projects', authenticateToken, (req, res) => {
   const stmt = db.prepare(`INSERT INTO projects (title, category, status, location, duration, description, highlights, specifications, image, gallery)
                           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
 
-  stmt.run(title, category, status, location, duration || '', description, highlightsStr, specificationsStr, image, galleryStr, function(err) {
+  stmt.run(title, category, status, location || '', duration || '', description, highlightsStr, specificationsStr, image, galleryStr, function(err) {
     if (err) return res.status(500).json({ error: err.message });
     res.status(201).json({ id: this.lastID, message: 'Project created successfully' });
   });
