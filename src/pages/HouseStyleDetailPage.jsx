@@ -6,7 +6,7 @@ import {
   ArrowLeft, CheckCircle, X, ChevronLeft, ChevronRight,
   MessageCircle, Phone, ArrowRight, Sparkles, HelpCircle, HardHat, Loader
 } from 'lucide-react';
-import { COMPANY } from '@/data';
+import { COMPANY, HOUSE_STYLES } from '@/data';
 import { api } from '@/services/api';
 import { fadeUp, staggerContainer, viewportOnce } from '@/utils/animations';
 
@@ -35,13 +35,30 @@ const getRoomSpecsAndPrice = (styleId) => {
   }
 };
 
+function findStaticStyle(styleId) {
+  if (!styleId) return null;
+  return (
+    HOUSE_STYLES.find((s) => String(s.id) === String(styleId)) ||
+    HOUSE_STYLES.find(
+      (s) =>
+        String(s.title).toLowerCase().replace(/\s+/g, '-') ===
+        String(styleId).toLowerCase()
+    ) ||
+    null
+  );
+}
+
 export default function HouseStyleDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   
-  const [style, setStyle] = useState(null);
-  const [relatedStyles, setRelatedStyles] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const initialStyle = findStaticStyle(id);
+  const [style, setStyle] = useState(initialStyle);
+  const [relatedStyles, setRelatedStyles] = useState(() => {
+    if (!initialStyle) return [];
+    return HOUSE_STYLES.filter((s) => String(s.id) !== String(initialStyle.id)).slice(0, 3);
+  });
+  const [loading, setLoading] = useState(!initialStyle);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -118,19 +135,41 @@ export default function HouseStyleDetailPage() {
   };
 
   useEffect(() => {
-    setLoading(true);
+    const fallback = findStaticStyle(id);
+    if (fallback) {
+      setStyle(fallback);
+      setRelatedStyles(
+        HOUSE_STYLES.filter((s) => String(s.id) !== String(fallback.id)).slice(0, 3)
+      );
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
+
     api.getHouseStyle(id)
       .then((styleData) => {
-        setStyle(styleData);
-        api.getHouseStyles()
-          .then((allSty) => {
-            setRelatedStyles(
-              allSty.filter((s) => s.id !== styleData.id).slice(0, 3)
-            );
-          })
-          .catch((err) => console.error(err));
+        if (styleData && styleData.id) {
+          setStyle(styleData);
+          api.getHouseStyles()
+            .then((allSty) => {
+              if (Array.isArray(allSty) && allSty.length > 0) {
+                setRelatedStyles(
+                  allSty.filter((s) => s.id !== styleData.id).slice(0, 3)
+                );
+              }
+            })
+            .catch(() => {});
+        }
       })
-      .catch((err) => console.error(err))
+      .catch((err) => {
+        console.warn('API getHouseStyle unavailable, using static fallback:', err);
+        if (!fallback) {
+          const retryFallback = findStaticStyle(id);
+          if (retryFallback) {
+            setStyle(retryFallback);
+          }
+        }
+      })
       .finally(() => setLoading(false));
   }, [id]);
 

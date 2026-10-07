@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import SectionHeader from '../components/ui/SectionHeader';
 import StatCounter from '../components/ui/StatCounter';
-import { COMPANY } from '@/data';
+import { COMPANY, TEAM, PROJECTS } from '@/data';
 import { api } from '@/services/api';
 import { fadeUp, fadeLeft, fadeRight, staggerContainer, viewportOnce } from '@/utils/animations';
 
@@ -38,21 +38,25 @@ const trustPoints = [
 ];
 
 export default function AboutPage() {
-  const [teamList, setTeamList] = useState([]);
-  const [projectCount, setProjectCount] = useState(COMPANY.stats.projectsCompleted);
+  const [teamList, setTeamList] = useState(TEAM);
+  const [projectCount, setProjectCount] = useState(`${PROJECTS.length}+`);
 
   useEffect(() => {
     api.getTeam()
-      .then((data) => setTeamList(data))
-      .catch((err) => console.error(err));
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setTeamList(data);
+        }
+      })
+      .catch((err) => console.warn('Using static team data fallback:', err));
 
     api.getProjects()
       .then((projects) => {
-        if (projects && Array.isArray(projects)) {
+        if (projects && Array.isArray(projects) && projects.length > 0) {
           setProjectCount(`${projects.length}+`);
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.warn('Using static project count fallback:', err));
   }, []);
 
   const stats = [

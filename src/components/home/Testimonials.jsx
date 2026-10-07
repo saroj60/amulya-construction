@@ -6,7 +6,7 @@ import { TESTIMONIALS, COMPANY } from '@/data';
 import { api } from '@/services/api';
 
 export default function Testimonials() {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(TESTIMONIALS);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(3);
   const [isPaused, setIsPaused] = useState(false);

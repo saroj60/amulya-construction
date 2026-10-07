@@ -6,7 +6,7 @@ import {
   ArrowLeft, MapPin, Tag, CheckCircle, Clock, X, ChevronLeft, ChevronRight,
   MessageCircle, Phone, ArrowRight, Loader, Maximize2
 } from 'lucide-react';
-import { COMPANY } from '@/data';
+import { COMPANY, PROJECTS } from '@/data';
 import { api } from '@/services/api';
 import { fadeUp, staggerContainer, viewportOnce } from '@/utils/animations';
 
@@ -15,32 +15,76 @@ const statusColors = {
   Ongoing: 'bg-blue-100 text-blue-700 border border-blue-200',
 };
 
+// Helper to look up project from static data by ID, index, or title code
+function findStaticProject(projId) {
+  if (!projId) return null;
+  return (
+    PROJECTS.find((p) => String(p.id) === String(projId)) ||
+    PROJECTS[Number(projId) - 1] ||
+    PROJECTS.find((p) =>
+      String(p.title).toLowerCase().includes(`project code: ${projId}`) ||
+      String(p.title).toLowerCase().includes(`project ${projId}`)
+    ) || null
+  );
+}
+
 export default function ProjectDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   
-  const [project, setProject] = useState(null);
-  const [relatedProjects, setRelatedProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const initialProject = findStaticProject(id);
+  const [project, setProject] = useState(initialProject);
+  const [relatedProjects, setRelatedProjects] = useState(() => {
+    if (!initialProject) return [];
+    return PROJECTS.filter(
+      (p) => p.id !== initialProject.id && p.category === initialProject.category
+    ).slice(0, 3);
+  });
+  const [loading, setLoading] = useState(!initialProject);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
-    setLoading(true);
     setActiveImageIndex(0);
+    const fallback = findStaticProject(id);
+    if (fallback) {
+      setProject(fallback);
+      setRelatedProjects(
+        PROJECTS.filter(
+          (p) => p.id !== fallback.id && p.category === fallback.category
+        ).slice(0, 3)
+      );
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
+
+    // Attempt to fetch fresh data from backend if available
     api.getProject(id)
       .then((projData) => {
-        setProject(projData);
-        api.getProjects()
-          .then((allProj) => {
-            setRelatedProjects(
-              allProj.filter((p) => p.id !== projData.id && p.category === projData.category).slice(0, 3)
-            );
-          })
-          .catch((err) => console.error(err));
+        if (projData && projData.id) {
+          setProject(projData);
+          api.getProjects()
+            .then((allProj) => {
+              if (Array.isArray(allProj) && allProj.length > 0) {
+                setRelatedProjects(
+                  allProj.filter((p) => p.id !== projData.id && p.category === projData.category).slice(0, 3)
+                );
+              }
+            })
+            .catch(() => {});
+        }
       })
-      .catch((err) => console.error(err))
+      .catch((err) => {
+        console.warn('API getProject unavailable, using static fallback:', err);
+        if (!fallback) {
+          const retryFallback = findStaticProject(id);
+          if (retryFallback) {
+            setProject(retryFallback);
+          }
+        }
+      })
       .finally(() => setLoading(false));
   }, [id]);
 

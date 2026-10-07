@@ -4,20 +4,23 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import SectionHeader from '../ui/SectionHeader';
 import ProjectCard from '../ui/ProjectCard';
+import { PROJECTS } from '@/data';
 import { api } from '@/services/api';
 import { staggerContainer, viewportOnce } from '@/utils/animations';
 
 export default function FeaturedProjects() {
-  const [featured, setFeatured] = useState([]);
+  const [featured, setFeatured] = useState(() => PROJECTS.slice(0, 3));
 
   useEffect(() => {
     api.getProjects()
       .then((data) => {
-        if (data && Array.isArray(data)) {
+        if (data && Array.isArray(data) && data.length > 0) {
           setFeatured(data.slice(0, 3));
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.warn('Using static featured projects fallback:', err);
+      });
   }, []);
 
   if (!featured || featured.length === 0) {
