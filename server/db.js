@@ -22,10 +22,19 @@ const seedProjects = Array.from({ length: 18 }, (_, idx) => {
     title: `Project Code: ${num}`,
     category: num === 10 || num === 14 ? 'Commercial' : 'Residential',
     status: 'Completed',
-    location: '',
+    location: num === 11 ? 'Budhanilkantha, Kathmandu' : '',
     duration: 'Turnkey Project',
-    description: `Project Code: ${num} — Architectural design and construction portfolio by Amulya Builders.`,
-    highlights: JSON.stringify([
+    description: num === 11 
+      ? 'Project Code: 11 is an exquisite 2.5-storey modern residential villa situated in the serene and scenic surroundings of Budhanilkantha, Kathmandu. Built with high-ductility earthquake-resistant RCC structural engineering, contemporary C-curve cantilevered balconies, and an artisan exposed-brick vertical accent pillar, this home blends refined aesthetics with optimal family comfort.\n\nFloor-by-Floor Architectural Layout:\n\n• Ground Floor:\nSpacious living hall with an attached bathroom, dedicated dining area, and a modern modular kitchen.\n\n• First Floor:\nThree master bedrooms, each featuring private attached bathrooms and well-ventilated balcony access.\n\n• Second Floor:\nOne comfortable bedroom, dedicated laundry area, tranquil puja room, and direct access to the open rooftop terrace offering scenic views.'
+      : `Project Code: ${num} — Architectural design and construction portfolio by Amulya Builders.`,
+    highlights: JSON.stringify(num === 11 ? [
+      '3 Master bedrooms with attached bathrooms on 1st floor',
+      'Ground floor hall with attached bath, dining & modular kitchen',
+      '2nd floor bedroom, dedicated laundry area & puja room',
+      'Contemporary C-frame cantilevered balcony & brick accent pillar',
+      'Open rooftop recreational terrace with scenic views',
+      'Earthquake-resistant RCC ductile frame structure'
+    ] : [
       'Earthquake-resistant RCC structure',
       'Modern architectural facade',
       'Integrated parking and balconies',
@@ -33,11 +42,11 @@ const seedProjects = Array.from({ length: 18 }, (_, idx) => {
     ]),
     specifications: JSON.stringify({
       'Project Code': String(num),
-      'Location': '',
+      'Location': num === 11 ? 'Budhanilkantha, Kathmandu' : '',
       'Project Cost': '',
-      'Type of Building': '',
-      'Plinth Area': '',
-      'Face Length': ''
+      'Type of Building': num === 11 ? 'Residential' : '',
+      'Plinth Area': num === 11 ? '1100 sq ft' : '',
+      'Face Length': num === 11 ? '26 ft' : ''
     }),
     image: `/project-gallery/project-${num}.jpg`,
     gallery: JSON.stringify([`/project-gallery/project-${num}.jpg`])

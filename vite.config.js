@@ -13,15 +13,15 @@ export default defineConfig({
     },
   },
   server: {
-    port: parseInt(process.env.VITE_PORT || '5200'),
+    port: parseInt(process.env.VITE_PORT || '5300'),
     proxy: {
       '/api': {
-        target: `http://127.0.0.1:${process.env.PORT || '5020'}`,
+        target: `http://127.0.0.1:${process.env.PORT || '5030'}`,
         changeOrigin: true,
         secure: false,
       },
       '/uploads': {
-        target: `http://127.0.0.1:${process.env.PORT || '5020'}`,
+        target: `http://127.0.0.1:${process.env.PORT || '5030'}`,
         changeOrigin: true,
         secure: false,
       }

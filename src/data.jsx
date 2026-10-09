@@ -431,7 +431,7 @@ export const PROJECTS = [
   {
     id: 11,
     title: 'Project Code: 11',
-    location: '',
+    location: 'Budhanilkantha, Kathmandu',
     category: 'Residential',
     status: 'Completed',
     duration: 'Turnkey Project',
@@ -440,20 +440,49 @@ export const PROJECTS = [
       '/project-gallery/project-11.jpg',
     ],
     description:
-      'Project 11 — Modern 2.5-storey residential villa featuring C-curve architectural balcony frames, exposed brick vertical accent pillar, rooftop timber pergola, and secured boundary courtyard by Amulya Builders.',
+      'Project Code: 11 is an exquisite 2.5-storey modern residential villa situated in the serene and scenic surroundings of Budhanilkantha, Kathmandu. Built with high-ductility earthquake-resistant RCC structural engineering, contemporary C-curve cantilevered balconies, and an artisan exposed-brick vertical accent pillar, this home blends refined aesthetics with optimal family comfort.\n\nFloor-by-Floor Architectural Layout:\n\n• Ground Floor:\nSpacious living hall with an attached bathroom, dedicated dining area, and a modern modular kitchen.\n\n• First Floor:\nThree master bedrooms, each featuring private attached bathrooms and well-ventilated balcony access.\n\n• Second Floor:\nOne comfortable bedroom, dedicated laundry area, tranquil puja room, and direct access to the open rooftop terrace offering scenic views.',
+    floorLayout: [
+      {
+        floor: 'Ground Floor',
+        features: [
+          'Spacious living hall with attached bathroom',
+          'Dedicated family dining area',
+          'Contemporary modular kitchen'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        features: [
+          '3 Master bedrooms',
+          'Private attached bathrooms in every bedroom',
+          'Ventilated balcony access'
+        ]
+      },
+      {
+        floor: 'Second Floor',
+        features: [
+          '1 Comfortable bedroom',
+          'Dedicated laundry area',
+          'Peaceful puja room',
+          'Open rooftop terrace access'
+        ]
+      }
+    ],
     highlights: [
-      'Contemporary C-frame cantilevered balcony',
-      'Warm exposed brick masonry vertical facade pillar',
-      'Open rooftop recreational terrace with wooden pergola',
-      'Earthquake-resistant RCC ductile frame structure',
+      '3 Master bedrooms with attached bathrooms on 1st floor',
+      'Ground floor hall with attached bath, dining & modular kitchen',
+      '2nd floor bedroom, dedicated laundry area & puja room',
+      'Contemporary C-frame cantilevered balcony & brick accent pillar',
+      'Open rooftop recreational terrace with scenic views',
+      'Earthquake-resistant RCC ductile frame structure'
     ],
     specifications: {
       'Project Code': '11',
-      'Location': '',
+      'Location': 'Budhanilkantha, Kathmandu',
       'Project Cost': '',
-      'Type of Building': '',
-      'Plinth Area': '',
-      'Face Length': '',
+      'Type of Building': 'Residential',
+      'Plinth Area': '1100 sq ft',
+      'Face Length': '26 ft',
     },
     featured: true,
   },

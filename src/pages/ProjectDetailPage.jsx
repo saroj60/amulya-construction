@@ -300,8 +300,45 @@ export default function ProjectDetailPage() {
               {/* Description */}
               <motion.div initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeUp}>
                 <h2 className="text-xl font-bold text-gray-900 mb-4">Project Overview</h2>
-                <p className="text-gray-600 leading-relaxed text-base">{project.description}</p>
+                <div className="text-gray-600 leading-relaxed text-base whitespace-pre-line space-y-4">
+                  {project.description}
+                </div>
               </motion.div>
+
+              {/* Floor-by-Floor Layout (if present) */}
+              {project.floorLayout?.length > 0 && (
+                <motion.div initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeUp} className="bg-slate-50/90 rounded-2xl p-6 border border-slate-200/80 shadow-xs">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-10 h-10 rounded-xl bg-orange-500/10 text-orange-600 flex items-center justify-center font-bold text-lg">
+                      🏛️
+                    </div>
+                    <div>
+                      <h2 className="text-lg font-bold text-gray-900">Floor-by-Floor Architectural Layout</h2>
+                      <p className="text-xs text-gray-500">Carefully engineered room layout and functional space distribution</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {project.floorLayout.map((lvl, idx) => (
+                      <div key={idx} className="bg-white rounded-xl p-4 border border-slate-200/90 shadow-xs flex flex-col">
+                        <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
+                          <span className="font-bold text-sm text-gray-900">{lvl.floor}</span>
+                          <span className="text-[10px] uppercase tracking-wider font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200/60">
+                            Level {idx}
+                          </span>
+                        </div>
+                        <ul className="space-y-2 flex-1">
+                          {lvl.features.map((feat, fIdx) => (
+                            <li key={fIdx} className="text-xs text-gray-600 flex items-start gap-2">
+                              <span className="text-orange-500 font-bold mt-0.5">•</span>
+                              <span className="leading-snug">{feat}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
 
               {/* Highlights */}
               {project.highlights?.length > 0 && (
