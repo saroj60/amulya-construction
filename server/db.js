@@ -23,9 +23,9 @@ const seedProjects = Array.from({ length: 18 }, (_, idx) => {
     category: num === 10 || num === 14 ? 'Commercial' : 'Residential',
     status: 'Completed',
     location: num === 11 ? 'Budhanilkantha, Kathmandu' : '',
-    duration: 'Turnkey Project',
+    duration: num === 11 ? '1 Year 8 Months' : 'Turnkey Project',
     description: num === 11 
-      ? 'Project Code: 11 is an exquisite 2.5-storey modern residential villa situated in the serene and scenic surroundings of Budhanilkantha, Kathmandu. Built with high-ductility earthquake-resistant RCC structural engineering, contemporary C-curve cantilevered balconies, and an artisan exposed-brick vertical accent pillar, this home blends refined aesthetics with optimal family comfort.\n\nFloor-by-Floor Architectural Layout:\n\n• Ground Floor:\nSpacious living hall with an attached bathroom, dedicated dining area, and a modern modular kitchen.\n\n• First Floor:\nThree master bedrooms, each featuring private attached bathrooms and well-ventilated balcony access.\n\n• Second Floor:\nOne comfortable bedroom, dedicated laundry area, tranquil puja room, and direct access to the open rooftop terrace offering scenic views.'
+      ? 'Project Code: 11 is an exquisite 2.5-storey modern residential villa situated in the serene and scenic surroundings of Budhanilkantha, Kathmandu. Successfully completed in 2023 with a total project cost of Rs 1 Cr 20 Lakhs over an efficient timeline of 1 Year 8 Months, this home is built with high-ductility earthquake-resistant RCC structural engineering, contemporary C-curve cantilevered balconies, and an artisan exposed-brick vertical accent pillar.\n\nFloor-by-Floor Architectural Layout:\n\n• Ground Floor:\nSpacious living hall with an attached bathroom, dedicated dining area, and a modern modular kitchen.\n\n• First Floor:\nThree master bedrooms, each featuring private attached bathrooms and well-ventilated balcony access.\n\n• Second Floor:\nOne comfortable bedroom, dedicated laundry area, tranquil puja room, and direct access to the open rooftop terrace offering scenic views.'
       : `Project Code: ${num} — Architectural design and construction portfolio by Amulya Builders.`,
     highlights: JSON.stringify(num === 11 ? [
       '3 Master bedrooms with attached bathrooms on 1st floor',
@@ -43,10 +43,12 @@ const seedProjects = Array.from({ length: 18 }, (_, idx) => {
     specifications: JSON.stringify({
       'Project Code': String(num),
       'Location': num === 11 ? 'Budhanilkantha, Kathmandu' : '',
-      'Project Cost': '',
+      'Project Cost': num === 11 ? 'Rs 1 Cr 20 Lakhs' : '',
       'Type of Building': num === 11 ? 'Residential' : '',
       'Plinth Area': num === 11 ? '1100 sq ft' : '',
-      'Face Length': num === 11 ? '26 ft' : ''
+      'Face Length': num === 11 ? '26 ft' : '',
+      'Duration': num === 11 ? '1 Year 8 Months' : '',
+      'Completion Year': num === 11 ? '2023' : ''
     }),
     image: `/project-gallery/project-${num}.jpg`,
     gallery: JSON.stringify([`/project-gallery/project-${num}.jpg`])

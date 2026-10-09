@@ -434,13 +434,15 @@ export const PROJECTS = [
     location: 'Budhanilkantha, Kathmandu',
     category: 'Residential',
     status: 'Completed',
-    duration: 'Turnkey Project',
+    duration: '1 Year 8 Months',
+    year: '2023',
+    cost: 'Rs 1 Cr 20 Lakhs',
     image: '/project-gallery/project-11.jpg',
     gallery: [
       '/project-gallery/project-11.jpg',
     ],
     description:
-      'Project Code: 11 is an exquisite 2.5-storey modern residential villa situated in the serene and scenic surroundings of Budhanilkantha, Kathmandu. Built with high-ductility earthquake-resistant RCC structural engineering, contemporary C-curve cantilevered balconies, and an artisan exposed-brick vertical accent pillar, this home blends refined aesthetics with optimal family comfort.\n\nFloor-by-Floor Architectural Layout:\n\n• Ground Floor:\nSpacious living hall with an attached bathroom, dedicated dining area, and a modern modular kitchen.\n\n• First Floor:\nThree master bedrooms, each featuring private attached bathrooms and well-ventilated balcony access.\n\n• Second Floor:\nOne comfortable bedroom, dedicated laundry area, tranquil puja room, and direct access to the open rooftop terrace offering scenic views.',
+      'Project Code: 11 is an exquisite 2.5-storey modern residential villa situated in the serene and scenic surroundings of Budhanilkantha, Kathmandu. Successfully completed in 2023 with a total project cost of Rs 1 Cr 20 Lakhs over an efficient timeline of 1 Year 8 Months, this home is built with high-ductility earthquake-resistant RCC structural engineering, contemporary C-curve cantilevered balconies, and an artisan exposed-brick vertical accent pillar.\n\nFloor-by-Floor Architectural Layout:\n\n• Ground Floor:\nSpacious living hall with an attached bathroom, dedicated dining area, and a modern modular kitchen.\n\n• First Floor:\nThree master bedrooms, each featuring private attached bathrooms and well-ventilated balcony access.\n\n• Second Floor:\nOne comfortable bedroom, dedicated laundry area, tranquil puja room, and direct access to the open rooftop terrace offering scenic views.',
     floorLayout: [
       {
         floor: 'Ground Floor',
@@ -479,10 +481,12 @@ export const PROJECTS = [
     specifications: {
       'Project Code': '11',
       'Location': 'Budhanilkantha, Kathmandu',
-      'Project Cost': '',
+      'Project Cost': 'Rs 1 Cr 20 Lakhs',
       'Type of Building': 'Residential',
       'Plinth Area': '1100 sq ft',
       'Face Length': '26 ft',
+      'Duration': '1 Year 8 Months',
+      'Completion Year': '2023',
     },
     featured: true,
   },

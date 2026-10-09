@@ -424,10 +424,22 @@ export default function ProjectDetailPage() {
                     <dt className="text-xs text-gray-500 font-semibold uppercase">Face Length</dt>
                     <dd className="text-xs text-gray-800 font-medium text-right">{project.specifications?.['Face Length'] || '—'}</dd>
                   </div>
+                  {(project.duration || project.specifications?.['Duration']) && (
+                    <div className="flex justify-between items-center gap-4 pt-2.5 border-t border-gray-200">
+                      <dt className="text-xs text-gray-500 font-semibold uppercase">Duration</dt>
+                      <dd className="text-xs text-gray-800 font-medium text-right">{project.specifications?.['Duration'] || project.duration}</dd>
+                    </div>
+                  )}
+                  {(project.year || project.specifications?.['Completion Year'] || project.specifications?.['Year']) && (
+                    <div className="flex justify-between items-center gap-4 pt-2.5 border-t border-gray-200">
+                      <dt className="text-xs text-gray-500 font-semibold uppercase">Completion Year</dt>
+                      <dd className="text-xs text-gray-800 font-medium text-right">{project.specifications?.['Completion Year'] || project.year || project.specifications?.['Year']}</dd>
+                    </div>
+                  )}
 
                   {/* Render any additional custom specifications if present */}
                   {Object.entries(project.specifications || {})
-                    .filter(([key]) => !['Project Code', 'Location', 'Project Cost', 'Type of Building', 'Plinth Area', 'Face Length', 'Project', 'Type'].includes(key))
+                    .filter(([key]) => !['Project Code', 'Location', 'Project Cost', 'Type of Building', 'Plinth Area', 'Face Length', 'Project', 'Type', 'Duration', 'Completion Year', 'Year'].includes(key))
                     .map(([key, val]) => (
                       <div key={key} className="flex justify-between items-center gap-4 pt-2.5 border-t border-gray-200">
                         <dt className="text-xs text-gray-500 font-semibold uppercase">{key}</dt>
