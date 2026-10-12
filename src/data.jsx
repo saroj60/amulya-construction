@@ -442,7 +442,7 @@ export const PROJECTS = [
       '/project-gallery/project-11.jpg',
     ],
     description:
-      'Project Code: 11 is an exquisite 2.5-storey modern residential villa situated in the serene and scenic surroundings of Budhanilkantha, Kathmandu. Successfully completed in 2023 with a total project cost of Rs 1 Cr 20 Lakhs over an efficient timeline of 1 Year 8 Months, this home is built with high-ductility earthquake-resistant RCC structural engineering, contemporary C-curve cantilevered balconies, and an artisan exposed-brick vertical accent pillar.\n\nFloor-by-Floor Architectural Layout:\n\n• Ground Floor:\nSpacious living hall with an attached bathroom, dedicated dining area, and a modern modular kitchen.\n\n• First Floor:\nThree master bedrooms, each featuring private attached bathrooms and well-ventilated balcony access.\n\n• Second Floor:\nOne comfortable bedroom, dedicated laundry area, tranquil puja room, and direct access to the open rooftop terrace offering scenic views.',
+      'Project Code: 11 is an exquisite 2.5-storey modern residential villa situated in the serene and scenic surroundings of Budhanilkantha, Kathmandu. Successfully completed in 2023 with a total project cost of Rs 1 Cr 20 Lakhs over an efficient timeline of 1 Year 8 Months, this home is built with high-ductility earthquake-resistant RCC structural engineering, contemporary C-curve cantilevered balconies, and an artisan exposed-brick vertical accent pillar.',
     floorLayout: [
       {
         floor: 'Ground Floor',
