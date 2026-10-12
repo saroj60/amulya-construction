@@ -9,7 +9,7 @@ import fs from 'fs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-const PORT = process.env.PORT || 5030;
+const PORT = process.env.PORT || 5035;
 const JWT_SECRET = process.env.JWT_SECRET || 'amulya-builders-super-secret-key-98765';
 
 app.use(cors());
@@ -93,16 +93,23 @@ app.post('/api/auth/change-password', authenticateToken, (req, res) => {
 
 // GET all projects (Public)
 app.get('/api/projects', (req, res) => {
-  db.all("SELECT * FROM projects ORDER BY id DESC", [], (err, rows) => {
+  db.all("SELECT * FROM projects ORDER BY id ASC", [], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
     
     // Parse JSON text columns back into arrays/objects
-    const parsedRows = rows.map(row => ({
-      ...row,
-      gallery: JSON.parse(row.gallery || '[]'),
-      highlights: JSON.parse(row.highlights || '[]'),
-      specifications: JSON.parse(row.specifications || '{}')
-    }));
+    const parsedRows = rows.map(row => {
+      const specifications = JSON.parse(row.specifications || '{}');
+      return {
+        ...row,
+        cost: specifications['Project Cost'] || row.cost || '',
+        year: specifications['Completion Year'] || row.year || '',
+        area: specifications['Total Area'] || specifications['Plinth Area'] || row.area || '',
+        gallery: JSON.parse(row.gallery || '[]'),
+        highlights: JSON.parse(row.highlights || '[]'),
+        specifications,
+        floorLayout: JSON.parse(row.floorLayout || '[]')
+      };
+    });
     res.json(parsedRows);
   });
 });
@@ -113,18 +120,23 @@ app.get('/api/projects/:id', (req, res) => {
     if (err) return res.status(500).json({ error: err.message });
     if (!row) return res.status(404).json({ error: 'Project not found' });
     
+    const specifications = JSON.parse(row.specifications || '{}');
     res.json({
       ...row,
+      cost: specifications['Project Cost'] || row.cost || '',
+      year: specifications['Completion Year'] || row.year || '',
+      area: specifications['Total Area'] || specifications['Plinth Area'] || row.area || '',
       gallery: JSON.parse(row.gallery || '[]'),
       highlights: JSON.parse(row.highlights || '[]'),
-      specifications: JSON.parse(row.specifications || '{}')
+      specifications,
+      floorLayout: JSON.parse(row.floorLayout || '[]')
     });
   });
 });
 
 // POST create project (Admin)
 app.post('/api/projects', authenticateToken, (req, res) => {
-  const { title, category, status, location, duration, description, highlights, specifications, image, gallery } = req.body;
+  const { title, category, status, location, duration, description, highlights, specifications, floorLayout, image, gallery } = req.body;
 
   if (!title || !category || !status || !description || !image) {
     return res.status(400).json({ error: 'Required fields are missing' });
@@ -132,12 +144,13 @@ app.post('/api/projects', authenticateToken, (req, res) => {
 
   const highlightsStr = JSON.stringify(highlights || []);
   const specificationsStr = JSON.stringify(specifications || {});
+  const floorLayoutStr = JSON.stringify(floorLayout || []);
   const galleryStr = JSON.stringify(gallery || []);
 
-  const stmt = db.prepare(`INSERT INTO projects (title, category, status, location, duration, description, highlights, specifications, image, gallery)
-                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+  const stmt = db.prepare(`INSERT INTO projects (title, category, status, location, duration, description, highlights, specifications, floorLayout, image, gallery)
+                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
 
-  stmt.run(title, category, status, location || '', duration || '', description, highlightsStr, specificationsStr, image, galleryStr, function(err) {
+  stmt.run(title, category, status, location || '', duration || '', description, highlightsStr, specificationsStr, floorLayoutStr, image, galleryStr, function(err) {
     if (err) return res.status(500).json({ error: err.message });
     res.status(201).json({ id: this.lastID, message: 'Project created successfully' });
   });
@@ -146,18 +159,19 @@ app.post('/api/projects', authenticateToken, (req, res) => {
 
 // PUT update project (Admin)
 app.put('/api/projects/:id', authenticateToken, (req, res) => {
-  const { title, category, status, location, duration, description, highlights, specifications, image, gallery } = req.body;
+  const { title, category, status, location, duration, description, highlights, specifications, floorLayout, image, gallery } = req.body;
 
   const highlightsStr = JSON.stringify(highlights || []);
   const specificationsStr = JSON.stringify(specifications || {});
+  const floorLayoutStr = JSON.stringify(floorLayout || []);
   const galleryStr = JSON.stringify(gallery || []);
 
   db.run(
     `UPDATE projects SET 
       title = ?, category = ?, status = ?, location = ?, duration = ?, 
-      description = ?, highlights = ?, specifications = ?, image = ?, gallery = ?
+      description = ?, highlights = ?, specifications = ?, floorLayout = ?, image = ?, gallery = ?
      WHERE id = ?`,
-    [title, category, status, location, duration || '', description, highlightsStr, specificationsStr, image, galleryStr, req.params.id],
+    [title, category, status, location || '', duration || '', description, highlightsStr, specificationsStr, floorLayoutStr, image, galleryStr, req.params.id],
     function(err) {
       if (err) return res.status(500).json({ error: err.message });
       if (this.changes === 0) return res.status(404).json({ error: 'Project not found' });
@@ -290,16 +304,16 @@ app.get('/api/team', (req, res) => {
 
 // POST add team member (Admin)
 app.post('/api/team', authenticateToken, (req, res) => {
-  const { name, designation, qualification, experience, avatar, color } = req.body;
+  const { name, designation, qualification, experience, avatar, color, image } = req.body;
 
-  if (!name || !designation || !qualification || !experience || !avatar) {
-    return res.status(400).json({ error: 'Required fields are missing' });
+  if (!name || !designation || !avatar) {
+    return res.status(400).json({ error: 'Name, designation, and avatar initials are required' });
   }
 
   db.run(
-    `INSERT INTO team (name, designation, qualification, experience, avatar, color)
-     VALUES (?, ?, ?, ?, ?, ?)`,
-    [name, designation, qualification, experience, avatar, color || '#1e40af'],
+    `INSERT INTO team (name, designation, qualification, experience, avatar, color, image)
+     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    [name, designation, qualification || '', experience || '', avatar, color || '#1e40af', image || ''],
     function(err) {
       if (err) return res.status(500).json({ error: err.message });
       res.status(201).json({ id: this.lastID, message: 'Team member added successfully' });
@@ -309,13 +323,13 @@ app.post('/api/team', authenticateToken, (req, res) => {
 
 // PUT update team member (Admin)
 app.put('/api/team/:id', authenticateToken, (req, res) => {
-  const { name, designation, qualification, experience, avatar, color } = req.body;
+  const { name, designation, qualification, experience, avatar, color, image } = req.body;
 
   db.run(
     `UPDATE team SET 
-      name = ?, designation = ?, qualification = ?, experience = ?, avatar = ?, color = ?
+      name = ?, designation = ?, qualification = ?, experience = ?, avatar = ?, color = ?, image = ?
      WHERE id = ?`,
-    [name, designation, qualification, experience, avatar, color || '#1e40af', req.params.id],
+    [name, designation, qualification || '', experience || '', avatar, color || '#1e40af', image || '', req.params.id],
     function(err) {
       if (err) return res.status(500).json({ error: err.message });
       if (this.changes === 0) return res.status(404).json({ error: 'Team member not found' });

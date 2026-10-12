@@ -16,44 +16,901 @@ const db = new sqlite3.Database(dbPath, (err) => {
 });
 
 // Seed data from current frontend config to make initialization seamless
-const seedProjects = Array.from({ length: 18 }, (_, idx) => {
-  const num = idx + 1;
-  return {
-    title: `Project Code: ${num}`,
-    category: num === 10 || num === 14 ? 'Commercial' : 'Residential',
+const seedProjects = [
+  {
+    id: 1,
+    title: 'Project Code: 1',
+    location: '',
+    category: 'Residential',
     status: 'Completed',
-    location: num === 11 ? 'Budhanilkantha, Kathmandu' : '',
-    duration: num === 11 ? '1 Year 8 Months' : 'Turnkey Project',
-    description: num === 11 
-      ? 'Project Code: 11 is an exquisite 2.5-storey modern residential villa situated in the serene and scenic surroundings of Budhanilkantha, Kathmandu. Successfully completed in 2023 with a total project cost of Rs 1 Cr 20 Lakhs over an efficient timeline of 1 Year 8 Months, this home is built with high-ductility earthquake-resistant RCC structural engineering, contemporary C-curve cantilevered balconies, and an artisan exposed-brick vertical accent pillar.'
-      : `Project Code: ${num} — Architectural design and construction portfolio by Amulya Builders.`,
-    highlights: JSON.stringify(num === 11 ? [
+    duration: 'Turnkey Project',
+    image: '/project-gallery/project-1.jpg',
+    gallery: JSON.stringify(['/project-gallery/project-1.jpg']),
+    description: 'Project 1 — Modern multi-storey residential architecture and construction by Amulya Builders.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      'Earthquake-resistant RCC structure',
+      'Modern brick-and-render facade',
+      'Integrated parking and open balconies',
+      'NBC 105:2020 code compliance',
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '1',
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': '',
+    }),
+  },
+  {
+    id: 2,
+    title: 'Project Code: 2',
+    location: '',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/project-gallery/project-2.jpg',
+    gallery: JSON.stringify([
+      '/project-gallery/project-2.jpg',
+      '/project-gallery/project-2-garden.jpg',
+    ]),
+    description: 'Project 2 — Modern luxury residential villa with curved panoramic terraces, landscaping, and turnkey construction by Amulya Builders.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      'Curved panoramic terrace & glass balustrades',
+      'Artisan exposed brick circular bay window',
+      'Integrated spiral rooftop access and landscaped lawn',
+      'NBC earthquake-resistant RCC construction',
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '2',
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': '',
+    }),
+  },
+  {
+    id: 3,
+    title: 'Project Code: 3',
+    location: '',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/project-gallery/project-3.jpg',
+    gallery: JSON.stringify(['/project-gallery/project-3.jpg']),
+    description: 'Project 3 — Modern outdoor living, pergola patio, barbecue station, and landscaped garden design & construction by Amulya Builders.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      'Timber pergola & outdoor barbecue kitchen',
+      'Landscaped lawn with garden swing and water feature',
+      'Custom stone paved outdoor dining patio',
+      'Modern security fencing and integrated exterior lighting',
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '3',
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': '',
+    }),
+  },
+  {
+    id: 4,
+    title: 'Project Code: 4',
+    location: '',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/project-gallery/project-4.jpg',
+    gallery: JSON.stringify(['/project-gallery/project-4.jpg']),
+    description: 'Project 4 — Contemporary 4-storey residential home blending modern RCC structure with traditional tiled balcony cornices, brick column accents, and rooftop pergolas by Amulya Builders.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      '4-Storey RCC earthquake-resistant frame',
+      'Covered vehicle porch and dedicated 2-wheeler parking',
+      'Exposed brick feature pillar with exterior warm illumination',
+      'Upper floor rooftop pergola and spiral deck staircase',
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '4',
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': '',
+    }),
+  },
+  {
+    id: 5,
+    title: 'Project Code: 5',
+    location: '',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/project-gallery/project-5.jpg',
+    gallery: JSON.stringify(['/project-gallery/project-5.jpg']),
+    description: 'Project 5 — Multi-angle perspective of luxury residential villa showing panoramic terrace, side elevations, and rooftop viewing deck by Amulya Builders.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      'Full perimeter glass terrace balustrades',
+      'Structural cantilevered slab and timber rafter cornice',
+      'Rooftop spiral access staircase and terrace layout',
+      'NBC earthquake-resistant RCC frame',
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '5',
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': '',
+    }),
+  },
+  {
+    id: 6,
+    title: 'Jay Kishor Mahato Residential',
+    location: 'Chitwan',
+    category: 'Residential',
+    status: 'Completed',
+    duration: '11 Months',
+    image: '/project-gallery/project-6.jpg',
+    gallery: JSON.stringify(['/project-gallery/project-6.jpg']),
+    description: 'Jay Kishor Mahato Residential is a beautifully designed 2.5-storey modern residential home located in Chitwan. Completed in 2083 BS within a fast-track duration of 11 Months at a total project cost of Rs 1 Cr 10 Lakhs, this residence sits on a generous 1300 sq ft plinth area with an impressive 42 ft front facade and 1690 sq ft of total built-up area. Engineered with an earthquake-resistant RCC frame, the property blends functional family living spaces with landscaped outdoor courtyards, spacious balconies, and a signature rooftop pergola.',
+    floorLayout: JSON.stringify([
+      {
+        floor: 'Ground Floor',
+        level: 'Level 0',
+        code: '2B • 1K • 1L • 1T',
+        features: [
+          '2 Spacious bedrooms (2B)',
+          '1 Modern modular kitchen & dining space (1K)',
+          '1 Welcoming family living hall (1L)',
+          '1 Common bathroom / toilet (1T)'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        level: 'Level 1',
+        code: '2B • 1L • 1W/T',
+        features: [
+          '2 Comfortable private bedrooms (2B)',
+          '1 Upper family living / lounge area (1L)',
+          '1 Washroom / toilet facility (1W/T)'
+        ]
+      },
+      {
+        floor: 'Second Floor',
+        level: 'Level 2',
+        code: '1B • 1FS • 1 Pergola',
+        features: [
+          '1 Guest / master bedroom (1B)',
+          '1 Functional family / utility space (1FS)',
+          '1 Architectural rooftop pergola & open terrace (1 Pergola)'
+        ]
+      }
+    ]),
+    highlights: JSON.stringify([
+      '2.5-Storey residence with 1690 sq ft total built-up area & 1300 sq ft plinth area',
+      'Grand 42 ft wide front elevation with integrated parking & landscaped yard',
+      'Ground Floor: 2 Bedrooms, 1 Kitchen, 1 Living Hall & 1 Toilet (2B 1K 1L 1T)',
+      'First Floor: 2 Bedrooms, 1 Living Lounge & 1 Washroom/Toilet (2B 1L 1W/T)',
+      'Second Floor: 1 Bedroom, 1 Family Space & 1 Rooftop Pergola (1B 1FS 1 Pergola)',
+      'Earthquake-resistant RCC construction with NBC compliance'
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '6',
+      'Project Name': 'Jay Kishor Mahato Residential',
+      'Location': 'Chitwan',
+      'Project Cost': 'Rs 1 Cr 10 Lakhs',
+      'Type of Building': 'Residential',
+      'Storeys': '2.5 Storeys',
+      'Total Area': '1690 sq ft',
+      'Plinth Area': '1300 sq ft',
+      'Face Length': '42 ft',
+      'Duration': '11 Months',
+      'Completion Year': '2083 BS',
+    }),
+  },
+  {
+    id: 7,
+    title: 'Dr. Sakil Residential',
+    location: 'Janakpur',
+    category: 'Residential',
+    status: 'Completed',
+    duration: '1 Year 6 Months',
+    image: '/project-gallery/project-7.jpg',
+    gallery: JSON.stringify([
+      '/project-gallery/project-7.jpg',
+      '/project-gallery/project-7-aerial.jpg',
+    ]),
+    description: 'Dr. Sakil Residential is a grand 3.5-storey neo-classical luxury residence situated in Janakpur. Completed in 2083 BS over a duration of 1 Year 6 Months at a project cost of Rs 1.5 Cr, this landmark home spans 1966 sq ft of total built-up area on a 1200 sq ft plinth area with a 30 ft front elevation. The design features a monumental central arched glass atrium, dual covered parking bays, classical balustrade balconies, and an open rooftop pergola terrace engineered with NBC-compliant earthquake-resistant RCC construction.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      '3.5-Storey luxury residence with 1966 sq ft total area & 1200 sq ft plinth area',
+      'Monumental exposed brick central arched glass atrium & 30 ft front facade',
+      'Dual independent covered parking bays with ornamental gates',
+      'Upper rooftop fitness pergola with spiral observation stairs',
+      'Neo-classical ornamental balustrades and mouldings',
+      'Earthquake-resistant RCC frame construction'
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '7',
+      'Project Name': 'Dr. Sakil Residential',
+      'Location': 'Janakpur',
+      'Project Cost': 'Rs 1.5 Cr',
+      'Type of Building': 'Residential',
+      'Storeys': '3.5 Storeys',
+      'Total Area': '1966 sq ft',
+      'Plinth Area': '1200 sq ft',
+      'Face Length': '30 ft',
+      'Duration': '1 Year 6 Months',
+      'Completion Year': '2083 BS',
+    }),
+  },
+  {
+    id: 10,
+    title: 'Project Code: 10',
+    location: '',
+    category: 'Commercial',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/project-gallery/project-10.jpg',
+    gallery: JSON.stringify(['/project-gallery/project-10.jpg']),
+    description: 'Project 10 — Hilltop spiritual pilgrimage complex featuring monumental golden Lord Shiva statue, Shivalinga pedestals, stupa, dressed stone fortress retaining walls, and landscaped rhododendron gardens by Amulya Builders.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      'Monumental hilltop golden Shiva deity installation',
+      'Surrounding traditional Shivalinga shrines and stupa integration',
+      'Engineered stone fortress retaining walls and stepped grand access',
+      'Laligurans flower gardens and scenic panoramic landscaping',
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '10',
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': '',
+    }),
+  },
+  {
+    id: 11,
+    title: 'Project Code: 11',
+    location: 'Budhanilkantha, Kathmandu',
+    category: 'Residential',
+    status: 'Completed',
+    duration: '1 Year 8 Months',
+    image: '/project-gallery/project-11.jpg',
+    gallery: JSON.stringify(['/project-gallery/project-11.jpg']),
+    description: 'Project Code: 11 is an exquisite 2.5-storey modern residential villa situated in the serene and scenic surroundings of Budhanilkantha, Kathmandu. Successfully completed in 2023 with a total project cost of Rs 1 Cr 20 Lakhs over an efficient timeline of 1 Year 8 Months, this home is built with high-ductility earthquake-resistant RCC structural engineering, contemporary C-curve cantilevered balconies, and an artisan exposed-brick vertical accent pillar.',
+    floorLayout: JSON.stringify([
+      {
+        floor: 'Ground Floor',
+        level: 'Level 0',
+        features: [
+          'Spacious living hall with attached bathroom',
+          'Dedicated family dining area',
+          'Contemporary modular kitchen'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        level: 'Level 1',
+        features: [
+          '3 Master bedrooms',
+          'Private attached bathrooms in every bedroom',
+          'Ventilated balcony access'
+        ]
+      },
+      {
+        floor: 'Second Floor',
+        level: 'Level 2',
+        features: [
+          '1 Comfortable bedroom',
+          'Dedicated laundry area',
+          'Peaceful puja room',
+          'Open rooftop terrace access'
+        ]
+      }
+    ]),
+    highlights: JSON.stringify([
       '3 Master bedrooms with attached bathrooms on 1st floor',
       'Ground floor hall with attached bath, dining & modular kitchen',
       '2nd floor bedroom, dedicated laundry area & puja room',
       'Contemporary C-frame cantilevered balcony & brick accent pillar',
       'Open rooftop recreational terrace with scenic views',
       'Earthquake-resistant RCC ductile frame structure'
-    ] : [
-      'Earthquake-resistant RCC structure',
-      'Modern architectural facade',
-      'Integrated parking and balconies',
-      'NBC code compliance'
     ]),
     specifications: JSON.stringify({
-      'Project Code': String(num),
-      'Location': num === 11 ? 'Budhanilkantha, Kathmandu' : '',
-      'Project Cost': num === 11 ? 'Rs 1 Cr 20 Lakhs' : '',
-      'Type of Building': num === 11 ? 'Residential' : '',
-      'Plinth Area': num === 11 ? '1100 sq ft' : '',
-      'Face Length': num === 11 ? '26 ft' : '',
-      'Duration': num === 11 ? '1 Year 8 Months' : '',
-      'Completion Year': num === 11 ? '2023' : ''
+      'Project Code': '11',
+      'Location': 'Budhanilkantha, Kathmandu',
+      'Project Cost': 'Rs 1 Cr 20 Lakhs',
+      'Type of Building': 'Residential',
+      'Plinth Area': '1100 sq ft',
+      'Face Length': '26 ft',
+      'Duration': '1 Year 8 Months',
+      'Completion Year': '2023',
     }),
-    image: `/project-gallery/project-${num}.jpg`,
-    gallery: JSON.stringify([`/project-gallery/project-${num}.jpg`])
-  };
-});
+  },
+  {
+    id: 12,
+    title: 'Project Code: 12',
+    location: '',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/project-gallery/project-12.jpg',
+    gallery: JSON.stringify([
+      '/project-gallery/project-12.jpg',
+      '/project-gallery/project-12-front.jpg',
+      '/project-gallery/project-12-rear.jpg',
+    ]),
+    description: 'Project 12 — Grand 3.5-storey neo-classical palatial residence featuring monumental Corinthian fluted columns, ornate pediment over central arched atrium, cascading green planters, and multi-sided balustrade balconies by Amulya Builders.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      'Monumental Corinthian colonnade with ornate pediment cartouche',
+      'Central full-height arched bay atrium and double car parking',
+      'Cascading planter balconies and rooftop pergola lounge',
+      'Complete rear and side multi-angle architectural elevations',
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '12',
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': '',
+    }),
+  },
+  {
+    id: 13,
+    title: 'Project Code: 13',
+    location: '',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/project-gallery/project-13.jpg',
+    gallery: JSON.stringify([
+      '/project-gallery/project-13.jpg',
+      '/project-gallery/project-13-aerial.jpg',
+    ]),
+    description: 'Project 13 — Elegant 2-storey cottage villa blending modern RCC engineering with classic Nepalese red sloping tile roofs, gabled portico entrance, spacious parking yard, and secured compound perimeter by Amulya Builders.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      'Multi-tiered sloping red clay tile roofs with dormer gables',
+      'Colonnaded portico entrance and open balcony',
+      'Spacious paved parking court for multiple vehicles',
+      'Earthquake-resistant RCC ductile frame engineering',
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '13',
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': '',
+    }),
+  },
+  {
+    id: 14,
+    title: 'Project Code: 14',
+    location: '',
+    category: 'Commercial',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/project-gallery/project-14.jpg',
+    gallery: JSON.stringify([
+      '/project-gallery/project-14.jpg',
+      '/project-gallery/project-14-corner.jpg',
+      '/project-gallery/project-14-front.jpg',
+    ]),
+    description: 'Project 14 — Contemporary 3.5-storey mixed-use commercial & residential building featuring ground-floor retail shopfronts with rolling shutters, premium residential apartments above, stone-clad accent facade, and cascading planter rooftop terrace by Amulya Builders.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      'Ground-floor commercial retail shutters with independent stairwell',
+      'Upper-floor spacious residential apartments with glass balustrades',
+      'Textured stone cladding and contemporary dark composite paneling',
+      'Rooftop green planter cornice and steel canopy pergola',
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '14',
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': '',
+    }),
+  },
+  {
+    id: 15,
+    title: 'Project Code: 15',
+    location: '',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/project-gallery/project-15.jpg',
+    gallery: JSON.stringify(['/project-gallery/project-15.jpg']),
+    description: 'Project 15 — Distinctive 3-storey European Mediterranean luxury villa featuring arched arcade verandas, hip slate roof, rooftop terrace pergola lounge, palm landscaping, and gated compound parking by Amulya Builders.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      'Grand double-storey arched arcade portico & balcony',
+      'Charcoal slate pitched hip roof with architectural eaves',
+      'Spacious top rooftop observation terrace with garden pergola',
+      'Earthquake-resistant RCC ductile frame engineering',
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '15',
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': '',
+    }),
+  },
+  {
+    id: 16,
+    title: 'Project Code: 16',
+    location: '',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/project-gallery/project-16.jpg',
+    gallery: JSON.stringify(['/project-gallery/project-16.jpg']),
+    description: 'Project 16 — Contemporary 3-storey luxury villa featuring curved red-brick corner bay with panoramic windows, open first-floor terrace lounge, executive second-floor balcony with spiral rooftop staircase, and landscaped courtyard parking by Amulya Builders.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      'Architectural curved red-brick cylinder wing with panoramic glass windows',
+      'Spacious first-floor terrace lounge with transparent glass railings',
+      'Executive second-floor balcony with exterior spiral staircase to roof deck',
+      'Ground floor outdoor patio seating and covered pergola BBQ area',
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '16',
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': '',
+    }),
+  },
+  {
+    id: 17,
+    title: 'Project Code: 17',
+    location: '',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/project-gallery/project-17.jpg',
+    gallery: JSON.stringify(['/project-gallery/project-17.jpg']),
+    description: 'Project 17 — Contemporary 4-storey residential building featuring Nepali traditional roof eave cornices, brick-and-render dual-tone facade, gated compound wall with covered entrance, multiple vehicle parking, and landscaped garden perimeter by Amulya Builders.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      '4-Storey earthquake-resilient RCC frame engineered to NBC codes',
+      'Neo-vernacular red-tiled overhang canopies and clay brick accent bands',
+      'Private gated compound with dedicated multi-car paved parking',
+      'Landscaped boundary perimeter with decorative pillar fencing',
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '17',
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': '',
+    }),
+  },
+  {
+    id: 18,
+    title: 'Project Code: 18',
+    location: '',
+    category: 'Residential',
+    status: 'Completed',
+    duration: 'Turnkey Project',
+    image: '/project-gallery/project-18.jpg',
+    gallery: JSON.stringify(['/project-gallery/project-18.jpg']),
+    description: 'Project 18 — Grand Neo-Classical luxury residence featuring ornate European baroque stone bas-relief crests, classical turned balustrade balconies, covered vehicle porch, wrought-iron filigree boundary gates, and rooftop observation deck by Amulya Builders.',
+    floorLayout: JSON.stringify([]),
+    highlights: JSON.stringify([
+      'Intricate baroque floral bas-relief motifs sculpted on balcony fascias',
+      'Classical turned stone balustrades on first-floor and penthouse terraces',
+      'Integrated ground-floor car porch with classical wall sconce lighting',
+      'Wrought-iron carriage entrance gates & rooftop lookout platform',
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '18',
+      'Location': '',
+      'Project Cost': '',
+      'Type of Building': '',
+      'Plinth Area': '',
+      'Face Length': '',
+    }),
+  },
+  {
+    id: 19,
+    title: 'Radio Station Janakpur',
+    location: 'Janakpur',
+    category: 'Commercial',
+    status: 'Completed',
+    duration: '10 Months',
+    image: '/project-gallery/project-19.png',
+    gallery: JSON.stringify([
+      '/project-gallery/project-19.png',
+      '/project-gallery/project-19-front.png',
+      '/project-gallery/project-19-aerial.png',
+    ]),
+    description: 'Radio Station Janakpur is a modern 4-storey mixed-use commercial and residential building located in Janakpur. Completed in 2083 BS within an efficient timeline of 10 Months at a total project cost of Rs 1.2 Cr, the structure spans 1700 sq ft of total built-up area on a 1000 sq ft plinth area with a 35 ft front facade. Designed with arched exposed-brick vertical accent bays, warm architectural wall sconces, planter window boxes, and ornamental balcony railings, it seamlessly integrates a ground-floor commercial showroom, two full residential apartment levels, and a dedicated top-floor broadcasting & office suite.',
+    floorLayout: JSON.stringify([
+      {
+        floor: 'Ground Floor',
+        level: 'Level 0',
+        code: 'Showroom & Parking',
+        features: [
+          'Spacious commercial showroom frontage',
+          'Dedicated gated vehicle parking bay',
+          'Main entrance lobby & staircase access'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        level: 'Level 1',
+        code: '2B • 1K/D • 1L • 1T',
+        features: [
+          '2 Comfortable bedrooms (2B)',
+          '1 Modern kitchen & dining area (1K/D)',
+          '1 Spacious living hall (1L)',
+          '1 Common bathroom / toilet (1T)'
+        ]
+      },
+      {
+        floor: 'Second Floor',
+        level: 'Level 2',
+        code: '2B • 1K/D • 1L • 1T',
+        features: [
+          '2 Private bedrooms (2B)',
+          '1 Kitchen & dining space (1K/D)',
+          '1 Family living room with balcony (1L)',
+          '1 Bathroom / toilet facility (1T)'
+        ]
+      },
+      {
+        floor: 'Third Floor',
+        level: 'Level 3',
+        code: 'Office & Studio Area',
+        features: [
+          'Dedicated Radio Station office & studio area',
+          'Executive workspace & broadcasting zone',
+          'Open terrace access'
+        ]
+      }
+    ]),
+    highlights: JSON.stringify([
+      '4-Storey commercial & residential building with 1700 sq ft total area & 1000 sq ft plinth area',
+      '35 ft wide front elevation with arched brick accent bays & exterior wall lighting',
+      'Ground Floor: Commercial showroom & gated parking bay',
+      'First & Second Floors: 2B, 1K/D, 1L, 1T full residential units on each level',
+      'Third Floor: Dedicated Radio Station office & studio area',
+      'Earthquake-resistant RCC frame construction built to NBC standards'
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '19',
+      'Project Name': 'Radio Station Janakpur',
+      'Location': 'Janakpur',
+      'Project Cost': 'Rs 1.2 Cr',
+      'Type of Building': 'Commercial / Mixed-Use',
+      'Storeys': '4 Storeys',
+      'Total Area': '1700 sq ft',
+      'Plinth Area': '1000 sq ft',
+      'Face Length': '35 ft',
+      'Duration': '10 Months',
+      'Completion Year': '2083 BS',
+    }),
+  },
+  {
+    id: 20,
+    title: 'Nirmala Devi Residential',
+    location: 'Janakpur',
+    category: 'Residential',
+    status: 'Completed',
+    duration: '1.2 Years',
+    image: '/project-gallery/project-20.png',
+    gallery: JSON.stringify([
+      '/project-gallery/project-20.png',
+      '/project-gallery/project-20-elevation.png',
+      '/project-gallery/project-20-rear.png',
+      '/project-gallery/project-20-view.png',
+    ]),
+    description: 'Nirmala Devi Residential is a smartly engineered 4.5-storey contemporary urban residence located in Janakpur. Completed in 2083 BS over a duration of 1.2 Years at a total project cost of Rs 95 Lakhs, this vertical home maximizes a compact 15 ft front facade and 495 sq ft plinth area (710 sq ft plot area) with arched balcony recesses, exposed terracotta brick panels, full-height staircase glazing, and glass balustrades.',
+    floorLayout: JSON.stringify([
+      {
+        floor: 'Ground Floor',
+        level: 'Level 0',
+        code: '1R • 1 Bathroom',
+        features: [
+          '1 Multi-purpose room / studio space (1R)',
+          '1 Attached / common bathroom (1 Bathroom)',
+          'Gated front entry & staircase lobby'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        level: 'Level 1',
+        code: '1B • 1K/L',
+        features: [
+          '1 Spacious bedroom (1B)',
+          '1 Open-plan kitchen & living area (1K/L)',
+          'Front glass-railing balcony'
+        ]
+      },
+      {
+        floor: 'Second Floor',
+        level: 'Level 2',
+        code: '1B • 1K/L',
+        features: [
+          '1 Private bedroom (1B)',
+          '1 Combined kitchen & living space (1K/L)',
+          'Arched feature balcony access'
+        ]
+      },
+      {
+        floor: 'Third Floor',
+        level: 'Level 3',
+        code: '1B • 1K/L',
+        features: [
+          '1 Comfortable bedroom (1B)',
+          '1 Kitchen & living lounge (1K/L)',
+          'Panoramic upper balcony'
+        ]
+      },
+      {
+        floor: 'Fourth Floor (Top)',
+        level: 'Level 4',
+        code: '1B • Terrace',
+        features: [
+          '1 Top-floor bedroom (1B)',
+          'Open rooftop terrace & pergola deck'
+        ]
+      }
+    ]),
+    highlights: JSON.stringify([
+      '4.5-Storey narrow-frontage urban residence on a 15 ft facade & 495 sq ft plinth area',
+      'Arched recessed balconies, exposed brick cladding & vertical staircase glazing',
+      'Ground Floor: 1 Room & 1 Bathroom (1R 1Bathroom)',
+      'First, Second & Third Floors: 1 Bedroom & 1 Kitchen/Living (1B 1K/L) on each floor',
+      'Fourth Floor: 1 Bedroom (1B) with open rooftop terrace',
+      'Earthquake-resistant RCC frame construction built to NBC standards'
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '20',
+      'Project Name': 'Nirmala Devi Residential',
+      'Location': 'Janakpur',
+      'Project Cost': 'Rs 95 Lakhs',
+      'Type of Building': 'Residential',
+      'Storeys': '4.5 Storeys',
+      'Total Area': '710 sq ft',
+      'Plinth Area': '495 sq ft',
+      'Face Length': '15 ft',
+      'Duration': '1.2 Years',
+      'Completion Year': '2083 BS',
+    }),
+  },
+  {
+    id: 21,
+    title: 'Mahesh Sah Residential',
+    location: 'Lalitpur',
+    category: 'Residential',
+    status: 'Completed',
+    duration: '10 Months',
+    image: '/project-gallery/project-21.jpg',
+    gallery: JSON.stringify(['/project-gallery/project-21.jpg']),
+    description: 'Mahesh Sah Residential is an elegant 2.5-storey contemporary residence situated in Lalitpur. Completed in 2083 BS within a 10-month timeline at a total project cost of Rs 90 Lakhs, this home features 1180 sq ft of total area on an 850 sq ft plinth area with a 30 ft front facade. Showcasing natural travertine stone cladding, double-height arched glass fenestration, warm timber accent paneling, and recessed LED facade lighting, it delivers refined modern comfort and earthquake-resistant RCC structural safety.',
+    floorLayout: JSON.stringify([
+      {
+        floor: 'Ground Floor',
+        level: 'Level 0',
+        code: '2BHKP (2B • 1H • 1K • Parking)',
+        features: [
+          '2 Spacious bedrooms (2B)',
+          '1 Welcoming living hall & dining area (1H)',
+          '1 Modern modular kitchen (1K)',
+          'Dedicated front parking space (P)'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        level: 'Level 1',
+        code: '2BHK (2B • 1H • 1K)',
+        features: [
+          '2 Comfortable private bedrooms (2B)',
+          '1 Family living hall with arched window & balcony (1H)',
+          '1 Kitchen & dining space (1K)'
+        ]
+      },
+      {
+        floor: 'Second Floor',
+        level: 'Level 2',
+        code: '3B • 1 Pooja Room',
+        features: [
+          '3 Well-ventilated bedrooms (3B)',
+          '1 Peaceful dedicated Pooja room',
+          'Open rooftop terrace access'
+        ]
+      }
+    ]),
+    highlights: JSON.stringify([
+      '2.5-Storey luxury residence with 1180 sq ft total area & 850 sq ft plinth area',
+      '30 ft front elevation with natural stone cladding, arched glazing & timber accents',
+      'Ground Floor: 2BHK with dedicated parking (2BHKP)',
+      'First Floor: Complete 2BHK family apartment unit',
+      'Second Floor: 3 Bedrooms & 1 dedicated Pooja room',
+      'Earthquake-resistant RCC frame construction built to NBC standards'
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '21',
+      'Project Name': 'Mahesh Sah Residential',
+      'Location': 'Lalitpur',
+      'Project Cost': 'Rs 90 Lakhs',
+      'Type of Building': 'Residential',
+      'Storeys': '2.5 Storeys',
+      'Total Area': '1180 sq ft',
+      'Plinth Area': '850 sq ft',
+      'Face Length': '30 ft',
+      'Duration': '10 Months',
+      'Completion Year': '2083 BS',
+    }),
+  },
+  {
+    id: 22,
+    title: 'Arjun Adhikari Residential',
+    location: 'Janakpur',
+    category: 'Residential',
+    status: 'Completed',
+    duration: '8 Months',
+    image: '/project-gallery/project-22.jpg',
+    gallery: JSON.stringify(['/project-gallery/project-22.jpg']),
+    description: 'Arjun Adhikari Residential is a modern 2-storey residential home located in Janakpur. Completed in 2083 BS within an efficient 8-month duration at a total project cost of Rs 70 Lakhs, this residence encompasses 1120 sq ft of total area on an 800 sq ft plinth area with a 14 ft front elevation. The facade features a cantilevered upper balcony with decorative CNC jali privacy screening, glass balustrades, warm wood-textured ceiling soffits, and an arched ground-floor entrance porch.',
+    floorLayout: JSON.stringify([
+      {
+        floor: 'Ground Floor',
+        level: 'Level 0',
+        code: '2B • 1K • 1L',
+        features: [
+          '2 Comfortable bedrooms (2B)',
+          '1 Modern kitchen & dining space (1K)',
+          '1 Welcoming family living hall (1L)',
+          'Front entrance porch & ramp access'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        level: 'Level 1',
+        code: '2B • 1K • 1L',
+        features: [
+          '2 Private bedrooms (2B)',
+          '1 Kitchen & dining area (1K)',
+          '1 Upper living lounge (1L)',
+          'Cantilevered balcony with decorative CNC jali screen'
+        ]
+      }
+    ]),
+    highlights: JSON.stringify([
+      '2-Storey modern residence with 1120 sq ft total area & 800 sq ft plinth area',
+      '14 ft front elevation featuring cantilevered balcony & CNC jali screen',
+      'Ground Floor: 2 Bedrooms, 1 Kitchen & 1 Living Hall (2B 1K 1L)',
+      'First Floor: 2 Bedrooms, 1 Kitchen & 1 Living Hall (2B 1K 1L)',
+      'Earthquake-resistant RCC frame construction built to NBC standards'
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '22',
+      'Project Name': 'Arjun Adhikari Residential',
+      'Location': 'Janakpur',
+      'Project Cost': 'Rs 70 Lakhs',
+      'Type of Building': 'Residential',
+      'Storeys': '2 Storeys',
+      'Total Area': '1120 sq ft',
+      'Plinth Area': '800 sq ft',
+      'Face Length': '14 ft',
+      'Duration': '8 Months',
+      'Completion Year': '2083 BS',
+    }),
+  },
+  {
+    id: 23,
+    title: 'Kajal Karn Commercial & Residential',
+    location: 'Janakpur',
+    category: 'Commercial',
+    status: 'Completed',
+    duration: '1.3 Years',
+    image: '/project-gallery/project-23.png',
+    gallery: JSON.stringify(['/project-gallery/project-23.png']),
+    description: 'Kajal Karn Commercial & Residential is a landmark 4.5-storey mixed-use building with a full basement situated in Janakpur. Completed in 2083 BS over a duration of 1.3 Years at a project cost of Rs 2.5 Cr, this high-capacity building spans 2578 sq ft of total area on a 1275 sq ft plinth area with a 29 ft front elevation. The structure combines a dedicated basement, 5 commercial retail shutters on the ground floor, 14 master bedrooms across the first, second, and third floors, and a top-floor multi-purpose hall with toilet facility.',
+    floorLayout: JSON.stringify([
+      {
+        floor: 'Basement',
+        level: 'Basement',
+        code: 'Basement: Yes',
+        features: [
+          'Full underground basement level',
+          'Dedicated parking & storage utility area',
+          'Reinforced RCC retaining wall structure'
+        ]
+      },
+      {
+        floor: 'Ground Floor',
+        level: 'Level 0',
+        code: '5 Commercial Shutters',
+        features: [
+          '5 Commercial retail / shop shutters',
+          'Wide frontage access & gated driveway entry',
+          'Main lobby & staircase core'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        level: 'Level 1',
+        code: '4 Master Bedrooms • 1 Kitchen',
+        features: [
+          '4 Spacious master bedrooms with attached baths',
+          '1 Modern central kitchen & dining space',
+          'Natural daylight multi-pane window bays'
+        ]
+      },
+      {
+        floor: 'Second Floor',
+        level: 'Level 2',
+        code: '5 Master Bedrooms',
+        features: [
+          '5 Private master bedrooms with attached baths',
+          'Well-ventilated central corridor layout'
+        ]
+      },
+      {
+        floor: 'Third Floor',
+        level: 'Level 3',
+        code: '5 Master Bedrooms',
+        features: [
+          '5 Spacious master bedrooms with attached baths',
+          'Bright stone-textured feature window bay'
+        ]
+      },
+      {
+        floor: 'Fourth Floor',
+        level: 'Level 4',
+        code: '1 Hall • 1 Toilet',
+        features: [
+          '1 Spacious multi-purpose hall',
+          '1 Common toilet / washroom facility',
+          'Open rooftop terrace deck'
+        ]
+      }
+    ]),
+    highlights: JSON.stringify([
+      '4.5-Storey mixed-use building with Basement (2578 sq ft total area & 1275 sq ft plinth area)',
+      'Ground Floor: 5 Commercial retail shutters with 29 ft front facade',
+      'First Floor: 4 Master bedrooms & 1 Kitchen',
+      'Second & Third Floors: 5 Master bedrooms on each floor (10 total)',
+      'Fourth Floor: Multi-purpose hall, 1 Toilet & open rooftop terrace',
+      'Earthquake-resistant RCC frame & basement retaining structure'
+    ]),
+    specifications: JSON.stringify({
+      'Project Code': '23',
+      'Project Name': 'Kajal Karn Commercial & Residential',
+      'Location': 'Janakpur',
+      'Project Cost': 'Rs 2.5 Cr',
+      'Type of Building': 'Commercial & Residential',
+      'Storeys': '4.5 Storeys',
+      'Basement': 'Yes',
+      'Total Area': '2578 sq ft',
+      'Plinth Area': '1275 sq ft',
+      'Face Length': '29 ft',
+      'Duration': '1.3 Years',
+      'Completion Year': '2083 BS',
+    }),
+  },
+];
 
 const seedHouseStyles = [
   {
@@ -287,36 +1144,40 @@ const seedHouseStyles = [
 
 const seedTeam = [
   {
-    name: 'Er. Rajesh Bhattarai',
-    designation: 'Chief Executive Officer & Managing Director',
-    qualification: 'B.E. Civil Engineering',
-    experience: '20+ years',
-    avatar: 'CE',
-    color: '#1e40af'
+    name: 'Er. Sujit Shah',
+    designation: 'MD & CEO',
+    qualification: '',
+    experience: '',
+    avatar: 'SS',
+    color: '#1e40af',
+    image: '/md-sujit-shah.jpg'
   },
   {
-    name: 'Ar. Prabha Sharma',
-    designation: 'Chief Architect & Design Director',
-    qualification: 'B.Arch, SONA Member',
-    experience: '15+ years',
-    avatar: 'AD',
-    color: '#f97316'
+    name: 'Er. Mukesh Adhikari',
+    designation: 'Manager',
+    qualification: '',
+    experience: '',
+    avatar: 'MA',
+    color: '#cd0102',
+    image: '/team/mukesh-adhikari.png'
   },
   {
-    name: 'Er. Amit Gurung',
-    designation: 'Head of Structural Engineering',
-    qualification: 'M.E. Structural Engineering',
-    experience: '12+ years',
-    avatar: 'SE',
-    color: '#1e40af'
+    name: 'Er. Amar Singh',
+    designation: 'Chief Architect',
+    qualification: '',
+    experience: '',
+    avatar: 'AS',
+    color: '#1e40af',
+    image: '/team/amar-singh.png'
   },
   {
-    name: 'Pradeep Khadka',
-    designation: 'Project Manager',
-    qualification: 'B.E. Civil Engineering, PMP Certified',
-    experience: '10+ years',
-    avatar: 'PM',
-    color: '#f97316'
+    name: 'Er. Rahul Kumar Purbey',
+    designation: 'Site Engineer',
+    qualification: '',
+    experience: '',
+    avatar: 'RP',
+    color: '#cd0102',
+    image: '/team/rahul-kumar-purbey.png'
   }
 ];
 
@@ -517,9 +1378,13 @@ function initDatabase() {
       description TEXT NOT NULL,
       highlights TEXT NOT NULL,
       specifications TEXT NOT NULL,
+      floorLayout TEXT DEFAULT '[]',
       image TEXT NOT NULL,
       gallery TEXT NOT NULL
     )`);
+
+    // Migrate existing projects table to include floorLayout column if missing
+    db.run("ALTER TABLE projects ADD COLUMN floorLayout TEXT DEFAULT '[]'", () => {});
 
     // 3. Create House Styles Table
     db.run(`CREATE TABLE IF NOT EXISTS house_styles (
@@ -538,14 +1403,10 @@ function initDatabase() {
     )`);
 
     // Migrate existing table to include price column if it was created in previous sessions
-    db.run("ALTER TABLE house_styles ADD COLUMN price TEXT", (err) => {
-      // Ignore error if column already exists
-    });
+    db.run("ALTER TABLE house_styles ADD COLUMN price TEXT", () => {});
 
     // Migrate existing table to include floor_plan_image column if it was created in previous sessions
-    db.run("ALTER TABLE house_styles ADD COLUMN floor_plan_image TEXT", (err) => {
-      // Ignore error if column already exists
-    });
+    db.run("ALTER TABLE house_styles ADD COLUMN floor_plan_image TEXT", () => {});
 
     // Create Hero Slides Table
     db.run(`CREATE TABLE IF NOT EXISTS hero_slides (
@@ -572,8 +1433,12 @@ function initDatabase() {
       qualification TEXT NOT NULL,
       experience TEXT NOT NULL,
       avatar TEXT NOT NULL,
-      color TEXT NOT NULL
+      color TEXT NOT NULL,
+      image TEXT DEFAULT ''
     )`);
+
+    // Migrate existing team table to include image column if missing
+    db.run("ALTER TABLE team ADD COLUMN image TEXT DEFAULT ''", () => {});
 
     // 5. Create Calculator Config Table
     db.run(`CREATE TABLE IF NOT EXISTS calculator_config (
@@ -629,10 +1494,10 @@ function initDatabase() {
     // Seeding Projects Table
     db.get("SELECT COUNT(*) as count FROM projects", (err, row) => {
       if (row && row.count === 0 && seedProjects.length > 0) {
-        const stmt = db.prepare(`INSERT INTO projects (title, category, status, location, duration, description, highlights, specifications, image, gallery)
-                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+        const stmt = db.prepare(`INSERT INTO projects (id, title, category, status, location, duration, description, highlights, specifications, floorLayout, image, gallery)
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
         seedProjects.forEach(p => {
-          stmt.run(p.title, p.category, p.status, p.location, p.duration, p.description, p.highlights, p.specifications, p.image, p.gallery);
+          stmt.run(p.id, p.title, p.category, p.status, p.location, p.duration, p.description, p.highlights, p.specifications, p.floorLayout || '[]', p.image, p.gallery);
         });
         stmt.finalize();
         console.log('Successfully seeded projects database');
@@ -661,7 +1526,6 @@ function initDatabase() {
           '/project-gallery/project-2.jpg',
           '/project-gallery/project-4.jpg',
           '/project-gallery/project-7.jpg',
-          '/project-gallery/project-8.jpg',
           '/project-gallery/project-10.jpg',
           '/project-gallery/project-12.jpg',
           '/project-gallery/project-14.jpg',
@@ -735,13 +1599,18 @@ function initDatabase() {
     // Seeding Team Table
     db.get("SELECT COUNT(*) as count FROM team", (err, row) => {
       if (row && row.count === 0) {
-        const stmt = db.prepare(`INSERT INTO team (name, designation, qualification, experience, avatar, color)
-                                VALUES (?, ?, ?, ?, ?, ?)`);
+        const stmt = db.prepare(`INSERT INTO team (name, designation, qualification, experience, avatar, color, image)
+                                VALUES (?, ?, ?, ?, ?, ?, ?)`);
         seedTeam.forEach(t => {
-          stmt.run(t.name, t.designation, t.qualification, t.experience, t.avatar, t.color);
+          stmt.run(t.name, t.designation, t.qualification, t.experience, t.avatar, t.color, t.image || '');
         });
         stmt.finalize();
         console.log('Successfully seeded team database');
+      } else {
+        db.run("UPDATE team SET image = '/md-sujit-shah.jpg' WHERE id = 1 AND (image IS NULL OR image = '')");
+        db.run("UPDATE team SET image = '/team/mukesh-adhikari.png' WHERE id = 2 AND (image IS NULL OR image = '')");
+        db.run("UPDATE team SET image = '/team/amar-singh.png' WHERE id = 3 AND (image IS NULL OR image = '')");
+        db.run("UPDATE team SET image = '/team/rahul-kumar-purbey.png' WHERE id = 4 AND (image IS NULL OR image = '')");
       }
     });
 

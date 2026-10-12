@@ -15,7 +15,14 @@ export default function FeaturedProjects() {
     api.getProjects()
       .then((data) => {
         if (data && Array.isArray(data) && data.length > 0) {
-          setFeatured(data.slice(0, 3));
+          const valid = data.filter(
+            (p) =>
+              p.id !== 8 &&
+              p.id !== 9 &&
+              p.title !== 'Project Code: 8' &&
+              p.title !== 'Project Code: 9'
+          );
+          setFeatured(valid.slice(0, 3));
         }
       })
       .catch((err) => {

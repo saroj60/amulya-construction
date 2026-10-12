@@ -20,7 +20,6 @@ function findStaticProject(projId) {
   if (!projId) return null;
   return (
     PROJECTS.find((p) => String(p.id) === String(projId)) ||
-    PROJECTS[Number(projId) - 1] ||
     PROJECTS.find((p) =>
       String(p.title).toLowerCase().includes(`project code: ${projId}`) ||
       String(p.title).toLowerCase().includes(`project ${projId}`)
@@ -131,7 +130,14 @@ export default function ProjectDetailPage() {
           setProject({
             ...fallback,
             ...projData,
-            floorLayout: projData.floorLayout || fallback?.floorLayout || null,
+            specifications: {
+              ...(fallback?.specifications || {}),
+              ...(projData.specifications || {}),
+            },
+            floorLayout:
+              Array.isArray(projData.floorLayout) && projData.floorLayout.length > 0
+                ? projData.floorLayout
+                : fallback?.floorLayout || [],
           });
           api.getProjects()
             .then((allProj) => {
@@ -465,13 +471,16 @@ export default function ProjectDetailPage() {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4">
+                  <div className={`grid grid-cols-1 ${floorLayout.length === 2 || floorLayout.length === 4 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-3.5 sm:gap-4`}>
                     {floorLayout.map((lvl, idx) => {
-                      const floorIcons = ['🛋️', '🛏️', '🌅'];
+                      const floorIcons = ['🅿️', '🏪', '🛋️', '🛏️', '🏡', '🌅'];
                       const levelColors = [
                         { bar: 'bg-amber-500', badge: 'bg-amber-50 text-amber-800 border-amber-200' },
                         { bar: 'bg-blue-600', badge: 'bg-blue-50 text-blue-800 border-blue-200' },
                         { bar: 'bg-emerald-600', badge: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
+                        { bar: 'bg-purple-600', badge: 'bg-purple-50 text-purple-800 border-purple-200' },
+                        { bar: 'bg-rose-600', badge: 'bg-rose-50 text-rose-800 border-rose-200' },
+                        { bar: 'bg-indigo-600', badge: 'bg-indigo-50 text-indigo-800 border-indigo-200' },
                       ];
                       const currentStyle = levelColors[idx] || levelColors[0];
 
@@ -484,12 +493,19 @@ export default function ProjectDetailPage() {
                           <div className="flex items-center justify-between mb-3 pt-1 pb-2.5 border-b border-slate-100">
                             <div className="flex items-center gap-2">
                               <span className="text-base">{floorIcons[idx] || '🏢'}</span>
-                              <h3 className="font-bold text-sm sm:text-base text-gray-900">
-                                {lvl.floor}
-                              </h3>
+                              <div>
+                                <h3 className="font-bold text-sm sm:text-base text-gray-900 leading-tight">
+                                  {lvl.floor}
+                                </h3>
+                                {lvl.code && (
+                                  <span className="inline-block text-[10px] font-extrabold text-orange-600 tracking-wider mt-0.5">
+                                    {lvl.code}
+                                  </span>
+                                )}
+                              </div>
                             </div>
                             <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${currentStyle.badge}`}>
-                              Level {idx}
+                              {lvl.level || `Level ${idx}`}
                             </span>
                           </div>
                           <ul className="space-y-2 flex-1">

@@ -34,11 +34,29 @@ export default function AdminDashboard() {
   
   // Custom form field states
   // 1. Projects Form
-  const [projForm, setProjForm] = useState({ title: '', category: 'Residential', status: 'Completed', location: '', duration: '', description: '', image: '', gallery: '', highlights: '', specifications: '' });
+  const [projForm, setProjForm] = useState({
+    title: '',
+    category: 'Residential',
+    status: 'Completed',
+    location: '',
+    duration: '',
+    cost: '',
+    year: '',
+    storeys: '',
+    totalArea: '',
+    plinthArea: '',
+    faceLength: '',
+    description: '',
+    image: '',
+    gallery: '',
+    highlights: '',
+    floorLayoutText: '',
+    specifications: ''
+  });
   // 2. House Styles Form
   const [styleForm, setStyleForm] = useState({ id: '', title: '', category: 'Modern', description: '', longDescription: '', image: '', gallery: '', features: '', materials: '', specifications: '', price: '', floor_plan_image: '' });
   // 3. Team Form
-  const [teamForm, setTeamForm] = useState({ name: '', designation: '', qualification: '', experience: '', avatar: '', color: '#1e40af' });
+  const [teamForm, setTeamForm] = useState({ name: '', designation: '', qualification: '', experience: '', avatar: '', color: '#1e40af', image: '' });
   // 4. Services Form
   const [serviceForm, setServiceForm] = useState({ id: '', title: '', shortDesc: '', fullDesc: '', icon: 'Wrench', image: '', features: '' });
   // 5. Blogs Form
@@ -144,17 +162,30 @@ export default function AdminDashboard() {
   function startEditProject(proj) {
     setEditingItem(proj);
     setIsCreating(false);
+    const specs = proj.specifications || {};
+    const floorLayoutArr = Array.isArray(proj.floorLayout) ? proj.floorLayout : [];
+    const floorLayoutText = floorLayoutArr
+      .map(fl => `${fl.floor || ''} | ${fl.code || ''} | ${Array.isArray(fl.features) ? fl.features.join('; ') : ''}`)
+      .join('\n');
+
     setProjForm({
-      title: proj.title,
-      category: proj.category,
-      status: proj.status,
-      location: proj.location,
-      duration: proj.duration || '',
-      description: proj.description,
-      image: proj.image,
-      gallery: proj.gallery.join('\n'),
-      highlights: proj.highlights.join('\n'),
-      specifications: Object.entries(proj.specifications).map(([k, v]) => `${k}:${v}`).join('\n')
+      title: proj.title || '',
+      category: proj.category || 'Residential',
+      status: proj.status || 'Completed',
+      location: proj.location || specs['Location'] || '',
+      duration: proj.duration || specs['Duration'] || '',
+      cost: specs['Project Cost'] || proj.cost || '',
+      year: specs['Completion Year'] || proj.year || '',
+      storeys: specs['Storeys'] || '',
+      totalArea: specs['Total Area'] || proj.area || '',
+      plinthArea: specs['Plinth Area'] || '',
+      faceLength: specs['Face Length'] || '',
+      description: proj.description || '',
+      image: proj.image || '',
+      gallery: (proj.gallery || []).join('\n'),
+      highlights: (proj.highlights || []).join('\n'),
+      floorLayoutText,
+      specifications: Object.entries(specs).map(([k, v]) => `${k}: ${v}`).join('\n')
     });
   }
 
@@ -167,11 +198,18 @@ export default function AdminDashboard() {
       status: 'Completed',
       location: '',
       duration: '',
+      cost: '',
+      year: '2083 BS',
+      storeys: '',
+      totalArea: '',
+      plinthArea: '',
+      faceLength: '',
       description: '',
       image: '',
       gallery: '',
       highlights: '',
-      specifications: 'Project Code:\nLocation:\nProject Cost:\nType of Building:\nPlinth Area:\nFace Length:'
+      floorLayoutText: 'Ground Floor | 2B • 1K • 1L • 1T | 2 Spacious bedrooms; 1 Modern kitchen; 1 Living hall; 1 Common toilet\nFirst Floor | 2B • 1L • 1T | 2 Private bedrooms; 1 Living lounge; 1 Bathroom',
+      specifications: 'Basement: No'
     });
   }
 
@@ -179,6 +217,44 @@ export default function AdminDashboard() {
     e.preventDefault();
     setSaveLoading(true);
     setError('');
+
+    const parsedSpecs = projForm.specifications.split('\n').reduce((acc, curr) => {
+      const [k, ...v] = curr.split(':');
+      if (k && k.trim()) acc[k.trim()] = v.join(':').trim();
+      return acc;
+    }, {});
+
+    if (projForm.title) parsedSpecs['Project Name'] = projForm.title;
+    if (projForm.location) parsedSpecs['Location'] = projForm.location;
+    if (projForm.cost) parsedSpecs['Project Cost'] = projForm.cost;
+    if (projForm.category) parsedSpecs['Type of Building'] = projForm.category;
+    if (projForm.storeys) parsedSpecs['Storeys'] = projForm.storeys;
+    if (projForm.totalArea) parsedSpecs['Total Area'] = projForm.totalArea;
+    if (projForm.plinthArea) parsedSpecs['Plinth Area'] = projForm.plinthArea;
+    if (projForm.faceLength) parsedSpecs['Face Length'] = projForm.faceLength;
+    if (projForm.duration) parsedSpecs['Duration'] = projForm.duration;
+    if (projForm.year) parsedSpecs['Completion Year'] = projForm.year;
+
+    const parsedFloorLayout = (projForm.floorLayoutText || '')
+      .split('\n')
+      .map(line => line.trim())
+      .filter(Boolean)
+      .map((line, idx) => {
+        const parts = line.split('|').map(p => p.trim());
+        const floor = parts[0] || `Floor ${idx + 1}`;
+        const code = parts.length >= 3 ? parts[1] : '';
+        const rawFeatures = parts.length >= 3 ? parts.slice(2).join('|') : (parts[1] || '');
+        const features = rawFeatures
+          .split(';')
+          .map(f => f.trim())
+          .filter(Boolean);
+        return {
+          floor,
+          level: floor.toLowerCase().includes('basement') ? 'Basement' : `Level ${idx}`,
+          code,
+          features: features.length > 0 ? features : (code ? [code] : [])
+        };
+      });
 
     const formattedPayload = {
       title: projForm.title,
@@ -190,11 +266,8 @@ export default function AdminDashboard() {
       image: projForm.image,
       gallery: projForm.gallery.split('\n').map(l => l.trim()).filter(Boolean),
       highlights: projForm.highlights.split('\n').map(l => l.trim()).filter(Boolean),
-      specifications: projForm.specifications.split('\n').reduce((acc, curr) => {
-        const [k, ...v] = curr.split(':');
-        if (k && k.trim()) acc[k.trim()] = v.join(':').trim();
-        return acc;
-      }, {})
+      specifications: parsedSpecs,
+      floorLayout: parsedFloorLayout
     };
 
     try {
@@ -316,19 +389,20 @@ export default function AdminDashboard() {
     setEditingItem(t);
     setIsCreating(false);
     setTeamForm({
-      name: t.name,
-      designation: t.designation,
-      qualification: t.qualification,
-      experience: t.experience,
-      avatar: t.avatar,
-      color: t.color || '#1e40af'
+      name: t.name || '',
+      designation: t.designation || '',
+      qualification: t.qualification || '',
+      experience: t.experience || '',
+      avatar: t.avatar || '',
+      color: t.color || '#1e40af',
+      image: t.image || ''
     });
   }
 
   function startCreateTeam() {
     setEditingItem(null);
     setIsCreating(true);
-    setTeamForm({ name: '', designation: '', qualification: '', experience: '', avatar: '', color: '#1e40af' });
+    setTeamForm({ name: '', designation: '', qualification: '', experience: '', avatar: '', color: '#1e40af', image: '' });
   }
 
   async function handleTeamSubmit(e) {
@@ -926,16 +1000,17 @@ export default function AdminDashboard() {
                         <form onSubmit={handleProjectSubmit} className="space-y-4">
                           <h2 className="text-lg font-extrabold text-gray-900">{isCreating ? 'Add New Project' : 'Edit Project'}</h2>
                           
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             <div className="space-y-1.5">
-                              <label className="text-xs font-bold text-gray-700 uppercase">Project Title / Code</label>
-                              <input type="text" required value={projForm.title} onChange={e => setProjForm({...projForm, title: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. Project Code: 1" />
+                              <label className="text-xs font-bold text-gray-700 uppercase">Project Title / Name</label>
+                              <input type="text" required value={projForm.title} onChange={e => setProjForm({...projForm, title: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. Kajal Karn Commercial & Residential" />
                             </div>
                             <div className="space-y-1.5">
                               <label className="text-xs font-bold text-gray-700 uppercase">Category</label>
                               <select value={projForm.category} onChange={e => setProjForm({...projForm, category: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800">
                                 <option>Residential</option>
                                 <option>Commercial</option>
+                                <option>Renovation</option>
                                 <option>Industrial</option>
                               </select>
                             </div>
@@ -947,12 +1022,36 @@ export default function AdminDashboard() {
                               </select>
                             </div>
                             <div className="space-y-1.5">
-                              <label className="text-xs font-bold text-gray-700 uppercase">Location (Optional)</label>
-                              <input type="text" value={projForm.location} onChange={e => setProjForm({...projForm, location: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. Kathmandu (or leave blank)" />
+                              <label className="text-xs font-bold text-gray-700 uppercase">Location</label>
+                              <input type="text" value={projForm.location} onChange={e => setProjForm({...projForm, location: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. Janakpur, Lalitpur, Kathmandu" />
                             </div>
                             <div className="space-y-1.5">
                               <label className="text-xs font-bold text-gray-700 uppercase">Duration</label>
-                              <input type="text" value={projForm.duration} onChange={e => setProjForm({...projForm, duration: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. 14 Months / Ongoing" />
+                              <input type="text" value={projForm.duration} onChange={e => setProjForm({...projForm, duration: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. 10 Months / 1.3 Years" />
+                            </div>
+                            <div className="space-y-1.5">
+                              <label className="text-xs font-bold text-gray-700 uppercase">Completion Year</label>
+                              <input type="text" value={projForm.year} onChange={e => setProjForm({...projForm, year: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. 2083 BS" />
+                            </div>
+                            <div className="space-y-1.5">
+                              <label className="text-xs font-bold text-gray-700 uppercase">Project Cost</label>
+                              <input type="text" value={projForm.cost} onChange={e => setProjForm({...projForm, cost: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. Rs 1.2 Cr / Rs 90 Lakhs" />
+                            </div>
+                            <div className="space-y-1.5">
+                              <label className="text-xs font-bold text-gray-700 uppercase">Storeys</label>
+                              <input type="text" value={projForm.storeys} onChange={e => setProjForm({...projForm, storeys: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. 2.5 Storeys / 4.5 Storeys" />
+                            </div>
+                            <div className="space-y-1.5">
+                              <label className="text-xs font-bold text-gray-700 uppercase">Total Area</label>
+                              <input type="text" value={projForm.totalArea} onChange={e => setProjForm({...projForm, totalArea: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. 1690 sq ft" />
+                            </div>
+                            <div className="space-y-1.5">
+                              <label className="text-xs font-bold text-gray-700 uppercase">Plinth Area</label>
+                              <input type="text" value={projForm.plinthArea} onChange={e => setProjForm({...projForm, plinthArea: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. 1000 sq ft" />
+                            </div>
+                            <div className="space-y-1.5">
+                              <label className="text-xs font-bold text-gray-700 uppercase">Face Length</label>
+                              <input type="text" value={projForm.faceLength} onChange={e => setProjForm({...projForm, faceLength: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. 30 ft" />
                             </div>
                             <div className="space-y-1.5">
                               <label className="text-xs font-bold text-gray-700 uppercase flex justify-between items-center">
@@ -978,6 +1077,19 @@ export default function AdminDashboard() {
 
                           <div className="space-y-1.5">
                             <label className="text-xs font-bold text-gray-700 uppercase flex justify-between items-center">
+                              <span>Floor-by-Floor Layout (One floor per line: Floor Name | Summary Code | Features separated by ;)</span>
+                            </label>
+                            <textarea
+                              rows="4"
+                              value={projForm.floorLayoutText}
+                              onChange={e => setProjForm({...projForm, floorLayoutText: e.target.value})}
+                              className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800"
+                              placeholder="Ground Floor | 2B • 1K • 1L • 1T | 2 Spacious bedrooms; 1 Modern kitchen; 1 Living hall; 1 Toilet&#10;First Floor | 2B • 1L • 1T | 2 Private bedrooms; 1 Living lounge; 1 Bathroom"
+                            />
+                          </div>
+
+                          <div className="space-y-1.5">
+                            <label className="text-xs font-bold text-gray-700 uppercase flex justify-between items-center">
                               <span>Gallery Image URLs (One per line)</span>
                               <div className="relative text-[10px] text-gray-400 font-semibold normal-case">
                                 <input type="file" accept="image/*" disabled={uploadingImage} onChange={e => handleLocalFileUpload(e, url => {
@@ -994,11 +1106,11 @@ export default function AdminDashboard() {
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-1.5">
                               <label className="text-xs font-bold text-gray-700 uppercase">Highlights (One per line)</label>
-                              <textarea rows="3" value={projForm.highlights} onChange={e => setProjForm({...projForm, highlights: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" />
+                              <textarea rows="4" value={projForm.highlights} onChange={e => setProjForm({...projForm, highlights: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" />
                             </div>
                             <div className="space-y-1.5">
-                              <label className="text-xs font-bold text-gray-700 uppercase">Specifications (Key:Value per line)</label>
-                              <textarea rows="4" value={projForm.specifications} onChange={e => setProjForm({...projForm, specifications: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="Project Code: 1&#10;Location: &#10;Project Cost: &#10;Type of Building: &#10;Plinth Area: &#10;Face Length: " />
+                              <label className="text-xs font-bold text-gray-700 uppercase">Additional Specifications (Key:Value per line)</label>
+                              <textarea rows="4" value={projForm.specifications} onChange={e => setProjForm({...projForm, specifications: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="Project Code: 1&#10;Basement: Yes" />
                             </div>
                           </div>
 
@@ -1192,6 +1304,7 @@ export default function AdminDashboard() {
                             <table className="w-full text-left border-collapse">
                               <thead>
                                 <tr className="border-b border-gray-100 text-xs font-bold text-gray-400 uppercase tracking-wider bg-gray-50/50">
+                                  <th className="py-3 px-4">Photo</th>
                                   <th className="py-3 px-4">Name</th>
                                   <th className="py-3 px-4">Designation</th>
                                   <th className="py-3 px-4">Qualifications</th>
@@ -1201,9 +1314,18 @@ export default function AdminDashboard() {
                               <tbody className="divide-y divide-gray-100 text-xs font-semibold text-gray-700">
                                 {team.map(t => (
                                   <tr key={t.id} className="hover:bg-gray-50/50 transition-colors">
+                                    <td className="py-3 px-4">
+                                      {t.image ? (
+                                        <img src={t.image} alt={t.name} className="w-9 h-9 rounded-full object-cover border border-gray-200" />
+                                      ) : (
+                                        <div className="w-9 h-9 rounded-full flex items-center justify-center text-white text-[10px] font-bold" style={{ backgroundColor: t.color || '#1e40af' }}>
+                                          {t.avatar}
+                                        </div>
+                                      )}
+                                    </td>
                                     <td className="py-3.5 px-4 font-bold text-gray-950">{t.name}</td>
                                     <td className="py-3.5 px-4 text-blue-800">{t.designation}</td>
-                                    <td className="py-3.5 px-4 text-gray-500">{t.qualification}</td>
+                                    <td className="py-3.5 px-4 text-gray-500">{t.qualification || '—'}</td>
                                     <td className="py-3.5 px-4 text-right space-x-2">
                                       <button onClick={() => startEditTeam(t)} className="p-1.5 text-blue-800 hover:bg-blue-50 rounded" title="Edit"><Edit2 className="w-3.5 h-3.5" /></button>
                                       <button onClick={() => handleDeleteTeam(t.id)} className="p-1.5 text-red-700 hover:bg-red-50 rounded" title="Delete"><Trash2 className="w-3.5 h-3.5" /></button>
@@ -1229,20 +1351,37 @@ export default function AdminDashboard() {
                               <input type="text" required value={teamForm.designation} onChange={e => setTeamForm({...teamForm, designation: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" />
                             </div>
                             <div className="space-y-1.5">
-                              <label className="text-xs font-bold text-gray-700 uppercase">Qualifications</label>
-                              <input type="text" required value={teamForm.qualification} onChange={e => setTeamForm({...teamForm, qualification: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. B.E. Civil Engineering" />
+                              <label className="text-xs font-bold text-gray-700 uppercase">Qualifications (Optional)</label>
+                              <input type="text" value={teamForm.qualification} onChange={e => setTeamForm({...teamForm, qualification: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. B.E. Civil Engineering (or leave blank)" />
                             </div>
                             <div className="space-y-1.5">
-                              <label className="text-xs font-bold text-gray-700 uppercase">Experience Timeline</label>
-                              <input type="text" required value={teamForm.experience} onChange={e => setTeamForm({...teamForm, experience: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. 15+ years" />
+                              <label className="text-xs font-bold text-gray-700 uppercase">Experience Timeline (Optional)</label>
+                              <input type="text" value={teamForm.experience} onChange={e => setTeamForm({...teamForm, experience: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. 15+ years (or leave blank)" />
                             </div>
                             <div className="space-y-1.5">
-                              <label className="text-xs font-bold text-gray-700 uppercase">Avatar Text Initials</label>
-                              <input type="text" required maxLength="2" value={teamForm.avatar} onChange={e => setTeamForm({...teamForm, avatar: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. CE" />
+                              <label className="text-xs font-bold text-gray-700 uppercase flex justify-between items-center">
+                                <span>Profile Photo URL (Optional)</span>
+                                <span className="text-[10px] text-gray-400 font-semibold normal-case">Or upload photo</span>
+                              </label>
+                              <div className="flex gap-2">
+                                <input type="text" value={teamForm.image || ''} onChange={e => setTeamForm({...teamForm, image: e.target.value})} className="flex-1 border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="/team/... or /uploads/..." />
+                                <div className="relative">
+                                  <input type="file" accept="image/*" disabled={uploadingImage} onChange={e => handleLocalFileUpload(e, url => setTeamForm({...teamForm, image: url}))} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed" />
+                                  <button type="button" disabled={uploadingImage} className="h-full px-3 py-2 bg-gray-100 border border-gray-200 rounded-xl text-xs font-bold text-gray-700 hover:bg-gray-200 transition-colors disabled:opacity-50">
+                                    {uploadingImage ? '...' : 'Browse'}
+                                  </button>
+                                </div>
+                              </div>
                             </div>
-                            <div className="space-y-1.5">
-                              <label className="text-xs font-bold text-gray-700 uppercase">Avatar Color hex</label>
-                              <input type="color" value={teamForm.color} onChange={e => setTeamForm({...teamForm, color: e.target.value})} className="w-full h-9 border border-gray-200 px-3 py-1 rounded-xl focus:outline-none" />
+                            <div className="grid grid-cols-2 gap-3">
+                              <div className="space-y-1.5">
+                                <label className="text-xs font-bold text-gray-700 uppercase">Avatar Initials</label>
+                                <input type="text" required maxLength="3" value={teamForm.avatar} onChange={e => setTeamForm({...teamForm, avatar: e.target.value})} className="w-full border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800" placeholder="e.g. SS" />
+                              </div>
+                              <div className="space-y-1.5">
+                                <label className="text-xs font-bold text-gray-700 uppercase">Badge Color</label>
+                                <input type="color" value={teamForm.color} onChange={e => setTeamForm({...teamForm, color: e.target.value})} className="w-full h-9 border border-gray-200 px-3 py-1 rounded-xl focus:outline-none" />
+                              </div>
                             </div>
                           </div>
 

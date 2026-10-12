@@ -282,8 +282,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Message from Managing Director (MD Sujit Shah) */}
-      <section className="section-padding bg-gradient-to-b from-slate-50/70 via-white to-slate-50/40 border-t border-b border-gray-150 relative overflow-hidden" aria-label="Message from Managing Director">
+      {/* Message from MD & CEO (Er. Sujit Shah) */}
+      <section className="section-padding bg-gradient-to-b from-slate-50/70 via-white to-slate-50/40 border-t border-b border-gray-150 relative overflow-hidden" aria-label="Message from MD & CEO">
         {/* Ambient decorative glow */}
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-orange-500/5 rounded-full filter blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 left-0 w-80 h-80 bg-blue-600/5 rounded-full filter blur-3xl pointer-events-none" />
@@ -291,7 +291,7 @@ export default function AboutPage() {
         <div className="container-custom relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            {/* Left: MD Photo / Placeholder Card */}
+            {/* Left: MD Portrait Card */}
             <motion.div 
               className="lg:col-span-5 flex flex-col items-center"
               initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeLeft}
@@ -301,35 +301,34 @@ export default function AboutPage() {
                 <div className="absolute -inset-2.5 bg-gradient-to-tr from-orange-500/25 via-blue-600/15 to-transparent rounded-[32px] -rotate-2 transform pointer-events-none" />
                 
                 {/* Main Card */}
-                <div className="relative bg-white rounded-[28px] overflow-hidden shadow-2xl border border-gray-150 p-4 sm:p-5">
-                  {/* Image Placeholder Frame */}
-                  <div className="relative aspect-[4/5] rounded-[22px] overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-blue-950 flex flex-col items-center justify-center text-center p-6 group">
-                    {/* Pattern texture overlay */}
-                    <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
-                    
-                    {/* Placeholder Avatar / Icon */}
-                    <div className="relative z-10 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 p-1 shadow-2xl mb-4 flex items-center justify-center">
-                      <div className="w-full h-full rounded-full bg-slate-900 flex flex-col items-center justify-center text-white">
-                        <User className="w-12 h-12 text-orange-400" />
-                        <span className="text-[10px] uppercase font-black tracking-widest text-slate-400 mt-1">MD Photo</span>
-                      </div>
-                    </div>
+                <div className="relative bg-white rounded-[28px] overflow-hidden shadow-2xl border border-gray-150 p-3.5 sm:p-4">
+                  {/* Portrait Image Frame */}
+                  <div className="relative aspect-[4/5] rounded-[22px] overflow-hidden bg-slate-900 group">
+                    <img
+                      src="/md-sujit-shah.jpg"
+                      alt="Er. Sujit Shah — MD & CEO of Amulya Builders"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                    {/* Gradient overlay at the bottom for executive title readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/25 to-transparent" />
 
-                    <div className="relative z-10">
-                      <h3 className="text-2xl font-black text-white tracking-tight">Sujit Shah</h3>
-                      <p className="text-orange-400 text-xs font-bold uppercase tracking-wider mt-1">Managing Director</p>
-                      <p className="text-slate-300 text-xs mt-1 font-medium">{COMPANY.name}</p>
-                    </div>
-
-                    {/* Executive badge */}
-                    <div className="mt-5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-slate-200 text-xs font-semibold flex items-center gap-2">
-                      <Award className="w-4 h-4 text-orange-400" />
+                    {/* Top Executive Badge */}
+                    <div className="absolute top-3.5 right-3.5 z-10 px-3 py-1 rounded-full bg-slate-900/75 backdrop-blur-md border border-white/15 text-white text-[11px] font-semibold flex items-center gap-1.5 shadow-lg">
+                      <Award className="w-3.5 h-3.5 text-orange-400" />
                       <span>Executive Leadership</span>
+                    </div>
+
+                    {/* Bottom Name & Designation Overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-5 z-10 text-left">
+                      <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-tight">Er. Sujit Shah</h3>
+                      <p className="text-orange-400 text-xs font-extrabold uppercase tracking-wider mt-0.5">MD & CEO</p>
+                      <p className="text-slate-300 text-xs mt-0.5 font-medium">{COMPANY.name}</p>
                     </div>
                   </div>
 
                   {/* Bottom info strip */}
-                  <div className="pt-4 pb-2 px-2 text-center">
+                  <div className="pt-3.5 pb-1.5 px-2 text-center">
                     <div className="flex items-center justify-center gap-2 text-xs font-bold text-slate-700">
                       <span>Kathmandu, Nepal</span>
                       <span className="text-gray-300">•</span>
@@ -350,7 +349,7 @@ export default function AboutPage() {
                   LEADERSHIP PERSPECTIVE
                 </span>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-                  Message from the <span className="text-orange-500">Managing Director</span>
+                  Message from the <span className="text-orange-500">MD & CEO</span>
                 </h2>
                 <div className="w-14 h-1 bg-orange-500 rounded-full mt-3.5" />
               </div>
@@ -384,8 +383,8 @@ export default function AboutPage() {
               <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-gray-150">
                 <div>
                   <span className="text-xs text-gray-400 font-bold uppercase tracking-wider block">Warm Regards,</span>
-                  <span className="text-lg font-black text-slate-950 block mt-0.5">Sujit Shah</span>
-                  <span className="text-xs text-orange-600 font-bold">Managing Director, {COMPANY.name}</span>
+                  <span className="text-lg font-black text-slate-950 block mt-0.5">Er. Sujit Shah</span>
+                  <span className="text-xs text-orange-600 font-bold">MD & CEO, {COMPANY.name}</span>
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -552,25 +551,54 @@ export default function AboutPage() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             initial="hidden" whileInView="visible" viewport={viewportOnce} variants={staggerContainer}
           >
-            {teamList.map((member, i) => (
-              <motion.div
-                key={member.id}
-                variants={fadeUp}
-                className="bg-gray-50 rounded-xl p-6 text-center card-shadow hover:-translate-y-1 transition-transform duration-300"
-              >
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center text-white text-lg font-extrabold mx-auto mb-4 shadow"
-                  style={{ backgroundColor: member.color }}
-                  aria-hidden="true"
+            {teamList.map((member, i) => {
+              const memberImg =
+                member.image ||
+                (String(member.name).includes('Sujit') || member.id === 1
+                  ? '/md-sujit-shah.jpg'
+                  : String(member.name).includes('Mukesh') || member.id === 2
+                    ? '/team/mukesh-adhikari.png'
+                    : String(member.name).includes('Amar') || member.id === 3
+                      ? '/team/amar-singh.png'
+                      : String(member.name).includes('Rahul') || member.id === 4
+                        ? '/team/rahul-kumar-purbey.png'
+                        : null);
+
+              return (
+                <motion.div
+                  key={member.id || i}
+                  variants={fadeUp}
+                  className="bg-white rounded-2xl p-6 text-center border border-slate-200/80 card-shadow hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center"
                 >
-                  {member.avatar}
-                </div>
-                <h3 className="font-bold text-gray-900 text-sm mb-1">{member.name}</h3>
-                <p className="text-orange-500 text-xs font-semibold mb-1">{member.designation}</p>
-                <p className="text-gray-500 text-xs mb-1">{member.qualification}</p>
-                <p className="text-blue-700 text-xs font-bold">{member.experience} Experience</p>
-              </motion.div>
-            ))}
+                  {memberImg ? (
+                    <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden mb-4 shadow-md border-2 border-orange-500/20 bg-slate-100">
+                      <img
+                        src={memberImg}
+                        alt={member.name}
+                        className="w-full h-full object-cover object-top"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl flex items-center justify-center text-white text-2xl font-extrabold mx-auto mb-4 shadow-md"
+                      style={{ backgroundColor: member.color }}
+                      aria-hidden="true"
+                    >
+                      {member.avatar}
+                    </div>
+                  )}
+                  <h3 className="font-extrabold text-gray-900 text-base mb-1">{member.name}</h3>
+                  <p className="text-orange-500 text-xs font-bold uppercase tracking-wider mb-1">{member.designation}</p>
+                  {member.qualification ? (
+                    <p className="text-gray-500 text-xs mb-1">{member.qualification}</p>
+                  ) : null}
+                  {member.experience ? (
+                    <p className="text-blue-700 text-xs font-bold">{member.experience} Experience</p>
+                  ) : null}
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>

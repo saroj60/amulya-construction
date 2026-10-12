@@ -281,121 +281,113 @@ export const PROJECTS = [
   },
   {
     id: 6,
-    title: 'Project Code: 6',
-    location: '',
+    title: 'Jay Kishor Mahato Residential',
+    location: 'Chitwan',
     category: 'Residential',
     status: 'Completed',
-    duration: 'Turnkey Project',
+    duration: '11 Months',
+    year: '2083 BS',
+    cost: 'Rs 1 Cr 10 Lakhs',
+    area: '1690 sq ft',
     image: '/project-gallery/project-6.jpg',
     gallery: [
       '/project-gallery/project-6.jpg',
     ],
     description:
-      'Project 6 — Complete estate master layout and aerial architectural design showing 2.5-storey luxury villa, landscaped garden, parking court, and perimeter security wall by Amulya Builders.',
+      'Jay Kishor Mahato Residential is a beautifully designed 2.5-storey modern residential home located in Chitwan. Completed in 2083 BS within a fast-track duration of 11 Months at a total project cost of Rs 1 Cr 10 Lakhs, this residence sits on a generous 1300 sq ft plinth area with an impressive 42 ft front facade and 1690 sq ft of total built-up area. Engineered with an earthquake-resistant RCC frame, the property blends functional family living spaces with landscaped outdoor courtyards, spacious balconies, and a signature rooftop pergola.',
+    floorLayout: [
+      {
+        floor: 'Ground Floor',
+        level: 'Level 0',
+        code: '2B • 1K • 1L • 1T',
+        features: [
+          '2 Spacious bedrooms (2B)',
+          '1 Modern modular kitchen & dining space (1K)',
+          '1 Welcoming family living hall (1L)',
+          '1 Common bathroom / toilet (1T)'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        level: 'Level 1',
+        code: '2B • 1L • 1W/T',
+        features: [
+          '2 Comfortable private bedrooms (2B)',
+          '1 Upper family living / lounge area (1L)',
+          '1 Washroom / toilet facility (1W/T)'
+        ]
+      },
+      {
+        floor: 'Second Floor',
+        level: 'Level 2',
+        code: '1B • 1FS • 1 Pergola',
+        features: [
+          '1 Guest / master bedroom (1B)',
+          '1 Functional family / utility space (1FS)',
+          '1 Architectural rooftop pergola & open terrace (1 Pergola)'
+        ]
+      }
+    ],
     highlights: [
-      'Aerial master plan & complete boundary layout',
-      'Integrated dual-vehicle driveway & paved courtyard',
-      'Comprehensive outdoor landscape, patio & water feature integration',
-      'Earthquake-resistant RCC construction with NBC compliance',
+      '2.5-Storey residence with 1690 sq ft total built-up area & 1300 sq ft plinth area',
+      'Grand 42 ft wide front elevation with integrated parking & landscaped yard',
+      'Ground Floor: 2 Bedrooms, 1 Kitchen, 1 Living Hall & 1 Toilet (2B 1K 1L 1T)',
+      'First Floor: 2 Bedrooms, 1 Living Lounge & 1 Washroom/Toilet (2B 1L 1W/T)',
+      'Second Floor: 1 Bedroom, 1 Family Space & 1 Rooftop Pergola (1B 1FS 1 Pergola)',
+      'Earthquake-resistant RCC construction with NBC compliance'
     ],
     specifications: {
       'Project Code': '6',
-      'Location': '',
-      'Project Cost': '',
-      'Type of Building': '',
-      'Plinth Area': '',
-      'Face Length': '',
+      'Project Name': 'Jay Kishor Mahato Residential',
+      'Location': 'Chitwan',
+      'Project Cost': 'Rs 1 Cr 10 Lakhs',
+      'Type of Building': 'Residential',
+      'Storeys': '2.5 Storeys',
+      'Total Area': '1690 sq ft',
+      'Plinth Area': '1300 sq ft',
+      'Face Length': '42 ft',
+      'Duration': '11 Months',
+      'Completion Year': '2083 BS',
     },
     featured: true,
   },
   {
     id: 7,
-    title: 'Project Code: 7',
-    location: '',
+    title: 'Dr. Sakil Residential',
+    location: 'Janakpur',
     category: 'Residential',
     status: 'Completed',
-    duration: 'Turnkey Project',
+    duration: '1 Year 6 Months',
+    year: '2083 BS',
+    cost: 'Rs 1.5 Cr',
+    area: '1966 sq ft',
     image: '/project-gallery/project-7.jpg',
     gallery: [
       '/project-gallery/project-7.jpg',
       '/project-gallery/project-7-aerial.jpg',
     ],
     description:
-      'Project 7 — Neo-classical 3.5-storey luxury residence featuring a grand central arched brick glass atrium, dual covered parking garages, classical balustrade balconies, and rooftop pergola gym terrace by Amulya Builders.',
+      'Dr. Sakil Residential is a grand 3.5-storey neo-classical luxury residence situated in Janakpur. Completed in 2083 BS over a duration of 1 Year 6 Months at a project cost of Rs 1.5 Cr, this landmark home spans 1966 sq ft of total built-up area on a 1200 sq ft plinth area with a 30 ft front elevation. The design features a monumental central arched glass atrium, dual covered parking bays, classical balustrade balconies, and an open rooftop pergola terrace engineered with NBC-compliant earthquake-resistant RCC construction.',
     highlights: [
-      'Monumental exposed brick central arched glass atrium',
-      'Dual independent covered parking bays with iron gates',
+      '3.5-Storey luxury residence with 1966 sq ft total area & 1200 sq ft plinth area',
+      'Monumental exposed brick central arched glass atrium & 30 ft front facade',
+      'Dual independent covered parking bays with ornamental gates',
       'Upper rooftop fitness pergola with spiral observation stairs',
       'Neo-classical ornamental balustrades and mouldings',
+      'Earthquake-resistant RCC frame construction'
     ],
     specifications: {
       'Project Code': '7',
-      'Location': '',
-      'Project Cost': '',
-      'Type of Building': '',
-      'Plinth Area': '',
-      'Face Length': '',
-    },
-    featured: true,
-  },
-  {
-    id: 8,
-    title: 'Project Code: 8',
-    location: '',
-    category: 'Residential',
-    status: 'Completed',
-    duration: 'Turnkey Project',
-    image: '/project-gallery/project-8.jpg',
-    gallery: [
-      '/project-gallery/project-8.jpg',
-      '/project-gallery/project-8-side.jpg',
-      '/project-gallery/project-8-rear.jpg',
-    ],
-    description:
-      'Project 8 — Majestic neo-classical 3.5-storey luxury residence featuring dressed sandstone central atrium, multi-tiered balconies with intricate balustrades, dual car bays, and complete perimeter boundary design by Amulya Builders.',
-    highlights: [
-      'Dressed sandstone central arched glass atrium',
-      'Multi-tiered balconies with classical ornamental railings',
-      'Rear garden & side driveway parking circulation',
-      'Rooftop fitness deck with spiral observation stairs',
-    ],
-    specifications: {
-      'Project Code': '8',
-      'Location': '',
-      'Project Cost': '',
-      'Type of Building': '',
-      'Plinth Area': '',
-      'Face Length': '',
-    },
-    featured: true,
-  },
-  {
-    id: 9,
-    title: 'Project Code: 9',
-    location: '',
-    category: 'Residential',
-    status: 'Completed',
-    duration: 'Turnkey Project',
-    image: '/project-gallery/project-9.jpg',
-    gallery: [
-      '/project-gallery/project-9.jpg',
-      '/project-gallery/project-9-aerial.jpg',
-    ],
-    description:
-      'Project 9 — Angular front-left perspective and isometric aerial visualization of neo-classical luxury mansion showing side verandahs, multi-tiered classical balconies, and rooftop gym pergola by Amulya Builders.',
-    highlights: [
-      'Front-left corner architectural profile & entry gates',
-      'Multi-level colonnaded verandahs and classical balustrades',
-      'Open rooftop fitness terrace with pergola and spiral stair',
-      'Earthquake-resistant high-ductility RCC engineering',
-    ],
-    specifications: {
-      'Project Code': '9',
-      'Location': '',
-      'Project Cost': '',
-      'Type of Building': '',
-      'Plinth Area': '',
-      'Face Length': '',
+      'Project Name': 'Dr. Sakil Residential',
+      'Location': 'Janakpur',
+      'Project Cost': 'Rs 1.5 Cr',
+      'Type of Building': 'Residential',
+      'Storeys': '3.5 Storeys',
+      'Total Area': '1966 sq ft',
+      'Plinth Area': '1200 sq ft',
+      'Face Length': '30 ft',
+      'Duration': '1 Year 6 Months',
+      'Completion Year': '2083 BS',
     },
     featured: true,
   },
@@ -698,6 +690,418 @@ export const PROJECTS = [
     },
     featured: true,
   },
+  {
+    id: 19,
+    title: 'Radio Station Janakpur',
+    location: 'Janakpur',
+    category: 'Commercial',
+    status: 'Completed',
+    duration: '10 Months',
+    year: '2083 BS',
+    cost: 'Rs 1.2 Cr',
+    area: '1700 sq ft',
+    image: '/project-gallery/project-19.png',
+    gallery: [
+      '/project-gallery/project-19.png',
+      '/project-gallery/project-19-front.png',
+      '/project-gallery/project-19-aerial.png',
+    ],
+    description:
+      'Radio Station Janakpur is a modern 4-storey mixed-use commercial and residential building located in Janakpur. Completed in 2083 BS within an efficient timeline of 10 Months at a total project cost of Rs 1.2 Cr, the structure spans 1700 sq ft of total built-up area on a 1000 sq ft plinth area with a 35 ft front facade. Designed with arched exposed-brick vertical accent bays, warm architectural wall sconces, planter window boxes, and ornamental balcony railings, it seamlessly integrates a ground-floor commercial showroom, two full residential apartment levels, and a dedicated top-floor broadcasting & office suite.',
+    floorLayout: [
+      {
+        floor: 'Ground Floor',
+        level: 'Level 0',
+        code: 'Showroom & Parking',
+        features: [
+          'Spacious commercial showroom frontage',
+          'Dedicated gated vehicle parking bay',
+          'Main entrance lobby & staircase access'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        level: 'Level 1',
+        code: '2B • 1K/D • 1L • 1T',
+        features: [
+          '2 Comfortable bedrooms (2B)',
+          '1 Modern kitchen & dining area (1K/D)',
+          '1 Spacious living hall (1L)',
+          '1 Common bathroom / toilet (1T)'
+        ]
+      },
+      {
+        floor: 'Second Floor',
+        level: 'Level 2',
+        code: '2B • 1K/D • 1L • 1T',
+        features: [
+          '2 Private bedrooms (2B)',
+          '1 Kitchen & dining space (1K/D)',
+          '1 Family living room with balcony (1L)',
+          '1 Bathroom / toilet facility (1T)'
+        ]
+      },
+      {
+        floor: 'Third Floor',
+        level: 'Level 3',
+        code: 'Office & Studio Area',
+        features: [
+          'Dedicated Radio Station office & studio area',
+          'Executive workspace & broadcasting zone',
+          'Open terrace access'
+        ]
+      }
+    ],
+    highlights: [
+      '4-Storey commercial & residential building with 1700 sq ft total area & 1000 sq ft plinth area',
+      '35 ft wide front elevation with arched brick accent bays & exterior wall lighting',
+      'Ground Floor: Commercial showroom & gated parking bay',
+      'First & Second Floors: 2B, 1K/D, 1L, 1T full residential units on each level',
+      'Third Floor: Dedicated Radio Station office & studio area',
+      'Earthquake-resistant RCC frame construction built to NBC standards'
+    ],
+    specifications: {
+      'Project Code': '19',
+      'Project Name': 'Radio Station Janakpur',
+      'Location': 'Janakpur',
+      'Project Cost': 'Rs 1.2 Cr',
+      'Type of Building': 'Commercial / Mixed-Use',
+      'Storeys': '4 Storeys',
+      'Total Area': '1700 sq ft',
+      'Plinth Area': '1000 sq ft',
+      'Face Length': '35 ft',
+      'Duration': '10 Months',
+      'Completion Year': '2083 BS',
+    },
+    featured: true,
+  },
+  {
+    id: 20,
+    title: 'Nirmala Devi Residential',
+    location: 'Janakpur',
+    category: 'Residential',
+    status: 'Completed',
+    duration: '1.2 Years',
+    year: '2083 BS',
+    cost: 'Rs 95 Lakhs',
+    area: '710 sq ft',
+    image: '/project-gallery/project-20.png',
+    gallery: [
+      '/project-gallery/project-20.png',
+      '/project-gallery/project-20-elevation.png',
+      '/project-gallery/project-20-rear.png',
+      '/project-gallery/project-20-view.png',
+    ],
+    description:
+      'Nirmala Devi Residential is a smartly engineered 4.5-storey contemporary urban residence located in Janakpur. Completed in 2083 BS over a duration of 1.2 Years at a total project cost of Rs 95 Lakhs, this vertical home maximizes a compact 15 ft front facade and 495 sq ft plinth area (710 sq ft plot area) with arched balcony recesses, exposed terracotta brick panels, full-height staircase glazing, and glass balustrades.',
+    floorLayout: [
+      {
+        floor: 'Ground Floor',
+        level: 'Level 0',
+        code: '1R • 1 Bathroom',
+        features: [
+          '1 Multi-purpose room / studio space (1R)',
+          '1 Attached / common bathroom (1 Bathroom)',
+          'Gated front entry & staircase lobby'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        level: 'Level 1',
+        code: '1B • 1K/L',
+        features: [
+          '1 Spacious bedroom (1B)',
+          '1 Open-plan kitchen & living area (1K/L)',
+          'Front glass-railing balcony'
+        ]
+      },
+      {
+        floor: 'Second Floor',
+        level: 'Level 2',
+        code: '1B • 1K/L',
+        features: [
+          '1 Private bedroom (1B)',
+          '1 Combined kitchen & living space (1K/L)',
+          'Arched feature balcony access'
+        ]
+      },
+      {
+        floor: 'Third Floor',
+        level: 'Level 3',
+        code: '1B • 1K/L',
+        features: [
+          '1 Comfortable bedroom (1B)',
+          '1 Kitchen & living lounge (1K/L)',
+          'Panoramic upper balcony'
+        ]
+      },
+      {
+        floor: 'Fourth Floor (Top)',
+        level: 'Level 4',
+        code: '1B • Terrace',
+        features: [
+          '1 Top-floor bedroom (1B)',
+          'Open rooftop terrace & pergola deck'
+        ]
+      }
+    ],
+    highlights: [
+      '4.5-Storey narrow-frontage urban residence on a 15 ft facade & 495 sq ft plinth area',
+      'Arched recessed balconies, exposed brick cladding & vertical staircase glazing',
+      'Ground Floor: 1 Room & 1 Bathroom (1R 1Bathroom)',
+      'First, Second & Third Floors: 1 Bedroom & 1 Kitchen/Living (1B 1K/L) on each floor',
+      'Fourth Floor: 1 Bedroom (1B) with open rooftop terrace',
+      'Earthquake-resistant RCC frame construction built to NBC standards'
+    ],
+    specifications: {
+      'Project Code': '20',
+      'Project Name': 'Nirmala Devi Residential',
+      'Location': 'Janakpur',
+      'Project Cost': 'Rs 95 Lakhs',
+      'Type of Building': 'Residential',
+      'Storeys': '4.5 Storeys',
+      'Total Area': '710 sq ft',
+      'Plinth Area': '495 sq ft',
+      'Face Length': '15 ft',
+      'Duration': '1.2 Years',
+      'Completion Year': '2083 BS',
+    },
+    featured: true,
+  },
+  {
+    id: 21,
+    title: 'Mahesh Sah Residential',
+    location: 'Lalitpur',
+    category: 'Residential',
+    status: 'Completed',
+    duration: '10 Months',
+    year: '2083 BS',
+    cost: 'Rs 90 Lakhs',
+    area: '1180 sq ft',
+    image: '/project-gallery/project-21.jpg',
+    gallery: [
+      '/project-gallery/project-21.jpg',
+    ],
+    description:
+      'Mahesh Sah Residential is an elegant 2.5-storey contemporary residence situated in Lalitpur. Completed in 2083 BS within a 10-month timeline at a total project cost of Rs 90 Lakhs, this home features 1180 sq ft of total area on an 850 sq ft plinth area with a 30 ft front facade. Showcasing natural travertine stone cladding, double-height arched glass fenestration, warm timber accent paneling, and recessed LED facade lighting, it delivers refined modern comfort and earthquake-resistant RCC structural safety.',
+    floorLayout: [
+      {
+        floor: 'Ground Floor',
+        level: 'Level 0',
+        code: '2BHKP (2B • 1H • 1K • Parking)',
+        features: [
+          '2 Spacious bedrooms (2B)',
+          '1 Welcoming living hall & dining area (1H)',
+          '1 Modern modular kitchen (1K)',
+          'Dedicated front parking space (P)'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        level: 'Level 1',
+        code: '2BHK (2B • 1H • 1K)',
+        features: [
+          '2 Comfortable private bedrooms (2B)',
+          '1 Family living hall with arched window & balcony (1H)',
+          '1 Kitchen & dining space (1K)'
+        ]
+      },
+      {
+        floor: 'Second Floor',
+        level: 'Level 2',
+        code: '3B • 1 Pooja Room',
+        features: [
+          '3 Well-ventilated bedrooms (3B)',
+          '1 Peaceful dedicated Pooja room',
+          'Open rooftop terrace access'
+        ]
+      }
+    ],
+    highlights: [
+      '2.5-Storey luxury residence with 1180 sq ft total area & 850 sq ft plinth area',
+      '30 ft front elevation with natural stone cladding, arched glazing & timber accents',
+      'Ground Floor: 2BHK with dedicated parking (2BHKP)',
+      'First Floor: Complete 2BHK family apartment unit',
+      'Second Floor: 3 Bedrooms & 1 dedicated Pooja room',
+      'Earthquake-resistant RCC frame construction built to NBC standards'
+    ],
+    specifications: {
+      'Project Code': '21',
+      'Project Name': 'Mahesh Sah Residential',
+      'Location': 'Lalitpur',
+      'Project Cost': 'Rs 90 Lakhs',
+      'Type of Building': 'Residential',
+      'Storeys': '2.5 Storeys',
+      'Total Area': '1180 sq ft',
+      'Plinth Area': '850 sq ft',
+      'Face Length': '30 ft',
+      'Duration': '10 Months',
+      'Completion Year': '2083 BS',
+    },
+    featured: true,
+  },
+  {
+    id: 22,
+    title: 'Arjun Adhikari Residential',
+    location: 'Janakpur',
+    category: 'Residential',
+    status: 'Completed',
+    duration: '8 Months',
+    year: '2083 BS',
+    cost: 'Rs 70 Lakhs',
+    area: '1120 sq ft',
+    image: '/project-gallery/project-22.jpg',
+    gallery: [
+      '/project-gallery/project-22.jpg',
+    ],
+    description:
+      'Arjun Adhikari Residential is a modern 2-storey residential home located in Janakpur. Completed in 2083 BS within an efficient 8-month duration at a total project cost of Rs 70 Lakhs, this residence encompasses 1120 sq ft of total area on an 800 sq ft plinth area with a 14 ft front elevation. The facade features a cantilevered upper balcony with decorative CNC jali privacy screening, glass balustrades, warm wood-textured ceiling soffits, and an arched ground-floor entrance porch.',
+    floorLayout: [
+      {
+        floor: 'Ground Floor',
+        level: 'Level 0',
+        code: '2B • 1K • 1L',
+        features: [
+          '2 Comfortable bedrooms (2B)',
+          '1 Modern kitchen & dining space (1K)',
+          '1 Welcoming family living hall (1L)',
+          'Front entrance porch & ramp access'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        level: 'Level 1',
+        code: '2B • 1K • 1L',
+        features: [
+          '2 Private bedrooms (2B)',
+          '1 Kitchen & dining area (1K)',
+          '1 Upper living lounge (1L)',
+          'Cantilevered balcony with decorative CNC jali screen'
+        ]
+      }
+    ],
+    highlights: [
+      '2-Storey modern residence with 1120 sq ft total area & 800 sq ft plinth area',
+      '14 ft front elevation featuring cantilevered balcony & CNC jali screen',
+      'Ground Floor: 2 Bedrooms, 1 Kitchen & 1 Living Hall (2B 1K 1L)',
+      'First Floor: 2 Bedrooms, 1 Kitchen & 1 Living Hall (2B 1K 1L)',
+      'Earthquake-resistant RCC frame construction built to NBC standards'
+    ],
+    specifications: {
+      'Project Code': '22',
+      'Project Name': 'Arjun Adhikari Residential',
+      'Location': 'Janakpur',
+      'Project Cost': 'Rs 70 Lakhs',
+      'Type of Building': 'Residential',
+      'Storeys': '2 Storeys',
+      'Total Area': '1120 sq ft',
+      'Plinth Area': '800 sq ft',
+      'Face Length': '14 ft',
+      'Duration': '8 Months',
+      'Completion Year': '2083 BS',
+    },
+    featured: true,
+  },
+  {
+    id: 23,
+    title: 'Kajal Karn Commercial & Residential',
+    location: 'Janakpur',
+    category: 'Commercial',
+    status: 'Completed',
+    duration: '1.3 Years',
+    year: '2083 BS',
+    cost: 'Rs 2.5 Cr',
+    area: '2578 sq ft',
+    image: '/project-gallery/project-23.png',
+    gallery: [
+      '/project-gallery/project-23.png',
+    ],
+    description:
+      'Kajal Karn Commercial & Residential is a landmark 4.5-storey mixed-use building with a full basement situated in Janakpur. Completed in 2083 BS over a duration of 1.3 Years at a project cost of Rs 2.5 Cr, this high-capacity building spans 2578 sq ft of total area on a 1275 sq ft plinth area with a 29 ft front elevation. The structure combines a dedicated basement, 5 commercial retail shutters on the ground floor, 14 master bedrooms across the first, second, and third floors, and a top-floor multi-purpose hall with toilet facility.',
+    floorLayout: [
+      {
+        floor: 'Basement',
+        level: 'Basement',
+        code: 'Basement: Yes',
+        features: [
+          'Full underground basement level',
+          'Dedicated parking & storage utility area',
+          'Reinforced RCC retaining wall structure'
+        ]
+      },
+      {
+        floor: 'Ground Floor',
+        level: 'Level 0',
+        code: '5 Commercial Shutters',
+        features: [
+          '5 Commercial retail / shop shutters',
+          'Wide frontage access & gated driveway entry',
+          'Main lobby & staircase core'
+        ]
+      },
+      {
+        floor: 'First Floor',
+        level: 'Level 1',
+        code: '4 Master Bedrooms • 1 Kitchen',
+        features: [
+          '4 Spacious master bedrooms with attached baths',
+          '1 Modern central kitchen & dining space',
+          'Natural daylight multi-pane window bays'
+        ]
+      },
+      {
+        floor: 'Second Floor',
+        level: 'Level 2',
+        code: '5 Master Bedrooms',
+        features: [
+          '5 Private master bedrooms with attached baths',
+          'Well-ventilated central corridor layout'
+        ]
+      },
+      {
+        floor: 'Third Floor',
+        level: 'Level 3',
+        code: '5 Master Bedrooms',
+        features: [
+          '5 Spacious master bedrooms with attached baths',
+          'Bright stone-textured feature window bay'
+        ]
+      },
+      {
+        floor: 'Fourth Floor',
+        level: 'Level 4',
+        code: '1 Hall • 1 Toilet',
+        features: [
+          '1 Spacious multi-purpose hall',
+          '1 Common toilet / washroom facility',
+          'Open rooftop terrace deck'
+        ]
+      }
+    ],
+    highlights: [
+      '4.5-Storey mixed-use building with Basement (2578 sq ft total area & 1275 sq ft plinth area)',
+      'Ground Floor: 5 Commercial retail shutters with 29 ft front facade',
+      'First Floor: 4 Master bedrooms & 1 Kitchen',
+      'Second & Third Floors: 5 Master bedrooms on each floor (10 total)',
+      'Fourth Floor: Multi-purpose hall, 1 Toilet & open rooftop terrace',
+      'Earthquake-resistant RCC frame & basement retaining structure'
+    ],
+    specifications: {
+      'Project Code': '23',
+      'Project Name': 'Kajal Karn Commercial & Residential',
+      'Location': 'Janakpur',
+      'Project Cost': 'Rs 2.5 Cr',
+      'Type of Building': 'Commercial & Residential',
+      'Storeys': '4.5 Storeys',
+      'Basement': 'Yes',
+      'Total Area': '2578 sq ft',
+      'Plinth Area': '1275 sq ft',
+      'Face Length': '29 ft',
+      'Duration': '1.3 Years',
+      'Completion Year': '2083 BS',
+    },
+    featured: true,
+  },
 ];
 
 // ============================================================
@@ -757,39 +1161,43 @@ export const TESTIMONIALS = [
 export const TEAM = [
   {
     id: 1,
-    name: 'Sujit Shah',
-    designation: 'Managing Director',
-    qualification: 'B.E. Civil Engineering',
-    experience: '20+ years',
-    avatar: 'CE',
+    name: 'Er. Sujit Shah',
+    designation: 'MD & CEO',
+    qualification: '',
+    experience: '',
+    avatar: 'SS',
     color: '#1e40af',
+    image: '/md-sujit-shah.jpg',
   },
   {
     id: 2,
-    name: 'Ar. Prabha Sharma',
-    designation: 'Chief Architect & Design Director',
-    qualification: 'B.Arch, SONA Member',
-    experience: '15+ years',
-    avatar: 'AD',
-    color: '#f97316',
+    name: 'Er. Mukesh Adhikari',
+    designation: 'Manager',
+    qualification: '',
+    experience: '',
+    avatar: 'MA',
+    color: '#cd0102',
+    image: '/team/mukesh-adhikari.png',
   },
   {
     id: 3,
-    name: 'Er. Amit Gurung',
-    designation: 'Head of Structural Engineering',
-    qualification: 'M.E. Structural Engineering',
-    experience: '12+ years',
-    avatar: 'SE',
+    name: 'Er. Amar Singh',
+    designation: 'Chief Architect',
+    qualification: '',
+    experience: '',
+    avatar: 'AS',
     color: '#1e40af',
+    image: '/team/amar-singh.png',
   },
   {
     id: 4,
-    name: 'Pradeep Khadka',
-    designation: 'Project Manager',
-    qualification: 'B.E. Civil Engineering, PMP Certified',
-    experience: '10+ years',
-    avatar: 'PM',
-    color: '#f97316',
+    name: 'Er. Rahul Kumar Purbey',
+    designation: 'Site Engineer',
+    qualification: '',
+    experience: '',
+    avatar: 'RP',
+    color: '#cd0102',
+    image: '/team/rahul-kumar-purbey.png',
   },
 ];
 
@@ -811,7 +1219,7 @@ export const PROCESS_STEPS = [
     description:
       'Our technical team conducts soil evaluation, site planning, and zoning analysis to ensure compliance.',
     icon: 'MapPin',
-    color: '#f97316',
+    color: '#cd0102',
   },
   {
     step: '03',
@@ -827,7 +1235,7 @@ export const PROCESS_STEPS = [
     description:
       'We present a transparent Bill of Quantities (BOQ) detailing all material and construction costs.',
     icon: 'Calculator',
-    color: '#f97316',
+    color: '#cd0102',
   },
   {
     step: '05',
@@ -843,7 +1251,7 @@ export const PROCESS_STEPS = [
     description:
       'We deliver the completed building with structural warranties and ongoing maintenance support.',
     icon: 'Key',
-    color: '#f97316',
+    color: '#cd0102',
   },
 ];
 
