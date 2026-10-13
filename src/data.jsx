@@ -575,35 +575,6 @@ export const PROJECTS = [
     featured: true,
   },
   {
-    id: 16,
-    title: 'Project Code: 16',
-    location: '',
-    category: 'Residential',
-    status: 'Completed',
-    duration: 'Turnkey Project',
-    image: '/project-gallery/project-16.jpg',
-    gallery: [
-      '/project-gallery/project-16.jpg',
-    ],
-    description:
-      'Project 16 — Contemporary 3-storey luxury villa featuring curved red-brick corner bay with panoramic windows, open first-floor terrace lounge, executive second-floor balcony with spiral rooftop staircase, and landscaped courtyard parking by Amulya Builders.',
-    highlights: [
-      'Architectural curved red-brick cylinder wing with panoramic glass windows',
-      'Spacious first-floor terrace lounge with transparent glass railings',
-      'Executive second-floor balcony with exterior spiral staircase to roof deck',
-      'Ground floor outdoor patio seating and covered pergola BBQ area',
-    ],
-    specifications: {
-      'Project Code': '16',
-      'Location': '',
-      'Project Cost': '',
-      'Type of Building': '',
-      'Plinth Area': '',
-      'Face Length': '',
-    },
-    featured: true,
-  },
-  {
     id: 17,
     title: 'Project Code: 17',
     location: '',
