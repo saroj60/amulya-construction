@@ -1171,6 +1171,16 @@ export const TEAM = [
     color: '#1e40af',
     image: '/team/tanu-kumari-shah.png',
   },
+  {
+    id: 8,
+    name: 'Ajay Kumar Sah',
+    designation: 'Co-ordinator',
+    qualification: '',
+    experience: '',
+    avatar: 'AS',
+    color: '#cd0102',
+    image: '/team/placeholder-avatar.svg',
+  },
 ];
 
 // ============================================================

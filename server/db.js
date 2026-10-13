@@ -1245,6 +1245,15 @@ const seedTeam = [
     avatar: 'TS',
     color: '#1e40af',
     image: '/team/tanu-kumari-shah.png'
+  },
+  {
+    name: 'Ajay Kumar Sah',
+    designation: 'Co-ordinator',
+    qualification: '',
+    experience: '',
+    avatar: 'AS',
+    color: '#cd0102',
+    image: '/team/placeholder-avatar.svg'
   }
 ];
 
