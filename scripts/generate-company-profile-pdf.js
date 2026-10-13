@@ -75,6 +75,7 @@ async function generateCompanyProfilePdf() {
 
   // Pre-load project gallery photos
   const projImgs = {
+    p14: await safeEmbedImage(doc, 'project-gallery/project-14.jpg'),
     p19: await safeEmbedImage(doc, 'project-gallery/project-19.png'),
     p6: await safeEmbedImage(doc, 'project-gallery/project-6.jpg'),
     p7: await safeEmbedImage(doc, 'project-gallery/project-7.jpg'),
@@ -162,6 +163,31 @@ async function generateCompanyProfilePdf() {
       size: 8,
       font: fontRegular,
       color: slateMuted,
+    });
+  };
+
+  // Helper: Draw image proportionally within a bounding box (zero distortion / true aspect ratio)
+  const drawProportionalImage = (page, img, boxX, boxY, boxW, boxH, bgColor = null) => {
+    if (bgColor) {
+      page.drawRectangle({
+        x: boxX,
+        y: boxY,
+        width: boxW,
+        height: boxH,
+        color: bgColor,
+      });
+    }
+    if (!img) return;
+    const scale = Math.min(boxW / img.width, boxH / img.height);
+    const drawW = img.width * scale;
+    const drawH = img.height * scale;
+    const drawX = boxX + (boxW - drawW) / 2;
+    const drawY = boxY + (boxH - drawH) / 2;
+    page.drawImage(img, {
+      x: drawX,
+      y: drawY,
+      width: drawW,
+      height: drawH,
     });
   };
 
@@ -264,12 +290,7 @@ async function generateCompanyProfilePdf() {
   });
 
   if (coverProjImg) {
-    page1.drawImage(coverProjImg, {
-      x: coverImgBox.x,
-      y: coverImgBox.y,
-      width: coverImgBox.width,
-      height: coverImgBox.height,
-    });
+    drawProportionalImage(page1, coverProjImg, coverImgBox.x, coverImgBox.y, coverImgBox.width, coverImgBox.height, rgb(15/255, 30/255, 65/255));
   }
 
   // Overlay Tag on Photo
@@ -460,12 +481,7 @@ async function generateCompanyProfilePdf() {
     borderWidth: 1,
   });
   if (aboutProjImg) {
-    page2.drawImage(aboutProjImg, {
-      x: archImgBox.x,
-      y: archImgBox.y,
-      width: archImgBox.width,
-      height: archImgBox.height,
-    });
+    drawProportionalImage(page2, aboutProjImg, archImgBox.x, archImgBox.y, archImgBox.width, archImgBox.height, bgLight);
   }
 
   yPos -= 155;
@@ -950,17 +966,17 @@ async function generateCompanyProfilePdf() {
 
   const projectCards = [
     {
-      code: 'Project 19',
-      name: 'Turnkey Luxury Commercial Hub',
+      category: 'Commercial',
+      name: 'Commercial & Business Complex',
       loc: 'Kathmandu Valley',
       cost: 'Turnkey Contract',
-      area: 'Multi-Storey Complex',
-      type: 'Commercial & Corporate Hub',
+      area: '3.5-Storey Commercial & Retail',
+      type: 'Commercial & Residential',
       status: 'Completed',
-      imgKey: 'p19',
+      imgKey: 'p14',
     },
     {
-      code: 'Project 6',
+      category: 'Residential',
       name: 'Jay Kishor Mahato Residential',
       loc: 'Chitwan, Nepal',
       cost: 'Rs 1 Cr 10 Lakhs',
@@ -970,7 +986,7 @@ async function generateCompanyProfilePdf() {
       imgKey: 'p6',
     },
     {
-      code: 'Project 7',
+      category: 'Residential',
       name: 'Dr. Sakil Residential Villa',
       loc: 'Janakpur, Nepal',
       cost: 'Rs 1.50 Crore',
@@ -980,7 +996,7 @@ async function generateCompanyProfilePdf() {
       imgKey: 'p7',
     },
     {
-      code: 'Project 11',
+      category: 'Residential',
       name: 'Budhanilkantha Luxury Residence',
       loc: 'Budhanilkantha, Kathmandu',
       cost: 'Rs 1 Cr 20 Lakhs',
@@ -990,7 +1006,7 @@ async function generateCompanyProfilePdf() {
       imgKey: 'p11',
     },
     {
-      code: 'Project 12',
+      category: 'Residential',
       name: 'Neo-Classical Palatial Residence',
       loc: 'Kathmandu Valley',
       cost: 'Turnkey Contract',
@@ -1000,7 +1016,7 @@ async function generateCompanyProfilePdf() {
       imgKey: 'p12',
     },
     {
-      code: 'Project 13',
+      category: 'Residential',
       name: 'Cottage Villa with Traditional Roofs',
       loc: 'Kathmandu Valley Outskirts',
       cost: 'Turnkey Contract',
@@ -1011,78 +1027,72 @@ async function generateCompanyProfilePdf() {
     },
   ];
 
+  const cardW = 250;
+  const cardH = 208;
+  const imgBoxH = 135; // 240 x 135 = exact 16:9 ratio, zero distortion
+  const rowGap = 10;
+
   projectCards.forEach((proj, idx) => {
     const col = idx % 2;
     const row = Math.floor(idx / 2);
     const px = 40 + col * 265;
-    const py = yPos - row * 195;
+    const py = yPos - row * (cardH + rowGap);
 
     // Card Frame
     page4.drawRectangle({
       x: px,
-      y: py - 182,
-      width: 250,
-      height: 182,
+      y: py - cardH,
+      width: cardW,
+      height: cardH,
       color: white,
       borderColor: cardBorder,
       borderWidth: 1,
     });
 
-    // Embed REAL Project Photo (Height 85pt)
+    // Embed REAL Project Photo (Height 135pt, Proportional 16:9, ZERO distortion)
     const pImg = projImgs[proj.imgKey];
-    if (pImg) {
-      page4.drawImage(pImg, {
-        x: px,
-        y: py - 85,
-        width: 250,
-        height: 85,
-      });
-    } else {
-      page4.drawRectangle({
-        x: px,
-        y: py - 85,
-        width: 250,
-        height: 85,
-        color: rgb(20/255, 35/255, 65/255),
-      });
-    }
+    drawProportionalImage(page4, pImg, px + 5, py - imgBoxH - 5, 240, imgBoxH, rgb(241/255, 245/255, 249/255));
 
-    // Status Pill on Photo
+    // Category Pill on Photo (top-left, replaces old project number badges)
+    const catText = proj.category.toUpperCase();
+    const catWidth = catText === 'COMMERCIAL' ? 68 : 64;
     page4.drawRectangle({
-      x: px + 8,
-      y: py - 22,
-      width: 60,
-      height: 16,
+      x: px + 10,
+      y: py - 24,
+      width: catWidth,
+      height: 15,
       color: rgb(1/255, 35/255, 82/255),
     });
-    page4.drawText(proj.code, {
-      x: px + 12,
-      y: py - 18,
-      size: 7.5,
+    page4.drawText(catText, {
+      x: px + 15,
+      y: py - 20,
+      size: 7,
       font: fontBold,
       color: white,
     });
 
+    // Status Pill on Photo (top-right)
     page4.drawRectangle({
       x: px + 182,
-      y: py - 22,
-      width: 60,
-      height: 16,
+      y: py - 24,
+      width: 58,
+      height: 15,
       color: orange,
     });
     page4.drawText(proj.status.toUpperCase(), {
       x: px + 188,
-      y: py - 18,
+      y: py - 20,
       size: 7,
       font: fontBold,
       color: white,
     });
 
     // Project Name Under Image
-    page4.drawText(proj.name.slice(0, 32), {
+    const pTitleSize = proj.name.length > 28 ? 8 : 8.5;
+    page4.drawText(proj.name, {
       x: px + 8,
-      y: py - 98,
-      size: 8.5,
+      y: py - 149,
+      size: pTitleSize,
       font: fontBold,
       color: navy,
     });
@@ -1098,15 +1108,15 @@ async function generateCompanyProfilePdf() {
     pSpecs.forEach((sp, sIdx) => {
       page4.drawText(sp.k, {
         x: px + 8,
-        y: py - 114 - (sIdx * 14),
-        size: 7.5,
+        y: py - 161 - (sIdx * 11),
+        size: 7.2,
         font: fontBold,
         color: slateDark,
       });
-      page4.drawText(sp.v.slice(0, 28), {
+      page4.drawText(sp.v.slice(0, 32), {
         x: px + 75,
-        y: py - 114 - (sIdx * 14),
-        size: 7.5,
+        y: py - 161 - (sIdx * 11),
+        size: 7.2,
         font: fontRegular,
         color: dark,
       });
@@ -1114,14 +1124,14 @@ async function generateCompanyProfilePdf() {
 
     // Bottom Verification
     page4.drawLine({
-      start: { x: px + 8, y: py - 166 },
-      end: { x: px + 242, y: py - 166 },
+      start: { x: px + 8, y: py - 198 },
+      end: { x: px + 242, y: py - 198 },
       thickness: 0.5,
       color: cardBorder,
     });
     page4.drawText('NBC 105:2020 Compliant • Full Turnkey Execution', {
       x: px + 8,
-      y: py - 176,
+      y: py - 206,
       size: 6.8,
       font: fontItalic,
       color: slateMuted,

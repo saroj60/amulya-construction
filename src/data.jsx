@@ -135,7 +135,7 @@ export const SERVICES = [
 export const PROJECTS = [
   {
     id: 1,
-    title: 'Project Code: 1',
+    title: 'Modern Multi-Storey Residence',
     location: '',
     category: 'Residential',
     status: 'Completed',
@@ -145,7 +145,7 @@ export const PROJECTS = [
       '/project-gallery/project-1.jpg',
     ],
     description:
-      'Project 1 — Modern multi-storey residential architecture and construction by Amulya Builders.',
+      'Modern multi-storey residential architecture and construction by Amulya Builders.',
     highlights: [
       'Earthquake-resistant RCC structure',
       'Modern brick-and-render facade',
@@ -153,7 +153,7 @@ export const PROJECTS = [
       'NBC 105:2020 code compliance',
     ],
     specifications: {
-      'Project Code': '1',
+      'Project Name': 'Modern Multi-Storey Residence',
       'Location': '',
       'Project Cost': '',
       'Type of Building': '',
@@ -164,7 +164,7 @@ export const PROJECTS = [
   },
   {
     id: 2,
-    title: 'Project Code: 2',
+    title: 'Panoramic Terrace Luxury Villa',
     location: '',
     category: 'Residential',
     status: 'Completed',
@@ -175,7 +175,7 @@ export const PROJECTS = [
       '/project-gallery/project-2-garden.jpg',
     ],
     description:
-      'Project 2 — Modern luxury residential villa with curved panoramic terraces, landscaping, and turnkey construction by Amulya Builders.',
+      'Modern luxury residential villa with curved panoramic terraces, landscaping, and turnkey construction by Amulya Builders.',
     highlights: [
       'Curved panoramic terrace & glass balustrades',
       'Artisan exposed brick circular bay window',
@@ -183,7 +183,7 @@ export const PROJECTS = [
       'NBC earthquake-resistant RCC construction',
     ],
     specifications: {
-      'Project Code': '2',
+      'Project Name': 'Panoramic Terrace Luxury Villa',
       'Location': '',
       'Project Cost': '',
       'Type of Building': '',
@@ -194,7 +194,7 @@ export const PROJECTS = [
   },
   {
     id: 3,
-    title: 'Project Code: 3',
+    title: 'Garden Patio & Pergola Estate',
     location: '',
     category: 'Residential',
     status: 'Completed',
@@ -204,7 +204,7 @@ export const PROJECTS = [
       '/project-gallery/project-3.jpg',
     ],
     description:
-      'Project 3 — Modern outdoor living, pergola patio, barbecue station, and landscaped garden design & construction by Amulya Builders.',
+      'Modern outdoor living, pergola patio, barbecue station, and landscaped garden design & construction by Amulya Builders.',
     highlights: [
       'Timber pergola & outdoor barbecue kitchen',
       'Landscaped lawn with garden swing and water feature',
@@ -212,7 +212,7 @@ export const PROJECTS = [
       'Modern security fencing and integrated exterior lighting',
     ],
     specifications: {
-      'Project Code': '3',
+      'Project Name': 'Garden Patio & Pergola Estate',
       'Location': '',
       'Project Cost': '',
       'Type of Building': '',
@@ -223,7 +223,7 @@ export const PROJECTS = [
   },
   {
     id: 4,
-    title: 'Project Code: 4',
+    title: 'Contemporary Multi-Level Residence',
     location: '',
     category: 'Residential',
     status: 'Completed',
@@ -233,7 +233,7 @@ export const PROJECTS = [
       '/project-gallery/project-4.jpg',
     ],
     description:
-      'Project 4 — Contemporary 4-storey residential home blending modern RCC structure with traditional tiled balcony cornices, brick column accents, and rooftop pergolas by Amulya Builders.',
+      'Contemporary 4-storey residential home blending modern RCC structure with traditional tiled balcony cornices, brick column accents, and rooftop pergolas by Amulya Builders.',
     highlights: [
       '4-Storey RCC earthquake-resistant frame',
       'Covered vehicle porch and dedicated 2-wheeler parking',
@@ -241,7 +241,7 @@ export const PROJECTS = [
       'Upper floor rooftop pergola and spiral deck staircase',
     ],
     specifications: {
-      'Project Code': '4',
+      'Project Name': 'Contemporary Multi-Level Residence',
       'Location': '',
       'Project Cost': '',
       'Type of Building': '',
@@ -364,7 +364,7 @@ export const PROJECTS = [
   },
   {
     id: 10,
-    title: 'Project Code: 10',
+    title: 'Hilltop Cultural Pilgrimage Complex',
     location: '',
     category: 'Commercial',
     status: 'Completed',
@@ -374,7 +374,7 @@ export const PROJECTS = [
       '/project-gallery/project-10.jpg',
     ],
     description:
-      'Project 10 — Hilltop spiritual pilgrimage complex featuring monumental golden Lord Shiva statue, Shivalinga pedestals, stupa, dressed stone fortress retaining walls, and landscaped rhododendron gardens by Amulya Builders.',
+      'Hilltop spiritual pilgrimage complex featuring monumental golden Lord Shiva statue, Shivalinga pedestals, stupa, dressed stone fortress retaining walls, and landscaped rhododendron gardens by Amulya Builders.',
     highlights: [
       'Monumental hilltop golden Shiva deity installation',
       'Surrounding traditional Shivalinga shrines and stupa integration',
@@ -393,7 +393,7 @@ export const PROJECTS = [
   },
   {
     id: 11,
-    title: 'Project Code: 11',
+    title: 'Budhanilkantha Luxury Residence',
     location: 'Budhanilkantha, Kathmandu',
     category: 'Residential',
     status: 'Completed',
@@ -405,7 +405,7 @@ export const PROJECTS = [
       '/project-gallery/project-11.jpg',
     ],
     description:
-      'Project Code: 11 is an exquisite 2.5-storey modern residential villa situated in the serene and scenic surroundings of Budhanilkantha, Kathmandu. Successfully completed in 2023 with a total project cost of Rs 1 Cr 20 Lakhs over an efficient timeline of 1 Year 8 Months, this home is built with high-ductility earthquake-resistant RCC structural engineering, contemporary C-curve cantilevered balconies, and an artisan exposed-brick vertical accent pillar.',
+      'Budhanilkantha Luxury Residence is an exquisite 2.5-storey modern residential villa situated in the serene and scenic surroundings of Budhanilkantha, Kathmandu. Successfully completed in 2023 with a total project cost of Rs 1 Cr 20 Lakhs over an efficient timeline of 1 Year 8 Months, this home is built with high-ductility earthquake-resistant RCC structural engineering, contemporary C-curve cantilevered balconies, and an artisan exposed-brick vertical accent pillar.',
     floorLayout: [
       {
         floor: 'Ground Floor',
@@ -455,7 +455,7 @@ export const PROJECTS = [
   },
   {
     id: 12,
-    title: 'Project Code: 12',
+    title: 'Neo-Classical Palatial Residence',
     location: '',
     category: 'Residential',
     status: 'Completed',
@@ -467,7 +467,7 @@ export const PROJECTS = [
       '/project-gallery/project-12-rear.jpg',
     ],
     description:
-      'Project 12 — Grand 3.5-storey neo-classical palatial residence featuring monumental Corinthian fluted columns, ornate pediment over central arched atrium, cascading green planters, and multi-sided balustrade balconies by Amulya Builders.',
+      'Grand 3.5-storey neo-classical palatial residence featuring monumental Corinthian fluted columns, ornate pediment over central arched atrium, cascading green planters, and multi-sided balustrade balconies by Amulya Builders.',
     highlights: [
       'Monumental Corinthian colonnade with ornate pediment cartouche',
       'Central full-height arched bay atrium and double car parking',
@@ -486,7 +486,7 @@ export const PROJECTS = [
   },
   {
     id: 13,
-    title: 'Project Code: 13',
+    title: 'Cottage Villa with Traditional Roofs',
     location: '',
     category: 'Residential',
     status: 'Completed',
@@ -497,7 +497,7 @@ export const PROJECTS = [
       '/project-gallery/project-13-aerial.jpg',
     ],
     description:
-      'Project 13 — Elegant 2-storey cottage villa blending modern RCC engineering with classic Nepalese red sloping tile roofs, gabled portico entrance, spacious parking yard, and secured compound perimeter by Amulya Builders.',
+      'Elegant 2-storey cottage villa blending modern RCC engineering with classic Nepalese red sloping tile roofs, gabled portico entrance, spacious parking yard, and secured compound perimeter by Amulya Builders.',
     highlights: [
       'Multi-tiered sloping red clay tile roofs with dormer gables',
       'Colonnaded portico entrance and open balcony',
@@ -516,7 +516,7 @@ export const PROJECTS = [
   },
   {
     id: 14,
-    title: 'Project Code: 14',
+    title: 'Mixed-Use Commercial & Residential Complex',
     location: '',
     category: 'Commercial',
     status: 'Completed',
@@ -528,7 +528,7 @@ export const PROJECTS = [
       '/project-gallery/project-14-front.jpg',
     ],
     description:
-      'Project 14 — Contemporary 3.5-storey mixed-use commercial & residential building featuring ground-floor retail shopfronts with rolling shutters, premium residential apartments above, stone-clad accent facade, and cascading planter rooftop terrace by Amulya Builders.',
+      'Contemporary 3.5-storey mixed-use commercial & residential building featuring ground-floor retail shopfronts with rolling shutters, premium residential apartments above, stone-clad accent facade, and cascading planter rooftop terrace by Amulya Builders.',
     highlights: [
       'Ground-floor commercial retail shutters with independent stairwell',
       'Upper-floor spacious residential apartments with glass balustrades',
@@ -547,7 +547,7 @@ export const PROJECTS = [
   },
   {
     id: 15,
-    title: 'Project Code: 15',
+    title: 'Mediterranean Arched Luxury Villa',
     location: '',
     category: 'Residential',
     status: 'Completed',
@@ -557,7 +557,7 @@ export const PROJECTS = [
       '/project-gallery/project-15.jpg',
     ],
     description:
-      'Project 15 — Distinctive 3-storey European Mediterranean luxury villa featuring arched arcade verandas, hip slate roof, rooftop terrace pergola lounge, palm landscaping, and gated compound parking by Amulya Builders.',
+      'Distinctive 3-storey European Mediterranean luxury villa featuring arched arcade verandas, hip slate roof, rooftop terrace pergola lounge, palm landscaping, and gated compound parking by Amulya Builders.',
     highlights: [
       'Grand double-storey arched arcade portico & balcony',
       'Charcoal slate pitched hip roof with architectural eaves',
@@ -576,7 +576,7 @@ export const PROJECTS = [
   },
   {
     id: 17,
-    title: 'Project Code: 17',
+    title: 'Contemporary Multi-Storey Residence',
     location: '',
     category: 'Residential',
     status: 'Completed',
@@ -586,7 +586,7 @@ export const PROJECTS = [
       '/project-gallery/project-17.jpg',
     ],
     description:
-      'Project 17 — Contemporary 4-storey residential building featuring Nepali traditional roof eave cornices, brick-and-render dual-tone facade, gated compound wall with covered entrance, multiple vehicle parking, and landscaped garden perimeter by Amulya Builders.',
+      'Contemporary 4-storey residential building featuring Nepali traditional roof eave cornices, brick-and-render dual-tone facade, gated compound wall with covered entrance, multiple vehicle parking, and landscaped garden perimeter by Amulya Builders.',
     highlights: [
       '4-Storey earthquake-resilient RCC frame engineered to NBC codes',
       'Neo-vernacular red-tiled overhang canopies and clay brick accent bands',
@@ -605,7 +605,7 @@ export const PROJECTS = [
   },
   {
     id: 18,
-    title: 'Project Code: 18',
+    title: 'Baroque Crest Classical Residence',
     location: '',
     category: 'Residential',
     status: 'Completed',
@@ -615,7 +615,7 @@ export const PROJECTS = [
       '/project-gallery/project-18.jpg',
     ],
     description:
-      'Project 18 — Grand Neo-Classical luxury residence featuring ornate European baroque stone bas-relief crests, classical turned balustrade balconies, covered vehicle porch, wrought-iron filigree boundary gates, and rooftop observation deck by Amulya Builders.',
+      'Grand Neo-Classical luxury residence featuring ornate European baroque stone bas-relief crests, classical turned balustrade balconies, covered vehicle porch, wrought-iron filigree boundary gates, and rooftop observation deck by Amulya Builders.',
     highlights: [
       'Intricate baroque floral bas-relief motifs sculpted on balcony fascias',
       'Classical turned stone balustrades on first-floor and penthouse terraces',
