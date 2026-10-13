@@ -24,6 +24,25 @@ async function safeEmbedImage(doc, relPath) {
   return null;
 }
 
+function wrapText(text, font, fontSize, maxWidth) {
+  const words = text.split(' ');
+  const lines = [];
+  let currentLine = '';
+
+  for (const word of words) {
+    const testLine = currentLine ? `${currentLine} ${word}` : word;
+    const testWidth = font.widthOfTextAtSize(testLine, fontSize);
+    if (testWidth <= maxWidth) {
+      currentLine = testLine;
+    } else {
+      if (currentLine) lines.push(currentLine);
+      currentLine = word;
+    }
+  }
+  if (currentLine) lines.push(currentLine);
+  return lines;
+}
+
 async function generateCompanyProfilePdf() {
   const doc = await PDFDocument.create();
   
@@ -551,43 +570,66 @@ async function generateCompanyProfilePdf() {
   yPos -= 20;
 
   const coreVals = [
-    { title: '1. Engineering Integrity', desc: 'No shortcuts on steel rebar or cement grade. Strict adherence to structural designs.' },
-    { title: '2. Total Transparency', desc: 'Detailed, unhidden Bill of Quantities (BOQ). Clear market rates and no surprises.' },
-    { title: '3. NBC Code Compliance', desc: 'NBC 105:2020 seismic engineering standard for complete safety in seismic Zone V.' },
-    { title: '4. Guaranteed Punctuality', desc: 'Precise Gantt schedules, experienced site engineers, and guaranteed on-time handover.' },
+    {
+      title: '1. Engineering Integrity',
+      line1: 'No shortcuts on steel rebar or cement grade.',
+      line2: 'Strict adherence to verified structural designs.'
+    },
+    {
+      title: '2. Total Transparency',
+      line1: 'Detailed, unhidden Bill of Quantities (BOQ).',
+      line2: 'Clear market rates and zero hidden charges.'
+    },
+    {
+      title: '3. NBC Code Compliance',
+      line1: 'NBC 105:2020 seismic engineering standard',
+      line2: 'for complete safety in seismic Zone V.'
+    },
+    {
+      title: '4. Guaranteed Punctuality',
+      line1: 'Precise Gantt schedules, experienced site',
+      line2: 'engineers, and guaranteed on-time handover.'
+    },
   ];
 
   coreVals.forEach((val, idx) => {
     const col = idx % 2;
     const row = Math.floor(idx / 2);
     const vx = 40 + col * 265;
-    const vy = yPos - row * 50;
+    const vy = yPos - row * 58;
     page2.drawRectangle({
       x: vx,
-      y: vy - 42,
+      y: vy - 50,
       width: 250,
-      height: 42,
+      height: 50,
       color: bgLight,
       borderColor: cardBorder,
       borderWidth: 1,
     });
     page2.drawText(val.title, {
-      x: vx + 10,
-      y: vy - 15,
+      x: vx + 12,
+      y: vy - 16,
       size: 9,
       font: fontBold,
       color: navy,
     });
-    page2.drawText(val.desc, {
-      x: vx + 10,
-      y: vy - 29,
+    page2.drawText(val.line1, {
+      x: vx + 12,
+      y: vy - 30,
+      size: 7.5,
+      font: fontRegular,
+      color: slateDark,
+    });
+    page2.drawText(val.line2, {
+      x: vx + 12,
+      y: vy - 41,
       size: 7.5,
       font: fontRegular,
       color: slateDark,
     });
   });
 
-  yPos -= 125;
+  yPos -= 135;
 
   // Track Record Strip
   page2.drawText('PROVEN TRACK RECORD & REACH', {
@@ -788,22 +830,23 @@ async function generateCompanyProfilePdf() {
     srv.points.forEach((pt, pIdx) => {
       page3.drawCircle({
         x: sx + 12,
-        y: sy - 34 - (pIdx * 17),
+        y: sy - 34 - (pIdx * 18),
         size: 2,
         color: orange,
       });
-      page3.drawText(pt.slice(0, 48), {
+      const wrapped = wrapText(pt, fontRegular, 7.5, 215);
+      page3.drawText(wrapped[0] || '', {
         x: sx + 20,
-        y: sy - 36 - (pIdx * 17),
+        y: sy - 36 - (pIdx * 18),
         size: 7.5,
         font: fontRegular,
         color: slateDark,
       });
-      if (pt.length > 48) {
-        page3.drawText(pt.slice(48), {
+      if (wrapped[1]) {
+        page3.drawText(wrapped[1], {
           x: sx + 20,
-          y: sy - 44 - (pIdx * 17),
-          size: 7,
+          y: sy - 44 - (pIdx * 18),
+          size: 6.8,
           font: fontRegular,
           color: slateMuted,
         });
@@ -1275,11 +1318,11 @@ async function generateCompanyProfilePdf() {
 
   const legalCreds = [
     { title: 'Company Name', val: 'Amulya Builders Pvt. Ltd.' },
-    { title: 'Experience', val: '9+ Years Active Engineering Excellence' },
-    { title: 'PAN / VAT Registration No.', val: '619774758 (Inland Revenue Dept.)' },
-    { title: 'Engineering Governance', val: 'Nepal Engineering Council (NEC) Registered' },
-    { title: 'Building Standards', val: 'NBC 105:2020 / NBC 205 (Seismic Zone V Compliant)' },
-    { title: 'Turnkey Scope', val: 'Inside & Outside Kathmandu Valley Across Nepal' },
+    { title: 'Governance', val: 'Nepal Engineering Council (NEC)' },
+    { title: 'Experience', val: '9+ Years Active Excellence' },
+    { title: 'Seismic Standard', val: 'NBC 105:2020 (Zone V Compliant)' },
+    { title: 'PAN / VAT ID', val: '619774758 (Inland Revenue)' },
+    { title: 'Turnkey Scope', val: 'Inside & Outside Valley Across Nepal' },
   ];
 
   legalCreds.forEach((cred, i) => {
@@ -1296,7 +1339,7 @@ async function generateCompanyProfilePdf() {
       color: slateDark,
     });
     page5.drawText(cred.val, {
-      x: cx + 120,
+      x: cx + 85,
       y: cy - 10,
       size: 7.5,
       font: fontRegular,
