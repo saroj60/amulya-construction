@@ -1263,6 +1263,15 @@ const seedTeam = [
     avatar: 'AM',
     color: '#1e40af',
     image: '/team/aakash-mandal.png'
+  },
+  {
+    name: 'Ritesh Shah',
+    designation: 'Marketing Head',
+    qualification: '',
+    experience: '',
+    avatar: 'RS',
+    color: '#cd0102',
+    image: '/team/ritesh-shah.png'
   }
 ];
 
