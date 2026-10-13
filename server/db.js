@@ -1236,6 +1236,15 @@ const seedTeam = [
     avatar: 'BR',
     color: '#cd0102',
     image: '/team/bijaya-rasaili.png'
+  },
+  {
+    name: 'Tanu Kumari Shah',
+    designation: 'Assistant Architect',
+    qualification: '',
+    experience: '',
+    avatar: 'TS',
+    color: '#1e40af',
+    image: '/team/tanu-kumari-shah.png'
   }
 ];
 

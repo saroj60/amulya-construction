@@ -539,7 +539,7 @@ export default function CompanyProfilePage() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  {team.slice(0, 6).map((member, index) => (
+                  {team.filter(m => !m.name?.includes('Sujit Shah')).slice(0, 8).map((member, index) => (
                     <div
                       key={member.id || index}
                       className="flex items-center gap-4 p-3.5 rounded-2xl bg-slate-50 border border-slate-200"

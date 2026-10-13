@@ -1161,6 +1161,16 @@ export const TEAM = [
     color: '#cd0102',
     image: '/team/bijaya-rasaili.png',
   },
+  {
+    id: 7,
+    name: 'Tanu Kumari Shah',
+    designation: 'Assistant Architect',
+    qualification: '',
+    experience: '',
+    avatar: 'TS',
+    color: '#1e40af',
+    image: '/team/tanu-kumari-shah.png',
+  },
 ];
 
 // ============================================================
