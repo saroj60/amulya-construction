@@ -309,7 +309,129 @@ export default function CompanyProfilePage() {
           </section>
 
           {/* ==============================================================
-              PAGE 2: ABOUT US, VISION, MISSION & CORE VALUES
+              PAGE 2: TABLE OF CONTENTS & MESSAGE FROM THE MD & CEO
+             ============================================================== */}
+          <section className="a4-page bg-white text-slate-900 w-full min-h-[297mm] shadow-2xl border border-slate-300 flex flex-col justify-between p-10">
+            <div>
+              {/* Page Header */}
+              <div className="flex items-center justify-between pb-4 border-b-2 border-[#012352]">
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-500">
+                    Executive Directory // Strategic Vision
+                  </span>
+                  <h2 className="text-2xl font-black text-[#012352] tracking-tight">
+                    Message From MD & Table of Contents
+                  </h2>
+                </div>
+                <img src="/amulyalogo1.png" alt="Logo" className="h-10 w-auto object-contain" />
+              </div>
+
+              {/* Message from Managing Director */}
+              <div className="mt-6 bg-gradient-to-br from-[#012352] to-[#02336e] text-white rounded-2xl p-6 shadow-md border-l-4 border-orange-500">
+                <div className="grid grid-cols-12 gap-6 items-center">
+                  <div className="col-span-4">
+                    <div className="rounded-xl overflow-hidden border-2 border-orange-400 shadow-lg aspect-[4/5] bg-slate-900">
+                      <img
+                        src="/md-sujit-shah.jpg"
+                        alt="Er. Sujit Shah — MD & CEO"
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
+                    <div className="mt-2.5 text-center">
+                      <h3 className="text-sm font-black text-white">Er. Sujit Shah</h3>
+                      <p className="text-[11px] font-bold text-orange-400 uppercase tracking-wider">
+                        Managing Director & CEO
+                      </p>
+                      <p className="text-[10px] text-slate-300">Senior Civil Engineer • NEC Regd.</p>
+                      <span className="inline-block mt-1.5 px-2 py-0.5 rounded bg-white/10 text-orange-300 text-[9px] font-bold">
+                        9+ Years Leadership
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="col-span-8 space-y-2.5 text-xs leading-relaxed text-slate-100">
+                    <span className="inline-block px-2.5 py-0.5 rounded bg-orange-500 text-white text-[10px] font-extrabold uppercase tracking-wider">
+                      Executive Leadership Address
+                    </span>
+                    <h4 className="text-base font-black text-white leading-snug">
+                      “Engineering Generational Trust, Transparency & Seismic Resilience.”
+                    </h4>
+                    <p className="text-slate-200">
+                      Dear Valued Clients, Partners & Well-Wishers — Welcome to <strong>{COMPANY.name}</strong>.
+                      When we established this company, our objective was clear: to redefine Nepal’s construction
+                      sector through uncompromising structural engineering integrity, complete cost transparency, and architectural elegance.
+                    </p>
+                    <p className="text-slate-200">
+                      In a nation situated in Seismic Zone V, building is not merely pouring concrete—it is a sacred
+                      responsibility to safeguard human lives. Every residential home and commercial development we execute
+                      complies strictly with the <strong>Nepal National Building Code (NBC 105:2020)</strong>, utilizing certified
+                      materials, licensed engineers, and complete BOQ transparency.
+                    </p>
+                    <p className="text-slate-200">
+                      With 9+ years of field excellence, 20+ satisfied clients, and 15+ licensed engineering professionals,
+                      we guide every milestone from soil testing to keys in hand. We invite you to explore our capabilities and partner with us on your landmark project.
+                    </p>
+                    <div className="pt-2 border-t border-white/15 flex items-center justify-between text-[11px] text-orange-300 font-bold">
+                      <span>Er. Sujit Shah — Founder & MD / CEO</span>
+                      <span>Amulya Builders Pvt. Ltd.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Table of Contents Section */}
+              <div className="mt-8">
+                <div className="flex items-center gap-3 pb-2 border-b border-slate-200">
+                  <h3 className="text-sm font-black text-[#012352] uppercase tracking-wider">
+                    Table of Contents
+                  </h3>
+                  <span className="text-xs text-slate-400">• Official Document Directory</span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3.5 mt-4">
+                  {[
+                    { num: '01', title: 'Company Overview & Vision', sub: 'Corporate identity, mission & national reach', page: 'Page 03' },
+                    { num: '02', title: 'Core Values & Track Record', sub: 'NBC 105:2020 standard & verified metrics', page: 'Page 03' },
+                    { num: '03', title: 'Comprehensive Turnkey Services', sub: '3D architectural, structural & RCC build', page: 'Page 04' },
+                    { num: '04', title: '5-Stage Execution Workflow', sub: 'Consultation to turnkey key handover', page: 'Page 04' },
+                    { num: '05', title: 'Signature Projects Portfolio', sub: 'Landmark residential & commercial builds', page: 'Page 05' },
+                    { num: '06', title: 'Technical Team & Accreditation', sub: 'Licensed team, statutory PAN & contact', page: 'Page 06' },
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-center justify-between p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white transition-colors">
+                      <div className="flex items-center gap-3">
+                        <span className="w-8 h-8 rounded-lg bg-[#012352] text-orange-400 font-black text-xs flex items-center justify-center">
+                          {item.num}
+                        </span>
+                        <div>
+                          <div className="text-xs font-bold text-[#012352]">{item.title}</div>
+                          <div className="text-[10px] text-slate-500">{item.sub}</div>
+                        </div>
+                      </div>
+                      <span className="px-2.5 py-1 rounded-md bg-orange-500 text-white text-[10px] font-bold">
+                        {item.page}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Quick Legal Credentials Summary */}
+              <div className="mt-6 p-3.5 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-between text-xs text-slate-600">
+                <span><strong>Regd:</strong> Amulya Builders Pvt. Ltd. (PAN: 619774758)</span>
+                <span><strong>Code:</strong> NBC 105:2020 (Zone V Compliant)</span>
+                <span><strong>Council:</strong> Nepal Engineering Council (NEC)</span>
+              </div>
+            </div>
+
+            {/* Page Footer */}
+            <div className="pt-4 border-t border-slate-200 flex items-center justify-between text-[10px] text-slate-500 font-medium">
+              <span>{COMPANY.name} | Official Corporate Profile • 9+ Years of Excellence</span>
+              <span>Page 02 of 06</span>
+            </div>
+          </section>
+
+          {/* ==============================================================
+              PAGE 3: ABOUT US, VISION, MISSION & CORE VALUES
              ============================================================== */}
           <section className="a4-page bg-white text-slate-900 w-full min-h-[297mm] shadow-2xl border border-slate-300 flex flex-col justify-between p-10">
             <div>

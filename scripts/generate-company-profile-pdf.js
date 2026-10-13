@@ -416,7 +416,357 @@ async function generateCompanyProfilePdf() {
   });
 
   // =============================================================
-  // PAGE 2: OVERVIEW, VISION & EMBEDDED ARCHITECTURE IMAGE
+  // PAGE 2: SEPARATE PAGE FOR TABLE OF CONTENTS & MESSAGE FROM MD/CEO
+  // =============================================================
+  const page2TOC = doc.addPage([W, H]);
+  drawPageHeader(page2TOC, 'Message From MD & Table of Contents', 'Leadership Vision • Document Navigation & Corporate Directory');
+
+  let yPosTOC = H - 98;
+
+  // Upper Section: Message from MD & CEO Card
+  const mdCardH = 310;
+  page2TOC.drawRectangle({
+    x: 40,
+    y: yPosTOC - mdCardH,
+    width: W - 80,
+    height: mdCardH,
+    color: white,
+    borderColor: cardBorder,
+    borderWidth: 1,
+  });
+  page2TOC.drawRectangle({
+    x: 40,
+    y: yPosTOC - mdCardH,
+    width: 4,
+    height: mdCardH,
+    color: orange,
+  });
+
+  // Left Column inside MD Card: Framed Portrait of Er. Sujit Shah
+  const mdBox = { x: 55, y: yPosTOC - 170, width: 110, height: 145 };
+  drawProportionalImage(page2TOC, mdImg, mdBox.x, mdBox.y, mdBox.width, mdBox.height, rgb(241/255, 245/255, 249/255));
+  page2TOC.drawRectangle({
+    x: mdBox.x,
+    y: mdBox.y,
+    width: mdBox.width,
+    height: mdBox.height,
+    borderColor: orange,
+    borderWidth: 1.5,
+  });
+
+  // MD Title & Credentials under photo
+  page2TOC.drawText('Er. Sujit Shah', {
+    x: 55,
+    y: mdBox.y - 18,
+    size: 11,
+    font: fontBold,
+    color: navy,
+  });
+  page2TOC.drawText('Managing Director & CEO', {
+    x: 55,
+    y: mdBox.y - 31,
+    size: 8.5,
+    font: fontBold,
+    color: orange,
+  });
+  page2TOC.drawText('Senior Civil Engineer', {
+    x: 55,
+    y: mdBox.y - 44,
+    size: 7.5,
+    font: fontBold,
+    color: slateDark,
+  });
+  page2TOC.drawText('Nepal Engineering Council (NEC)', {
+    x: 55,
+    y: mdBox.y - 56,
+    size: 7,
+    font: fontItalic,
+    color: slateMuted,
+  });
+
+  // Leadership Badge under credentials
+  page2TOC.drawRectangle({
+    x: 55,
+    y: mdBox.y - 82,
+    width: 110,
+    height: 18,
+    color: rgb(1/255, 35/255, 82/255),
+  });
+  page2TOC.drawText('9+ YEARS LEADERSHIP', {
+    x: 62,
+    y: mdBox.y - 77,
+    size: 7,
+    font: fontBold,
+    color: white,
+  });
+
+  // Right Column inside MD Card: Executive Address Letter
+  const letterX = 185;
+  page2TOC.drawRectangle({
+    x: letterX,
+    y: yPosTOC - 25,
+    width: 175,
+    height: 16,
+    color: orange,
+  });
+  page2TOC.drawText('MESSAGE FROM THE MD & CEO', {
+    x: letterX + 8,
+    y: yPosTOC - 21,
+    size: 7.5,
+    font: fontBold,
+    color: white,
+  });
+
+  page2TOC.drawText('Engineering Generational Trust & Resilience', {
+    x: letterX,
+    y: yPosTOC - 45,
+    size: 12,
+    font: fontBold,
+    color: navy,
+  });
+  page2TOC.drawLine({
+    start: { x: letterX, y: yPosTOC - 50 },
+    end: { x: letterX + 220, y: yPosTOC - 50 },
+    thickness: 1.5,
+    color: orange,
+  });
+
+  const mdLetterParas = [
+    [
+      'Dear Valued Clients, Partners & Well-Wishers,',
+      'Welcome to Amulya Builders Pvt. Ltd. When we established this company, our',
+      'founding mission was clear: to redefine Nepal’s construction sector through',
+      'uncompromising structural engineering, architectural elegance, and transparent trust.'
+    ],
+    [
+      'In a nation situated in Seismic Zone V, building is not merely pouring concrete—',
+      'it is a sacred responsibility to safeguard human lives. Every residential home and',
+      'commercial development we execute complies strictly with the Nepal National',
+      'Building Code (NBC 105:2020), utilizing certified materials and precise BOQ standards.'
+    ],
+    [
+      'With 9+ years of field excellence, 20+ satisfied clients, and 15+ licensed engineering',
+      'professionals, we guide every milestone from soil testing to keys in hand. We invite',
+      'you to partner with us on your landmark project.'
+    ]
+  ];
+
+  let curY = yPosTOC - 66;
+  mdLetterParas.forEach((para) => {
+    para.forEach((line) => {
+      page2TOC.drawText(line, {
+        x: letterX,
+        y: curY,
+        size: 7.5,
+        font: fontRegular,
+        color: slateDark,
+      });
+      curY -= 11;
+    });
+    curY -= 4;
+  });
+
+  // Sign-off
+  page2TOC.drawText('Warm regards,', {
+    x: letterX,
+    y: curY,
+    size: 7.5,
+    font: fontItalic,
+    color: slateDark,
+  });
+  page2TOC.drawText('Er. Sujit Shah', {
+    x: letterX,
+    y: curY - 12,
+    size: 9,
+    font: fontBold,
+    color: navy,
+  });
+  page2TOC.drawText('Founder, Managing Director & CEO • Amulya Builders Pvt. Ltd.', {
+    x: letterX,
+    y: curY - 23,
+    size: 7,
+    font: fontRegular,
+    color: slateMuted,
+  });
+
+  // Lower Section: Table of Contents
+  yPosTOC -= (mdCardH + 18);
+
+  page2TOC.drawText('TABLE OF CONTENTS', {
+    x: 40,
+    y: yPosTOC,
+    size: 11,
+    font: fontBold,
+    color: navy,
+  });
+  page2TOC.drawLine({
+    start: { x: 40, y: yPosTOC - 4 },
+    end: { x: 175, y: yPosTOC - 4 },
+    thickness: 2,
+    color: orange,
+  });
+  page2TOC.drawText('Official Document Navigation & Section Index', {
+    x: 190,
+    y: yPosTOC,
+    size: 7.5,
+    font: fontRegular,
+    color: slateMuted,
+  });
+
+  yPosTOC -= 18;
+
+  const tocModules = [
+    {
+      num: '01',
+      title: 'Company Overview & Vision',
+      sub: 'Corporate identity, mission & national reach',
+      page: 'Page 03',
+    },
+    {
+      num: '02',
+      title: 'Core Values & Track Record',
+      sub: 'NBC 105:2020 standard & verified metrics',
+      page: 'Page 03',
+    },
+    {
+      num: '03',
+      title: 'Comprehensive Turnkey Services',
+      sub: '3D architectural, structural & RCC build',
+      page: 'Page 04',
+    },
+    {
+      num: '04',
+      title: '5-Stage Execution Workflow',
+      sub: 'Consultation to turnkey key handover',
+      page: 'Page 04',
+    },
+    {
+      num: '05',
+      title: 'Signature Projects Portfolio',
+      sub: 'Landmark residential & commercial builds',
+      page: 'Page 05',
+    },
+    {
+      num: '06',
+      title: 'Technical Team & Accreditation',
+      sub: 'Licensed team, statutory PAN & contact',
+      page: 'Page 06',
+    },
+  ];
+
+  const tocCardH = 46;
+  const tocGap = 8;
+  tocModules.forEach((mod, idx) => {
+    const col = idx % 2;
+    const row = Math.floor(idx / 2);
+    const tx = 40 + col * 265;
+    const ty = yPosTOC - row * (tocCardH + tocGap);
+
+    page2TOC.drawRectangle({
+      x: tx,
+      y: ty - tocCardH,
+      width: 250,
+      height: tocCardH,
+      color: bgLight,
+      borderColor: cardBorder,
+      borderWidth: 1,
+    });
+
+    // Number Box
+    page2TOC.drawRectangle({
+      x: tx,
+      y: ty - tocCardH,
+      width: 26,
+      height: tocCardH,
+      color: navy,
+    });
+    page2TOC.drawText(mod.num, {
+      x: tx + 6,
+      y: ty - 26,
+      size: 10,
+      font: fontBold,
+      color: orange,
+    });
+
+    // Title & Sub
+    page2TOC.drawText(mod.title, {
+      x: tx + 34,
+      y: ty - 16,
+      size: 8.5,
+      font: fontBold,
+      color: navy,
+    });
+    page2TOC.drawText(mod.sub, {
+      x: tx + 34,
+      y: ty - 28,
+      size: 6.8,
+      font: fontRegular,
+      color: slateDark,
+    });
+
+    // Page Pill on Right
+    page2TOC.drawRectangle({
+      x: tx + 195,
+      y: ty - 38,
+      width: 48,
+      height: 14,
+      color: orange,
+    });
+    page2TOC.drawText(mod.page, {
+      x: tx + 199,
+      y: ty - 35,
+      size: 6.5,
+      font: fontBold,
+      color: white,
+    });
+  });
+
+  // Bottom Corporate Quick Facts Banner on Page 2
+  const bannerY = yPosTOC - 3 * (tocCardH + tocGap) - 10;
+  const bannerH = 45;
+  page2TOC.drawRectangle({
+    x: 40,
+    y: bannerY - bannerH,
+    width: W - 80,
+    height: bannerH,
+    color: rgb(241/255, 245/255, 249/255),
+    borderColor: cardBorder,
+    borderWidth: 1,
+  });
+  page2TOC.drawRectangle({
+    x: 40,
+    y: bannerY - bannerH,
+    width: 3,
+    height: bannerH,
+    color: navy,
+  });
+
+  page2TOC.drawText('CORPORATE REGISTRATION & CREDENTIALS SUMMARY', {
+    x: 52,
+    y: bannerY - 14,
+    size: 7.5,
+    font: fontBold,
+    color: navy,
+  });
+  page2TOC.drawText('Govt. Regd: Amulya Builders Pvt. Ltd. | PAN: 619774758 | Governance: Nepal Engineering Council (NEC)', {
+    x: 52,
+    y: bannerY - 26,
+    size: 7.2,
+    font: fontRegular,
+    color: slateDark,
+  });
+  page2TOC.drawText('Offices: Sabaila-8, Dhanusha & Tikathali, Lalitpur | Hotline: +977 9810357535 | www.amulyabuilders.com.np', {
+    x: 52,
+    y: bannerY - 38,
+    size: 7.2,
+    font: fontRegular,
+    color: slateMuted,
+  });
+
+  drawPageFooter(page2TOC, 2, 6);
+
+  // =============================================================
+  // PAGE 3: OVERVIEW, VISION & EMBEDDED ARCHITECTURE IMAGE
   // =============================================================
   const page2 = doc.addPage([W, H]);
   drawPageHeader(page2, 'Company Overview & Vision', 'Engineering Trust, Architectural Elegance & Structural Resilience');
@@ -730,7 +1080,7 @@ async function generateCompanyProfilePdf() {
     color: rgb(120/255, 53/255, 15/255),
   });
 
-  drawPageFooter(page2, 2, 5);
+  drawPageFooter(page2, 3, 6);
 
   // =============================================================
   // PAGE 3: COMPREHENSIVE SERVICES & 5-STAGE WORKFLOW
@@ -938,7 +1288,7 @@ async function generateCompanyProfilePdf() {
     });
   });
 
-  drawPageFooter(page3, 3, 5);
+  drawPageFooter(page3, 4, 6);
 
   // =============================================================
   // PAGE 4: FEATURED PROJECTS WITH EMBEDDED REAL PHOTOS
@@ -1138,87 +1488,17 @@ async function generateCompanyProfilePdf() {
     });
   });
 
-  drawPageFooter(page4, 4, 5);
+  drawPageFooter(page4, 5, 6);
 
   // =============================================================
-  // PAGE 5: LEADERSHIP WITH REAL EMBEDDED PHOTOS & STATUTORY ACCREDITATION
+  // PAGE 6: LEADERSHIP WITH REAL EMBEDDED PHOTOS & STATUTORY ACCREDITATION
   // =============================================================
   const page5 = doc.addPage([W, H]);
-  drawPageHeader(page5, 'Key Personnel & Corporate Contact', 'Licensed Professionals, Legal Registration & Office Locations');
+  drawPageHeader(page5, 'Technical Leadership & Accreditation', 'Licensed Engineers, Legal Registration & Corporate Offices');
 
   yPos = H - 105;
 
-  // MD Executive Feature Box with Real Photo
-  page5.drawRectangle({
-    x: 40,
-    y: yPos - 90,
-    width: W - 80,
-    height: 90,
-    color: bgLight,
-    borderColor: cardBorder,
-    borderWidth: 1,
-  });
-  page5.drawRectangle({
-    x: 40,
-    y: yPos - 90,
-    width: 4,
-    height: 90,
-    color: orange,
-  });
-
-  // Embed MD Photo
-  const mdBox = { x: 50, y: yPos - 84, width: 62, height: 78 };
-  page5.drawRectangle({
-    x: mdBox.x - 1,
-    y: mdBox.y - 1,
-    width: mdBox.width + 2,
-    height: mdBox.height + 2,
-    color: white,
-    borderColor: orange,
-    borderWidth: 1.5,
-  });
-  if (mdImg) {
-    page5.drawImage(mdImg, {
-      x: mdBox.x,
-      y: mdBox.y,
-      width: mdBox.width,
-      height: mdBox.height,
-    });
-  }
-
-  // MD Text Info
-  page5.drawText('MESSAGE FROM THE MANAGING DIRECTOR', {
-    x: 125,
-    y: yPos - 18,
-    size: 9.5,
-    font: fontBold,
-    color: orange,
-  });
-  page5.drawText('Er. Sujit Shah — MD & CEO (Senior Civil Engineer)', {
-    x: 125,
-    y: yPos - 32,
-    size: 11,
-    font: fontBold,
-    color: navy,
-  });
-  const mdQuotes = [
-    '“We don’t just pour concrete—we engineer safe, generational homes and landmarks.',
-    'At Amulya Builders, we guarantee complete BOQ transparency, strict adherence to',
-    'the Nepal National Building Code, and craftsmanship that stands the test of time.”'
-  ];
-  mdQuotes.forEach((q, i) => {
-    page5.drawText(q, {
-      x: 125,
-      y: yPos - 48 - (i * 12),
-      size: 8,
-      font: fontItalic,
-      color: slateDark,
-    });
-  });
-
-  yPos -= 110;
-
-  // Key Team Members Grid (8 members with embedded photos + coordinator)
+  // Key Team Members Grid (10 members with embedded photos + coordinator)
   page5.drawText('KEY ENGINEERING & LEADERSHIP TEAM', {
     x: 40,
     y: yPos,
@@ -1236,6 +1516,7 @@ async function generateCompanyProfilePdf() {
   yPos -= 20;
 
   const teamList = [
+    { name: 'Er. Sujit Shah', role: 'Managing Director & CEO', img: mdImg, dept: 'Executive & Civil Engineering' },
     { name: 'Er. Mukesh Adhikari', role: 'General Manager', img: teamImgs.mukesh, dept: 'Operations & Procurement' },
     { name: 'Er. Amar Singh', role: 'Chief Architect', img: teamImgs.amar, dept: 'Architectural Design' },
     { name: 'Er. Rahul Kumar Purbey', role: 'Site Engineer', img: teamImgs.rahul, dept: 'Site & Quality Supervision' },
@@ -1247,24 +1528,26 @@ async function generateCompanyProfilePdf() {
     { name: 'Ajay Kumar Sah', role: 'Co-ordinator', img: null, dept: 'Municipal & Permit Liaison' },
   ];
 
+  const tCardH = 44;
+  const tGap = 6;
   teamList.forEach((tm, idx) => {
     const col = idx % 2;
     const row = Math.floor(idx / 2);
     const tx = 40 + col * 265;
-    const ty = yPos - row * 44;
+    const ty = yPos - row * (tCardH + tGap);
 
     page5.drawRectangle({
       x: tx,
-      y: ty - 38,
+      y: ty - tCardH,
       width: 250,
-      height: 38,
+      height: tCardH,
       color: bgLight,
       borderColor: cardBorder,
       borderWidth: 1,
     });
 
     // Embed Team Member Photo
-    const photoBox = { x: tx + 5, y: ty - 34, width: 28, height: 30 };
+    const photoBox = { x: tx + 6, y: ty - tCardH + 4, width: 32, height: 36 };
     page5.drawRectangle({
       x: photoBox.x,
       y: photoBox.y,
@@ -1274,40 +1557,35 @@ async function generateCompanyProfilePdf() {
     });
 
     if (tm.img) {
-      page5.drawImage(tm.img, {
-        x: photoBox.x,
-        y: photoBox.y,
-        width: photoBox.width,
-        height: photoBox.height,
-      });
+      drawProportionalImage(page5, tm.img, photoBox.x, photoBox.y, photoBox.width, photoBox.height, navy);
     } else {
       const inits = tm.name.split(' ').map(n => n[0]).join('').slice(0, 2);
       page5.drawText(inits, {
-        x: photoBox.x + 6,
-        y: photoBox.y + 10,
-        size: 9.5,
+        x: photoBox.x + 8,
+        y: photoBox.y + 12,
+        size: 10,
         font: fontBold,
         color: white,
       });
     }
 
     page5.drawText(tm.name.slice(0, 28), {
-      x: tx + 38,
-      y: ty - 16,
+      x: tx + 44,
+      y: ty - 18,
       size: 8.5,
       font: fontBold,
       color: navy,
     });
     page5.drawText(`${tm.role} • ${tm.dept}`, {
-      x: tx + 38,
-      y: ty - 28,
+      x: tx + 44,
+      y: ty - 32,
       size: 7,
       font: fontRegular,
       color: slateDark,
     });
   });
 
-  yPos -= 235;
+  yPos -= (5 * (tCardH + tGap) + 15);
 
   // Statutory Accreditation & Legal Compliance
   page5.drawText('STATUTORY REGISTRATION & ACCREDITATION', {
@@ -1419,7 +1697,7 @@ async function generateCompanyProfilePdf() {
     color: rgb(148/255, 163/255, 184/255),
   });
 
-  drawPageFooter(page5, 5, 5);
+  drawPageFooter(page5, 6, 6);
 
   // Save PDF to public & dist
   const pdfBytes = await doc.save();
