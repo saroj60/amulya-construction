@@ -153,22 +153,31 @@ async function generateCompanyProfilePdf() {
     page.drawLine({
       start: { x: 40, y: 38 },
       end: { x: W - 40, y: 38 },
-      thickness: 1,
+      thickness: 0.75,
       color: cardBorder,
     });
-    page.drawText('Amulya Builders Pvt. Ltd. | Official Corporate Profile • 9+ Years of Excellence', {
+    // Line 1: Phone, Address & Page Number
+    page.drawText('Phone: +977 9810357535, 01-5925062  |  Address: Tikathali, Lalitpur & Sabaila-8, Dhanusha, Nepal', {
       x: 40,
       y: 26,
-      size: 8,
+      size: 7.2,
       font: fontRegular,
-      color: slateMuted,
+      color: dark,
     });
     page.drawText(`Page ${pageNum} of ${totalPages}`, {
       x: W - 85,
       y: 26,
-      size: 8,
-      font: fontRegular,
-      color: slateMuted,
+      size: 7.5,
+      font: fontBold,
+      color: brandRed,
+    });
+    // Line 2: Website & Corporate Info
+    page.drawText('Website: www.amulyabuilders.com.np  |  Email: abt4nepal@gmail.com  |  Amulya Builders Pvt. Ltd.', {
+      x: 40,
+      y: 15,
+      size: 7,
+      font: fontBold,
+      color: brandRed,
     });
   };
 
@@ -413,12 +422,12 @@ async function generateCompanyProfilePdf() {
   });
 
   // Bottom Copy Line
-  page1.drawText('© Amulya Builders Pvt. Ltd. • All Rights Reserved', {
-    x: (W - 200) / 2,
+  page1.drawText('Phone: +977 9810357535, 01-5925062  •  Address: Tikathali, Lalitpur & Dhanusha  •  Website: www.amulyabuilders.com.np', {
+    x: 45,
     y: 25,
-    size: 8,
+    size: 7.2,
     font: fontRegular,
-    color: slateMuted,
+    color: rgb(203/255, 213/255, 225/255),
   });
 
   // =============================================================

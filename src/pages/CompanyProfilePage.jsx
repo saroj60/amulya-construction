@@ -297,13 +297,13 @@ export default function CompanyProfilePage() {
               <div className="flex items-center gap-6">
                 <span className="flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-red-500" />
-                  {COMPANY.address} | Branch: {COMPANY.branchAddress}
+                  <span><strong>Address:</strong> {COMPANY.address} | Branch: {COMPANY.branchAddress}</span>
                 </span>
               </div>
               <div className="flex items-center gap-4 font-bold text-white">
-                <span>{COMPANY.mobile || COMPANY.phone}</span>
+                <span><strong>Phone:</strong> {COMPANY.mobile || COMPANY.phone}</span>
                 <span className="text-red-500">•</span>
-                <span>www.amulyabuilders.com.np</span>
+                <span className="text-red-400"><strong>Website:</strong> www.amulyabuilders.com.np</span>
               </div>
             </div>
           </section>
@@ -424,9 +424,15 @@ export default function CompanyProfilePage() {
             </div>
 
             {/* Page Footer */}
-            <div className="pt-4 border-t border-slate-200 flex items-center justify-between text-[10px] text-slate-500 font-medium">
-              <span>{COMPANY.name} | Official Corporate Profile • 9+ Years of Excellence</span>
-              <span>Page 02 of 06</span>
+            <div className="pt-3.5 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-1 text-[10px] text-slate-600 font-medium">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5">
+                <span><strong>Phone:</strong> {COMPANY.mobile || '+977 9810357535'}, {COMPANY.phone || '+977 15925062'}</span>
+                <span>•</span>
+                <span><strong>Address:</strong> {COMPANY.branchAddress?.split('(')[0] || 'Tikathali, Lalitpur'} & {COMPANY.address || 'Sabaila-8, Dhanusha'}</span>
+                <span>•</span>
+                <span className="text-red-600 font-bold"><strong>Website:</strong> www.amulyabuilders.com.np</span>
+              </div>
+              <span className="font-bold text-red-600 shrink-0">Page 02 of 06</span>
             </div>
           </section>
 
@@ -571,9 +577,15 @@ export default function CompanyProfilePage() {
             </div>
 
             {/* Page Footer */}
-            <div className="pt-4 border-t border-slate-200 flex items-center justify-between text-[10px] text-slate-500 font-semibold">
-              <span>{COMPANY.name} — Corporate Profile</span>
-              <span>Page 03 of 06</span>
+            <div className="pt-3.5 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-1 text-[10px] text-slate-600 font-medium">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5">
+                <span><strong>Phone:</strong> {COMPANY.mobile || '+977 9810357535'}, {COMPANY.phone || '+977 15925062'}</span>
+                <span>•</span>
+                <span><strong>Address:</strong> {COMPANY.branchAddress?.split('(')[0] || 'Tikathali, Lalitpur'} & {COMPANY.address || 'Sabaila-8, Dhanusha'}</span>
+                <span>•</span>
+                <span className="text-red-600 font-bold"><strong>Website:</strong> www.amulyabuilders.com.np</span>
+              </div>
+              <span className="font-bold text-red-600 shrink-0">Page 03 of 06</span>
             </div>
           </section>
 
@@ -682,9 +694,15 @@ export default function CompanyProfilePage() {
             </div>
 
             {/* Page Footer */}
-            <div className="pt-4 border-t border-slate-200 flex items-center justify-between text-[10px] text-slate-500 font-semibold">
-              <span>{COMPANY.name} — Corporate Profile</span>
-              <span>Page 04 of 06</span>
+            <div className="pt-3.5 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-1 text-[10px] text-slate-600 font-medium">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5">
+                <span><strong>Phone:</strong> {COMPANY.mobile || '+977 9810357535'}, {COMPANY.phone || '+977 15925062'}</span>
+                <span>•</span>
+                <span><strong>Address:</strong> {COMPANY.branchAddress?.split('(')[0] || 'Tikathali, Lalitpur'} & {COMPANY.address || 'Sabaila-8, Dhanusha'}</span>
+                <span>•</span>
+                <span className="text-red-600 font-bold"><strong>Website:</strong> www.amulyabuilders.com.np</span>
+              </div>
+              <span className="font-bold text-red-600 shrink-0">Page 04 of 06</span>
             </div>
           </section>
 
@@ -817,9 +835,15 @@ export default function CompanyProfilePage() {
             </div>
 
             {/* Page Footer */}
-            <div className="pt-4 border-t border-slate-200 flex items-center justify-between text-[10px] text-slate-500 font-semibold">
-              <span>{COMPANY.name} — Corporate Profile</span>
-              <span>Page 05 of 06</span>
+            <div className="pt-3.5 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-1 text-[10px] text-slate-600 font-medium">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5">
+                <span><strong>Phone:</strong> {COMPANY.mobile || '+977 9810357535'}, {COMPANY.phone || '+977 15925062'}</span>
+                <span>•</span>
+                <span><strong>Address:</strong> {COMPANY.branchAddress?.split('(')[0] || 'Tikathali, Lalitpur'} & {COMPANY.address || 'Sabaila-8, Dhanusha'}</span>
+                <span>•</span>
+                <span className="text-red-600 font-bold"><strong>Website:</strong> www.amulyabuilders.com.np</span>
+              </div>
+              <span className="font-bold text-red-600 shrink-0">Page 05 of 06</span>
             </div>
           </section>
 
@@ -955,9 +979,15 @@ export default function CompanyProfilePage() {
             </div>
 
             {/* Page Footer */}
-            <div className="pt-4 border-t border-slate-200 flex items-center justify-between text-[10px] text-slate-500 font-semibold">
-              <span>© {new Date().getFullYear()} {COMPANY.name}. All Rights Reserved.</span>
-              <span>Page 06 of 06</span>
+            <div className="pt-3.5 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-1 text-[10px] text-slate-600 font-medium">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5">
+                <span><strong>Phone:</strong> {COMPANY.mobile || '+977 9810357535'}, {COMPANY.phone || '+977 15925062'}</span>
+                <span>•</span>
+                <span><strong>Address:</strong> {COMPANY.branchAddress?.split('(')[0] || 'Tikathali, Lalitpur'} & {COMPANY.address || 'Sabaila-8, Dhanusha'}</span>
+                <span>•</span>
+                <span className="text-red-600 font-bold"><strong>Website:</strong> www.amulyabuilders.com.np</span>
+              </div>
+              <span className="font-bold text-red-600 shrink-0">Page 06 of 06</span>
             </div>
           </section>
 

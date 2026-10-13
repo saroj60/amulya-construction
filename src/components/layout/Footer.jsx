@@ -235,11 +235,25 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-900 bg-gray-950/70 py-6">
-        <div className="container-custom flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-          <p>
-            &copy; {currentYear} {COMPANY.name}. All rights reserved.
-          </p>
-          <div className="flex flex-wrap items-center gap-4">
+        <div className="container-custom flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left flex-wrap">
+            <p>
+              &copy; {currentYear} {COMPANY.name}. All rights reserved.
+            </p>
+            <span className="hidden sm:inline text-gray-700">•</span>
+            <span className="text-gray-400">
+              <strong>Phone:</strong> {COMPANY.mobile || '+977 9810357535'}, {COMPANY.phone || '+977 15925062'}
+            </span>
+            <span className="hidden sm:inline text-gray-700">•</span>
+            <span className="text-gray-400">
+              <strong>Address:</strong> {COMPANY.branchAddress?.split('(')[0] || 'Tikathali, Lalitpur'} & {COMPANY.address || 'Sabaila-8, Dhanusha'}
+            </span>
+            <span className="hidden sm:inline text-gray-700">•</span>
+            <a href="https://amulyabuilders.com.np" className="text-red-500 hover:text-red-400 font-semibold transition-colors">
+              Website: www.amulyabuilders.com.np
+            </a>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-4 shrink-0">
             {COMPANY.vat && (
               <span className="bg-gray-900/65 text-gray-400 border border-gray-800/80 px-2.5 py-1 rounded-full font-medium">
                 VAT ID: <strong className="text-gray-300 font-semibold">{COMPANY.vat}</strong>
@@ -251,7 +265,7 @@ export default function Footer() {
             <Link to="/terms" className="hover:text-gray-300 transition-colors">
               Terms of Service
             </Link>
-            <Link to="/admin/login" className="hover:text-orange-400 text-gray-400 font-bold transition-colors">
+            <Link to="/admin/login" className="hover:text-red-500 text-gray-400 font-bold transition-colors">
               Admin Login
             </Link>
             {COMPANY.license && <span>{COMPANY.license}</span>}
