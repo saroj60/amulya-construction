@@ -336,7 +336,7 @@ async function generateCompanyProfilePdf() {
     { num: '9+', lbl: 'Years Experience', sub: 'Active Excellence' },
     { num: '20+', lbl: 'Happy Clients', sub: 'Residential & Commercial' },
     { num: '15+', lbl: 'Professionals', sub: 'Licensed Engineers & Staff' },
-    { num: '250+', lbl: 'Projects Done', sub: 'Delivered On Schedule' },
+    { num: '20+', lbl: 'Projects Done', sub: 'Delivered On Schedule' },
   ];
 
   coverMetrics.forEach((m, idx) => {
@@ -1033,7 +1033,7 @@ async function generateCompanyProfilePdf() {
     { num: '9+', label: 'Years Experience', sub: 'Active Excellence' },
     { num: '20+', label: 'Happy Clients', sub: 'Inside & Outside Valley' },
     { num: '15+', label: 'Professionals', sub: 'Engineers & Architects' },
-    { num: '250+', label: 'Delivered Projects', sub: 'Residential & Commercial' },
+    { num: '20+', label: 'Delivered Projects', sub: 'Residential & Commercial' },
   ];
 
   trackStats.forEach((stat, i) => {

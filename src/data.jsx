@@ -25,7 +25,7 @@ export const COMPANY = {
     linkedin: 'https://linkedin.com/',
   },
   stats: {
-    projectsCompleted: '250+',
+    projectsCompleted: '20+',
     yearsExperience: '9+',
     happyClients: '20+',
     professionals: '15+',

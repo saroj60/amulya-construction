@@ -274,7 +274,7 @@ export default function CompanyProfilePage() {
               {/* Key Metrics Strip */}
               <div className="grid grid-cols-4 gap-3 pt-2">
                 {[
-                  { value: `${projects.length}+`, label: 'Projects Done' },
+                  { value: COMPANY.stats.projectsCompleted || '20+', label: 'Projects Done' },
                   { value: COMPANY.stats.yearsExperience || '9+', label: 'Years Experience' },
                   { value: COMPANY.stats.happyClients || '20+', label: 'Happy Clients' },
                   { value: COMPANY.stats.professionals || '15+', label: 'Professionals' },

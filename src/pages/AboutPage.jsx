@@ -192,14 +192,14 @@ export default function AboutPage() {
                 <span className="text-[8px] font-black uppercase tracking-widest leading-none">Kathmandu</span>
               </motion.div>
 
-              {/* Achievement Badge 2 (250+ Projects) */}
+              {/* Achievement Badge 2 (20+ Projects) */}
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="absolute bottom-6 -left-6 bg-slate-950 text-white rounded-3xl p-4 shadow-xl border-4 border-white text-center w-24 h-24 flex flex-col justify-center items-center z-10"
               >
-                <span className="text-xl font-black leading-none">250+</span>
+                <span className="text-xl font-black leading-none">{COMPANY.stats.projectsCompleted || '20+'}</span>
                 <span className="text-[8px] font-black uppercase tracking-widest mt-1">Projects</span>
                 <span className="text-[8px] font-black uppercase tracking-widest leading-none">Completed</span>
               </motion.div>
@@ -227,7 +227,7 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Today, we are one of Kathmandu's most trusted construction companies — with a portfolio of
-                  over <strong className="text-orange-500 font-extrabold">250+ completed projects</strong> spanning luxury villas, commercial complexes, hotels, schools,
+                  over <strong className="text-orange-500 font-extrabold">{COMPANY.stats.projectsCompleted || '20+'} completed projects</strong> spanning luxury villas, commercial complexes, hotels, schools,
                   and government buildings across Bagmati Province.
                 </p>
                 <p>
@@ -249,7 +249,7 @@ export default function AboutPage() {
                   {[
                     { year: '2017', label: 'Founded' },
                     { year: 'Growth', label: 'Through Trust' },
-                    { year: '250+', label: 'Projects Done' },
+                    { year: COMPANY.stats.projectsCompleted || '20+', label: 'Projects Done' },
                     { year: COMPANY.stats.professionals, label: 'Professionals' },
                     { year: 'Today', label: 'Kathmandu Best' }
                   ].map((m, idx) => (
@@ -269,7 +269,7 @@ export default function AboutPage() {
                   {[
                     { year: '2017', label: 'Founded in Kathmandu' },
                     { year: 'Growth', label: 'Built on Quality & Trust' },
-                    { year: '250+', label: 'Projects successfully completed' },
+                    { year: COMPANY.stats.projectsCompleted || '20+', label: 'Projects successfully completed' },
                     { year: COMPANY.stats.professionals, label: 'Licensed Engineers & Professionals' },
                     { year: 'Today', label: 'Kathmandu\'s Most Trusted Construction Partner' }
                   ].map((m, idx) => (
