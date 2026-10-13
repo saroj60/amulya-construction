@@ -51,17 +51,23 @@ async function generateCompanyProfilePdf() {
   const fontBold = await doc.embedFont(StandardFonts.HelveticaBold);
   const fontItalic = await doc.embedFont(StandardFonts.HelveticaOblique);
 
-  // Corporate Brand Colors
-  const navy = rgb(1/255, 35/255, 82/255);        // #012352
-  const deepNavy = rgb(1/255, 24/255, 57/255);    // #011839
-  const orange = rgb(249/255, 115/255, 22/255);   // #f97316
-  const crimson = rgb(205/255, 1/255, 2/255);     // #cd0102
-  const dark = rgb(15/255, 23/255, 42/255);       // #0f172a
-  const slateDark = rgb(51/255, 65/255, 85/255);  // #334155
-  const slateMuted = rgb(100/255, 116/255, 139/255); // #64748b
-  const bgLight = rgb(248/255, 250/255, 252/255); // #f8fafc
+  // Corporate Brand Colors — RED & BLACK THEME
+  const black = rgb(15/255, 17/255, 23/255);        // #0f1117 Jet Black
+  const deepBlack = rgb(10/255, 10/255, 14/255);    // #0a0a0e Pitch Black
+  const brandRed = rgb(220/255, 38/255, 38/255);    // #dc2626 Vivid Architectural Red
+  const deepRed = rgb(153/255, 27/255, 27/255);     // #991b1b Crimson Ruby
+  const dark = rgb(17/255, 24/255, 39/255);         // #111827 Charcoal Text
+  const slateDark = rgb(51/255, 65/255, 85/255);    // #334155 Body Text
+  const slateMuted = rgb(100/255, 116/255, 139/255); // #64748b Secondary Text
+  const bgLight = rgb(248/255, 250/255, 252/255);   // #f8fafc Light Grey Card Surface
   const cardBorder = rgb(226/255, 232/255, 240/255);
   const white = rgb(1, 1, 1);
+
+  // Theme Aliases (Red & Black)
+  const navy = black;
+  const deepNavy = deepBlack;
+  const orange = brandRed;
+  const crimson = deepRed;
 
   // Dimensions (A4: 595.28 x 841.89 pt)
   const W = 595.28;
@@ -233,8 +239,8 @@ async function generateCompanyProfilePdf() {
     y: H - 75,
     width: 170,
     height: 22,
-    color: rgb(15/255, 35/255, 75/255),
-    borderColor: orange,
+    color: rgb(24/255, 24/255, 28/255),
+    borderColor: brandRed,
     borderWidth: 1,
   });
   page1.drawText('CORPORATE PROFILE', {
@@ -242,7 +248,7 @@ async function generateCompanyProfilePdf() {
     y: H - 68,
     size: 9.5,
     font: fontBold,
-    color: orange,
+    color: brandRed,
   });
   page1.drawText('9+ Years Experience • Regd. in Nepal', {
     x: W - 205,
@@ -266,7 +272,7 @@ async function generateCompanyProfilePdf() {
     y: H - 172,
     size: 13,
     font: fontBold,
-    color: orange,
+    color: brandRed,
   });
 
   page1.drawText('Architectural Design • 3D Modeling • Structural Engineering • Turnkey Construction', {
@@ -284,13 +290,13 @@ async function generateCompanyProfilePdf() {
     y: coverImgBox.y - 2,
     width: coverImgBox.width + 4,
     height: coverImgBox.height + 4,
-    color: rgb(20/255, 45/255, 95/255),
-    borderColor: rgb(40/255, 75/255, 140/255),
+    color: rgb(24/255, 24/255, 28/255),
+    borderColor: rgb(45/255, 45/255, 52/255),
     borderWidth: 1.5,
   });
 
   if (coverProjImg) {
-    drawProportionalImage(page1, coverProjImg, coverImgBox.x, coverImgBox.y, coverImgBox.width, coverImgBox.height, rgb(15/255, 30/255, 65/255));
+    drawProportionalImage(page1, coverProjImg, coverImgBox.x, coverImgBox.y, coverImgBox.width, coverImgBox.height, rgb(15/255, 15/255, 18/255));
   }
 
   // Overlay Tag on Photo
@@ -299,14 +305,14 @@ async function generateCompanyProfilePdf() {
     y: coverImgBox.y,
     width: coverImgBox.width,
     height: 38,
-    color: rgb(2/255, 15/255, 38/255),
+    color: rgb(15/255, 15/255, 18/255),
   });
   page1.drawText('FEATURED LANDMARK DEVELOPMENT • TURNKEY EXCELLENCE', {
     x: coverImgBox.x + 15,
     y: coverImgBox.y + 22,
     size: 9,
     font: fontBold,
-    color: orange,
+    color: brandRed,
   });
   page1.drawText('Seismic-Resistant Engineering • Inside & Outside Kathmandu Valley Across Nepal', {
     x: coverImgBox.x + 15,
@@ -332,8 +338,8 @@ async function generateCompanyProfilePdf() {
       y: by,
       width: 122,
       height: 60,
-      color: rgb(8/255, 25/255, 60/255),
-      borderColor: rgb(35/255, 65/255, 120/255),
+      color: rgb(20/255, 20/255, 24/255),
+      borderColor: rgb(45/255, 45/255, 52/255),
       borderWidth: 1,
     });
     page1.drawText(m.num, {
@@ -341,7 +347,7 @@ async function generateCompanyProfilePdf() {
       y: by + 36,
       size: 18,
       font: fontBold,
-      color: orange,
+      color: brandRed,
     });
     page1.drawText(m.lbl, {
       x: bx + 12,
@@ -365,8 +371,8 @@ async function generateCompanyProfilePdf() {
     y: 60,
     width: W - 80,
     height: 105,
-    color: rgb(5/255, 18/255, 45/255),
-    borderColor: rgb(30/255, 60/255, 115/255),
+    color: rgb(18/255, 18/255, 22/255),
+    borderColor: rgb(40/255, 40/255, 48/255),
     borderWidth: 1,
   });
 
@@ -375,7 +381,7 @@ async function generateCompanyProfilePdf() {
     y: 145,
     size: 9.5,
     font: fontBold,
-    color: orange,
+    color: brandRed,
   });
   page1.drawText('Head Office: Sabaila-8, Dhanusha, Nepal | Branch: Tikathali, Lalitpur (opp. Pawan Prakriti School)', {
     x: 55,
@@ -490,7 +496,7 @@ async function generateCompanyProfilePdf() {
     y: mdBox.y - 82,
     width: 110,
     height: 18,
-    color: rgb(1/255, 35/255, 82/255),
+    color: black,
   });
   page2TOC.drawText('9+ YEARS LEADERSHIP', {
     x: 62,
@@ -1061,8 +1067,8 @@ async function generateCompanyProfilePdf() {
     y: yPos - 45,
     width: W - 80,
     height: 45,
-    color: rgb(254/255, 243/255, 199/255),
-    borderColor: rgb(245/255, 158/255, 11/255),
+    color: rgb(254/255, 242/255, 242/255),
+    borderColor: brandRed,
     borderWidth: 1,
   });
   page2.drawText('NATIONWIDE SERVICE REACH (INSIDE & OUTSIDE KATHMANDU VALLEY):', {
@@ -1070,14 +1076,14 @@ async function generateCompanyProfilePdf() {
     y: yPos - 17,
     size: 8.5,
     font: fontBold,
-    color: rgb(146/255, 64/255, 14/255),
+    color: brandRed,
   });
   page2.drawText('Active turnkey execution in Kathmandu, Lalitpur, Bhaktapur, Janakpur, Dhanusha, Chitwan, and beyond.', {
     x: 55,
     y: yPos - 31,
     size: 8,
     font: fontRegular,
-    color: rgb(120/255, 53/255, 15/255),
+    color: dark,
   });
 
   drawPageFooter(page2, 3, 6);
@@ -1411,7 +1417,7 @@ async function generateCompanyProfilePdf() {
       y: py - 24,
       width: catWidth,
       height: 15,
-      color: rgb(1/255, 35/255, 82/255),
+      color: black,
     });
     page4.drawText(catText, {
       x: px + 15,
