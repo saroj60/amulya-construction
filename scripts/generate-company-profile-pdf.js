@@ -7,6 +7,23 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
+async function safeEmbedImage(doc, relPath) {
+  try {
+    const fullPath = path.join(rootDir, 'public', relPath);
+    if (!fs.existsSync(fullPath)) return null;
+    const ext = path.extname(fullPath).toLowerCase();
+    const bytes = fs.readFileSync(fullPath);
+    if (ext === '.jpg' || ext === '.jpeg') {
+      return await doc.embedJpg(bytes);
+    } else if (ext === '.png') {
+      return await doc.embedPng(bytes);
+    }
+  } catch (err) {
+    console.warn(`Could not embed image "${relPath}":`, err.message);
+  }
+  return null;
+}
+
 async function generateCompanyProfilePdf() {
   const doc = await PDFDocument.create();
   
@@ -15,9 +32,9 @@ async function generateCompanyProfilePdf() {
   const fontBold = await doc.embedFont(StandardFonts.HelveticaBold);
   const fontItalic = await doc.embedFont(StandardFonts.HelveticaOblique);
 
-  // Brand Colors
+  // Corporate Brand Colors
   const navy = rgb(1/255, 35/255, 82/255);        // #012352
-  const deepNavy = rgb(2/255, 23/255, 56/255);    // #021738
+  const deepNavy = rgb(1/255, 24/255, 57/255);    // #011839
   const orange = rgb(249/255, 115/255, 22/255);   // #f97316
   const crimson = rgb(205/255, 1/255, 2/255);     // #cd0102
   const dark = rgb(15/255, 23/255, 42/255);       // #0f172a
@@ -27,49 +44,40 @@ async function generateCompanyProfilePdf() {
   const cardBorder = rgb(226/255, 232/255, 240/255);
   const white = rgb(1, 1, 1);
 
-  // Dimensions (A4)
+  // Dimensions (A4: 595.28 x 841.89 pt)
   const W = 595.28;
   const H = 841.89;
 
-  // Try loading company logo
-  let logoImage = null;
-  const logoPath = path.join(rootDir, 'public', 'amulyalogo1.png');
-  if (fs.existsSync(logoPath)) {
-    try {
-      const logoBytes = fs.readFileSync(logoPath);
-      logoImage = await doc.embedPng(logoBytes);
-    } catch (e) {
-      console.warn('Could not embed logo image, using text fallback:', e.message);
-    }
-  }
+  // Pre-load all available assets
+  const logoImg = await safeEmbedImage(doc, 'amulyalogo1.png');
+  const coverProjImg = await safeEmbedImage(doc, 'project-gallery/project-19.png');
+  const aboutProjImg = await safeEmbedImage(doc, 'project-gallery/project-2.jpg');
+  const mdImg = await safeEmbedImage(doc, 'md-sujit-shah.jpg');
 
-  // Helper for footer on internal pages
-  const drawPageFooter = (page, pageNum, totalPages) => {
-    page.drawLine({
-      start: { x: 40, y: 40 },
-      end: { x: W - 40, y: 40 },
-      thickness: 1,
-      color: cardBorder,
-    });
-    page.drawText('Amulya Builders Pvt. Ltd. | Official Corporate Profile', {
-      x: 40,
-      y: 28,
-      size: 8,
-      font: fontRegular,
-      color: slateMuted,
-    });
-    page.drawText(`Page ${pageNum} of ${totalPages}`, {
-      x: W - 90,
-      y: 28,
-      size: 8,
-      font: fontRegular,
-      color: slateMuted,
-    });
+  // Pre-load project gallery photos
+  const projImgs = {
+    p19: await safeEmbedImage(doc, 'project-gallery/project-19.png'),
+    p6: await safeEmbedImage(doc, 'project-gallery/project-6.jpg'),
+    p7: await safeEmbedImage(doc, 'project-gallery/project-7.jpg'),
+    p11: await safeEmbedImage(doc, 'project-gallery/project-11.jpg'),
+    p12: await safeEmbedImage(doc, 'project-gallery/project-12.jpg'),
+    p13: await safeEmbedImage(doc, 'project-gallery/project-13.jpg'),
   };
 
-  // Helper for header on internal pages
+  // Pre-load team photos
+  const teamImgs = {
+    mukesh: await safeEmbedImage(doc, 'team/mukesh-adhikari.png'),
+    amar: await safeEmbedImage(doc, 'team/amar-singh.png'),
+    rahul: await safeEmbedImage(doc, 'team/rahul-kumar-purbey.png'),
+    priyanka: await safeEmbedImage(doc, 'team/priyanka-kumari-chaudhary.png'),
+    bijaya: await safeEmbedImage(doc, 'team/bijaya-rasaili.png'),
+    tanu: await safeEmbedImage(doc, 'team/tanu-kumari-shah.png'),
+    aakash: await safeEmbedImage(doc, 'team/aakash-mandal.png'),
+    ritesh: await safeEmbedImage(doc, 'team/ritesh-shah.png'),
+  };
+
+  // Helper: Internal Page Header
   const drawPageHeader = (page, title, subtitle) => {
-    // Header background bar
     page.drawRectangle({
       x: 0,
       y: H - 75,
@@ -77,7 +85,6 @@ async function generateCompanyProfilePdf() {
       height: 75,
       color: navy,
     });
-    // Orange accent stripe
     page.drawRectangle({
       x: 0,
       y: H - 78,
@@ -86,9 +93,9 @@ async function generateCompanyProfilePdf() {
       color: orange,
     });
 
-    if (logoImage) {
-      const dims = logoImage.scale(0.045);
-      page.drawImage(logoImage, {
+    if (logoImg) {
+      const dims = logoImg.scale(0.045);
+      page.drawImage(logoImg, {
         x: 40,
         y: H - 62,
         width: dims.width,
@@ -96,11 +103,11 @@ async function generateCompanyProfilePdf() {
       });
     }
 
-    const titleX = logoImage ? 140 : 40;
+    const titleX = logoImg ? 140 : 40;
     page.drawText(title.toUpperCase(), {
       x: titleX,
       y: H - 42,
-      size: 16,
+      size: 15,
       font: fontBold,
       color: white,
     });
@@ -108,16 +115,40 @@ async function generateCompanyProfilePdf() {
       page.drawText(subtitle, {
         x: titleX,
         y: H - 58,
-        size: 9,
+        size: 8.5,
         font: fontRegular,
         color: rgb(203/255, 213/255, 225/255),
       });
     }
   };
 
-  // -------------------------------------------------------------
-  // PAGE 1: COVER PAGE
-  // -------------------------------------------------------------
+  // Helper: Internal Page Footer
+  const drawPageFooter = (page, pageNum, totalPages) => {
+    page.drawLine({
+      start: { x: 40, y: 38 },
+      end: { x: W - 40, y: 38 },
+      thickness: 1,
+      color: cardBorder,
+    });
+    page.drawText('Amulya Builders Pvt. Ltd. | Official Corporate Profile • 9+ Years of Excellence', {
+      x: 40,
+      y: 26,
+      size: 8,
+      font: fontRegular,
+      color: slateMuted,
+    });
+    page.drawText(`Page ${pageNum} of ${totalPages}`, {
+      x: W - 85,
+      y: 26,
+      size: 8,
+      font: fontRegular,
+      color: slateMuted,
+    });
+  };
+
+  // =============================================================
+  // PAGE 1: EXECUTIVE COVER WITH REAL FEATURED PROJECT IMAGE
+  // =============================================================
   const page1 = doc.addPage([W, H]);
 
   // Deep Navy Background
@@ -129,237 +160,244 @@ async function generateCompanyProfilePdf() {
     color: deepNavy,
   });
 
-  // Top Geometric Accent Bands
-  page1.drawRectangle({
-    x: 0,
-    y: H - 18,
-    width: W,
-    height: 18,
-    color: crimson,
-  });
-  page1.drawRectangle({
-    x: 0,
-    y: H - 24,
-    width: W,
-    height: 6,
-    color: orange,
-  });
+  // Top Accent Stripes
+  page1.drawRectangle({ x: 0, y: H - 14, width: W, height: 14, color: crimson });
+  page1.drawRectangle({ x: 0, y: H - 20, width: W, height: 6, color: orange });
 
-  // Central Card / Frame
+  // White Card for Logo
   page1.drawRectangle({
-    x: 35,
-    y: 110,
-    width: W - 70,
-    height: H - 160,
-    color: navy,
-    borderColor: rgb(30/255, 58/255, 110/255),
-    borderWidth: 1.5,
+    x: 40,
+    y: H - 105,
+    width: 140,
+    height: 65,
+    color: white,
   });
-
-  // Logo / Emblem
-  if (logoImage) {
-    const logoDims = logoImage.scale(0.12);
-    page1.drawImage(logoImage, {
-      x: (W - logoDims.width) / 2,
-      y: H - 220,
-      width: logoDims.width,
-      height: logoDims.height,
+  if (logoImg) {
+    const lDims = logoImg.scale(0.065);
+    page1.drawImage(logoImg, {
+      x: 48,
+      y: H - 98,
+      width: lDims.width,
+      height: lDims.height,
     });
   }
 
-  // Company Name
-  const compName = 'AMULYA BUILDERS';
-  const compNameW = fontBold.widthOfTextAtSize(compName, 32);
-  page1.drawText(compName, {
-    x: (W - compNameW) / 2,
-    y: H - 275,
-    size: 32,
-    font: fontBold,
-    color: white,
-  });
-
-  // Tagline
-  const tagline = 'Constructing Integrity • Elevating Standards';
-  const taglineW = fontBold.widthOfTextAtSize(tagline, 13);
-  page1.drawText(tagline, {
-    x: (W - taglineW) / 2,
-    y: H - 302,
-    size: 13,
-    font: fontBold,
-    color: orange,
-  });
-
-  // Divider Line
-  page1.drawLine({
-    start: { x: 120, y: H - 325 },
-    end: { x: W - 120, y: H - 325 },
-    thickness: 1,
-    color: rgb(59/255, 130/255, 246/255),
-  });
-
-  // Document Title
-  const docTitle = 'OFFICIAL COMPANY PROFILE';
-  const docTitleW = fontBold.widthOfTextAtSize(docTitle, 20);
-  page1.drawText(docTitle, {
-    x: (W - docTitleW) / 2,
-    y: H - 365,
-    size: 20,
-    font: fontBold,
-    color: white,
-  });
-
-  const docSub = 'Architectural Design • 3D Modeling • Turnkey Engineering & Construction';
-  const docSubW = fontRegular.widthOfTextAtSize(docSub, 10.5);
-  page1.drawText(docSub, {
-    x: (W - docSubW) / 2,
-    y: H - 388,
-    size: 10.5,
-    font: fontRegular,
-    color: rgb(226/255, 232/255, 240/255),
-  });
-
-  // Scope Badge
-  const scopeBadge = "Serving Inside & Outside Kathmandu Valley Across Nepal";
-  const scopeBadgeW = fontBold.widthOfTextAtSize(scopeBadge, 11);
+  // Right Header Metadata
   page1.drawRectangle({
-    x: (W - scopeBadgeW - 30) / 2,
-    y: H - 435,
-    width: scopeBadgeW + 30,
-    height: 26,
-    color: rgb(15/255, 30/255, 65/255),
+    x: W - 210,
+    y: H - 75,
+    width: 170,
+    height: 22,
+    color: rgb(15/255, 35/255, 75/255),
     borderColor: orange,
     borderWidth: 1,
   });
-  page1.drawText(scopeBadge, {
-    x: (W - scopeBadgeW) / 2,
-    y: H - 425,
-    size: 11,
+  page1.drawText('CORPORATE PROFILE', {
+    x: W - 185,
+    y: H - 68,
+    size: 9.5,
     font: fontBold,
     color: orange,
   });
-
-  // Highlights 4-box grid
-  const keyHighlights = [
-    { num: '9+ Years', lbl: 'Industry Excellence' },
-    { num: '250+ Projects', lbl: 'Delivered Successfully' },
-    { num: 'NBC Compliant', lbl: 'Seismic Safety Standards' },
-    { num: 'Turnkey Services', lbl: 'From Soil to Finishing' },
-  ];
-
-  keyHighlights.forEach((item, idx) => {
-    const col = idx % 2;
-    const row = Math.floor(idx / 2);
-    const boxX = 65 + col * 240;
-    const boxY = H - 510 - row * 60;
-    page1.drawRectangle({
-      x: boxX,
-      y: boxY,
-      width: 225,
-      height: 48,
-      color: rgb(10/255, 25/255, 55/255),
-      borderColor: rgb(30/255, 58/255, 110/255),
-      borderWidth: 1,
-    });
-    page1.drawText(item.num, {
-      x: boxX + 16,
-      y: boxY + 28,
-      size: 12,
-      font: fontBold,
-      color: orange,
-    });
-    page1.drawText(item.lbl, {
-      x: boxX + 16,
-      y: boxY + 12,
-      size: 9,
-      font: fontRegular,
-      color: rgb(203/255, 213/255, 225/255),
-    });
-  });
-
-  // Contact Footer inside Card
-  page1.drawRectangle({
-    x: 65,
-    y: 130,
-    width: W - 130,
-    height: 85,
-    color: rgb(8/255, 20/255, 45/255),
-    borderColor: rgb(30/255, 58/255, 100/255),
-    borderWidth: 1,
-  });
-
-  page1.drawText('HEAD OFFICE & CONTACT INFORMATION', {
-    x: 80,
-    y: 195,
-    size: 9,
-    font: fontBold,
-    color: orange,
-  });
-
-  page1.drawText('Address: Sabaila-8, Dhanusha | Branch: Tikathali, Lalitpur (opp. Pawan Prakriti School)', {
-    x: 80,
-    y: 178,
-    size: 8.5,
-    font: fontRegular,
-    color: white,
-  });
-
-  page1.drawText('Phone: +977 15925062 / +977 9810357535 | Email: abt4nepal@gmail.com', {
-    x: 80,
-    y: 162,
-    size: 8.5,
-    font: fontRegular,
-    color: white,
-  });
-
-  page1.drawText('Website: https://amulyabuilders.com.np | VAT / PAN: 619774758', {
-    x: 80,
-    y: 146,
+  page1.drawText('9+ Years Experience • Regd. in Nepal', {
+    x: W - 205,
+    y: H - 95,
     size: 8.5,
     font: fontRegular,
     color: rgb(203/255, 213/255, 225/255),
   });
 
-  // Bottom Footer Bar
-  page1.drawRectangle({
-    x: 0,
-    y: 0,
-    width: W,
-    height: 35,
-    color: rgb(5/255, 15/255, 35/255),
+  // Main Cover Titles
+  page1.drawText('AMULYA BUILDERS', {
+    x: 40,
+    y: H - 150,
+    size: 30,
+    font: fontBold,
+    color: white,
   });
-  const copyTxt = '© Amulya Builders Pvt. Ltd. • All Rights Reserved';
-  const copyW = fontRegular.widthOfTextAtSize(copyTxt, 8.5);
-  page1.drawText(copyTxt, {
-    x: (W - copyW) / 2,
-    y: 12,
+
+  page1.drawText('Constructing Integrity • Elevating Standards', {
+    x: 40,
+    y: H - 172,
+    size: 13,
+    font: fontBold,
+    color: orange,
+  });
+
+  page1.drawText('Architectural Design • 3D Modeling • Structural Engineering • Turnkey Construction', {
+    x: 40,
+    y: H - 192,
+    size: 9.5,
+    font: fontRegular,
+    color: rgb(226/255, 232/255, 240/255),
+  });
+
+  // EMBEDDED FEATURED PROJECT IMAGE ON COVER
+  const coverImgBox = { x: 40, y: H - 465, width: W - 80, height: 255 };
+  page1.drawRectangle({
+    x: coverImgBox.x - 2,
+    y: coverImgBox.y - 2,
+    width: coverImgBox.width + 4,
+    height: coverImgBox.height + 4,
+    color: rgb(20/255, 45/255, 95/255),
+    borderColor: rgb(40/255, 75/255, 140/255),
+    borderWidth: 1.5,
+  });
+
+  if (coverProjImg) {
+    page1.drawImage(coverProjImg, {
+      x: coverImgBox.x,
+      y: coverImgBox.y,
+      width: coverImgBox.width,
+      height: coverImgBox.height,
+    });
+  }
+
+  // Overlay Tag on Photo
+  page1.drawRectangle({
+    x: coverImgBox.x,
+    y: coverImgBox.y,
+    width: coverImgBox.width,
+    height: 38,
+    color: rgb(2/255, 15/255, 38/255),
+  });
+  page1.drawText('FEATURED LANDMARK DEVELOPMENT • TURNKEY EXCELLENCE', {
+    x: coverImgBox.x + 15,
+    y: coverImgBox.y + 22,
+    size: 9,
+    font: fontBold,
+    color: orange,
+  });
+  page1.drawText('Seismic-Resistant Engineering • Inside & Outside Kathmandu Valley Across Nepal', {
+    x: coverImgBox.x + 15,
+    y: coverImgBox.y + 10,
+    size: 8,
+    font: fontRegular,
+    color: white,
+  });
+
+  // 4 KEY METRICS BOXES (Showing user's exact updated datas)
+  const coverMetrics = [
+    { num: '9+', lbl: 'Years Experience', sub: 'Active Excellence' },
+    { num: '20+', lbl: 'Happy Clients', sub: 'Residential & Commercial' },
+    { num: '15+', lbl: 'Professionals', sub: 'Licensed Engineers & Staff' },
+    { num: '250+', lbl: 'Projects Done', sub: 'Delivered On Schedule' },
+  ];
+
+  coverMetrics.forEach((m, idx) => {
+    const bx = 40 + idx * 132;
+    const by = H - 540;
+    page1.drawRectangle({
+      x: bx,
+      y: by,
+      width: 122,
+      height: 60,
+      color: rgb(8/255, 25/255, 60/255),
+      borderColor: rgb(35/255, 65/255, 120/255),
+      borderWidth: 1,
+    });
+    page1.drawText(m.num, {
+      x: bx + 12,
+      y: by + 36,
+      size: 18,
+      font: fontBold,
+      color: orange,
+    });
+    page1.drawText(m.lbl, {
+      x: bx + 12,
+      y: by + 22,
+      size: 8.5,
+      font: fontBold,
+      color: white,
+    });
+    page1.drawText(m.sub, {
+      x: bx + 12,
+      y: by + 10,
+      size: 7,
+      font: fontRegular,
+      color: rgb(203/255, 213/255, 225/255),
+    });
+  });
+
+  // Contact Footer Box
+  page1.drawRectangle({
+    x: 40,
+    y: 60,
+    width: W - 80,
+    height: 105,
+    color: rgb(5/255, 18/255, 45/255),
+    borderColor: rgb(30/255, 60/255, 115/255),
+    borderWidth: 1,
+  });
+
+  page1.drawText('HEAD OFFICE & CONTACT INFORMATION', {
+    x: 55,
+    y: 145,
+    size: 9.5,
+    font: fontBold,
+    color: orange,
+  });
+  page1.drawText('Head Office: Sabaila-8, Dhanusha, Nepal | Branch: Tikathali, Lalitpur (opp. Pawan Prakriti School)', {
+    x: 55,
+    y: 128,
     size: 8.5,
+    font: fontRegular,
+    color: white,
+  });
+  page1.drawText('Landline: +977 15925062 | Mobile & WhatsApp: +977 9810357535 | Email: abt4nepal@gmail.com', {
+    x: 55,
+    y: 112,
+    size: 8.5,
+    font: fontRegular,
+    color: white,
+  });
+  page1.drawText('Website: https://amulyabuilders.com.np | PAN / VAT: 619774758 (Inland Revenue Dept.)', {
+    x: 55,
+    y: 96,
+    size: 8.5,
+    font: fontRegular,
+    color: rgb(203/255, 213/255, 225/255),
+  });
+  page1.drawText('Standards: Nepal National Building Code NBC 105:2020 / NBC 205 (Seismic Zone V Certified)', {
+    x: 55,
+    y: 80,
+    size: 8,
+    font: fontItalic,
+    color: rgb(148/255, 163/255, 184/255),
+  });
+
+  // Bottom Copy Line
+  page1.drawText('© Amulya Builders Pvt. Ltd. • All Rights Reserved', {
+    x: (W - 200) / 2,
+    y: 25,
+    size: 8,
     font: fontRegular,
     color: slateMuted,
   });
 
-  // -------------------------------------------------------------
-  // PAGE 2: CORPORATE OVERVIEW, VISION & WHY CHOOSE US
-  // -------------------------------------------------------------
+  // =============================================================
+  // PAGE 2: OVERVIEW, VISION & EMBEDDED ARCHITECTURE IMAGE
+  // =============================================================
   const page2 = doc.addPage([W, H]);
   drawPageHeader(page2, 'Company Overview & Vision', 'Engineering Trust, Architectural Elegance & Structural Resilience');
 
-  let yPos = H - 110;
+  let yPos = H - 105;
 
-  // Section 1: Executive Summary Box
+  // Split: Text on Left (300pt), Real Photo on Right (195pt)
   page2.drawRectangle({
     x: 40,
-    y: yPos - 95,
-    width: W - 80,
-    height: 95,
+    y: yPos - 135,
+    width: 300,
+    height: 135,
     color: bgLight,
     borderColor: cardBorder,
     borderWidth: 1,
   });
   page2.drawRectangle({
     x: 40,
-    y: yPos - 95,
+    y: yPos - 135,
     width: 4,
-    height: 95,
+    height: 135,
     color: navy,
   });
 
@@ -371,59 +409,83 @@ async function generateCompanyProfilePdf() {
     color: navy,
   });
 
-  const execLines = [
-    'Amulya Builders Pvt. Ltd. is one of Nepal\'s premier design and construction firms, founded in 2009.',
-    'Headquartered in Dhanusha with a full-fledged technical branch in Tikathali, Lalitpur, we provide',
-    'end-to-end turnkey solutions spanning architectural design, structural engineering, 3D visualization,',
-    'municipal approval documentation, and superior civil construction across Nepal with seismic resilience.'
+  const summaryLines = [
+    'Amulya Builders Pvt. Ltd. is a premier architectural design,',
+    'structural engineering, and turnkey construction company.',
+    'Headquartered in Dhanusha with our central technical office in',
+    'Tikathali, Lalitpur, we provide comprehensive services from soil',
+    'testing and 3D modeling to precision NBC-compliant construction.',
+    'With 9+ years of experience, 20+ satisfied clients, and a dedicated',
+    'team of 15+ licensed professionals, we build enduring structures',
+    'inside and outside Kathmandu Valley across Nepal.'
   ];
-  execLines.forEach((line, i) => {
+  summaryLines.forEach((line, i) => {
     page2.drawText(line, {
       x: 55,
-      y: yPos - 38 - (i * 14),
-      size: 9.5,
+      y: yPos - 38 - (i * 12),
+      size: 8.5,
       font: fontRegular,
       color: slateDark,
     });
   });
 
-  yPos -= 125;
+  // Embed Real Architectural Project Photo on Right
+  const archImgBox = { x: 355, y: yPos - 135, width: W - 395, height: 135 };
+  page2.drawRectangle({
+    x: archImgBox.x - 1,
+    y: archImgBox.y - 1,
+    width: archImgBox.width + 2,
+    height: archImgBox.height + 2,
+    color: white,
+    borderColor: cardBorder,
+    borderWidth: 1,
+  });
+  if (aboutProjImg) {
+    page2.drawImage(aboutProjImg, {
+      x: archImgBox.x,
+      y: archImgBox.y,
+      width: archImgBox.width,
+      height: archImgBox.height,
+    });
+  }
 
-  // Section 2: Vision & Mission (2 Cards)
+  yPos -= 155;
+
+  // Vision & Mission Cards
   page2.drawRectangle({
     x: 40,
-    y: yPos - 95,
+    y: yPos - 85,
     width: 250,
-    height: 95,
+    height: 85,
     color: white,
     borderColor: cardBorder,
     borderWidth: 1,
   });
   page2.drawRectangle({
     x: 40,
-    y: yPos - 22,
+    y: yPos - 20,
     width: 250,
-    height: 22,
+    height: 20,
     color: navy,
   });
   page2.drawText('OUR VISION', {
     x: 50,
-    y: yPos - 15,
-    size: 10,
+    y: yPos - 14,
+    size: 9.5,
     font: fontBold,
     color: white,
   });
-  const visionLines = [
+  const vLines = [
     'To be recognized across Nepal as the benchmark',
     'of engineering integrity, architectural innovation,',
-    'and enduring construction that enriches communities',
-    'and safeguards lives through earthquake engineering.'
+    'and enduring construction that safeguards lives',
+    'through seismic-compliant building design.'
   ];
-  visionLines.forEach((line, i) => {
-    page2.drawText(line, {
+  vLines.forEach((l, i) => {
+    page2.drawText(l, {
       x: 50,
-      y: yPos - 38 - (i * 13),
-      size: 8.5,
+      y: yPos - 34 - (i * 12),
+      size: 8,
       font: fontRegular,
       color: slateDark,
     });
@@ -432,38 +494,94 @@ async function generateCompanyProfilePdf() {
   // Mission
   page2.drawRectangle({
     x: 305,
-    y: yPos - 95,
+    y: yPos - 85,
     width: 250,
-    height: 95,
+    height: 85,
     color: white,
     borderColor: cardBorder,
     borderWidth: 1,
   });
   page2.drawRectangle({
     x: 305,
-    y: yPos - 22,
+    y: yPos - 20,
     width: 250,
-    height: 22,
+    height: 20,
     color: orange,
   });
   page2.drawText('OUR MISSION', {
     x: 315,
-    y: yPos - 15,
-    size: 10,
+    y: yPos - 14,
+    size: 9.5,
     font: fontBold,
     color: white,
   });
-  const missionLines = [
+  const mLines = [
     'To deliver uncompromising construction quality,',
-    'transparent cost management, and timely project',
-    'delivery with certified materials, licensed engineers,',
-    'and personalized customer collaboration from day one.'
+    'transparent cost management, and timely handover',
+    'with certified materials, licensed engineers, and',
+    'personalized client collaboration from day one.'
   ];
-  missionLines.forEach((line, i) => {
-    page2.drawText(line, {
+  mLines.forEach((l, i) => {
+    page2.drawText(l, {
       x: 315,
-      y: yPos - 38 - (i * 13),
-      size: 8.5,
+      y: yPos - 34 - (i * 12),
+      size: 8,
+      font: fontRegular,
+      color: slateDark,
+    });
+  });
+
+  yPos -= 110;
+
+  // Core Values
+  page2.drawText('CORE ENGINEERING VALUES', {
+    x: 40,
+    y: yPos,
+    size: 11,
+    font: fontBold,
+    color: navy,
+  });
+  page2.drawLine({
+    start: { x: 40, y: yPos - 4 },
+    end: { x: 215, y: yPos - 4 },
+    thickness: 2,
+    color: orange,
+  });
+
+  yPos -= 20;
+
+  const coreVals = [
+    { title: '1. Engineering Integrity', desc: 'No shortcuts on steel rebar or cement grade. Strict adherence to structural designs.' },
+    { title: '2. Total Transparency', desc: 'Detailed, unhidden Bill of Quantities (BOQ). Clear market rates and no surprises.' },
+    { title: '3. NBC Code Compliance', desc: 'NBC 105:2020 seismic engineering standard for complete safety in seismic Zone V.' },
+    { title: '4. Guaranteed Punctuality', desc: 'Precise Gantt schedules, experienced site engineers, and guaranteed on-time handover.' },
+  ];
+
+  coreVals.forEach((val, idx) => {
+    const col = idx % 2;
+    const row = Math.floor(idx / 2);
+    const vx = 40 + col * 265;
+    const vy = yPos - row * 50;
+    page2.drawRectangle({
+      x: vx,
+      y: vy - 42,
+      width: 250,
+      height: 42,
+      color: bgLight,
+      borderColor: cardBorder,
+      borderWidth: 1,
+    });
+    page2.drawText(val.title, {
+      x: vx + 10,
+      y: vy - 15,
+      size: 9,
+      font: fontBold,
+      color: navy,
+    });
+    page2.drawText(val.desc, {
+      x: vx + 10,
+      y: vy - 29,
+      size: 7.5,
       font: fontRegular,
       color: slateDark,
     });
@@ -471,100 +589,37 @@ async function generateCompanyProfilePdf() {
 
   yPos -= 125;
 
-  // Section 3: Core Corporate Values
-  page2.drawText('CORE VALUES & ETHICAL STANDARDS', {
-    x: 40,
-    y: yPos,
-    size: 12,
-    font: fontBold,
-    color: navy,
-  });
-  page2.drawLine({
-    start: { x: 40, y: yPos - 6 },
-    end: { x: 260, y: yPos - 6 },
-    thickness: 2,
-    color: orange,
-  });
-
-  yPos -= 25;
-
-  const coreValues = [
-    { title: '1. Engineering Integrity', desc: 'No shortcuts on rebar, cement grade, or foundation depth. Every member strictly follows structural drawings.' },
-    { title: '2. Total Transparency', desc: 'Detailed, unhidden Bill of Quantities (BOQ). No surprise charges or inflated rate variations.' },
-    { title: '3. NBC Code Compliance', desc: 'Strict compliance with Nepal National Building Code NBC 105:2020 for seismic resistance in Zone V.' },
-    { title: '4. Punctual Delivery', desc: 'Organized Gantt schedules, experienced site supervisors, and guaranteed on-time project handovers.' },
-  ];
-
-  coreValues.forEach((val, idx) => {
-    const col = idx % 2;
-    const row = Math.floor(idx / 2);
-    const vx = 40 + col * 265;
-    const vy = yPos - row * 55;
-    page2.drawRectangle({
-      x: vx,
-      y: vy - 45,
-      width: 250,
-      height: 45,
-      color: bgLight,
-      borderColor: cardBorder,
-      borderWidth: 1,
-    });
-    page2.drawText(val.title, {
-      x: vx + 10,
-      y: vy - 16,
-      size: 9.5,
-      font: fontBold,
-      color: navy,
-    });
-    page2.drawText(val.desc.slice(0, 52), {
-      x: vx + 10,
-      y: vy - 30,
-      size: 8,
-      font: fontRegular,
-      color: slateDark,
-    });
-    page2.drawText(val.desc.slice(52), {
-      x: vx + 10,
-      y: vy - 40,
-      size: 8,
-      font: fontRegular,
-      color: slateDark,
-    });
-  });
-
-  yPos -= 135;
-
-  // Section 4: Key Pillars & Statistics Box
+  // Track Record Strip
   page2.drawText('PROVEN TRACK RECORD & REACH', {
     x: 40,
     y: yPos,
-    size: 12,
+    size: 11,
     font: fontBold,
     color: navy,
   });
   page2.drawLine({
-    start: { x: 40, y: yPos - 6 },
-    end: { x: 235, y: yPos - 6 },
+    start: { x: 40, y: yPos - 4 },
+    end: { x: 220, y: yPos - 4 },
     thickness: 2,
     color: orange,
   });
 
-  yPos -= 25;
+  yPos -= 22;
 
   const trackStats = [
-    { num: '250+', label: 'Successful Projects', sub: 'Residential & Commercial' },
-    { num: '9+', label: 'Years in Business', sub: 'Proven Track Record' },
+    { num: '9+', label: 'Years Experience', sub: 'Active Excellence' },
     { num: '20+', label: 'Happy Clients', sub: 'Inside & Outside Valley' },
-    { num: '15+', label: 'Team Members', sub: 'Engineers, Architects & Staff' },
+    { num: '15+', label: 'Professionals', sub: 'Engineers & Architects' },
+    { num: '250+', label: 'Delivered Projects', sub: 'Residential & Commercial' },
   ];
 
   trackStats.forEach((stat, i) => {
     const sx = 40 + i * 132;
     page2.drawRectangle({
       x: sx,
-      y: yPos - 60,
+      y: yPos - 55,
       width: 122,
-      height: 60,
+      height: 55,
       color: navy,
     });
     page2.drawText(stat.num, {
@@ -576,133 +631,126 @@ async function generateCompanyProfilePdf() {
     });
     page2.drawText(stat.label, {
       x: sx + 12,
-      y: yPos - 38,
+      y: yPos - 36,
       size: 8,
       font: fontBold,
       color: white,
     });
     page2.drawText(stat.sub, {
       x: sx + 12,
-      y: yPos - 50,
+      y: yPos - 47,
       size: 7,
       font: fontRegular,
       color: rgb(203/255, 213/255, 225/255),
     });
   });
 
-  yPos -= 85;
+  yPos -= 80;
 
-  // Service Scope Note
+  // Regional Coverage
   page2.drawRectangle({
     x: 40,
-    y: yPos - 50,
+    y: yPos - 45,
     width: W - 80,
-    height: 50,
+    height: 45,
     color: rgb(254/255, 243/255, 199/255),
     borderColor: rgb(245/255, 158/255, 11/255),
     borderWidth: 1,
   });
-  page2.drawText('REGIONAL COVERAGE (INSIDE & OUTSIDE KATHMANDU VALLEY):', {
+  page2.drawText('NATIONWIDE SERVICE REACH (INSIDE & OUTSIDE KATHMANDU VALLEY):', {
     x: 55,
-    y: yPos - 18,
-    size: 9,
+    y: yPos - 17,
+    size: 8.5,
     font: fontBold,
     color: rgb(146/255, 64/255, 14/255),
   });
-  page2.drawText('We execute full turnkey projects throughout Kathmandu, Lalitpur, Bhaktapur, Janakpur, Dhanusha, Chitwan,', {
+  page2.drawText('Active turnkey execution in Kathmandu, Lalitpur, Bhaktapur, Janakpur, Dhanusha, Chitwan, and beyond.', {
     x: 55,
-    y: yPos - 32,
-    size: 8.5,
-    font: fontRegular,
-    color: rgb(120/255, 53/255, 15/255),
-  });
-  page2.drawText('and surrounding districts with unified quality management and centralized engineering oversight.', {
-    x: 55,
-    y: yPos - 44,
-    size: 8.5,
+    y: yPos - 31,
+    size: 8,
     font: fontRegular,
     color: rgb(120/255, 53/255, 15/255),
   });
 
   drawPageFooter(page2, 2, 5);
 
-  // -------------------------------------------------------------
-  // PAGE 3: SERVICES & ENGINEERING PROCESS
-  // -------------------------------------------------------------
+  // =============================================================
+  // PAGE 3: COMPREHENSIVE SERVICES & 5-STAGE WORKFLOW
+  // =============================================================
   const page3 = doc.addPage([W, H]);
   drawPageHeader(page3, 'Comprehensive Services & Process', 'Turnkey Architectural, Structural & Construction Capabilities');
 
-  yPos = H - 110;
+  yPos = H - 105;
 
   page3.drawText('OUR CORE SPECIALIZATIONS', {
     x: 40,
     y: yPos,
-    size: 12,
+    size: 11,
     font: fontBold,
     color: navy,
   });
   page3.drawLine({
-    start: { x: 40, y: yPos - 6 },
-    end: { x: 210, y: yPos - 6 },
+    start: { x: 40, y: yPos - 4 },
+    end: { x: 200, y: yPos - 4 },
     thickness: 2,
     color: orange,
   });
 
-  yPos -= 25;
+  yPos -= 20;
 
   const servicesList = [
     {
       title: 'Architectural & 3D Modeling Design',
       points: [
-        'Complete functional space planning tailored to family/business needs',
-        'Photorealistic 3D elevations, exterior views & walk-through renders',
-        'Full municipal approval documentation (Nagar Palika building pass drawings)',
-        'Vastu-compliant layouts integrated seamlessly with modern aesthetics',
+        'Complete functional space planning tailored to client needs',
+        'Photorealistic 3D elevations, exterior views & walkthroughs',
+        'Municipal approval documentation (Nagar Palika building pass)',
+        'Vastu-compliant layouts seamlessly merged with modern style',
       ]
     },
     {
       title: 'Turnkey Residential Construction',
       points: [
-        'Bespoke luxury bungalows, duplex villas & modern residential homes',
-        'Earthquake-resistant RCC ductile frame engineering with high-grade steel',
-        'Comprehensive plumbing, electrical conduits, sanitary fixtures & drainage',
-        'End-to-end management from earthwork/excavation to housewarming ceremony',
+        'Bespoke luxury bungalows, duplexes & residential homes',
+        'Earthquake-resistant RCC ductile frame engineering',
+        'Complete plumbing, electrical conduits & sanitary fixtures',
+        'End-to-end management from earthwork to handover',
       ]
     },
     {
       title: 'Commercial & Institutional Complexes',
       points: [
-        'Multi-storey commercial plazas, corporate towers & retail centers',
-        'Hotels, hospitals, resorts & educational school/college campuses',
-        'Advanced fire safety systems, high-efficiency MEP engineering & parking layouts',
-        'Fast-track delivery schedules to ensure accelerated commercial ROI',
+        'Multi-storey commercial plazas, corporate towers & retail hubs',
+        'Hotels, hospitals, resorts & educational school campuses',
+        'Advanced fire safety, MEP engineering & parking systems',
+        'Fast-track delivery schedules to accelerate investment ROI',
       ]
     },
     {
-      title: 'Structural Consultancy & Seismic Retrofitting',
+      title: 'Structural Consultancy & Retrofitting',
       points: [
-        'NBC 105:2020 seismic analysis & dynamic response spectrum calculation',
-        'Detailed Project Reports (DPR), site feasibility & soil bearing test evaluation',
-        'Structural retrofitting, jacket column addition & strengthening of old buildings',
-        'Independent engineering audits and structural stability certificates',
+        'NBC 105:2020 seismic analysis & dynamic calculations',
+        'Detailed Project Reports (DPR), site feasibility & soil tests',
+        'Structural retrofitting & jacket column additions',
+        'Independent engineering audits & structural stability certificates',
       ]
     },
     {
       title: 'Interior Design & Premium Finishing Works',
       points: [
-        'Italian marble, vitrified tiles, granite countertops & parquet wooden flooring',
-        'Modular kitchen layouts, custom storage wardrobes & gypsum ceiling lighting',
-        'Exterior stone cladding, textured waterproofing paints & CNC decorative screens',
-        'Soundproof double-glazed UPVC/aluminum windows & toughened glass railings',
+        'Italian marble, vitrified tiles, granite & parquet flooring',
+        'Modular kitchen layouts, custom wardrobes & false ceilings',
+        'Exterior stone cladding, textured waterproof paints & CNC panels',
+        'Soundproof UPVC/aluminum windows & toughened glass railings',
       ]
     },
     {
       title: 'Project Management & Quantity Surveying (BOQ)',
       points: [
-        'Transparent item-by-item Bill of Quantities (BOQ) with verifiable market rates',
-        'Daily on-site engineering supervision & weekly video/photo client updates',
-        'Laboratory cube testing for concrete compressive strength & rebar tensile check',
-        'Strict milestone-based payment schedules tied directly to physical progress',
+        'Item-by-item BOQ with completely transparent market rates',
+        'Daily on-site engineering supervision & weekly progress photos',
+        'Laboratory cube testing for concrete compressive strength',
+        'Milestone-based payment schedules tied to verified work',
       ]
     },
   ];
@@ -722,18 +770,16 @@ async function generateCompanyProfilePdf() {
       borderColor: cardBorder,
       borderWidth: 1,
     });
-
-    // Header bar inside card
     page3.drawRectangle({
       x: sx,
-      y: sy - 22,
+      y: sy - 20,
       width: 250,
-      height: 22,
+      height: 20,
       color: navy,
     });
     page3.drawText(srv.title, {
       x: sx + 8,
-      y: sy - 15,
+      y: sy - 14,
       size: 8.5,
       font: fontBold,
       color: white,
@@ -742,13 +788,13 @@ async function generateCompanyProfilePdf() {
     srv.points.forEach((pt, pIdx) => {
       page3.drawCircle({
         x: sx + 12,
-        y: sy - 36 - (pIdx * 17),
+        y: sy - 34 - (pIdx * 17),
         size: 2,
         color: orange,
       });
       page3.drawText(pt.slice(0, 48), {
         x: sx + 20,
-        y: sy - 38 - (pIdx * 17),
+        y: sy - 36 - (pIdx * 17),
         size: 7.5,
         font: fontRegular,
         color: slateDark,
@@ -756,7 +802,7 @@ async function generateCompanyProfilePdf() {
       if (pt.length > 48) {
         page3.drawText(pt.slice(48), {
           x: sx + 20,
-          y: sy - 46 - (pIdx * 17),
+          y: sy - 44 - (pIdx * 17),
           size: 7,
           font: fontRegular,
           color: slateMuted,
@@ -767,7 +813,7 @@ async function generateCompanyProfilePdf() {
 
   yPos -= 365;
 
-  // Process Steps Bar
+  // Workflow
   page3.drawText('OUR 5-STAGE TURNKEY EXECUTION WORKFLOW', {
     x: 40,
     y: yPos,
@@ -776,57 +822,57 @@ async function generateCompanyProfilePdf() {
     color: navy,
   });
   page3.drawLine({
-    start: { x: 40, y: yPos - 6 },
-    end: { x: 300, y: yPos - 6 },
+    start: { x: 40, y: yPos - 4 },
+    end: { x: 290, y: yPos - 4 },
     thickness: 2,
     color: orange,
   });
 
-  yPos -= 25;
+  yPos -= 22;
 
-  const flowSteps = [
-    { step: '01', title: 'Consultation', desc: 'Site inspection & requirement intake' },
-    { step: '02', title: '3D Design', desc: 'Architectural planning & 3D render' },
-    { step: '03', title: 'BOQ & Permit', desc: 'Transparent costing & municipal pass' },
-    { step: '04', title: 'Construction', desc: 'RCC execution & lab-tested quality' },
-    { step: '05', title: 'Handover', desc: 'Interior finish & key handover' },
+  const workflowSteps = [
+    { step: '01', title: 'Consultation', desc: 'Site inspection & requirements' },
+    { step: '02', title: '3D Design', desc: 'Architectural & 3D renders' },
+    { step: '03', title: 'BOQ & Permit', desc: 'Transparent BOQ & municipal pass' },
+    { step: '04', title: 'Construction', desc: 'RCC execution & lab testing' },
+    { step: '05', title: 'Handover', desc: 'Finishing & key handover' },
   ];
 
-  flowSteps.forEach((stp, sIdx) => {
+  workflowSteps.forEach((stp, sIdx) => {
     const stpX = 40 + sIdx * 105;
     page3.drawRectangle({
       x: stpX,
-      y: yPos - 65,
+      y: yPos - 60,
       width: 98,
-      height: 65,
+      height: 60,
       color: bgLight,
       borderColor: cardBorder,
       borderWidth: 1,
     });
     page3.drawText(stp.step, {
       x: stpX + 8,
-      y: yPos - 22,
+      y: yPos - 20,
       size: 14,
       font: fontBold,
       color: orange,
     });
     page3.drawText(stp.title, {
       x: stpX + 8,
-      y: yPos - 36,
-      size: 8.5,
+      y: yPos - 34,
+      size: 8,
       font: fontBold,
       color: navy,
     });
     page3.drawText(stp.desc.slice(0, 18), {
       x: stpX + 8,
-      y: yPos - 48,
+      y: yPos - 45,
       size: 7,
       font: fontRegular,
       color: slateDark,
     });
     page3.drawText(stp.desc.slice(18), {
       x: stpX + 8,
-      y: yPos - 58,
+      y: yPos - 54,
       size: 7,
       font: fontRegular,
       color: slateMuted,
@@ -835,41 +881,50 @@ async function generateCompanyProfilePdf() {
 
   drawPageFooter(page3, 3, 5);
 
-  // -------------------------------------------------------------
-  // PAGE 4: FEATURED PORTFOLIO PROJECTS
-  // -------------------------------------------------------------
+  // =============================================================
+  // PAGE 4: FEATURED PROJECTS WITH EMBEDDED REAL PHOTOS
+  // =============================================================
   const page4 = doc.addPage([W, H]);
-  drawPageHeader(page4, 'Featured Projects Portfolio', 'A Selection of Landmark Developments Across Nepal');
+  drawPageHeader(page4, 'Featured Projects Portfolio', 'A Selection of Landmark Developments Across Nepal (With Photos)');
 
-  yPos = H - 110;
+  yPos = H - 105;
 
   page4.drawText('SIGNATURE RESIDENTIAL & COMMERCIAL PROJECTS', {
     x: 40,
     y: yPos,
-    size: 12,
+    size: 11,
     font: fontBold,
     color: navy,
   });
   page4.drawLine({
-    start: { x: 40, y: yPos - 6 },
-    end: { x: 330, y: yPos - 6 },
+    start: { x: 40, y: yPos - 4 },
+    end: { x: 310, y: yPos - 4 },
     thickness: 2,
     color: orange,
   });
 
-  yPos -= 25;
+  yPos -= 20;
 
   const projectCards = [
+    {
+      code: 'Project 19',
+      name: 'Turnkey Luxury Commercial Hub',
+      loc: 'Kathmandu Valley',
+      cost: 'Turnkey Contract',
+      area: 'Multi-Storey Complex',
+      type: 'Commercial & Corporate Hub',
+      status: 'Completed',
+      imgKey: 'p19',
+    },
     {
       code: 'Project 6',
       name: 'Jay Kishor Mahato Residential',
       loc: 'Chitwan, Nepal',
       cost: 'Rs 1 Cr 10 Lakhs',
-      area: '1690 sq ft (Plinth: 1300 sq ft)',
+      area: '1690 sq ft (1300 sq ft Plinth)',
       type: '2.5-Storey Residential Residence',
-      duration: '11 Months',
-      desc: 'Modern 2.5-storey home with a 42 ft grand facade, rooftop pergola, double balconies, and earthquake-resistant ductile frame engineering.',
       status: 'Completed',
+      imgKey: 'p6',
     },
     {
       code: 'Project 7',
@@ -878,53 +933,38 @@ async function generateCompanyProfilePdf() {
       cost: 'Rs 1.50 Crore',
       area: '1966 sq ft Built-up Area',
       type: 'Luxury Contemporary Bungalow',
-      duration: '1 Year 6 Months',
-      desc: 'Prestige residential villa featuring open landscaped lawns, expansive panoramic windows, stone-clad facade, and premium acoustic insulation.',
       status: 'Completed',
+      imgKey: 'p7',
     },
     {
       code: 'Project 11',
       name: 'Budhanilkantha Luxury Residence',
       loc: 'Budhanilkantha, Kathmandu',
       cost: 'Rs 1 Cr 20 Lakhs',
-      area: '1100 sq ft Plinth Area (26 ft Face)',
+      area: '1100 sq ft Plinth (26 ft Face)',
       type: 'Contemporary RCC Villa',
-      duration: '1 Year 8 Months',
-      desc: 'Contemporary C-frame cantilevered balcony with exposed brick accents, open rooftop recreational deck, and seismic ductile frame design.',
       status: 'Completed',
+      imgKey: 'p11',
     },
     {
       code: 'Project 12',
       name: 'Neo-Classical Palatial Residence',
       loc: 'Kathmandu Valley',
       cost: 'Turnkey Contract',
-      area: '3.5 Storeys Grand Built-up Area',
+      area: '3.5 Storeys Grand Built-up',
       type: 'Neo-Classical Mansion',
-      duration: 'Delivered On Schedule',
-      desc: 'Monumental Corinthian colonnade with ornate pediment cartouche, central full-height atrium, and cascading terrace balustrades.',
       status: 'Completed',
+      imgKey: 'p12',
     },
     {
       code: 'Project 13',
-      name: 'Cottage Villa with Traditional Sloping Roofs',
+      name: 'Cottage Villa with Traditional Roofs',
       loc: 'Kathmandu Valley Outskirts',
       cost: 'Turnkey Contract',
       area: '2 Storeys Custom Floorplan',
       type: 'Heritage Contemporary Fusion',
-      duration: 'Delivered On Schedule',
-      desc: 'Multi-tiered sloping red clay tile roofs with dormer gables, colonnaded portico entrance, spacious paved parking court, and perimeter security wall.',
       status: 'Completed',
-    },
-    {
-      code: 'Project 15',
-      name: 'Twin-Bay Urban Residence',
-      loc: 'Kathmandu Urban Area',
-      cost: 'Turnkey Contract',
-      area: '3 Storeys High-Density Residential',
-      type: 'Urban Multi-Family Home',
-      duration: 'Delivered On Schedule',
-      desc: 'Vertical architectural louvers, cantilevered box windows, high-efficiency natural cross ventilation, and integrated ground vehicle parking.',
-      status: 'Completed',
+      imgKey: 'p13',
     },
   ];
 
@@ -932,167 +972,233 @@ async function generateCompanyProfilePdf() {
     const col = idx % 2;
     const row = Math.floor(idx / 2);
     const px = 40 + col * 265;
-    const py = yPos - row * 165;
+    const py = yPos - row * 195;
 
-    // Card frame
+    // Card Frame
     page4.drawRectangle({
       x: px,
-      y: py - 150,
+      y: py - 182,
       width: 250,
-      height: 150,
+      height: 182,
       color: white,
       borderColor: cardBorder,
       borderWidth: 1,
     });
 
-    // Top status pill & header
-    page4.drawRectangle({
-      x: px,
-      y: py - 24,
-      width: 250,
-      height: 24,
-      color: navy,
-    });
+    // Embed REAL Project Photo (Height 85pt)
+    const pImg = projImgs[proj.imgKey];
+    if (pImg) {
+      page4.drawImage(pImg, {
+        x: px,
+        y: py - 85,
+        width: 250,
+        height: 85,
+      });
+    } else {
+      page4.drawRectangle({
+        x: px,
+        y: py - 85,
+        width: 250,
+        height: 85,
+        color: rgb(20/255, 35/255, 65/255),
+      });
+    }
 
-    page4.drawText(`${proj.code}: ${proj.name.slice(0, 24)}`, {
+    // Status Pill on Photo
+    page4.drawRectangle({
       x: px + 8,
-      y: py - 17,
-      size: 8.5,
+      y: py - 22,
+      width: 60,
+      height: 16,
+      color: rgb(1/255, 35/255, 82/255),
+    });
+    page4.drawText(proj.code, {
+      x: px + 12,
+      y: py - 18,
+      size: 7.5,
       font: fontBold,
       color: white,
     });
 
-    // Status Pill
     page4.drawRectangle({
-      x: px + 185,
-      y: py - 20,
-      width: 55,
-      height: 15,
+      x: px + 182,
+      y: py - 22,
+      width: 60,
+      height: 16,
       color: orange,
     });
     page4.drawText(proj.status.toUpperCase(), {
-      x: px + 192,
-      y: py - 16,
-      size: 6.5,
+      x: px + 188,
+      y: py - 18,
+      size: 7,
       font: fontBold,
       color: white,
     });
 
+    // Project Name Under Image
+    page4.drawText(proj.name.slice(0, 32), {
+      x: px + 8,
+      y: py - 98,
+      size: 8.5,
+      font: fontBold,
+      color: navy,
+    });
+
     // Specs
-    const specs = [
+    const pSpecs = [
       { k: 'Location:', v: proj.loc },
       { k: 'Building Type:', v: proj.type },
       { k: 'Scale & Area:', v: proj.area },
       { k: 'Project Cost:', v: proj.cost },
-      { k: 'Timeline:', v: proj.duration },
     ];
 
-    specs.forEach((sp, sIdx) => {
+    pSpecs.forEach((sp, sIdx) => {
       page4.drawText(sp.k, {
         x: px + 8,
-        y: py - 40 - (sIdx * 15),
+        y: py - 114 - (sIdx * 14),
         size: 7.5,
         font: fontBold,
         color: slateDark,
       });
-      page4.drawText(sp.v.slice(0, 32), {
+      page4.drawText(sp.v.slice(0, 28), {
         x: px + 75,
-        y: py - 40 - (sIdx * 15),
+        y: py - 114 - (sIdx * 14),
         size: 7.5,
         font: fontRegular,
         color: dark,
       });
     });
 
-    // Separator line
+    // Bottom Verification
     page4.drawLine({
-      start: { x: px + 8, y: py - 114 },
-      end: { x: px + 242, y: py - 114 },
+      start: { x: px + 8, y: py - 166 },
+      end: { x: px + 242, y: py - 166 },
       thickness: 0.5,
       color: cardBorder,
     });
-
-    // Short Description
-    page4.drawText(proj.desc.slice(0, 52), {
+    page4.drawText('NBC 105:2020 Compliant • Full Turnkey Execution', {
       x: px + 8,
-      y: py - 128,
+      y: py - 176,
       size: 6.8,
       font: fontItalic,
       color: slateMuted,
     });
-    if (proj.desc.length > 52) {
-      page4.drawText(proj.desc.slice(52, 105), {
-        x: px + 8,
-        y: py - 138,
-        size: 6.8,
-        font: fontItalic,
-        color: slateMuted,
-      });
-    }
-  });
-
-  // Bottom Notice
-  page4.drawRectangle({
-    x: 40,
-    y: 55,
-    width: W - 80,
-    height: 30,
-    color: bgLight,
-    borderColor: cardBorder,
-    borderWidth: 1,
-  });
-  page4.drawText('* Full architectural drawings, 3D renders, and client walk-through references available upon request.', {
-    x: 55,
-    y: 67,
-    size: 8,
-    font: fontItalic,
-    color: slateMuted,
   });
 
   drawPageFooter(page4, 4, 5);
 
-  // -------------------------------------------------------------
-  // PAGE 5: LEADERSHIP, ENGINEERING TEAM & OFFICIAL CONTACT
-  // -------------------------------------------------------------
+  // =============================================================
+  // PAGE 5: LEADERSHIP WITH REAL EMBEDDED PHOTOS & STATUTORY ACCREDITATION
+  // =============================================================
   const page5 = doc.addPage([W, H]);
   drawPageHeader(page5, 'Key Personnel & Corporate Contact', 'Licensed Professionals, Legal Registration & Office Locations');
 
-  yPos = H - 110;
+  yPos = H - 105;
 
-  page5.drawText('KEY MANAGEMENT & TECHNICAL PERSONNEL', {
+  // MD Executive Feature Box with Real Photo
+  page5.drawRectangle({
+    x: 40,
+    y: yPos - 90,
+    width: W - 80,
+    height: 90,
+    color: bgLight,
+    borderColor: cardBorder,
+    borderWidth: 1,
+  });
+  page5.drawRectangle({
+    x: 40,
+    y: yPos - 90,
+    width: 4,
+    height: 90,
+    color: orange,
+  });
+
+  // Embed MD Photo
+  const mdBox = { x: 50, y: yPos - 84, width: 62, height: 78 };
+  page5.drawRectangle({
+    x: mdBox.x - 1,
+    y: mdBox.y - 1,
+    width: mdBox.width + 2,
+    height: mdBox.height + 2,
+    color: white,
+    borderColor: orange,
+    borderWidth: 1.5,
+  });
+  if (mdImg) {
+    page5.drawImage(mdImg, {
+      x: mdBox.x,
+      y: mdBox.y,
+      width: mdBox.width,
+      height: mdBox.height,
+    });
+  }
+
+  // MD Text Info
+  page5.drawText('MESSAGE FROM THE MANAGING DIRECTOR', {
+    x: 125,
+    y: yPos - 18,
+    size: 9.5,
+    font: fontBold,
+    color: orange,
+  });
+  page5.drawText('Er. Sujit Shah — MD & CEO (Senior Civil Engineer)', {
+    x: 125,
+    y: yPos - 32,
+    size: 11,
+    font: fontBold,
+    color: navy,
+  });
+  const mdQuotes = [
+    '“We don’t just pour concrete—we engineer safe, generational homes and landmarks.',
+    'At Amulya Builders, we guarantee complete BOQ transparency, strict adherence to',
+    'the Nepal National Building Code, and craftsmanship that stands the test of time.”'
+  ];
+  mdQuotes.forEach((q, i) => {
+    page5.drawText(q, {
+      x: 125,
+      y: yPos - 48 - (i * 12),
+      size: 8,
+      font: fontItalic,
+      color: slateDark,
+    });
+  });
+
+  yPos -= 110;
+
+  // Key Team Members Grid (8 members with embedded photos + coordinator)
+  page5.drawText('KEY ENGINEERING & LEADERSHIP TEAM', {
     x: 40,
     y: yPos,
-    size: 12,
+    size: 11,
     font: fontBold,
     color: navy,
   });
   page5.drawLine({
-    start: { x: 40, y: yPos - 6 },
-    end: { x: 310, y: yPos - 6 },
+    start: { x: 40, y: yPos - 4 },
+    end: { x: 260, y: yPos - 4 },
     thickness: 2,
     color: orange,
   });
 
-  yPos -= 25;
+  yPos -= 20;
 
   const teamList = [
-    { name: 'Er. Sujit Shah', role: 'Managing Director & CEO', dept: 'Executive & Strategic Direction' },
-    { name: 'Er. Mukesh Adhikari', role: 'General Manager', dept: 'Operations & Procurement' },
-    { name: 'Er. Amar Singh', role: 'Chief Architect', dept: 'Architectural Design & Planning' },
-    { name: 'Er. Rahul Kumar Purbey', role: 'Site Engineer', dept: 'Civil Supervision & Quality' },
-    { name: 'Er. Aakash Mandal', role: 'Civil Engineer', dept: 'Structural Analysis & NBC Code' },
-    { name: 'Priyanka Kumari Chaudhary', role: 'Assistant Architect', dept: 'CAD Drafting & 3D Modeling' },
-    { name: 'Bijaya Rasaili', role: 'Assistant Architect', dept: 'Spatial Planning & Elevations' },
-    { name: 'Tanu Kumari Shah', role: 'Assistant Architect', dept: 'Interior Schematics & Detailing' },
-    { name: 'Ajay Kumar Sah', role: 'Co-ordinator', dept: 'Client Liaison & Municipal Permit' },
-    { name: 'Ritesh Shah', role: 'Marketing Head', dept: 'Client Relations & Business Dev.' },
+    { name: 'Er. Mukesh Adhikari', role: 'General Manager', img: teamImgs.mukesh, dept: 'Operations & Procurement' },
+    { name: 'Er. Amar Singh', role: 'Chief Architect', img: teamImgs.amar, dept: 'Architectural Design' },
+    { name: 'Er. Rahul Kumar Purbey', role: 'Site Engineer', img: teamImgs.rahul, dept: 'Site & Quality Supervision' },
+    { name: 'Er. Aakash Mandal', role: 'Civil Engineer', img: teamImgs.aakash, dept: 'Structural Analysis & NBC' },
+    { name: 'Priyanka Kumari Chaudhary', role: 'Assistant Architect', img: teamImgs.priyanka, dept: 'CAD & 3D Modeling' },
+    { name: 'Bijaya Rasaili', role: 'Assistant Architect', img: teamImgs.bijaya, dept: 'Spatial Planning' },
+    { name: 'Tanu Kumari Shah', role: 'Assistant Architect', img: teamImgs.tanu, dept: 'Interior & Detailing' },
+    { name: 'Ritesh Shah', role: 'Marketing Head', img: teamImgs.ritesh, dept: 'Client Relations' },
+    { name: 'Ajay Kumar Sah', role: 'Co-ordinator', img: null, dept: 'Municipal & Permit Liaison' },
   ];
 
   teamList.forEach((tm, idx) => {
     const col = idx % 2;
     const row = Math.floor(idx / 2);
     const tx = 40 + col * 265;
-    const ty = yPos - row * 46;
+    const ty = yPos - row * 44;
 
     page5.drawRectangle({
       x: tx,
@@ -1104,24 +1210,35 @@ async function generateCompanyProfilePdf() {
       borderWidth: 1,
     });
 
-    // Avatar square badge
+    // Embed Team Member Photo
+    const photoBox = { x: tx + 5, y: ty - 34, width: 28, height: 30 };
     page5.drawRectangle({
-      x: tx + 6,
-      y: ty - 32,
-      width: 26,
-      height: 26,
+      x: photoBox.x,
+      y: photoBox.y,
+      width: photoBox.width,
+      height: photoBox.height,
       color: navy,
     });
-    const initials = tm.name.split(' ').map(n => n[0]).join('').slice(0, 2);
-    page5.drawText(initials, {
-      x: tx + 11,
-      y: ty - 23,
-      size: 9,
-      font: fontBold,
-      color: white,
-    });
 
-    page5.drawText(tm.name, {
+    if (tm.img) {
+      page5.drawImage(tm.img, {
+        x: photoBox.x,
+        y: photoBox.y,
+        width: photoBox.width,
+        height: photoBox.height,
+      });
+    } else {
+      const inits = tm.name.split(' ').map(n => n[0]).join('').slice(0, 2);
+      page5.drawText(inits, {
+        x: photoBox.x + 6,
+        y: photoBox.y + 10,
+        size: 9.5,
+        font: fontBold,
+        color: white,
+      });
+    }
+
+    page5.drawText(tm.name.slice(0, 28), {
       x: tx + 38,
       y: ty - 16,
       size: 8.5,
@@ -1137,128 +1254,126 @@ async function generateCompanyProfilePdf() {
     });
   });
 
-  yPos -= 255;
+  yPos -= 235;
 
-  // Legal Registration & Compliance Credentials
-  page5.drawText('STATUTORY COMPLIANCE & LEGAL ACCREDITATION', {
+  // Statutory Accreditation & Legal Compliance
+  page5.drawText('STATUTORY REGISTRATION & ACCREDITATION', {
     x: 40,
     y: yPos,
-    size: 11,
+    size: 10.5,
     font: fontBold,
     color: navy,
   });
   page5.drawLine({
-    start: { x: 40, y: yPos - 6 },
-    end: { x: 315, y: yPos - 6 },
+    start: { x: 40, y: yPos - 4 },
+    end: { x: 285, y: yPos - 4 },
     thickness: 2,
     color: orange,
   });
 
-  yPos -= 22;
+  yPos -= 18;
 
   const legalCreds = [
     { title: 'Company Name', val: 'Amulya Builders Pvt. Ltd.' },
-    { title: 'Industry Experience', val: '9+ Years Active Engineering Excellence' },
+    { title: 'Experience', val: '9+ Years Active Engineering Excellence' },
     { title: 'PAN / VAT Registration No.', val: '619774758 (Inland Revenue Dept.)' },
     { title: 'Engineering Governance', val: 'Nepal Engineering Council (NEC) Registered' },
-    { title: 'Building Standards', val: 'NBC 105:2020 / NBC 205 (Seismic Resistance)' },
-    { title: 'Turnkey Scope', val: 'Inside & Outside Kathmandu Valley, Nepal' },
+    { title: 'Building Standards', val: 'NBC 105:2020 / NBC 205 (Seismic Zone V Compliant)' },
+    { title: 'Turnkey Scope', val: 'Inside & Outside Kathmandu Valley Across Nepal' },
   ];
 
   legalCreds.forEach((cred, i) => {
     const col = i % 2;
     const row = Math.floor(i / 2);
     const cx = 40 + col * 265;
-    const cy = yPos - row * 24;
+    const cy = yPos - row * 20;
 
     page5.drawText(`• ${cred.title}:`, {
       x: cx,
       y: cy - 10,
-      size: 8,
+      size: 7.5,
       font: fontBold,
       color: slateDark,
     });
     page5.drawText(cred.val, {
-      x: cx + 130,
+      x: cx + 120,
       y: cy - 10,
-      size: 8,
+      size: 7.5,
       font: fontRegular,
       color: dark,
     });
   });
 
-  yPos -= 90;
+  yPos -= 70;
 
   // Final Contact & Branch Information Box
   page5.drawRectangle({
     x: 40,
-    y: yPos - 110,
+    y: yPos - 95,
     width: W - 80,
-    height: 110,
+    height: 95,
     color: navy,
   });
-  // Orange side strip
   page5.drawRectangle({
     x: 40,
-    y: yPos - 110,
+    y: yPos - 95,
     width: 5,
-    height: 110,
+    height: 95,
     color: orange,
   });
 
-  page5.drawText('CONNECT WITH US FOR YOUR NEXT PROJECT', {
-    x: 58,
-    y: yPos - 22,
-    size: 11,
+  page5.drawText('CONNECT WITH US FOR YOUR NEXT DESIGN & BUILD PROJECT', {
+    x: 55,
+    y: yPos - 18,
+    size: 10,
     font: fontBold,
     color: orange,
   });
 
   page5.drawText('Head Office: Sabaila-8, Dhanusha, Nepal', {
-    x: 58,
-    y: yPos - 40,
-    size: 8.5,
+    x: 55,
+    y: yPos - 34,
+    size: 8,
     font: fontRegular,
     color: white,
   });
   page5.drawText('Branch Office: Tikathali, Lalitpur, Nepal (Opposite of Pawan Prakriti School)', {
-    x: 58,
-    y: yPos - 54,
-    size: 8.5,
+    x: 55,
+    y: yPos - 46,
+    size: 8,
     font: fontRegular,
     color: white,
   });
   page5.drawText('Landline: +977 15925062 | Mobile & WhatsApp: +977 9810357535', {
-    x: 58,
-    y: yPos - 68,
-    size: 8.5,
+    x: 55,
+    y: yPos - 58,
+    size: 8,
     font: fontRegular,
     color: white,
   });
-  page5.drawText('Official Email: abt4nepal@gmail.com | Web: https://amulyabuilders.com.np', {
-    x: 58,
-    y: yPos - 82,
-    size: 8.5,
+  page5.drawText('Official Email: abt4nepal@gmail.com | Website: https://amulyabuilders.com.np', {
+    x: 55,
+    y: yPos - 70,
+    size: 8,
     font: fontRegular,
     color: rgb(203/255, 213/255, 225/255),
   });
-  page5.drawText('Business Hours: Sunday – Friday, 10:00 AM – 6:00 PM (Site Visits & Consultations by Appointment)', {
-    x: 58,
-    y: yPos - 96,
-    size: 8,
+  page5.drawText('Business Hours: Sunday – Friday, 10:00 AM – 6:00 PM (Consultations by Appointment)', {
+    x: 55,
+    y: yPos - 82,
+    size: 7.5,
     font: fontItalic,
     color: rgb(148/255, 163/255, 184/255),
   });
 
   drawPageFooter(page5, 5, 5);
 
-  // Save PDF to public/Amulya-Builders-Company-Profile.pdf
+  // Save PDF to public & dist
   const pdfBytes = await doc.save();
   const outputPath = path.join(rootDir, 'public', 'Amulya-Builders-Company-Profile.pdf');
   fs.writeFileSync(outputPath, pdfBytes);
-  console.log(`Successfully generated PDF at: ${outputPath} (${pdfBytes.length} bytes)`);
+  console.log(`Successfully generated PDF with real images at: ${outputPath} (${pdfBytes.length} bytes)`);
 
-  // Also write to dist if dist exists
   const distPath = path.join(rootDir, 'dist', 'Amulya-Builders-Company-Profile.pdf');
   if (fs.existsSync(path.join(rootDir, 'dist'))) {
     fs.writeFileSync(distPath, pdfBytes);

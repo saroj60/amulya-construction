@@ -240,7 +240,7 @@ export default function CompanyProfilePage() {
               <div className="grid grid-cols-12 gap-3.5 pt-2">
                 <div className="col-span-8 h-64 rounded-2xl overflow-hidden border-2 border-white/20 shadow-xl relative">
                   <img
-                    src="/project-gallery/project-19-1.jpg"
+                    src="/project-gallery/project-19.png"
                     alt="Amulya Builders Featured Commercial & Residential Project"
                     className="w-full h-full object-cover"
                   />
@@ -256,14 +256,14 @@ export default function CompanyProfilePage() {
                 <div className="col-span-4 flex flex-col gap-3.5 h-64">
                   <div className="h-1/2 rounded-2xl overflow-hidden border-2 border-white/20 shadow-lg">
                     <img
-                      src="/project-gallery/project-21-1.jpg"
+                      src="/project-gallery/project-21.jpg"
                       alt="Residential Villa Project"
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="h-1/2 rounded-2xl overflow-hidden border-2 border-white/20 shadow-lg">
                     <img
-                      src="/project-gallery/project-23-1.jpg"
+                      src="/project-gallery/project-23.png"
                       alt="Commercial Complex Project"
                       className="w-full h-full object-cover"
                     />
@@ -274,10 +274,10 @@ export default function CompanyProfilePage() {
               {/* Key Metrics Strip */}
               <div className="grid grid-cols-4 gap-3 pt-2">
                 {[
-                  { value: `${projects.length}+`, label: 'Featured Projects' },
+                  { value: `${projects.length}+`, label: 'Projects Done' },
                   { value: COMPANY.stats.yearsExperience || '9+', label: 'Years Experience' },
-                  { value: '100%', label: 'NBC Code Compliant' },
-                  { value: 'Turnkey', label: 'Design to Handover' },
+                  { value: COMPANY.stats.happyClients || '20+', label: 'Happy Clients' },
+                  { value: COMPANY.stats.professionals || '15+', label: 'Professionals' },
                 ].map((stat, i) => (
                   <div
                     key={i}
