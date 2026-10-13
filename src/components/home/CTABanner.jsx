@@ -5,8 +5,8 @@ import { COMPANY } from '@/data';
 import { fadeLeft, fadeRight, viewportOnce } from '@/utils/animations';
 
 const trustStats = [
-  { icon: Star, value: '250+', label: 'Projects Delivered' },
-  { icon: Shield, value: '15+', label: 'Years of Excellence' },
+  { icon: Star, value: COMPANY.stats.projectsCompleted, label: 'Projects Delivered' },
+  { icon: Shield, value: COMPANY.stats.yearsExperience, label: 'Years of Excellence' },
   { icon: Clock, value: '100%', label: 'On-Time Handover' },
 ];
 

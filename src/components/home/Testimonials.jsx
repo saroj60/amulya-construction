@@ -167,7 +167,7 @@ export default function Testimonials() {
             
             <div className="flex items-center gap-1.5">
               <Icons.Award className="w-4 h-4 text-orange-500" />
-              <span>{COMPANY.stats.yearsExperience} of Experience</span>
+              <span>{COMPANY.stats.yearsExperience} Years of Experience</span>
             </div>
           </div>
         </div>

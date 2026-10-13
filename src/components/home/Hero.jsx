@@ -6,7 +6,7 @@ import {
   ChevronLeft, ChevronRight, Eye, Download
 } from 'lucide-react';
 import { api } from '@/services/api';
-import { PROJECTS } from '@/data';
+import { PROJECTS, COMPANY } from '@/data';
 
 export default function Hero() {
   const [projectSlides, setProjectSlides] = useState(PROJECTS);
@@ -171,7 +171,7 @@ export default function Hero() {
                   { icon: Compass, text: 'Architectural & 3D Design' },
                   { icon: ShieldCheck, text: 'NBC Code Compliant' },
                   { icon: MapPin, text: 'Inside & Outside Valley' },
-                  { icon: Award, text: '15+ Years Excellence' },
+                  { icon: Award, text: `${COMPANY.stats.yearsExperience} Excellence` },
                 ].map(({ icon: Icon, text }) => (
                   <div
                     key={text}

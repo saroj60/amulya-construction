@@ -231,7 +231,7 @@ export default function AboutPage() {
                   and government buildings across Bagmati Province.
                 </p>
                 <p>
-                  Our team of <strong className="text-orange-500 font-extrabold">80+ professionals</strong> — engineers, architects, site supervisors, and skilled
+                  Our team of <strong className="text-orange-500 font-extrabold">{COMPANY.stats.professionals} professionals</strong> — engineers, architects, site supervisors, and skilled
                   tradespeople — is united by a culture of excellence, accountability, and pride in our work.
                   Every structure we build is a testament to Kathmandu's growth and our commitment to raising
                   construction standards in Nepal.
@@ -247,10 +247,10 @@ export default function AboutPage() {
                   
                   {/* Milestones */}
                   {[
-                    { year: '2009', label: 'Founded' },
+                    { year: '2017', label: 'Founded' },
                     { year: 'Growth', label: 'Through Trust' },
                     { year: '250+', label: 'Projects Done' },
-                    { year: '80+', label: 'Professionals' },
+                    { year: COMPANY.stats.professionals, label: 'Professionals' },
                     { year: 'Today', label: 'Kathmandu Best' }
                   ].map((m, idx) => (
                     <div key={idx} className="relative z-10 flex flex-col items-center text-center bg-white px-2">
@@ -267,10 +267,10 @@ export default function AboutPage() {
                   <div className="absolute top-0 bottom-0 left-1.5 w-0.5 bg-gray-200 z-0" />
                   
                   {[
-                    { year: '2009', label: 'Founded in Kathmandu' },
+                    { year: '2017', label: 'Founded in Kathmandu' },
                     { year: 'Growth', label: 'Built on Quality & Trust' },
                     { year: '250+', label: 'Projects successfully completed' },
-                    { year: '80+', label: 'Licensed Engineers & Professionals' },
+                    { year: COMPANY.stats.professionals, label: 'Licensed Engineers & Professionals' },
                     { year: 'Today', label: 'Kathmandu\'s Most Trusted Construction Partner' }
                   ].map((m, idx) => (
                     <div key={idx} className="relative z-10 flex items-start gap-4 pl-2">

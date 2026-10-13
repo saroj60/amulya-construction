@@ -275,7 +275,7 @@ export default function CompanyProfilePage() {
               <div className="grid grid-cols-4 gap-3 pt-2">
                 {[
                   { value: `${projects.length}+`, label: 'Featured Projects' },
-                  { value: COMPANY.stats.yearsExperience || '15+', label: 'Years Experience' },
+                  { value: COMPANY.stats.yearsExperience || '9+', label: 'Years Experience' },
                   { value: '100%', label: 'NBC Code Compliant' },
                   { value: 'Turnkey', label: 'Design to Handover' },
                 ].map((stat, i) => (

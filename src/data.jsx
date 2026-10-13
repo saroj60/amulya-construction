@@ -26,9 +26,9 @@ export const COMPANY = {
   },
   stats: {
     projectsCompleted: '250+',
-    yearsExperience: '15+',
-    happyClients: '200+',
-    professionals: '80+',
+    yearsExperience: '9+',
+    happyClients: '20+',
+    professionals: '15+',
   },
   foundedYear: 2009,
   license: '',

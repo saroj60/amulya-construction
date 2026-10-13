@@ -240,7 +240,7 @@ async function generateCompanyProfilePdf() {
 
   // Highlights 4-box grid
   const keyHighlights = [
-    { num: '15+ Years', lbl: 'Industry Excellence' },
+    { num: '9+ Years', lbl: 'Industry Excellence' },
     { num: '250+ Projects', lbl: 'Delivered Successfully' },
     { num: 'NBC Compliant', lbl: 'Seismic Safety Standards' },
     { num: 'Turnkey Services', lbl: 'From Soil to Finishing' },
@@ -553,9 +553,9 @@ async function generateCompanyProfilePdf() {
 
   const trackStats = [
     { num: '250+', label: 'Successful Projects', sub: 'Residential & Commercial' },
-    { num: '15+', label: 'Years in Business', sub: 'Established Since 2009' },
-    { num: '200+', label: 'Delighted Clients', sub: 'Inside & Outside Valley' },
-    { num: '80+', label: 'Team Members', sub: 'Engineers, Architects & Craftsmen' },
+    { num: '9+', label: 'Years in Business', sub: 'Proven Track Record' },
+    { num: '20+', label: 'Happy Clients', sub: 'Inside & Outside Valley' },
+    { num: '15+', label: 'Team Members', sub: 'Engineers, Architects & Staff' },
   ];
 
   trackStats.forEach((stat, i) => {
@@ -1158,7 +1158,7 @@ async function generateCompanyProfilePdf() {
 
   const legalCreds = [
     { title: 'Company Name', val: 'Amulya Builders Pvt. Ltd.' },
-    { title: 'Established Year', val: '2009 (15+ Years Active Excellence)' },
+    { title: 'Industry Experience', val: '9+ Years Active Engineering Excellence' },
     { title: 'PAN / VAT Registration No.', val: '619774758 (Inland Revenue Dept.)' },
     { title: 'Engineering Governance', val: 'Nepal Engineering Council (NEC) Registered' },
     { title: 'Building Standards', val: 'NBC 105:2020 / NBC 205 (Seismic Resistance)' },

@@ -10,7 +10,7 @@ import { fadeLeft, fadeRight, viewportOnce } from '@/utils/animations';
 const HIGHLIGHTS = [
   { title: 'Licensed & NBC-compliant construction', icon: ShieldCheck },
   { title: 'Transparent pricing with detailed BOQ', icon: FileText },
-  { title: '15+ years serving Kathmandu & Bagmati Province', icon: Users },
+  { title: `${COMPANY.stats.yearsExperience} years serving Kathmandu & across Nepal`, icon: Users },
   { title: 'Timely project delivery with quality assurance', icon: Calendar },
   { title: 'In-house architects and structural engineers', icon: Ruler },
   { title: 'Post-construction support & warranty', icon: Headphones },
@@ -121,7 +121,7 @@ export default function AboutPreview() {
 
             {/* Experience Floating Badge in center of grid */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-3xl p-4 shadow-xl border-4 border-white text-center w-28 h-28 flex flex-col justify-center items-center">
-              <span className="text-3xl font-black leading-none">{COMPANY.stats.yearsExperience}+</span>
+              <span className="text-3xl font-black leading-none">{COMPANY.stats.yearsExperience}</span>
               <span className="text-[9px] font-black uppercase tracking-widest mt-1.5 text-orange-100">Years of</span>
               <span className="text-[9px] font-black uppercase tracking-widest leading-none text-orange-100">Excellence</span>
             </div>
