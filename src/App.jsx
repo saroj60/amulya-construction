@@ -20,6 +20,7 @@ const AdminLogin         = lazy(() => import('./pages/AdminLogin'));
 const AdminDashboard     = lazy(() => import('./pages/AdminDashboard'));
 const BlogPage           = lazy(() => import('./pages/BlogPage'));
 const BlogDetailPage     = lazy(() => import('./pages/BlogDetailPage'));
+const CompanyProfilePage = lazy(() => import('./pages/CompanyProfilePage'));
 
 // Minimal loading fallback — avoids layout shift
 function PageLoader() {
@@ -51,6 +52,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<PageLoader />}>
             <AboutPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'company-profile',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <CompanyProfilePage />
           </Suspense>
         ),
       },

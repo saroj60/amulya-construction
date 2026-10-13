@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   CheckCircle, Target, Eye, Heart, ArrowRight, Award, Users, Building2, Clock,
-  Quote, User,
+  Quote, User, Download,
 } from 'lucide-react';
 import SectionHeader from '../components/ui/SectionHeader';
 import StatCounter from '../components/ui/StatCounter';
@@ -126,6 +126,24 @@ export default function AboutPage() {
           >
             Building trust, landmark structures, and lasting relationships across Kathmandu since {COMPANY.foundedYear}.
           </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.45 }}
+            className="mt-6 flex flex-wrap items-center justify-center gap-3"
+          >
+            <Link
+              to="/company-profile?download=true"
+              className="inline-flex items-center gap-2 px-5 py-3 bg-orange-500 hover:bg-orange-600 text-white text-xs sm:text-sm font-extrabold rounded-xl shadow-lg shadow-orange-500/25 transition-all"
+            >
+              <Download className="w-4 h-4" />
+              Download Company Profile (PDF)
+            </Link>
+            <Link
+              to="/company-profile"
+              className="inline-flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm font-bold rounded-xl transition-all"
+            >
+              View Digital Brochure
+            </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -268,13 +286,22 @@ export default function AboutPage() {
               {/* Bottom CTA */}
               <div className="pt-6 border-t border-gray-150/60 flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
                 <span className="text-xs font-bold text-slate-700 italic">Building Nepal's Future, One Project at a Time</span>
-                <Link
-                  to="/projects"
-                  className="inline-flex items-center gap-1.5 px-5 py-3 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-extrabold text-xs rounded-xl transition-all shadow hover:shadow-orange-500/20 cursor-pointer"
-                >
-                  Discover Our Projects
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Link
+                    to="/company-profile?download=true"
+                    className="inline-flex items-center gap-1.5 px-4 py-3 bg-[#012352] hover:bg-[#02336e] text-white font-extrabold text-xs rounded-xl transition-all shadow cursor-pointer"
+                  >
+                    <Download className="w-3.5 h-3.5 text-orange-400" />
+                    Company Profile (PDF)
+                  </Link>
+                  <Link
+                    to="/projects"
+                    className="inline-flex items-center gap-1.5 px-5 py-3 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-extrabold text-xs rounded-xl transition-all shadow hover:shadow-orange-500/20 cursor-pointer"
+                  >
+                    Discover Our Projects
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
 
             </motion.div>

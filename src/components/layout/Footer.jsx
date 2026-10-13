@@ -51,6 +51,7 @@ const quickLinks = [
   { label: 'Projects', to: '/projects' },
   { label: 'Design', to: '/designs' },
   { label: 'Cost Calculator', to: '/cost-calculator' },
+  { label: 'Company Profile (PDF)', to: '/company-profile?download=true' },
   { label: 'Contact Us', to: '/contact' },
   { label: 'Blog', to: '/blog' },
 ];

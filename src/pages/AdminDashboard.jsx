@@ -1816,6 +1816,64 @@ export default function AdminDashboard() {
                         </div>
                       </div>
 
+                      {/* Company Profile PDF Brochure Management */}
+                      <div className="space-y-3 pt-3">
+                        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-150 pb-2">
+                          <h3 className="text-xs font-bold uppercase tracking-wider text-blue-800">
+                            8. Downloadable Company Profile (PDF Brochure)
+                          </h3>
+                          <a
+                            href="/company-profile"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs font-extrabold text-orange-600 hover:underline"
+                          >
+                            Preview Live 8-Page Brochure ↗
+                          </a>
+                        </div>
+                        <p className="text-[11px] text-gray-500">
+                          By default, the website automatically generates an 8-page A4 Company Profile PDF synced live with your Projects, Team, and Services in the database. Optionally upload a custom PDF file below if you want to override it with a static PDF file.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-2">
+                          <input
+                            type="text"
+                            value={calcConfig.companyProfilePdfUrl || ''}
+                            onChange={(e) => setCalcConfig({ ...calcConfig, companyProfilePdfUrl: e.target.value })}
+                            className="flex-1 border border-gray-200 px-3 py-2 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-800"
+                            placeholder="Leave blank to use Auto-Generated Live Database Brochure, or upload custom .pdf..."
+                          />
+                          <div className="relative">
+                            <input
+                              type="file"
+                              accept="application/pdf,.pdf"
+                              disabled={uploadingImage}
+                              onChange={(e) =>
+                                handleLocalFileUpload(e, (url) =>
+                                  setCalcConfig({ ...calcConfig, companyProfilePdfUrl: url })
+                                )
+                              }
+                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
+                            />
+                            <button
+                              type="button"
+                              disabled={uploadingImage}
+                              className="h-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-xl text-xs font-bold text-gray-700 hover:bg-gray-200 transition-colors"
+                            >
+                              {uploadingImage ? 'Uploading...' : 'Upload Custom PDF'}
+                            </button>
+                          </div>
+                          {calcConfig.companyProfilePdfUrl && (
+                            <button
+                              type="button"
+                              onClick={() => setCalcConfig({ ...calcConfig, companyProfilePdfUrl: '' })}
+                              className="px-3 py-2 bg-red-50 text-red-700 border border-red-200 rounded-xl text-xs font-bold hover:bg-red-100"
+                            >
+                              Use Live Auto-PDF
+                            </button>
+                          )}
+                        </div>
+                      </div>
+
                       <div className="flex justify-end pt-4">
                         <button type="submit" disabled={saveLoading} className="px-5 py-3 bg-blue-800 text-white rounded-xl text-xs font-bold hover:bg-blue-900 flex items-center gap-1.5 shadow-sm">
                           {saveLoading && <Loader className="w-3.5 h-3.5 animate-spin" />}

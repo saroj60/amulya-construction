@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, HardHat, Phone } from 'lucide-react';
+import { Menu, X, HardHat, Phone, Download } from 'lucide-react';
 import { COMPANY } from '@/data';
 
 const NAV_LINKS = [
@@ -89,7 +89,7 @@ export default function Navbar() {
           </ul>
 
           {/* Desktop CTA & Phone */}
-          <div className="hidden lg:flex items-center gap-5 xl:gap-6">
+          <div className="hidden lg:flex items-center gap-3.5 xl:gap-4">
             <a
               href={`tel:${COMPANY.mobile || COMPANY.phone}`}
               className="flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-orange-500 transition-colors duration-200 group"
@@ -102,6 +102,16 @@ export default function Navbar() {
                 {COMPANY.mobile || COMPANY.phone}
               </span>
             </a>
+
+            <Link
+              to="/company-profile?download=true"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 bg-[#012352] hover:bg-[#02336e] text-white text-xs font-bold rounded-lg shadow-sm transition-all duration-200 cursor-pointer"
+              aria-label="Download Company Profile PDF"
+              title="Download Official Company Profile (PDF)"
+            >
+              <Download className="w-3.5 h-3.5 text-orange-400" aria-hidden="true" />
+              <span>Profile PDF</span>
+            </Link>
             
             <Link
               to="/contact"
@@ -196,6 +206,13 @@ export default function Navbar() {
                     <div className="font-semibold text-gray-900">{COMPANY.mobile || COMPANY.phone}</div>
                   </div>
                 </a>
+                <Link
+                  to="/company-profile?download=true"
+                  className="w-full py-3 px-4 bg-[#012352] hover:bg-[#02336e] text-white font-semibold rounded-lg text-center text-sm flex items-center justify-center gap-2 shadow-sm transition-all"
+                >
+                  <Download className="w-4 h-4 text-orange-400" />
+                  Download Company Profile (PDF)
+                </Link>
                 <Link
                   to="/contact"
                   className="w-full py-3 px-4 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-semibold rounded-lg text-center text-sm shadow-md shadow-orange-500/20 transition-all"
