@@ -538,13 +538,13 @@ export default function CompanyProfilePage() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2.5">
                   {team.filter(m => !m.name?.includes('Sujit Shah')).slice(0, 8).map((member, index) => (
                     <div
                       key={member.id || index}
-                      className="flex items-center gap-4 p-3.5 rounded-2xl bg-slate-50 border border-slate-200"
+                      className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200"
                     >
-                      <div className="w-20 h-24 rounded-xl overflow-hidden bg-[#012352] shrink-0 border border-slate-300 flex items-center justify-center text-white font-black text-lg">
+                      <div className="w-14 h-16 rounded-lg overflow-hidden bg-[#012352] shrink-0 border border-slate-300 flex items-center justify-center text-white font-black text-sm">
                         {member.image ? (
                           <img
                             src={member.image}
@@ -556,17 +556,17 @@ export default function CompanyProfilePage() {
                         )}
                       </div>
                       <div className="min-w-0">
-                        <h4 className="text-sm font-black text-slate-900 truncate">{member.name}</h4>
-                        <p className="text-xs font-extrabold text-orange-600 mt-0.5">
+                        <h4 className="text-xs font-black text-slate-900 truncate">{member.name}</h4>
+                        <p className="text-[11px] font-extrabold text-orange-600 truncate mt-0.5">
                           {member.designation}
                         </p>
                         {member.qualification && (
-                          <p className="text-[11px] text-slate-600 font-medium mt-1">
+                          <p className="text-[10px] text-slate-600 font-medium truncate">
                             {member.qualification}
                           </p>
                         )}
                         {member.experience && (
-                          <span className="inline-block mt-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-[#012352] text-[10px] font-bold border border-blue-200">
+                          <span className="inline-block mt-0.5 px-2 py-0.2 rounded-full bg-blue-50 text-[#012352] text-[9px] font-bold border border-blue-200">
                             {member.experience} Experience
                           </span>
                         )}

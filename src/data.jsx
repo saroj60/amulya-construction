@@ -1181,6 +1181,16 @@ export const TEAM = [
     color: '#cd0102',
     image: '/team/placeholder-avatar.svg',
   },
+  {
+    id: 9,
+    name: 'Er. Aakash Mandal',
+    designation: 'Civil Engineer',
+    qualification: '',
+    experience: '',
+    avatar: 'AM',
+    color: '#1e40af',
+    image: '/team/aakash-mandal.png',
+  },
 ];
 
 // ============================================================
