@@ -1151,6 +1151,16 @@ export const TEAM = [
     color: '#1e40af',
     image: '/team/priyanka-kumari-chaudhary.png',
   },
+  {
+    id: 6,
+    name: 'Bijaya Rasaili',
+    designation: 'Assistant Architect',
+    qualification: '',
+    experience: '',
+    avatar: 'BR',
+    color: '#cd0102',
+    image: '/team/bijaya-rasaili.png',
+  },
 ];
 
 // ============================================================

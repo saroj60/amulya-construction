@@ -1227,6 +1227,15 @@ const seedTeam = [
     avatar: 'PC',
     color: '#1e40af',
     image: '/team/priyanka-kumari-chaudhary.png'
+  },
+  {
+    name: 'Bijaya Rasaili',
+    designation: 'Assistant Architect',
+    qualification: '',
+    experience: '',
+    avatar: 'BR',
+    color: '#cd0102',
+    image: '/team/bijaya-rasaili.png'
   }
 ];
 
