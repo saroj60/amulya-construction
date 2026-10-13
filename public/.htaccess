@@ -5,6 +5,13 @@
   # Disable directory indexing (prevents 403 Forbidden on folder visits)
   Options -Indexes
 
+  # Forward Authorization header to PHP for JWT authentication
+  RewriteCond %{HTTP:Authorization} .
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+  # Route all /api/* requests to the Hostinger MySQL API handler
+  RewriteRule ^api/(.*)$ /api/index.php [QSA,L]
+
   # Serve existing physical files directly
   RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^ - [L]

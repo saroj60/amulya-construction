@@ -1,19 +1,111 @@
+import 'dotenv/config';
 import sqlite3 from 'sqlite3';
+import mysql from 'mysql2';
 import bcrypt from 'bcryptjs';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dbPath = path.resolve(__dirname, 'database.sqlite');
 
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) {
-    console.error('Error opening SQLite database:', err.message);
-  } else {
-    console.log('Connected to SQLite database at:', dbPath);
-    initDatabase();
-  }
-});
+const useMySQL = Boolean(process.env.DB_HOST && process.env.DB_NAME && process.env.DB_USER);
+
+let db;
+
+if (useMySQL) {
+  const pool = mysql.createPool({
+    host: process.env.DB_HOST || 'localhost',
+    port: Number(process.env.DB_PORT || 3306),
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD || process.env.DB_PASS || '',
+    database: process.env.DB_NAME,
+    waitForConnections: true,
+    connectionLimit: 10,
+    multipleStatements: true,
+    charset: 'utf8mb4',
+  });
+
+  console.log(`Connected to Hostinger MySQL database (${process.env.DB_NAME}@${process.env.DB_HOST})`);
+
+  // Auto-initialize MySQL schema & seed data from database.sql if tables don't exist yet
+  pool.query("SHOW TABLES LIKE 'projects'", (err, results) => {
+    if (!err && Array.isArray(results) && results.length === 0) {
+      const sqlFile = path.resolve(__dirname, '../public/api/database.sql');
+      if (fs.existsSync(sqlFile)) {
+        const sql = fs.readFileSync(sqlFile, 'utf8');
+        pool.query(sql, (initErr) => {
+          if (initErr) console.error('MySQL auto-init error:', initErr.message);
+          else console.log('Initialized Hostinger MySQL tables & seed data from database.sql');
+        });
+      }
+    }
+  });
+
+  // Provide sqlite3-compatible API (.get, .all, .run, .prepare, .serialize) backed by MySQL pool
+  db = {
+    serialize(fn) {
+      if (fn) fn();
+    },
+    get(sql, params, cb) {
+      if (typeof params === 'function') {
+        cb = params;
+        params = [];
+      }
+      pool.query(sql, params || [], (err, rows) => {
+        if (cb) cb(err, rows && rows[0] ? rows[0] : undefined);
+      });
+    },
+    all(sql, params, cb) {
+      if (typeof params === 'function') {
+        cb = params;
+        params = [];
+      }
+      pool.query(sql, params || [], (err, rows) => {
+        if (cb) cb(err, rows || []);
+      });
+    },
+    run(sql, params, cb) {
+      if (typeof params === 'function') {
+        cb = params;
+        params = [];
+      }
+      pool.query(sql, params || [], (err, result) => {
+        if (cb) {
+          cb.call(
+            {
+              lastID: result ? result.insertId : undefined,
+              changes: result ? result.affectedRows : 0,
+            },
+            err
+          );
+        }
+      });
+    },
+    prepare(sql) {
+      return {
+        run(...args) {
+          let cb = null;
+          if (typeof args[args.length - 1] === 'function') {
+            cb = args.pop();
+          }
+          const params = Array.isArray(args[0]) ? args[0] : args;
+          db.run(sql, params, cb);
+        },
+        finalize() {},
+      };
+    },
+  };
+} else {
+  db = new sqlite3.Database(dbPath, (err) => {
+    if (err) {
+      console.error('Error opening SQLite database:', err.message);
+    } else {
+      console.log('Connected to SQLite database at:', dbPath);
+      initDatabase();
+    }
+  });
+}
 
 // Seed data from current frontend config to make initialization seamless
 const seedProjects = [
