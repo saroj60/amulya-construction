@@ -1218,6 +1218,15 @@ const seedTeam = [
     avatar: 'RP',
     color: '#cd0102',
     image: '/team/rahul-kumar-purbey.png'
+  },
+  {
+    name: 'Priyanka Kumari Chaudhary',
+    designation: 'Assistant Architect',
+    qualification: '',
+    experience: '',
+    avatar: 'PC',
+    color: '#1e40af',
+    image: '/team/priyanka-kumari-chaudhary.png'
   }
 ];
 

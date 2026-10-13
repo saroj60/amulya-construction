@@ -138,6 +138,7 @@ INSERT IGNORE INTO `team` (`id`, `name`, `designation`, `qualification`, `experi
 INSERT IGNORE INTO `team` (`id`, `name`, `designation`, `qualification`, `experience`, `avatar`, `color`, `image`) VALUES (2, 'Er. Mukesh Adhikari', 'Manager', '', '', 'MA', '#cd0102', '/team/mukesh-adhikari.png');
 INSERT IGNORE INTO `team` (`id`, `name`, `designation`, `qualification`, `experience`, `avatar`, `color`, `image`) VALUES (3, 'Er. Amar Singh', 'Chief Architect', '', '', 'AS', '#1e40af', '/team/amar-singh.png');
 INSERT IGNORE INTO `team` (`id`, `name`, `designation`, `qualification`, `experience`, `avatar`, `color`, `image`) VALUES (4, 'Er. Rahul Kumar Purbey', 'Site Engineer', '', '', 'RP', '#cd0102', '/team/rahul-kumar-purbey.png');
+INSERT IGNORE INTO `team` (`id`, `name`, `designation`, `qualification`, `experience`, `avatar`, `color`, `image`) VALUES (5, 'Priyanka Kumari Chaudhary', 'Assistant Architect', '', '', 'PC', '#1e40af', '/team/priyanka-kumari-chaudhary.png');
 
 -- ------------------------------------------------------------
 -- Table structure for `calculator_config`

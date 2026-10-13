@@ -1141,6 +1141,16 @@ export const TEAM = [
     color: '#cd0102',
     image: '/team/rahul-kumar-purbey.png',
   },
+  {
+    id: 5,
+    name: 'Priyanka Kumari Chaudhary',
+    designation: 'Assistant Architect',
+    qualification: '',
+    experience: '',
+    avatar: 'PC',
+    color: '#1e40af',
+    image: '/team/priyanka-kumari-chaudhary.png',
+  },
 ];
 
 // ============================================================
