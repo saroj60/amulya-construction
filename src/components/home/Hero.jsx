@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight, ShieldCheck, Award, Compass, MapPin,
-  ChevronLeft, ChevronRight, Eye
+  ChevronLeft, ChevronRight, Eye, Download
 } from 'lucide-react';
 import { api } from '@/services/api';
 import { PROJECTS } from '@/data';
@@ -120,7 +120,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: 'easeOut', delay: 0.45 }}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-8 sm:mb-10"
+              className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 mb-8 sm:mb-10"
             >
               <Link
                 to="/contact"
@@ -137,6 +137,15 @@ export default function Hero() {
                 aria-label="Explore completed construction projects"
               >
                 Browse All Projects
+              </Link>
+
+              <Link
+                to="/company-profile?download=true"
+                className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 bg-[#012352]/90 hover:bg-[#02336e] text-white font-semibold text-sm sm:text-base rounded-lg border border-blue-400/30 hover:border-orange-400/60 backdrop-blur-sm shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
+                aria-label="Download Official Company Profile PDF"
+              >
+                <Download className="w-4 h-4 sm:w-5 sm:h-5 text-orange-400" aria-hidden="true" />
+                <span>Company Profile (PDF)</span>
               </Link>
             </motion.div>
 
