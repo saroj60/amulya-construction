@@ -63,22 +63,14 @@ export default function CompanyProfilePage() {
   }, [loading, searchParams, customPdfUrl]);
 
   const handleDownloadPdf = () => {
-    if (customPdfUrl) {
-      const a = document.createElement('a');
-      a.href = customPdfUrl;
-      a.download = 'Amulya-Builders-Company-Profile.pdf';
-      a.target = '_blank';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      return;
-    }
-    const prevTitle = document.title;
-    document.title = 'Amulya-Builders-Company-Profile';
-    window.print();
-    setTimeout(() => {
-      document.title = prevTitle;
-    }, 1000);
+    const fileUrl = customPdfUrl || '/Amulya-Builders-Company-Profile.pdf';
+    const a = document.createElement('a');
+    a.href = fileUrl;
+    a.download = 'Amulya-Builders-Company-Profile.pdf';
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   // Prioritize projects that have rich details (named projects first, then gallery projects)

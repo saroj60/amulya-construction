@@ -12,6 +12,7 @@ export default function Hero() {
   const [projectSlides, setProjectSlides] = useState(PROJECTS);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [profilePdfUrl, setProfilePdfUrl] = useState('/Amulya-Builders-Company-Profile.pdf');
 
   useEffect(() => {
     api.getProjects()
@@ -23,6 +24,14 @@ export default function Hero() {
       .catch(err => {
         console.error('Failed to load projects for hero slider, using local fallback:', err);
       });
+
+    api.getCalculatorConfig()
+      .then(cfg => {
+        if (cfg?.companyProfilePdfUrl) {
+          setProfilePdfUrl(cfg.companyProfilePdfUrl);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -139,14 +148,15 @@ export default function Hero() {
                 Browse All Projects
               </Link>
 
-              <Link
-                to="/company-profile?download=true"
+              <a
+                href={profilePdfUrl}
+                download="Amulya-Builders-Company-Profile.pdf"
                 className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 bg-[#012352]/90 hover:bg-[#02336e] text-white font-semibold text-sm sm:text-base rounded-lg border border-blue-400/30 hover:border-orange-400/60 backdrop-blur-sm shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer"
                 aria-label="Download Official Company Profile PDF"
               >
                 <Download className="w-4 h-4 sm:w-5 sm:h-5 text-orange-400" aria-hidden="true" />
                 <span>Company Profile (PDF)</span>
-              </Link>
+              </a>
             </motion.div>
 
             {/* Trust Indicators */}

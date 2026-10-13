@@ -130,13 +130,14 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.45 }}
             className="mt-6 flex flex-wrap items-center justify-center gap-3"
           >
-            <Link
-              to="/company-profile?download=true"
+            <a
+              href="/Amulya-Builders-Company-Profile.pdf"
+              download="Amulya-Builders-Company-Profile.pdf"
               className="inline-flex items-center gap-2 px-5 py-3 bg-orange-500 hover:bg-orange-600 text-white text-xs sm:text-sm font-extrabold rounded-xl shadow-lg shadow-orange-500/25 transition-all"
             >
               <Download className="w-4 h-4" />
               Download Company Profile (PDF)
-            </Link>
+            </a>
             <Link
               to="/company-profile"
               className="inline-flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm font-bold rounded-xl transition-all"
