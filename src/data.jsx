@@ -251,35 +251,6 @@ export const PROJECTS = [
     featured: true,
   },
   {
-    id: 5,
-    title: 'Project Code: 5',
-    location: '',
-    category: 'Residential',
-    status: 'Completed',
-    duration: 'Turnkey Project',
-    image: '/project-gallery/project-5.jpg',
-    gallery: [
-      '/project-gallery/project-5.jpg',
-    ],
-    description:
-      'Project 5 — Multi-angle perspective of luxury residential villa showing panoramic terrace, side elevations, and rooftop viewing deck by Amulya Builders.',
-    highlights: [
-      'Full perimeter glass terrace balustrades',
-      'Structural cantilevered slab and timber rafter cornice',
-      'Rooftop spiral access staircase and terrace layout',
-      'NBC earthquake-resistant RCC frame',
-    ],
-    specifications: {
-      'Project Code': '5',
-      'Location': '',
-      'Project Cost': '',
-      'Type of Building': '',
-      'Plinth Area': '',
-      'Face Length': '',
-    },
-    featured: true,
-  },
-  {
     id: 6,
     title: 'Jay Kishor Mahato Residential',
     location: 'Chitwan',
