@@ -49,19 +49,29 @@
   </url>
   <url>
     <loc>https://amulyabuilders.com.np/blog</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://amulyabuilders.com.np/company-profile</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://amulyabuilders.com.np/project-gallery/project-19.png</image:loc>
+      <image:title>Amulya Builders Corporate Company Profile PDF Brochure</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://amulyabuilders.com.np/privacy-policy</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://amulyabuilders.com.np/terms</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

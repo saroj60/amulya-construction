@@ -89,11 +89,30 @@ export default function CompanyProfilePage() {
   return (
     <>
       <Helmet>
-        <title>Company Profile (PDF Brochure) | {COMPANY.name}</title>
+        <title>Company Profile (PDF Brochure) | Construction Company in Kathmandu, Lalitpur & Dhanusha | {COMPANY.name}</title>
         <meta
           name="description"
           content={`Download the official Corporate Company Profile PDF of ${COMPANY.name} — Nepal's trusted architectural design, structural engineering, and turnkey construction firm.`}
         />
+        <meta
+          name="keywords"
+          content="amulya builders company profile, construction company profile pdf, turnkey construction profile nepal, architectural design brochure kathmandu, civil engineer profile nepal, NBC 105:2020 construction company"
+        />
+        <link rel="canonical" href="https://amulyabuilders.com.np/company-profile" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://amulyabuilders.com.np/company-profile" />
+        <meta property="og:title" content={`Company Profile (PDF Brochure) | ${COMPANY.name}`} />
+        <meta property="og:description" content={`Download the official Corporate Company Profile PDF of ${COMPANY.name} — Nepal's trusted architectural design, structural engineering, and turnkey construction firm.`} />
+        <meta property="og:image" content="https://amulyabuilders.com.np/project-gallery/project-19.png" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://amulyabuilders.com.np/company-profile" />
+        <meta name="twitter:title" content={`Company Profile (PDF Brochure) | ${COMPANY.name}`} />
+        <meta name="twitter:description" content={`Download the official Corporate Company Profile PDF of ${COMPANY.name} — Nepal's trusted architectural design, structural engineering, and turnkey construction firm.`} />
+        <meta name="twitter:image" content="https://amulyabuilders.com.np/project-gallery/project-19.png" />
       </Helmet>
 
       {/* Print-specific A4 rules */}

@@ -13,7 +13,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: parseInt(process.env.VITE_PORT || '5310'),
+    port: parseInt(process.env.VITE_PORT || '5174'),
     proxy: {
       '/api': {
         target: `http://127.0.0.1:${process.env.PORT || '5035'}`,
