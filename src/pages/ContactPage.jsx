@@ -498,6 +498,19 @@ export default function ContactPage() {
                     {COMPANY.email}
                   </a>
                 </div>
+                {COMPANY.social.facebook && (
+                  <div className="flex flex-col">
+                    <span className="text-gray-500 uppercase text-[9px] tracking-wider font-bold">Facebook Page</span>
+                    <a
+                      href={COMPANY.social.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-700 transition-colors mt-0.5 font-bold flex items-center gap-1.5"
+                    >
+                      Follow on Facebook
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
 

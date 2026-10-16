@@ -18,7 +18,7 @@ export const COMPANY = {
     closed: 'Closed on Saturdays & Public Holidays',
   },
   social: {
-    facebook: 'https://www.facebook.com/share/r/19JzAwRSeo/?mibextid=wwXIfr',
+    facebook: 'https://www.facebook.com/p/Amulya-Builders-And-Trading-Pvt-Ltd-61552996331616/',
     tiktok: 'https://www.tiktok.com/@amulya.builders?_r=1&_t=ZS-997NQAW9820',
     instagram: 'https://instagram.com/',
     youtube: 'https://youtube.com/',
