@@ -524,6 +524,19 @@ export default function ContactPage() {
                     </a>
                   </div>
                 )}
+                {COMPANY.social.tiktok && (
+                  <div className="flex flex-col">
+                    <span className="text-gray-500 uppercase text-[9px] tracking-wider font-bold">TikTok</span>
+                    <a
+                      href={COMPANY.social.tiktok}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-900 hover:text-black transition-colors mt-0.5 font-bold flex items-center gap-1.5"
+                    >
+                      Follow @amulya.builders
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
 
