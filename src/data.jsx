@@ -20,7 +20,7 @@ export const COMPANY = {
   social: {
     facebook: 'https://www.facebook.com/p/Amulya-Builders-And-Trading-Pvt-Ltd-61552996331616/',
     tiktok: 'https://www.tiktok.com/@amulya.builders?_r=1&_t=ZS-997NQAW9820',
-    instagram: 'https://instagram.com/',
+    instagram: 'https://www.instagram.com/amulyaghar/',
     youtube: 'https://youtube.com/',
     linkedin: 'https://linkedin.com/',
   },

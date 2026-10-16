@@ -511,6 +511,19 @@ export default function ContactPage() {
                     </a>
                   </div>
                 )}
+                {COMPANY.social.instagram && (
+                  <div className="flex flex-col">
+                    <span className="text-gray-500 uppercase text-[9px] tracking-wider font-bold">Instagram</span>
+                    <a
+                      href={COMPANY.social.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-pink-600 hover:text-pink-700 transition-colors mt-0.5 font-bold flex items-center gap-1.5"
+                    >
+                      Follow @amulyaghar
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
 
